@@ -1,0 +1,26 @@
+{
+  "name": "book.drogue.io",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Makefile",
+  "private": true,
+  "directories": {
+    "doc": "docs"
+  },
+  "dependencies": {
+    "@antora/cli": "^2.3.4",
+    "@antora/site-generator-default": "^2.3.4"
+  },
+  "devDependencies": {},
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/drogue-iot/book.drogue.io.git"
+  },
+  "author": "",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/drogue-iot/book.drogue.io/issues"
+  },
+  "homepage": "https://github.com/drogue-iot/book.drogue.io#readme"
+}
