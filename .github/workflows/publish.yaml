@@ -10,7 +10,6 @@ on:
 jobs:
 
   build:
-    name: shalzz/zola-deploy-action
     runs-on: ubuntu-latest
     steps:
 
