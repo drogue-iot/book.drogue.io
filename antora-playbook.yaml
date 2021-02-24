@@ -1,0 +1,24 @@
+site:
+  title: Drogue IoT
+  start_page: drogue-cloud::concepts.adoc
+content:
+  sources:
+    - url: /home/jreimann/git/drogue-cloud # https://github.com/drogue-iot/drogue-cloud.git
+      branches: main
+      start_path: docs
+ui:
+  bundle:
+    url: https://github.com/drogue-iot/drogue-antora-ui/releases/download/v0.1.1/ui-bundle.zip
+    snapshot: false
+
+  supplemental_files:
+    - path: ui.yml
+      contents: |
+        static_files: [ .nojekyll ]
+    - path: .nojekyll
+
+output:
+  clean: true
+runtime:
+  fetch: true
+
