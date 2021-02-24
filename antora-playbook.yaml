@@ -3,7 +3,7 @@ site:
   start_page: drogue-cloud::concepts.adoc
 content:
   sources:
-    - url: /home/jreimann/git/drogue-cloud # https://github.com/drogue-iot/drogue-cloud.git
+    - url: https://github.com/drogue-iot/drogue-cloud.git
       branches: main
       start_path: docs
 ui:
