@@ -1,6 +1,8 @@
 site:
   title: Drogue IoT
   start_page: drogue-book::index.adoc
+  keys:
+    google_analytics: 'G-Z4BRXRBJJ1'
 content:
   sources:
     - url: ./
