@@ -1,0 +1,9 @@
+= Devices
+
+Drogue Device helps you create safe and efficient applications on microcontroller type of systems. In a world
+without memory management or operating system it is more important than ever to avoid memory corruption and undefined
+behavior. That is why Drogue Device is a framework built using the Rust programming language, bringing the promise
+of Rust to the embedded world:
+
+[quote, Rust, from the Rust Homepage]
+A language empowering everyone  to build reliable and efficient software.
