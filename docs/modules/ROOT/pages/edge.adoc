@@ -1,5 +1,0 @@
-= The edge
-
-The edge brings together devices and the cloud side if that is required. If that is just onboarding traffic to an IP-based network, or bringing processing logic closer to devices depends on each use case. Thus edge nodes sometimes look more like a device in some cases, and more like _the cloud_ in others.
-
-Drogue IoT currently doesn't provide any specific edge components. But it ensures that edge devices are part of the system in many different ways. Like having the concept of a "gateway device", providing demos on how to run edge workload using containers, integrating with the cloud.

@@ -1,7 +1,0 @@
-= The cloud
-
-The cloud side has different problems to solve: scalability, security, integration. Drogue Cloud tries to make it simple
-for you to attach devices to a scalable backend. A backend which handles security for you, and integrates with existing
-technologies and services.
-
-Read more: xref:drogue-cloud::index.adoc[Drogue Cloud]

@@ -7,3 +7,27 @@ All of these steps in the middle are still needed and must be managed in some wa
 
 Drogue IoT provides you with tools, to create safe and efficient IoT solutions. Starting on the embedded side up to
 the cloud layer.
+
+== Devices
+
+Drogue Device helps you create safe and efficient applications on microcontroller type of systems. In a world
+without memory management or operating system it is more important than ever to avoid memory corruption and undefined
+behavior. That is why Drogue Device is a framework built using the Rust programming language, bringing the promise
+of Rust to the embedded world:
+
+[quote, Rust, from the Rust Homepage]
+A language empowering everyone  to build reliable and efficient software.
+
+== The edge
+
+The edge brings together devices and the cloud side if that is required. If that is just onboarding traffic to an IP-based network, or bringing processing logic closer to devices depends on each use case. Thus edge nodes sometimes look more like a device in some cases, and more like _the cloud_ in others.
+
+Drogue IoT currently doesn't provide any specific edge components. But it ensures that edge devices are part of the system in many different ways. Like having the concept of a "gateway device", providing demos on how to run edge workload using containers, integrating with the cloud.
+
+== The cloud
+
+The cloud side has different problems to solve: scalability, security, integration. Drogue Cloud tries to make it simple
+for you to attach devices to a scalable backend. A backend which handles security for you, and integrates with existing
+technologies and services.
+
+Read more: xref:drogue-cloud::index.adoc[Drogue Cloud]

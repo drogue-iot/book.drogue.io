@@ -1,3 +1,2 @@
-* xref:device.adoc[Device]
-* xref:edge.adoc[Edge]
-* xref:cloud.adoc[Cloud]
+* xref:drogue-cloud::index.adoc[Drogue Cloud]
+* xref:drogue-device::index.adoc[Drogue Device]
