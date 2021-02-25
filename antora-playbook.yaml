@@ -1,6 +1,6 @@
 site:
   title: Drogue IoT
-  start_page: drogue-cloud::concepts.adoc
+  start_page: drogue-book::index.adoc
 content:
   sources:
     - url: ./
