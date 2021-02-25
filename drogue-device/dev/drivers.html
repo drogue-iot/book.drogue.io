@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Untitled :: Drogue IoT</title>
+    <meta name="generator" content="Antora 2.3.4">
+    <link rel="stylesheet" href="../../_/css/site.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4BRXRBJJ1"></script>
+    <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','G-Z4BRXRBJJ1')</script>
+    <script>var uiRootPath = '../../_'</script>
+    <link rel="icon" href="../../_/img/favicon.svg" type="image/svg+xml">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="../..">
+        <img class="navbar-brand-image" src="../../_/img/logo.png" alt="Drogue IoT"/>
+      </a>
+
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://blog.drogue.io" target="_blank">Blog</a>
+        <a class="navbar-item" href="https://matrix.to/#/#drogue-iot:matrix.org" target="_blank">Chat</a>
+        <a class="navbar-item" href="https://book.drogue.io">Documentation</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="drogue-device" data-version="dev">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Drogue Device</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="concepts.html">Concepts</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="drivers.html">Drivers</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Drogue Device</span>
+    <span class="version">dev</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <a class="title" href="../../drogue-cloud/dev/index.html">Drogue Cloud</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../drogue-cloud/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <a class="title" href="index.html">Drogue Device</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../drogue-book/index.html">Drogue IoT</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../drogue-book/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../drogue-book/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Drogue Device</a></li>
+    <li><a href="drivers.html">Drivers</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-device/edit/main/docs/modules/ROOT/pages/drivers.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<div class="sect1">
+<h2 id="_writing_drogue_device_drivers"><a class="anchor" href="#_writing_drogue_device_drivers"></a>Writing drogue device drivers</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Drogue-device contains device drivers for different boards and sensors.
+Drivers follow a common set of patterns that makes it easier to write
+new drivers. Device drivers can be written in different ways, but the
+common approach is to implement the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>An API that defines the API that a class of drivers implement. This
+may already exist (Examples are SPI and UART). This is located in
+<code>src/api/</code>.</p>
+</li>
+<li>
+<p>A driver that implements an API, either using a HAL or hardware
+directly. This is located in <code>src/driver</code>.</p>
+</li>
+<li>
+<p>(Optional) A HAL (Hardware Access Layer) for internal traits and types
+that a driver can use to support different hardware. This is located in
+<code>src/hal</code>.</p>
+</li>
+<li>
+<p>(Optional) Hardware-specific code that may implement a HAL. This is
+located in <code>src/port/&lt;device class&gt;</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>A driver is exposed as a <code>Package</code> that can be configure during
+application initialization. The <code>Package</code> exposes an <code>Actor</code> that can be
+used to interact with the driver.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_writing_the_api"><a class="anchor" href="#_writing_the_api"></a>Writing the API</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">pub struct ReadValue;
+
+pub trait MyTrait: Actor {
+    fn read_value(self) -&gt; Response&lt;Self, u32&gt;;
+}
+
+impl&lt;A: MyTrait&gt; RequestHandler&lt;ReadValue&gt; for A {
+    type Response = u32;
+    fn on_request(self, message: ReadValue) -&gt; Response&lt;Self, Self::Response&gt; {
+        self.read_value()
+    }
+}
+
+impl&lt;A: MyTrait&gt; Address&lt;A&gt; {
+    async fn read_value&lt;A: RequestHandler&lt;ReadValue&gt;&gt;(&amp;self) -&gt; u32 {
+        self.request(ReadValue).await
+    }
+}</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_writing_the_driver"><a class="anchor" href="#_writing_the_driver"></a>Writing the driver</h3>
+<div class="paragraph">
+<p>A driver is an implementation of the API that embedded applications use.</p>
+</div>
+<div class="paragraph">
+<p>The simplest drivers are those that does not need to pass non-static
+references in its messages. You can also handle interrupts with an actor
+driver. This can be achieved by implementing the <code>Interrupt</code> trait as
+well as the actor trait. The common pattern is to use two actors, one
+for interrupts and one for handling commands. These actors may
+communicate either through a separate API or using the actor API.</p>
+</div>
+<div class="paragraph">
+<p>Implementing the Package trait allows a driver to perform initial
+configuration across multiple sub-components, such as a separate IRQ
+actor that handles interrupts, and an API actor that handles requests.</p>
+</div>
+<div class="paragraph">
+<p>Here is an example driver that uses some struct to access the hardware,
+and it has some shared state between the actors, and it receives an
+initial configuration through implementing the <code>Package</code> trait.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">pub struct MyDriver&lt;T&gt; {
+    api: ActorContext&lt;MyComponent&gt;&gt;,
+    interrupt: InterruptContext&lt;MyDevice&lt;T&gt;&gt;,
+    shared: AtomicU32,
+}
+
+pub struct MyComponent {
+    shared: Option&lt;&amp;'static AtomicU32&gt;
+}
+
+pub struct MyDevice {
+    hardware: MyHardware,
+    shared: Option&lt;&amp;'static AtomicU32&gt;
+}
+
+impl MyDriver {
+    fn new&lt;IRQ: Nr&gt;(hardware: MyHardware, irq: IRQ) -&gt; Self {
+       Self {
+           api: ActorContext::new(MyComponent::new()),
+           interrupt: InterruptContext::new(new MyDevice(hardware), irq),
+           shared: AtomicU32::new(),
+       }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To become a <code>package</code>, the driver must implement the <code>Package</code> trait.
+The actors specify the type of configuration they expect, which is
+passed down from the driver. The package specifies its primary actor
+which is exposed to the user application.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">impl Package for MyDriver {
+    type Configuration = ();
+    type Primary = MyComponent;
+    fn on_mount(&amp;'static self, config: Self::Configuration, supervisor: &amp;mut Supervisor) {
+        self.api.mount(&amp;self.shared, supervisor);
+        self.support.mount(&amp;self.shared, supervisor)
+    }
+}
+
+impl Actor for MyComponent {
+    type Configuration = &amp;'static AtomicU32;
+    fn configure(&amp;mut self, config: Self::Configuration) {
+        self.shared.replace(config);
+    }
+}
+
+impl Actor for MyDevice {
+    type Configuration = &amp;'static AtomicU32;
+    fn configure(&amp;mut self, config: Self::Configuration) {
+        self.shared.replace(config);
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>MyDevice</code> actor handles interrupts, reads the value of the device
+and stores it in the shared state:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">impl Interrupt for MyDevice {
+    fn on_interrupt(&amp;mut self) {
+        if let Some(value) = &amp;self.shared {
+            value.store(self.hardware.read_value(), Ordering::SeqCst);
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>MyTrait</code> implementation ensures that it conforms to the expected
+signature:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">impl MyTrait for MyComponent {
+    fn read_value(self) -&gt; Response&lt;Self, u32&gt; {
+        let value = self.load(Ordering::SeqCst);
+        Response::immediate(self, value)
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Any actor that implements the <code>MyTrait</code> is considered a valid driver
+from the API POV.</p>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
