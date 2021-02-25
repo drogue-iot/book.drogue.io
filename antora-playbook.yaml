@@ -22,8 +22,11 @@ ui:
   supplemental_files:
     - path: ui.yml
       contents: |
-        static_files: [ .nojekyll ]
+        static_files: [ .nojekyll, CNAME ]
     - path: .nojekyll
+    - path: CNAME
+      contents: |
+        book.drogue.io
 
 output:
   clean: true
