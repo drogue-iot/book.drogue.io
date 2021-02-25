@@ -9,6 +9,9 @@ content:
     - url: https://github.com/drogue-iot/drogue-cloud.git
       branches: main
       start_path: docs
+    - url: https://github.com/drogue-iot/drogue-device.git
+      branches: main
+      start_path: docs
 ui:
   bundle:
     url: https://github.com/drogue-iot/drogue-antora-ui/releases/download/v0.1.1/ui-bundle.zip
