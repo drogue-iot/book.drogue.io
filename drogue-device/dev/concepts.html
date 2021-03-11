@@ -137,8 +137,15 @@ Each actor has exclusive access to its own state and only communicates with othe
 </div>
 </div>
 <div class="sect1">
-<h2 id="_async"><a class="anchor" href="#_async"></a>Async</h2>
+<h2 id="_drogue_actor_model"><a class="anchor" href="#_drogue_actor_model"></a>Drogue Actor Model</h2>
 <div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="_images/drogue-device-actor-model.png" alt="Drogue Device Actor Model">
+</div>
+</div>
+<div class="sect2">
+<h3 id="_async"><a class="anchor" href="#_async"></a>Async</h3>
 <div class="paragraph">
 <p>Each actor is ostensibly single-threaded, able to process a single notification or request at a time, allowing for lock-free processing of each event.
 As embedded processors are ostensibly globally single-threaded, supporting multiple actors requires the usage of <code>async</code> and <code>.await</code> within the Rust ecosystem.
@@ -149,19 +156,15 @@ Each actor can therefore process each event (notification or request/response cy
 While processing an event, an actor may require a request/response with another actor, which itself is an asynchronous action, allowing the system to continue to make progress with actors that are able to.</p>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_messages"><a class="anchor" href="#_messages"></a>Messages</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_messages"><a class="anchor" href="#_messages"></a>Messages</h3>
 <div class="paragraph">
 <p>All messages, both <code>notify</code> and <code>request</code> style are processed through a single FIFO queue attached to each actor.
 Currently this is set at a depth of 16 items, but with <em>const generics</em> soon coming to stable Rust, the size and overflow behaviour of the FIFOs will be configurable.</p>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_addresses"><a class="anchor" href="#_addresses"></a>Addresses</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_addresses"><a class="anchor" href="#_addresses"></a>Addresses</h3>
 <div class="paragraph">
 <p>Each actor within the system has its own unique <code>Address</code> which is used to communicate with the actor (through it&#8217;s FIFO).
 Most generically, there is a synchronous <code>notify(msg)</code> method, which can be called from both synchronous and async contexts, to deliver a message to the actor.
@@ -175,10 +178,8 @@ For instance, the <code>Address&lt;SimpleLED&lt;&#8230;&#8203;&gt;&gt;</code> in
 <p>The <code>Address&lt;Mutex&lt;&#8230;&#8203;&gt;&gt;</code> instance has an <code>async lock() &#8594; Exclusive&lt;&#8230;&#8203;&gt;</code> method for acquiring an exclusive lock to the underlying resource.</p>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_event_bus"><a class="anchor" href="#_event_bus"></a>Event Bus</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_event_bus"><a class="anchor" href="#_event_bus"></a>Event Bus</h3>
 <div class="paragraph">
 <p>Each system is provided a special actor known as an <code>EventBus</code> and its address is made available for publishing events to the root device for further routing.
 The <code>publish(event)</code> method is available on the <code>Address&lt;EventBus&lt;&#8230;&#8203;&gt;&gt;</code> instance.</p>
@@ -187,19 +188,15 @@ The <code>publish(event)</code> method is available on the <code>Address&lt;Even
 <p>The root-level <code>Device</code> implementation handles the routing and manipulation of events published to the <code>EventBus</code> address.</p>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_contexts"><a class="anchor" href="#_contexts"></a>Contexts</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_contexts"><a class="anchor" href="#_contexts"></a>Contexts</h3>
 <div class="paragraph">
 <p>To provide the runtime for actors, and to ensure that no actor directly touches or manipulates another, each actor is wrapped in a <em>context</em>, either <code>ActorContext</code> or <code>InterruptContext</code>.
 When each context is <code>mount(&#8230;&#8203;)`ed into the system, its `Address&lt;&#8230;&#8203;&gt;</code> is made available.</p>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_device_mounting"><a class="anchor" href="#_device_mounting"></a>Device &amp; Mounting</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_device_mounting"><a class="anchor" href="#_device_mounting"></a>Device &amp; Mounting</h3>
 <div class="paragraph">
 <p>A top-level <code>Device</code> implementation should maintain members for each actor or interrupt within the device.
 Upon using the <code>device!(&#8230;&#8203;)</code> macro to start the system, it&#8217;s <code>mount(&#8230;&#8203;)</code> will be called where it can then subsequently cause each child actor to be mounted and started.</p>
@@ -208,27 +205,21 @@ Upon using the <code>device!(&#8230;&#8203;)</code> macro to start the system, i
 <p>Each Actor in the system defines the configuration it expects to get handed in its mount() implementation.</p>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_interrupts"><a class="anchor" href="#_interrupts"></a>Interrupts</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_interrupts"><a class="anchor" href="#_interrupts"></a>Interrupts</h3>
 <div class="paragraph">
 <p>An actor that needs to interact with the hardware interrupts may additionally implement <code>Interrupt</code> which provides a hook to be called when the interrupt line is activated.
 Since an actor is ostensibly single-threaded, handling an interrupt may only occur when the actor is not otherwise processing messages.
 Likewise, the actor may not process any other messages while handling an interrupt.</p>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_packages"><a class="anchor" href="#_packages"></a>Packages</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_packages"><a class="anchor" href="#_packages"></a>Packages</h3>
 <div class="paragraph">
 <p>In some cases, it may be desirable to have two or more actors involve in a single semantic component or package.
 For instance, one actor may be servicing primarily an interrupt, dispatching messages to another actor which does further work.
 By accumulating multiple actors into a reusable <code>Package</code>, finer exclusive-locking of resources can be achieved.</p>
 </div>
-<div class="paragraph">
-<p>O</p>
 </div>
 </div>
 </div>
