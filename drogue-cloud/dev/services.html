@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Concepts :: Drogue IoT</title>
+    <title>Services :: Drogue IoT</title>
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4BRXRBJJ1"></script>
@@ -44,10 +44,10 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="concepts.html">Concepts</a>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="services.html">Services</a>
   </li>
 </ul>
@@ -119,41 +119,88 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Drogue Cloud</a></li>
-    <li><a href="concepts.html">Concepts</a></li>
+    <li><a href="services.html">Services</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-cloud/edit/main/docs/modules/ROOT/pages/concepts.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-cloud/edit/main/docs/modules/ROOT/pages/services.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Concepts</h1>
+<h1 class="page">Services</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>These sections explain some concepts of Drogue IoT cloud.</p>
+<p>The Drogue IoT deployment is based on multiple internal and external services. This section gives an overview on
+the most important ones.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_applications"><a class="anchor" href="#_applications"></a>Applications</h2>
+<h2 id="_infrastructure"><a class="anchor" href="#_infrastructure"></a>Infrastructure</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Applications in Drogue IoT cloud scope all elements that belong together. Like devices, data, and integrations.</p>
+<p>Infrastructure services are not IoT specific, still required for a deployment.</p>
 </div>
+<div class="sect2">
+<h3 id="_single_sign_on"><a class="anchor" href="#_single_sign_on"></a>Single sign-on</h3>
 <div class="paragraph">
-<p>Applications are isolated from each other.</p>
+<p>A single sign-on (SSO) service, used to authenticate users for interacting with the other Drogue IoT services.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The single sign-on service is not used for authenticating devices.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_device_authentication_service"><a class="anchor" href="#_device_authentication_service"></a>Device authentication service</h3>
+<div class="paragraph">
+<p>The device authentication service allows the protocol endpoints to authentication devices, based on the data
+stored in the <a href="#_device_registry">Device registry</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_user_authorization_service"><a class="anchor" href="#_user_authorization_service"></a>User authorization service</h3>
+<div class="paragraph">
+<p>The user authorization service evaluates if a user, as authenticated by the sigle sign-on service, has access to a
+resource.</p>
+</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_devices"><a class="anchor" href="#_devices"></a>Devices</h2>
+<h2 id="_management"><a class="anchor" href="#_management"></a>Management</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_api"><a class="anchor" href="#_api"></a>API</h3>
 <div class="paragraph">
-<p>Each device is owned by exactly one application and has at least one ID to identify it. Device IDs are unique in the
-scope of an application.</p>
+<p>The common backend API.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_device_registry"><a class="anchor" href="#_device_registry"></a>Device registry</h3>
+<div class="paragraph">
+<p>A registry, storing information about applications and devices, used by the system.</p>
+</div>
+<div class="paragraph">
+<p>This store is also used by the <a href="#_device_authentication_service">Device authentication service</a> to authenticate and authorize devices.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_web_console"><a class="anchor" href="#_web_console"></a>Web Console</h3>
+<div class="paragraph">
+<p>A general purpose web console, with functionality specific to Drogue IoT.</p>
+</div>
 </div>
 </div>
 </div>
@@ -161,31 +208,35 @@ scope of an application.</p>
 <h2 id="_endpoints"><a class="anchor" href="#_endpoints"></a>Endpoints</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Endpoints, more explicitly <strong>protocol endpoints</strong>, is where device connect to, in order to communicate with the system.</p>
+<p>Protocol endpoints, used for devices to communicate with the system.</p>
+</div>
+<div class="sect2">
+<h3 id="_http_endpoint"><a class="anchor" href="#_http_endpoint"></a>HTTP endpoint</h3>
+<div class="paragraph">
+<p>A general purpose HTTP endpoint.</p>
 </div>
 <div class="paragraph">
-<p>On the device facing side these endpoints implement a device specific protocol, and on the cloud facing side, they
-communicate using Knative and Cloud Events.</p>
-</div>
-<div class="paragraph">
-<p>A protocol might be a binary protocol, custom to the device. Or also some other higher level API, based on existing
-communication protocols like MQTT, HTTP, or CoAP.</p>
-</div>
-<div class="paragraph">
-<p>This is sometimes also called:</p>
+<p>It provides API compatible with:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Protocol Adapter</p>
+<p>Drogue IoT</p>
 </li>
 <li>
-<p>South-bound</p>
+<p>The Things Network</p>
 </li>
 <li>
-<p>Device-bound</p>
+<p>Eclipse Hono</p>
 </li>
 </ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_mqtt_endpoint"><a class="anchor" href="#_mqtt_endpoint"></a>MQTT endpoint</h3>
+<div class="paragraph">
+<p>A general purpose MQTT endpoint, providing a Drogue IoT specific API.</p>
+</div>
 </div>
 </div>
 </div>
@@ -193,27 +244,63 @@ communication protocols like MQTT, HTTP, or CoAP.</p>
 <h2 id="_integrations"><a class="anchor" href="#_integrations"></a>Integrations</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Integrations provide ways to integrate <em>your application</em> with the event stream of the system.</p>
+<p>Integration services allow cloud side applications to interface with Drogue IoT, in order to communicate with devices.</p>
+</div>
+<div class="sect2">
+<h3 id="_mqtt_integration"><a class="anchor" href="#_mqtt_integration"></a>MQTT Integration</h3>
+<div class="paragraph">
+<p>The MQTT integration is a multi-application, push based integration, which allows to use MQTT v3.1.1 and v5 for
+receiving events coming from devices.</p>
 </div>
 <div class="paragraph">
-<p>While integration may support different protocols (like HTTP, MQTT) they should focus on content being encoded as
-<em>Cloud Events</em>.</p>
+<p>It provides events in the MQTT cloud events format 1.0, in both <em>structured</em> and <em>binary</em> mode.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_additional_services"><a class="anchor" href="#_additional_services"></a>Additional services</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>These services may be part of a Drogue IoT deployment. However, they are not considered core functionality, but
+additional services, to showcase Drogue IoT functionality.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Depending on a specific Drogue IoT deployment, these services may or may not be present in a system.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_influxdb"><a class="anchor" href="#_influxdb"></a>InfluxDB</h3>
+<div class="paragraph">
+<p>Used as an example time series database. Recording temperate measurements, extracted by a Knative serverless function.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_grafana"><a class="anchor" href="#_grafana"></a>Grafana</h3>
+<div class="paragraph">
+<p>Provides dashboards for showing data from the InfluxDB instance.</p>
 </div>
 <div class="paragraph">
-<p>In general there are two different ways of receiving data through integrations: push or pull. In the case of "push",
-the cloud side of Drogue will try to push events to an endpoint that you define. In the case of "pull", you connect
-to an integration endpoint and subscribe to events you are interested in. Once subscribed, events will be pushed
-through that communication channel.</p>
+<p>This service is integrated with the internal single sign-on.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_eclipse_ditto"><a class="anchor" href="#_eclipse_ditto"></a>Eclipse Ditto</h3>
+<div class="paragraph">
+<p>Acts as digital twin example. Can be set up to normalize device specific payload, using an Eclipse Vorto instance
+through a Knative serverless function.</p>
 </div>
 <div class="paragraph">
-<p>This is sometimes also called:</p>
+<p>This service is integrated with the internal single sign-on.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>North-bound</p>
-</li>
-</ul>
 </div>
 </div>
 </div>
