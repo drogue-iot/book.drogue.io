@@ -228,38 +228,19 @@ local test cluster.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Yes, you downloaded a cluster type specific package, and still need to provide the cluster type. We are working
-on this.
-</td>
-</tr>
-</table>
-</div>
-<div class="sect2">
-<h3 id="_running_for_minikube"><a class="anchor" href="#_running_for_minikube"></a>Running for Minikube</h3>
+<div class="title">Default cluster type</div>
 <div class="paragraph">
-<p>As "Minikube" is the default, simply run:</p>
+<p>By default, the cluster type will be <code>minikube</code> for the script in the repository. For the installers, this default
+value will be changed to the type you download for the installer. You can still override the default, using:</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./script/drogue.sh</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_running_for_kind"><a class="anchor" href="#_running_for_kind"></a>Running for Kind</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">env CLUSTER=kind ./script/drogue.sh</code></pre>
 </div>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_running_for_openshift"><a class="anchor" href="#_running_for_openshift"></a>Running for OpenShift</h3>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">env CLUSTER=openshift ./script/drogue.sh</code></pre>
-</div>
-</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
