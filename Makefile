@@ -9,6 +9,9 @@ clean:
 build:
 	$(ANTORA_CLI) --fetch antora-playbook.yaml
 
+local:
+	$(ANTORA_CLI) --fetch local-antora-playbook.yaml
+
 version:
 	@$(ANTORA_CLI) -v
 

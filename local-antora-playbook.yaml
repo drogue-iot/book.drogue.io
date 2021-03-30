@@ -1,0 +1,39 @@
+#
+# This is a copy of the `antora-playbook.yaml`, but customized to use a local source. This serves as an example,
+# tweak this as you need, but only commit and push what is required to stay in sync with the main file.
+#
+site:
+  title: Drogue IoT
+  start_page: drogue-book::index.adoc
+  keys:
+    google_analytics: 'G-Z4BRXRBJJ1'
+content:
+  sources:
+    - url: ./
+      branches: main
+      start_path: docs
+    - url: ../drogue-cloud
+      branches: main
+      start_path: docs
+    - url: https://github.com/drogue-iot/drogue-device.git
+      branches: main
+      start_path: docs
+ui:
+  bundle:
+    url: https://github.com/drogue-iot/drogue-antora-ui/releases/download/v0.1.1/ui-bundle.zip
+    snapshot: false
+
+  supplemental_files:
+    - path: ui.yml
+      contents: |
+        static_files: [ .nojekyll, CNAME ]
+    - path: .nojekyll
+    - path: CNAME
+      contents: |
+        book.drogue.io
+
+output:
+  clean: true
+runtime:
+  fetch: true
+
