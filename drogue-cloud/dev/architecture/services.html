@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Deploying from the repository :: Drogue IoT</title>
+    <title>Noteworth services :: Drogue IoT</title>
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4BRXRBJJ1"></script>
@@ -53,25 +53,25 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../architecture/index.html">Architecture</a>
+    <a class="nav-link" href="index.html">Architecture</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../architecture/index.html">Overview</a>
+    <a class="nav-link" href="index.html">Overview</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../architecture/data.html">Data plane</a>
+    <a class="nav-link" href="data.html">Data plane</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../architecture/control.html">Control plane</a>
+    <a class="nav-link" href="control.html">Control plane</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../architecture/devices.html">Devices, Gateways &amp; Services</a>
+    <a class="nav-link" href="devices.html">Devices, Gateways &amp; Services</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../architecture/addons.html">Additional components</a>
+    <a class="nav-link" href="addons.html">Additional components</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../architecture/services.html">Services</a>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="services.html">Services</a>
   </li>
 </ul>
   </li>
@@ -81,22 +81,22 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Deployment</a>
+    <a class="nav-link" href="../deployment/index.html">Deployment</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="index.html">Overview</a>
+    <a class="nav-link" href="../deployment/index.html">Overview</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="pre-reqs.html">Pre-Requisites</a>
+    <a class="nav-link" href="../deployment/pre-reqs.html">Pre-Requisites</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="cluster.html">Prepare the cluster</a>
+    <a class="nav-link" href="../deployment/cluster.html">Prepare the cluster</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="installer.html">Run the installer</a>
+    <a class="nav-link" href="../deployment/installer.html">Run the installer</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="development.html">Deploy from the repository</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deployment/development.html">Deploy from the repository</a>
   </li>
 </ul>
   </li>
@@ -147,103 +147,93 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Drogue Cloud</a></li>
-    <li><a href="index.html">Deployment</a></li>
-    <li><a href="development.html">Deploy from the repository</a></li>
+    <li><a href="index.html">Architecture</a></li>
+    <li><a href="services.html">Services</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-cloud/edit/main/docs/modules/deployment/pages/development.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-cloud/edit/main/docs/modules/architecture/pages/services.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Deploying from the repository</h1>
+<h1 class="page">Noteworth services</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Instead of running the installer, which installs a released version of Drogue Cloud, you can also directly from the
-repository, using <code>:latest</code> images instead. The same way, you can also deploy your custom-built images.</p>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-<div class="title"><code>main</code> and tagged versions</div>
-<div class="paragraph">
-<p>Deploying from the repository implies that you install <code>latest</code> or <code>main</code>. Even when you check out a tag or branch from
-the repository, this will always install <code>latest</code>. If you want to install a tagged version, use the installer.</p>
-</div>
-</td>
-</tr>
-</table>
+<p>Drogue Cloud consists of multiple internal and external services, as explained in this chapter. The following sub-sections
+list a few of the core services, considered interfacing points for users of Drogue Cloud.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_additional_pre_requisites"><a class="anchor" href="#_additional_pre_requisites"></a>Additional pre-requisites</h2>
+<h2 id="_apis"><a class="anchor" href="#_apis"></a>APIs</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_management_api"><a class="anchor" href="#_management_api"></a>Management API</h3>
+<div class="paragraph">
+<p>The management access to the device registry.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_endpoints"><a class="anchor" href="#_endpoints"></a>Endpoints</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Additionally, you will need to:</p>
+<p>Protocol endpoints, used for devices to communicate with the system.</p>
+</div>
+<div class="sect2">
+<h3 id="_http_endpoint"><a class="anchor" href="#_http_endpoint"></a>HTTP endpoint</h3>
+<div class="paragraph">
+<p>A general purpose HTTP endpoint.</p>
+</div>
+<div class="paragraph">
+<p>It provides API compatible with:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>git</code></p>
+<p>Drogue IoT</p>
 </li>
 <li>
-<p>Clone the <code>drogue-cloud</code> repository</p>
+<p>The Things Network</p>
+</li>
+<li>
+<p>Eclipse Hono</p>
 </li>
 </ul>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_deploy_standard_images"><a class="anchor" href="#_deploy_standard_images"></a>Deploy standard images</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_mqtt_endpoint"><a class="anchor" href="#_mqtt_endpoint"></a>MQTT endpoint</h3>
 <div class="paragraph">
-<p>Installing Drogue Cloud, using the standard images, can be done by calling the "installation" script (<code>drogue.sh</code>)
-directly from the repsitory:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./script/drogue.sh</code></pre>
+<p>A general purpose MQTT endpoint, providing a Drogue IoT specific API.</p>
 </div>
 </div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-This is the same script as from the installer packages explained before. Thus is accepts the same variables/options.
-</td>
-</tr>
-</table>
+<div class="sect2">
+<h3 id="_command_endpoint"><a class="anchor" href="#_command_endpoint"></a>Command endpoint</h3>
+<div class="paragraph">
+<p>A drop-off point, with an HTTP API, for cloud-to-device messages.</p>
+</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_deploy_custom_images"><a class="anchor" href="#_deploy_custom_images"></a>Deploy custom images</h2>
+<h2 id="_integrations"><a class="anchor" href="#_integrations"></a>Integrations</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>If you built custom images, and pushed them to a container repository:</p>
+<p>Integration services allow cloud side applications to interface with Drogue IoT, in order to communicate with devices.</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">make CONTAINER_REGISTRY=quay.io/my-repo build images</code></pre>
-</div>
+<div class="sect2">
+<h3 id="_mqtt_integration"><a class="anchor" href="#_mqtt_integration"></a>MQTT Integration</h3>
+<div class="paragraph">
+<p>The MQTT integration is a multi-application, push based integration, which allows to use MQTT v3.1.1 and v5 for
+receiving events coming from devices.</p>
 </div>
 <div class="paragraph">
-<p>You can install them using:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">make CONTAINER_REGISTRY=quay.io/my-repo deploy</code></pre>
+<p>It provides events in the MQTT cloud events format 1.0, in both <em>structured</em> and <em>binary</em> mode.</p>
 </div>
 </div>
 </div>

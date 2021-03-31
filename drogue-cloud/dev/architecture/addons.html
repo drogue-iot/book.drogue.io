@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Deploying from the repository :: Drogue IoT</title>
+    <title>Additional components :: Drogue IoT</title>
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4BRXRBJJ1"></script>
@@ -53,25 +53,25 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../architecture/index.html">Architecture</a>
+    <a class="nav-link" href="index.html">Architecture</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../architecture/index.html">Overview</a>
+    <a class="nav-link" href="index.html">Overview</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../architecture/data.html">Data plane</a>
+    <a class="nav-link" href="data.html">Data plane</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../architecture/control.html">Control plane</a>
+    <a class="nav-link" href="control.html">Control plane</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../architecture/devices.html">Devices, Gateways &amp; Services</a>
+    <a class="nav-link" href="devices.html">Devices, Gateways &amp; Services</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="addons.html">Additional components</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../architecture/addons.html">Additional components</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../architecture/services.html">Services</a>
+    <a class="nav-link" href="services.html">Services</a>
   </li>
 </ul>
   </li>
@@ -81,22 +81,22 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Deployment</a>
+    <a class="nav-link" href="../deployment/index.html">Deployment</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="index.html">Overview</a>
+    <a class="nav-link" href="../deployment/index.html">Overview</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="pre-reqs.html">Pre-Requisites</a>
+    <a class="nav-link" href="../deployment/pre-reqs.html">Pre-Requisites</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="cluster.html">Prepare the cluster</a>
+    <a class="nav-link" href="../deployment/cluster.html">Prepare the cluster</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="installer.html">Run the installer</a>
+    <a class="nav-link" href="../deployment/installer.html">Run the installer</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="development.html">Deploy from the repository</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deployment/development.html">Deploy from the repository</a>
   </li>
 </ul>
   </li>
@@ -147,104 +147,55 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Drogue Cloud</a></li>
-    <li><a href="index.html">Deployment</a></li>
-    <li><a href="development.html">Deploy from the repository</a></li>
+    <li><a href="index.html">Architecture</a></li>
+    <li><a href="addons.html">Additional components</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-cloud/edit/main/docs/modules/deployment/pages/development.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-cloud/edit/main/docs/modules/architecture/pages/addons.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Deploying from the repository</h1>
+<h1 class="page">Additional components</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Instead of running the installer, which installs a released version of Drogue Cloud, you can also directly from the
-repository, using <code>:latest</code> images instead. The same way, you can also deploy your custom-built images.</p>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-<div class="title"><code>main</code> and tagged versions</div>
-<div class="paragraph">
-<p>Deploying from the repository implies that you install <code>latest</code> or <code>main</code>. Even when you check out a tag or branch from
-the repository, this will always install <code>latest</code>. If you want to install a tagged version, use the installer.</p>
-</div>
-</td>
-</tr>
-</table>
+<p>When deploying Drogue Cloud, or using the sandbox, you might encounter additional services, which are not part of the
+core Drogue Cloud architecture (yet).</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_additional_pre_requisites"><a class="anchor" href="#_additional_pre_requisites"></a>Additional pre-requisites</h2>
+<h2 id="_grafana_influxdb"><a class="anchor" href="#_grafana_influxdb"></a>Grafana &amp; InfluxDB</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Additionally, you will need to:</p>
+<p>The default deployment contains a Grafana and InfluxDB instance, which is set up in a way that temperature readings
+are automatically stored in the InfluxDB instance. The Grafana dashboard has an example dashboard visualizing these
+readings.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>git</code></p>
-</li>
-<li>
-<p>Clone the <code>drogue-cloud</code> repository</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>"Temperate readings" are identified by a payload being JSON and containing a <code>temp</code> field on the root level object.</p>
+</div>
+<div class="paragraph">
+<p>This is considered an example, and allows to quickly try out Drogue Cloud services. Typically, Grafana and InfluxDB
+would be "user application", which would run outside the Drogue Cloud namespace or cluster.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_deploy_standard_images"><a class="anchor" href="#_deploy_standard_images"></a>Deploy standard images</h2>
+<h2 id="_eclipse_ditto"><a class="anchor" href="#_eclipse_ditto"></a>Eclipse Ditto</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Installing Drogue Cloud, using the standard images, can be done by calling the "installation" script (<code>drogue.sh</code>)
-directly from the repsitory:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./script/drogue.sh</code></pre>
-</div>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-This is the same script as from the installer packages explained before. Thus is accepts the same variables/options.
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_deploy_custom_images"><a class="anchor" href="#_deploy_custom_images"></a>Deploy custom images</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>If you built custom images, and pushed them to a container repository:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">make CONTAINER_REGISTRY=quay.io/my-repo build images</code></pre>
-</div>
+<p>Eclipse Ditto is a digital-twin solution, which can be integrated with Cloud Events and Drogue Cloud.</p>
 </div>
 <div class="paragraph">
-<p>You can install them using:</p>
+<p>We have an "addon" deployment for this in our repository, and also deploy this on our sandbox instance. However,
+currently Eclipse Ditto is not part of the core Drogue Cloud infrastructure.</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">make CONTAINER_REGISTRY=quay.io/my-repo deploy</code></pre>
-</div>
+<div class="paragraph">
+<p>The integration of Ditto is a future goal, but as of now still a work in progress.</p>
 </div>
 </div>
 </div>

@@ -47,8 +47,33 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../concepts.html">Concepts</a>
   </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../services.html">Services</a>
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../architecture/index.html">Architecture</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../architecture/index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../architecture/data.html">Data plane</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../architecture/control.html">Control plane</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../architecture/devices.html">Devices, Gateways &amp; Services</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../architecture/addons.html">Additional components</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../architecture/services.html">Services</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -58,6 +83,9 @@
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="index.html">Deployment</a>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html">Overview</a>
+  </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="pre-reqs.html">Pre-Requisites</a>
   </li>
@@ -231,7 +259,7 @@ local test cluster.</p>
 <div class="title">Default cluster type</div>
 <div class="paragraph">
 <p>By default, the cluster type will be <code>minikube</code> for the script in the repository. For the installers, this default
-value will be changed to the type you download for the installer. You can still override the default, using:</p>
+value will be changed to the installer type you downloaded. You can still override the default, using:</p>
 </div>
 <div class="listingblock">
 <div class="content">
