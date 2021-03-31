@@ -9,7 +9,7 @@ content:
       branches: main
       start_path: docs
     - url: https://github.com/drogue-iot/drogue-cloud.git
-      branches: main
+      branches: [main, v*, release-*.x]
       start_path: docs
     - url: https://github.com/drogue-iot/drogue-device.git
       branches: main
