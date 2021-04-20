@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Additional components :: Drogue IoT</title>
+    <title>Architecture :: Drogue IoT</title>
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4BRXRBJJ1"></script>
@@ -35,7 +35,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="drogue-cloud" data-version="dev">
+<div class="nav-container" data-component="drogue-cloud" data-version="0.4">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -51,11 +51,11 @@
   </li>
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="index.html">Architecture</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="index.html">Overview</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -67,7 +67,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="devices.html">Devices, gateways &amp; services</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="addons.html">Additional components</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -108,17 +108,17 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Drogue Cloud</span>
-    <span class="version">dev</span>
+    <span class="version">0.4</span>
   </div>
   <ul class="components">
     <li class="component is-current">
-      <a class="title" href="../index.html">Drogue Cloud</a>
+      <a class="title" href="../../dev/index.html">Drogue Cloud</a>
       <ul class="versions">
-        <li class="version is-current is-latest">
-          <a href="../index.html">dev</a>
+        <li class="version is-latest">
+          <a href="../../dev/index.html">dev</a>
         </li>
-        <li class="version">
-          <a href="../../0.4/index.html">0.4</a>
+        <li class="version is-current">
+          <a href="../index.html">0.4</a>
         </li>
       </ul>
     </li>
@@ -151,63 +151,67 @@
   <ul>
     <li><a href="../index.html">Drogue Cloud</a></li>
     <li><a href="index.html">Architecture</a></li>
-    <li><a href="addons.html">Additional components</a></li>
   </ul>
 </nav>
 <div class="page-versions">
-  <button class="version-menu-toggle" title="Show other versions of page">dev</button>
+  <button class="version-menu-toggle" title="Show other versions of page">0.4</button>
   <div class="version-menu">
-    <a class="version is-current" href="addons.html">dev</a>
-    <a class="version" href="../../0.4/architecture/addons.html">0.4</a>
+    <a class="version" href="../../dev/architecture/index.html">dev</a>
+    <a class="version is-current" href="index.html">0.4</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-cloud/edit/main/docs/modules/architecture/pages/addons.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-cloud/edit/release-0.4/docs/modules/architecture/pages/index.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Additional components</h1>
-<div id="preamble">
-<div class="sectionbody">
+<h1 class="page">Architecture</h1>
 <div class="paragraph">
-<p>When deploying Drogue Cloud, or using the sandbox, you might encounter additional services, which are not part of the
-core Drogue Cloud architecture (yet).</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_grafana_influxdb"><a class="anchor" href="#_grafana_influxdb"></a>Grafana &amp; InfluxDB</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The default deployment contains a Grafana and InfluxDB instance, which is set up in a way that temperature readings
-are automatically stored in the InfluxDB instance. The Grafana dashboard has an example dashboard visualizing these
-readings.</p>
+<p>The main purpose of Drogue IoT cloud is to connect applications with devices. For applications the devices
+are the <em>gateways</em> into the real world. They allow to monitor by acquiring sensor information, or interact with
+by showing information or controling actuators.</p>
 </div>
 <div class="paragraph">
-<p>"Temperate readings" are identified by a payload being JSON and containing a <code>temp</code> field on the root level object.</p>
+<p><span class="image"><img src="_images/basics.svg" alt="Basics"></span></p>
 </div>
 <div class="paragraph">
-<p>This is considered an example, and allows to quickly try out Drogue Cloud services. Typically, Grafana and InfluxDB
-would be "user application", which would run outside the Drogue Cloud namespace or cluster.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_eclipse_ditto"><a class="anchor" href="#_eclipse_ditto"></a>Eclipse Ditto</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Eclipse Ditto is a digital-twin solution, which can be integrated with Cloud Events and Drogue Cloud.</p>
+<p>Of course this diagram over-simplifies the problem. And still, connecting to a device to a simple, single
+backend application is a trivial task.</p>
 </div>
 <div class="paragraph">
-<p>We have an "addon" deployment for this in our repository, and also deploy this on our sandbox instance. However,
-currently Eclipse Ditto is not part of the core Drogue Cloud infrastructure.</p>
+<p>So what does Drogue Cloud do? And why is it a more complex than a simple MQTT broker? The following sections will
+dive into the architecture of Drogue Cloud, and will explain what the benefit if this architecture is.</p>
 </div>
 <div class="paragraph">
-<p>The integration of Ditto is a future goal, but as of now still a work in progress.</p>
+<p>The following sections will use <em>My device</em> and <em>My application</em>. These are the devices and applications that a
+user of Drogue Cloud would bring and try to connect. These application are not provided by Drogue Cloud.</p>
 </div>
+<div class="paragraph">
+<p><a href="../../../drogue-device/dev/index.html" class="page">Drogue Device</a> provides tools to create the firmware of such devices if they are embedded micro-controllers. However, Drogue Cloud also allows to integrate larger devices, like Linux
+systems, gateways and it can integrate with other, existing IoT services.</p>
 </div>
+<div class="paragraph">
+<p>Drogue Cloud is intended to create an <em>as a service</em> experience. This means that the typical user of Drogue Cloud
+would not set up and install Drogue Cloud, but use an existing, hosted instance. Still, it is possible to set up
+your own instance, and use this for only one application and user. However, the decision to make this a shared multi-user system, make some aspects more complicated. Then again, if your setup grows, you shouldn&#8217;t have any problems scaling up.</p>
+</div>
+<div class="paragraph">
+<p>The following section will provide more information about:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="data.html" class="page">The data plane</a></p>
+</li>
+<li>
+<p><a href="control.html" class="page">The control plane</a></p>
+</li>
+<li>
+<p><a href="services.html" class="page">The actual services</a></p>
+</li>
+</ul>
 </div>
 </article>
   </div>

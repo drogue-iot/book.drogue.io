@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Concepts :: Drogue IoT</title>
+    <title>Drogue Cloud :: Drogue IoT</title>
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4BRXRBJJ1"></script>
@@ -35,7 +35,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="drogue-cloud" data-version="dev">
+<div class="nav-container" data-component="drogue-cloud" data-version="0.4">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -44,7 +44,7 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="concepts.html">Concepts</a>
   </li>
 </ul>
@@ -108,17 +108,17 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Drogue Cloud</span>
-    <span class="version">dev</span>
+    <span class="version">0.4</span>
   </div>
   <ul class="components">
     <li class="component is-current">
-      <a class="title" href="index.html">Drogue Cloud</a>
+      <a class="title" href="../dev/index.html">Drogue Cloud</a>
       <ul class="versions">
-        <li class="version is-current is-latest">
-          <a href="index.html">dev</a>
+        <li class="version is-latest">
+          <a href="../dev/index.html">dev</a>
         </li>
-        <li class="version">
-          <a href="../0.4/index.html">0.4</a>
+        <li class="version is-current">
+          <a href="index.html">0.4</a>
         </li>
       </ul>
     </li>
@@ -150,110 +150,68 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Drogue Cloud</a></li>
-    <li><a href="concepts.html">Concepts</a></li>
   </ul>
 </nav>
 <div class="page-versions">
-  <button class="version-menu-toggle" title="Show other versions of page">dev</button>
+  <button class="version-menu-toggle" title="Show other versions of page">0.4</button>
   <div class="version-menu">
-    <a class="version is-current" href="concepts.html">dev</a>
-    <a class="version" href="../0.4/concepts.html">0.4</a>
+    <a class="version" href="../dev/index.html">dev</a>
+    <a class="version is-current" href="index.html">0.4</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-cloud/edit/main/docs/modules/ROOT/pages/concepts.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-cloud/edit/release-0.4/docs/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Concepts</h1>
-<div id="preamble">
-<div class="sectionbody">
+<h1 class="page">Drogue Cloud</h1>
 <div class="paragraph">
-<p>These sections explain some concepts of Drogue IoT cloud.</p>
+<p>The Drogue IoT Cloud project takes care of IoT on the cloud side.</p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/architecture.svg" alt="Overview diagram">
 </div>
-</div>
-<div class="sect1">
-<h2 id="_applications"><a class="anchor" href="#_applications"></a><a id="applications"></a>Applications</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Applications in Drogue IoT cloud scope all elements that belong together. Like devices, data, and integrations.</p>
 </div>
 <div class="paragraph">
-<p>Applications are isolated from each other.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_devices"><a class="anchor" href="#_devices"></a><a id="devices"></a>Devices</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Each device is owned by exactly one application and has at least one ID to identify it. Device IDs are unique in the
-scope of an application.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_endpoints"><a class="anchor" href="#_endpoints"></a>Endpoints</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Endpoints, more explicitly <strong>protocol endpoints</strong>, is where device connect to, in order to communicate with the system.</p>
-</div>
-<div class="paragraph">
-<p>On the device facing side these endpoints implement a device specific protocol, and on the cloud facing side, they
-communicate using Knative and Cloud Events.</p>
-</div>
-<div class="paragraph">
-<p>A protocol might be a binary protocol, custom to the device. Or also some other higher level API, based on existing
-communication protocols like MQTT, HTTP, or CoAP.</p>
-</div>
-<div class="paragraph">
-<p>This is sometimes also called:</p>
+<p>It offers:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Protocol Adapter</p>
+<p>IoT friendly protocol endpoints</p>
 </li>
 <li>
-<p>South-bound</p>
+<p>Protocol normalization based on Cloud Events and Knative eventing</p>
 </li>
 <li>
-<p>Device-bound</p>
+<p>Managing of device credentials and properties APIs and a graphical console to manage devices and data flows</p>
 </li>
 </ul>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_integrations"><a class="anchor" href="#_integrations"></a>Integrations</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>Integrations provide ways to integrate <em>your application</em> with the event stream of the system.</p>
-</div>
-<div class="paragraph">
-<p>While integration may support different protocols (like HTTP, MQTT) they should focus on content being encoded as
-<em>Cloud Events</em>.</p>
-</div>
-<div class="paragraph">
-<p>In general there are two different ways of receiving data through integrations: push or pull. In the case of "push",
-the cloud side of Drogue will try to push events to an endpoint that you define. In the case of "pull", you connect
-to an integration endpoint and subscribe to events you are interested in. Once subscribed, events will be pushed
-through that communication channel.</p>
-</div>
-<div class="paragraph">
-<p>This is sometimes also called:</p>
+<p>It is built on top of:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>North-bound</p>
+<p><em>Kubernetes</em> – For running workloads</p>
+</li>
+<li>
+<p><em>Cloud Events</em> - For normalizing transport protocols</p>
+</li>
+<li>
+<p><em>Knative eventing</em> – For streaming data</p>
+</li>
+<li>
+<p><em>Apache Kafka</em> – For persisting events</p>
+</li>
+<li>
+<p><em>Keycloak</em> - For single-sign-on</p>
 </li>
 </ul>
-</div>
-</div>
 </div>
 </article>
   </div>
