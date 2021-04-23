@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Deploying from the repository :: Drogue IoT</title>
+    <title>The Things Network integration :: Drogue IoT</title>
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4BRXRBJJ1"></script>
@@ -81,22 +81,22 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Deployment</a>
+    <a class="nav-link" href="../deployment/index.html">Deployment</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="index.html">Overview</a>
+    <a class="nav-link" href="../deployment/index.html">Overview</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="pre-reqs.html">Pre-Requisites</a>
+    <a class="nav-link" href="../deployment/pre-reqs.html">Pre-Requisites</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="cluster.html">Prepare the cluster</a>
+    <a class="nav-link" href="../deployment/cluster.html">Prepare the cluster</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="installer.html">Run the installer</a>
+    <a class="nav-link" href="../deployment/installer.html">Run the installer</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="development.html">Deploy from the repository</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deployment/development.html">Deploy from the repository</a>
   </li>
 </ul>
   </li>
@@ -112,14 +112,14 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">The Things Network</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../ttn/index.html">Overview</a>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="index.html">Overview</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../ttn/app.html">Managing applications</a>
+    <a class="nav-link" href="app.html">Managing applications</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../ttn/device.html">Managing devices</a>
+    <a class="nav-link" href="device.html">Managing devices</a>
   </li>
 </ul>
   </li>
@@ -175,113 +175,113 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Drogue Cloud</a></li>
-    <li><a href="index.html">Deployment</a></li>
-    <li><a href="development.html">Deploy from the repository</a></li>
+    <li>Integrations</li>
+    <li>The Things Network</li>
+    <li><a href="index.html">Overview</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">dev</button>
   <div class="version-menu">
-    <a class="version is-current" href="development.html">dev</a>
-    <a class="version" href="../../0.4/deployment/development.html">0.4</a>
+    <a class="version is-current" href="index.html">dev</a>
+    <a class="version is-missing" href="../../0.4/index.html">0.4</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-cloud/edit/main/docs/modules/deployment/pages/development.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-cloud/edit/main/docs/modules/ttn/pages/index.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Deploying from the repository</h1>
-<div id="preamble">
-<div class="sectionbody">
+<h1 class="page">The Things Network integration</h1>
 <div class="paragraph">
-<p>Instead of running the installer, which installs a released version of Drogue Cloud, you can also directly from the
-repository, using <code>:latest</code> images instead. The same way, you can also deploy your custom-built images.</p>
+<p>Drogue IoT Cloud has can integrate with <a href="https://www.thethingsnetwork.org/">The Things Network</a> (TTN).</p>
 </div>
-<div class="admonitionblock important">
+<div class="paragraph">
+<p>Applications and devices managed in the Drogue IoT device registry can be synced to the TTN system. This
+includes automatically connecting both systems using a Drogue cloud gateway device, to receive messages
+from LoRa devices through the TTN system.</p>
+</div>
+<div class="paragraph">
+<p>The integration is meant to be configured on a per-application level, so that normal users of Drogue Cloud
+can configure their own integration, using their own TTN account. There is no system-wide synchronization.</p>
+</div>
+<div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-important" title="Important"></i>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<div class="title"><code>main</code> and tagged versions</div>
-<div class="paragraph">
-<p>Deploying from the repository implies that you install <code>latest</code> or <code>main</code>. Even when you check out a tag or branch from
-the repository, this will always install <code>latest</code>. If you want to install a tagged version, use the installer.</p>
-</div>
+The integration works with V3 of the TTN API. Earlier versions are not supported.
 </td>
 </tr>
 </table>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_additional_pre_requisites"><a class="anchor" href="#_additional_pre_requisites"></a>Additional pre-requisites</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>Additionally, you will need to:</p>
+<p>The integration currently supports:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>git</code></p>
+<p>Creating applications in The Things Network.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Creating a gateway device in Drogue Cloud.</p>
 </li>
 <li>
-<p>Clone the <code>drogue-cloud</code> repository</p>
+<p>Configuring the credentials for this gateway device using a randomized password-</p>
+</li>
+<li>
+<p>Creating an application instance on the TTN side.</p>
+</li>
+<li>
+<p>Creating a webhook for this application, connecting the TTN side with Drogue Cloud, using the created gateway device.</p>
 </li>
 </ul>
 </div>
+</li>
+<li>
+<p>Creating devices in The Things Network.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Authorizing the TTN gateway device in Drogue Cloud for this device</p>
+</li>
+<li>
+<p>Creating the device on the TTN side</p>
+</li>
+</ul>
 </div>
+</li>
+<li>
+<p>Cleaning up when resources get deleted</p>
+</li>
+</ul>
 </div>
-<div class="sect1">
-<h2 id="_deploy_standard_images"><a class="anchor" href="#_deploy_standard_images"></a>Deploy standard images</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Installing Drogue Cloud, using the standard images, can be done by calling the "installation" script (<code>drogue.sh</code>)
-directly from the repsitory:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./script/drogue.sh</code></pre>
-</div>
-</div>
-<div class="admonitionblock tip">
+<div class="admonitionblock warning">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
+<i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-This is the same script as from the installer packages explained before. Thus is accepts the same variables/options.
+<div class="title">Deleting applications</div>
+<div class="paragraph">
+<p>Deleting an application in Drogue Cloud, or disabling the TTN integration for a Drogue Cloud application,
+will also delete the application in TTN.</p>
+</div>
+<div class="paragraph">
+<p>However, The Things Network only soft deletes applications. The name of the application is still blocked
+from further use after the deletion. This means that you cannot simply re-create an application with
+the same name. Drogue Cloud allows you to override the application name on the TTN side, however you
+should consider twice before actually trigger a delete.</p>
+</div>
 </td>
 </tr>
 </table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_deploy_custom_images"><a class="anchor" href="#_deploy_custom_images"></a>Deploy custom images</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>If you built custom images, and pushed them to a container repository:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">make CONTAINER_REGISTRY=quay.io/my-repo build images</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>You can install them using:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">make CONTAINER_REGISTRY=quay.io/my-repo deploy</code></pre>
-</div>
-</div>
-</div>
 </div>
 </article>
   </div>
