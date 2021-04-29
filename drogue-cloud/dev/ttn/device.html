@@ -226,30 +226,20 @@
 <div class="sect2">
 <h3 id="_procedure"><a class="anchor" href="#_procedure"></a>Procedure</h3>
 <div class="paragraph">
-<p>Create a new device in Drogue Cloud:</p>
+<p>Create a new device in Drogue Cloud with TTN specific information:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">drg create --app my-ttn-app device my-ttn-device-1</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Next, add the TTN specific information:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
-    "spec": {
-        "ttn": {
-            "app_eui": "0123456789ABCDEF",
-            "app_key": "0123456789ABCDEF...",
-            "dev_eui": "0123456789ABCDEF",
-            "frequency_plan_id": "...", <i class="conum" data-value="1"></i><b>(1)</b>
-            "lorawan_phy_version": "...", <i class="conum" data-value="2"></i><b>(2)</b>
-            "lorawan_version": "..." <i class="conum" data-value="3"></i><b>(3)</b>
-        }
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">drg create --app my-ttn-app device my-ttn-device-1 --spec '{
+    "ttn": {
+        "app_eui": "0123456789ABCDEF",
+        "app_key": "0123456789ABCDEF...",
+        "dev_eui": "0123456789ABCDEF",
+        "frequency_plan_id": "...", <i class="conum" data-value="1"></i><b>(1)</b>
+        "lorawan_phy_version": "...", <i class="conum" data-value="2"></i><b>(2)</b>
+        "lorawan_version": "..." <i class="conum" data-value="3"></i><b>(3)</b>
     }
-}</code></pre>
+}'</code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -269,24 +259,7 @@
 </table>
 </div>
 <div class="paragraph">
-<p>You can do this with <code>drg</code> by executing:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">drg create device --app my-ttn-app my-ttn-device-1 --spec '{
-    "ttn": {
-        "app_eui": "0123456789ABCDEF",
-        "app_key": "0123456789ABCDEF...",
-        "dev_eui": "0123456789ABCDEF",
-        "frequency_plan_id": "...",
-        "lorawan_phy_version": "...",
-        "lorawan_version": "..."
-    }
-}'</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Or, you can use <code>drg edit device --app my-ttn-app my-ttn-device-1</code> to interactively change the configuration.</p>
+<p>You can also use <code>drg edit device --app my-ttn-app my-ttn-device-1</code> to change the configuration of an existing device.</p>
 </div>
 </div>
 </div>

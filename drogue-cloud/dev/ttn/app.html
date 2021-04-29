@@ -223,30 +223,20 @@
 <div class="sect2">
 <h3 id="_procedure"><a class="anchor" href="#_procedure"></a>Procedure</h3>
 <div class="paragraph">
-<p>Create a new application in Drogue Cloud:</p>
+<p>Create a new application in Drogue Cloud with the TTN-specific information:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">drg create application my-ttn-app</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Next, add the TTN specific information:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
-    "spec": {
-        "ttn": {
-            "api": {
-                "apiKey": "...", <i class="conum" data-value="1"></i><b>(1)</b>
-                "id": "my-app-alias", <i class="conum" data-value="2"></i><b>(2)</b>
-                "owner": "my-user-name", <i class="conum" data-value="3"></i><b>(3)</b>
-                "region": "eu1" <i class="conum" data-value="4"></i><b>(4)</b>
-            }
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">drg create application my-ttn-app --spec '{
+    "ttn": {
+        "api": {
+            "apiKey": "...", <i class="conum" data-value="1"></i><b>(1)</b>
+            "id": "my-app-alias", <i class="conum" data-value="2"></i><b>(2)</b>
+            "owner": "my-user-name", <i class="conum" data-value="3"></i><b>(3)</b>
+            "region": "eu1" <i class="conum" data-value="4"></i><b>(4)</b>
         }
     }
-}</code></pre>
+}'</code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -273,22 +263,7 @@
 <p>This will enable the integration and trigger the reconciliation process.</p>
 </div>
 <div class="paragraph">
-<p>You can do this with <code>drg</code> by executing:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">drg create app my-ttn-app --spec '{
-    "ttn": {
-        "apiKey": "...",
-        "id": "my-app-alias",
-        "owner": "my-user-name",
-        "region": "eu1"
-    }
-}'</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Or, you can use <code>drg edit app my-ttn-app</code> to interactively change the configuration.</p>
+<p>You can also use <code>drg edit app my-ttn-app</code> to change the configuration of an existing application.</p>
 </div>
 <div class="paragraph">
 <p>Taking a look at the TTN console, you should see the new application (<code>my-app-alias</code> in this case), and a
