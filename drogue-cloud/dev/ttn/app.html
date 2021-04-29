@@ -273,6 +273,24 @@
 <p>This will enable the integration and trigger the reconciliation process.</p>
 </div>
 <div class="paragraph">
+<p>You can do this with <code>drg</code> by executing:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">drg create app my-ttn-app --spec '{
+    "ttn": {
+        "apiKey": "...",
+        "id": "my-app-alias",
+        "owner": "my-user-name",
+        "region": "eu1"
+    }
+}'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Or, you can use <code>drg edit app my-ttn-app</code> to interactively change the configuration.</p>
+</div>
+<div class="paragraph">
 <p>Taking a look at the TTN console, you should see the new application (<code>my-app-alias</code> in this case), and a
 webhook named <code>drogue-iot</code>.</p>
 </div>

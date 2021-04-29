@@ -268,6 +268,26 @@
 </tr>
 </table>
 </div>
+<div class="paragraph">
+<p>You can do this with <code>drg</code> by executing:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">drg create device --app my-ttn-app my-ttn-device-1 --spec '{
+    "ttn": {
+        "app_eui": "0123456789ABCDEF",
+        "app_key": "0123456789ABCDEF...",
+        "dev_eui": "0123456789ABCDEF",
+        "frequency_plan_id": "...",
+        "lorawan_phy_version": "...",
+        "lorawan_version": "..."
+    }
+}'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Or, you can use <code>drg edit device --app my-ttn-app my-ttn-device-1</code> to interactively change the configuration.</p>
+</div>
 </div>
 </div>
 </div>
