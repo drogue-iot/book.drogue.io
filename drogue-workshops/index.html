@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Drogue IoT :: Drogue IoT</title>
+    <title>Introduction :: Drogue IoT</title>
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4BRXRBJJ1"></script>
@@ -35,23 +35,24 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="drogue-book" data-version="master">
+<div class="nav-container" data-component="drogue-workshops" data-version="master">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
-    <h3 class="title"><a href="index.html">Drogue IoT</a></h3>
+    <h3 class="title"><a href="index.html">Drogue IoT Workshops</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../drogue-cloud/dev/index.html">Drogue Cloud</a>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="index.html">Introduction</a>
   </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../drogue-device/dev/index.html">Drogue Device</a>
+</ul>
   </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../drogue-workshops/index.html">Workshops</a>
+    <a class="nav-link" href="getting-started/index.html">Getting started</a>
   </li>
 </ul>
   </li>
@@ -60,7 +61,7 @@
 </div>
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
-    <span class="title">Drogue IoT</span>
+    <span class="title">Drogue IoT Workshops</span>
     <span class="version">master</span>
   </div>
   <ul class="components">
@@ -83,19 +84,19 @@
         </li>
       </ul>
     </li>
-    <li class="component is-current">
-      <a class="title" href="index.html">Drogue IoT</a>
+    <li class="component">
+      <a class="title" href="../drogue-book/index.html">Drogue IoT</a>
       <ul class="versions">
-        <li class="version is-current is-latest">
-          <a href="index.html">master</a>
+        <li class="version is-latest">
+          <a href="../drogue-book/index.html">master</a>
         </li>
       </ul>
     </li>
-    <li class="component">
-      <a class="title" href="../drogue-workshops/index.html">Drogue IoT Workshops</a>
+    <li class="component is-current">
+      <a class="title" href="index.html">Drogue IoT Workshops</a>
       <ul class="versions">
-        <li class="version is-latest">
-          <a href="../drogue-workshops/index.html">master</a>
+        <li class="version is-current is-latest">
+          <a href="index.html">master</a>
         </li>
       </ul>
     </li>
@@ -107,76 +108,68 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="index.html" class="home-link is-current"></a>
+  <a href="../drogue-book/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="index.html">Drogue IoT</a></li>
+    <li><a href="index.html">Drogue IoT Workshops</a></li>
+    <li><a href="index.html">Introduction</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/drogue-iot/book.drogue.io/edit/main/docs/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-workshops/edit/main/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Drogue IoT</h1>
+<h1 class="page">Introduction</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>The Drogue IoT project aims to bring together data and users in an <em>Internet of Things</em> world.</p>
+<p>This section of the book is about some hands-ons workshops. They are focused around a specific use case and will walk
+you through the different steps, explaining what to do any why.</p>
 </div>
 <div class="paragraph">
-<p>Data comes from sensors and needs to travel a long way to reach its users. Of course, there is also the way back.
-All of these steps in the middle are still needed and must be managed in some way.</p>
+<p>You need to bring a bit more time, and might need some preparation, but you will learn a lot.</p>
 </div>
 <div class="paragraph">
-<p>Drogue IoT provides you with tools, to create safe and efficient IoT solutions. Starting on the embedded side up to
-the cloud layer.</p>
+<p>We do have a <a href="getting-started/index.html" class="page">Getting Started</a> workshop, which walks you through the very basics
+of Drogue IoT Cloud. Unless you really know what you are doing, it is recommended to complete this workshop before
+anything else.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_devices"><a class="anchor" href="#_devices"></a>Devices</h2>
+<h2 id="_supported_operating_systems"><a class="anchor" href="#_supported_operating_systems"></a>Supported operating systems</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Drogue Device helps you create safe and efficient applications on microcontroller type of systems. In a world
-without memory management or operating system it is more important than ever to avoid memory corruption and undefined
-behavior. That is why Drogue Device is a framework built using the Rust programming language, bringing the promise
-of Rust to the embedded world:</p>
+<p>These workshops should run on all operating systems. However, testing them on all variations is a time-consuming task.</p>
 </div>
-<div class="quoteblock">
-<blockquote>
-A language empowering everyone  to build reliable and efficient software.
-</blockquote>
-<div class="attribution">
-&#8212; Rust<br>
-<cite>from the Rust Homepage</cite>
-</div>
+<div class="paragraph">
+<p>We mostly test on Linux and macOS. Windows should work as well but is, most likely, less tested. Should you encounter
+some issues, pull-requests are always welcome ;-)</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_the_edge"><a class="anchor" href="#_the_edge"></a>The edge</h2>
+<h2 id="_drogue_iot_cloud_version"><a class="anchor" href="#_drogue_iot_cloud_version"></a>Drogue IoT Cloud version</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The edge brings together devices and the cloud side if that is required. If that is just onboarding traffic to an IP-based network, or bringing processing logic closer to devices depends on each use case. Thus edge nodes sometimes look more like a device in some cases, and more like <em>the cloud</em> in others.</p>
+<p>Some workshops may require a specific version of Drogue IoT Cloud.</p>
 </div>
 <div class="paragraph">
-<p>Drogue IoT currently doesn&#8217;t provide any specific edge components. But it ensures that edge devices are part of the system in many different ways. Like having the concept of a "gateway device", providing demos on how to run edge workload using containers, integrating with the cloud.</p>
+<p>When you self-host an instance, you can pick a specific version. However, in many cases you can also use the
+community hosted sandbox instance. The sandbox will always run the most recent, <strong>released</strong> version of Drogue IoT Cloud.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_the_cloud"><a class="anchor" href="#_the_cloud"></a>The cloud</h2>
+<h2 id="_contributing"><a class="anchor" href="#_contributing"></a>Contributing</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The cloud side has different problems to solve: scalability, security, integration. Drogue Cloud tries to make it simple
-for you to attach devices to a scalable backend. A backend which handles security for you, and integrates with existing
-technologies and services.</p>
-</div>
-<div class="paragraph">
-<p>Read more: <a href="../drogue-cloud/dev/index.html" class="page">Drogue Cloud</a></p>
+<p>You are welcome to contribute to this repository. Contributing can come in multiple ways, including constructive
+feedback, fixes, enhancements, or new content. Should you consider to adding new works-shops, we would as to reach
+out to us first. And, be committed on supporting them in the future.</p>
 </div>
 </div>
 </div>

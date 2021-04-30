@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Getting started :: Drogue IoT</title>
+    <meta name="generator" content="Antora 2.3.4">
+    <link rel="stylesheet" href="../../_/css/site.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4BRXRBJJ1"></script>
+    <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','G-Z4BRXRBJJ1')</script>
+    <script>var uiRootPath = '../../_'</script>
+    <link rel="icon" href="../../_/img/favicon.svg" type="image/svg+xml">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="../..">
+        <img class="navbar-brand-image" src="../../_/img/logo.png" alt="Drogue IoT"/>
+      </a>
+
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://blog.drogue.io" target="_blank">Blog</a>
+        <a class="navbar-item" href="https://matrix.to/#/#drogue-iot:matrix.org" target="_blank">Chat</a>
+        <a class="navbar-item" href="https://book.drogue.io">Documentation</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="drogue-workshops" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Drogue IoT Workshops</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Introduction</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="index.html">Getting started</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Drogue IoT Workshops</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <a class="title" href="../../drogue-cloud/dev/index.html">Drogue Cloud</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../drogue-cloud/dev/index.html">dev</a>
+        </li>
+        <li class="version">
+          <a href="../../drogue-cloud/0.4/index.html">0.4</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../drogue-device/dev/index.html">Drogue Device</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../drogue-device/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../drogue-book/index.html">Drogue IoT</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../drogue-book/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <a class="title" href="../index.html">Drogue IoT Workshops</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../drogue-book/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Drogue IoT Workshops</a></li>
+    <li><a href="index.html">Getting started</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-workshops/edit/main/modules/getting-started/pages/index.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Getting started</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This is the most basic workshop. It should set you up with all tools and technologies that are required by all the
+other workshops.</p>
+</div>
+<div class="paragraph">
+<p>It is recommended to finish this workshop first, before diving into the others.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_pre_requisites"><a class="anchor" href="#_pre_requisites"></a>Pre-requisites</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>A local computer</p>
+</li>
+<li>
+<p>The ability to install new application to your local machine</p>
+</li>
+<li>
+<p>Access to a Drogue IoT cloud instance</p>
+</li>
+<li>
+<p>A working internet connection</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_a_local_computer"><a class="anchor" href="#_a_local_computer"></a>A local computer</h3>
+<div class="paragraph">
+<p>Most likely, you are reading this already on a computer. For the tutorials a normal desktop computer should work just
+fine. Linux, macOS, Windows should be fine. Tablets and mobile phones will not be sufficient.</p>
+</div>
+<div class="paragraph">
+<p>If you want to self-host Drogue IoT on your local machine, you can do that too, but you will need considerably more
+RAM and CPU.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_access_to_a_drogue_iot_cloud_instance"><a class="anchor" href="#_access_to_a_drogue_iot_cloud_instance"></a>Access to a Drogue IoT cloud instance</h3>
+<div class="paragraph">
+<p>For most workshops, you will need access to a Drogue IoT cloud instance. You can self-host one, even on a local
+machine using e.g. <a href="https://kind.sigs.k8s.io/">Kind</a> or <a href="https://minikube.sigs.k8s.io/">Minikube</a>.</p>
+</div>
+<div class="paragraph">
+<p>Of course, you can also use our <a href="https://sandbox.drogue.cloud/">sandbox cluster</a>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The sandbox cluster is a community hosted instance. Be nice, don&#8217;t break it. And, accept when it is down. It may
+also be, that we reset the instance every now and then, and all your data stored on it is lost.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_install_the_command_line_client"><a class="anchor" href="#_install_the_command_line_client"></a>Install the command line client</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In order to configure cloud side components, we will use the <code>drg</code> command line tool. Technically the Drogue IoT Cloud
+offers a REST API, and you could simply use <code>curl</code> or <code>http</code> too. However, this makes examples rather verbose, and
+less understandable.</p>
+</div>
+<div class="paragraph">
+<p>All possible ways of installing are described in the <code>drg</code> repository: <a href="https://github.com/drogue-iot/drg#installation" class="bare">https://github.com/drogue-iot/drg#installation</a></p>
+</div>
+<div class="sect2">
+<h3 id="_install_using_cargo"><a class="anchor" href="#_install_using_cargo"></a>Install using <code>cargo</code></h3>
+<div class="paragraph">
+<p>If you already have <code>cargo</code> and a Rust toolchain installed, you can simply execute:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>cargo install drg</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_downloading_a_pre_compiled_binary"><a class="anchor" href="#_downloading_a_pre_compiled_binary"></a>Downloading a pre-compiled binary</h3>
+<div class="paragraph">
+<p>You can also download a pre-compiled binary from the <a href="https://github.com/drogue-iot/drg/releases">releases</a> page.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_create_an_account_in_drogue_iot_cloud"><a class="anchor" href="#_create_an_account_in_drogue_iot_cloud"></a>Create an account in Drogue IoT Cloud</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Navigate your web browser to the console URL of your Drogue IoT Cloud instance. For the sandbox, this would be
+<a href="https://sandbox.drogue.cloud" class="bare">https://sandbox.drogue.cloud</a>.</p>
+</div>
+<div class="paragraph">
+<p>Depending on the installation, you need to have some local user credentials, create a new account, or sign up with
+an external identity provider, like GitHub.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_log_in_with_drg"><a class="anchor" href="#_log_in_with_drg"></a>Log in with <code>drg</code></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Next, you will need to log in with <code>drg</code> to the instance as well. Run the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>drg login &lt;url to backend&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For the sandbox, this would be:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>drg login https://api.sandbox.drogue.cloud</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>drg login</code> will open a browser window, to let you start the OpenID Connect login flow. This is required, as the
+Drogue Cloud instance may be paired with an external identity provider, like GitHub. Once the login is completed, you
+will be directed to the Drogue Cloud, which will then redirect to the local <code>drg</code> instance, receiving the
+OAuth2 access token.</p>
+</div>
+<div class="paragraph">
+<p><code>drg</code> will ask you to enter a new <em>context name</em>, which you can use later on to switch logins for different instances.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Logging in will not switch your current context to the newly logged in one. If you want to use the login just
+created, you will need to switch context:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>drg context set-active &lt;context_id&gt;</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>From now on, <code>drg</code> has access to your Drogue Cloud instance. When the access token expires, it will automatically
+fetch a fresh token, using the stored refresh token. Your password, is not stored locally.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_managing_contexts"><a class="anchor" href="#_managing_contexts"></a>Managing contexts</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can see which contexts you have created by:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">drg context list</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will print out a list of known contexts on your system.</p>
+</div>
+<div class="paragraph">
+<p>To set a new active context, run:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>drg context set-active &lt;context&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_creating_a_new_application"><a class="anchor" href="#_creating_a_new_application"></a>Creating a new application</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>An application is a main resource in Drogue Cloud. It will contain devices, and provide access to data.</p>
+</div>
+<div class="paragraph">
+<p>Creating a new application is simply, and can be done by executing:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>drg create app my-app</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Application names are unique in the system. Workshops may use an application name like <code>my-app</code>, which may already
+be used by another use. In this case, you will need to select a different name.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_creating_a_new_device"><a class="anchor" href="#_creating_a_new_device"></a>Creating a new device</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Same as creating a new application, you can create a new device too:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>drg create device --app my-app my-device</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As you can see, devices are scoped by applications. So, when creating a new device, you will also need to provide
+the application you want to create it in.</p>
+</div>
+<div class="paragraph">
+<p>Device names are unique too, however they need to be unique for an application. It is possible to have <code>device1</code> as
+part of <code>app1</code> and as part of <code>app2</code>. These are two distinct devices.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_viewing_and_editing_resources"><a class="anchor" href="#_viewing_and_editing_resources"></a>Viewing and editing resources</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Applications and devices can contain additional information like credentials, configurations, status. You can view and
+edit this information.</p>
+</div>
+<div class="sect2">
+<h3 id="_viewing_the_current_state"><a class="anchor" href="#_viewing_the_current_state"></a>Viewing the current state</h3>
+<div class="paragraph">
+<p>From the command line, execute:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>drg get device --app my-app my-device</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This should print out something like:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "metadata": {
+    "application": "my-app",
+    "creationTimestamp": "2021-04-30T08:36:41.982194Z",
+    "generation": 0,
+    "name": "my-device",
+    "resourceVersion": "d2ca3370-49d8-4546-b1ac-960a4a7689ef",
+    "uid": "5b10e583-8498-4697-8e0d-7ebd35496e91"
+  }
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This might indeed remind you of Kubernetes. We tried to model the data structures similar to Kubernetes'. However,
+we didn&#8217;t blindly copy the structures, only adopted them where it made sense for our use case. When you see something
+that looks familiar, it is. Just don&#8217;t expect all other Kubernetes concept to be present as well.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_editing_a_resource"><a class="anchor" href="#_editing_a_resource"></a>Editing a resource</h3>
+<div class="paragraph">
+<p>You can interactively edit a resource be executing:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>drg edit device --app my-app my-device</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will load the current state, and open it in a local text editor. Once you save and close the editor, it will
+update the resource in the cloud.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deleting_a_resource"><a class="anchor" href="#_deleting_a_resource"></a>Deleting a resource</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Finally, we can also delete a resource. Let&#8217;s just delete the whole application:</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Deleting the application will delete the application and all its devices. There is no way to bring them back.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>drg delete app my-app</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will start by deleting devices, and then the application. It will also make the name available for others to use
+it. However, devices will still be deleted, when re-creating an appliction with the same name.</p>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
