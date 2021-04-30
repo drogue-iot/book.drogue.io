@@ -13,11 +13,13 @@ content:
       branches: main
       start_path: docs
     - url: ../drogue-cloud
-      branches: main
+      branches: HEAD
       start_path: docs
     - url: https://github.com/drogue-iot/drogue-device.git
       branches: main
       start_path: docs
+    - url: ../drogue-workshops
+      branches: HEAD
 ui:
   bundle:
     url: https://github.com/drogue-iot/drogue-antora-ui/releases/download/v0.1.1/ui-bundle.zip
