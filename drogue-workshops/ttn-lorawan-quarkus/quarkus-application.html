@@ -152,39 +152,414 @@
 </aside>
 <article class="doc">
 <h1 class="page">Quarkus application</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>The last piece of the puzzle is a customer provided application. The application that wants to talk to the device, in
+order to provide some value-add.</p>
+</div>
+<div class="paragraph">
+<p>For implementing this, we choose Quarkus. Java is great for business applications, there are plenty of tutorials on
+how to build and interface Quarkus application with enterprise systems. So in this workshop, we will focus on bridging
+the gap between enterprise and IoT.</p>
+</div>
+<div class="paragraph">
+<p>The core idea here is that you use Drogue IoT cloud as a service. That means, we don&#8217;t plan on deploying our application
+inside the same cluster, but on a separate machine or cluster. Technically you can still do that! We just try to follow
+a more "as-a-service" approach, and you might see in a minute, that this also makes things easier, as you can run
+the application in your local machine, use our sandbox, and still be connected to the public TTN network.</p>
+</div>
+<div class="paragraph">
+<p>We will be using the MQTT integration of Drogue IoT. This makes things easy, as we don&#8217;t need to bridge two Kafka
+clusters, and still can have multiple consumers. Also, it is possible to just re-use all your tools around MQTT that
+you already may know about, for testing and debugging.</p>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="_creating_a_drogue_iot_cloud_api_key"><a class="anchor" href="#_creating_a_drogue_iot_cloud_api_key"></a>Creating a Drogue IoT cloud API key</h2>
 <div class="sectionbody">
-
+<div class="paragraph">
+<p>In order to get access to the application through the MQTT integration, we need an OAuth token or API key. As you need
+to periodically refresh an OAuth token, and most MQTT clients have no idea about that, we choose an API key
+here<sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup>.</p>
+</div>
+<div class="paragraph">
+<p>Getting a new API key currently requires to use a command line HTTP client, like HTTPie or curl. It is a simple
+operation though, and we will use <code>drg token</code> to acquire a fresh OAuth token for accessing the API.</p>
+</div>
+<div class="paragraph">
+<p>The following examples require you to replace <code>&lt;api-endpoint&gt;</code> with the actual API endpoint. You can get this from
+the web console, from the page named "Home":</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/api-endpoint.png" alt="Screenshot home page showing the API endpoint information">
+</div>
+</div>
+<div class="paragraph">
+<p>The API endpoint URL is located in the box "API" in the "Services" column.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The following examples will use the command <code>jq</code> to pretty-format that the JSON result of the commands. If can&#8217;t
+use <code>jq</code>, you can also omit it as is it only used to improve readability of the result.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_create_a_new_api_key"><a class="anchor" href="#_create_a_new_api_key"></a>Create a new API key</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>curl -vs -H "Authorization: Bearer $(drg token)" -XPOST &lt;api-endpoint&gt;/api/keys/v1alpha1 | jq</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The output should look something like:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "prefix": "drg_g0yAUq",
+  "key": "drg_g0yAUq_kwjRLA40hrt81bbKdGbcDOmlq2WASx6UyQi"
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The value of the field <code>key</code> is the actual API key. You will not be able to recover this key at a later time. So
+you need to note (copy) it somewhere. The "prefix" is used to identity the key, so that you can easily delete it
+later on.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_list_api_keys"><a class="anchor" href="#_list_api_keys"></a>List API keys</h3>
+<div class="paragraph">
+<p>You can also list your existing API keys using:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>curl -s -H "Authorization: Bearer $(drg token)" &lt;api-endpoint&gt;/api/keys/v1alpha1 | jq</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Which should provide you can output like:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">[
+  {
+    "prefix": "drg_g0yAUq",
+    "created": "2021-04-28T08:42:59.336402353Z"
+  }
+]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As you can see, the actual <code>key</code> is no longer part of the result.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_deleting_api_keys"><a class="anchor" href="#_deleting_api_keys"></a>Deleting API keys</h3>
+<div class="paragraph">
+<p>If you need to delete a key, you can easily achieve this using the <code>DELETE</code> verb:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>curl -s -H "Authorization: Bearer $(drg token)" -XDELETE &lt;api-endpoint&gt;/api/keys/v1alpha1/drg_g0yAUq</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_finding_your_username"><a class="anchor" href="#_finding_your_username"></a>Finding your username</h3>
+<div class="paragraph">
+<p>In addition to the API key, you will also need to know your username.</p>
+</div>
+<div class="paragraph">
+<p>You can check your username using the Web Console. In the top right corner of the console, you will find the user menu,
+which shows you your username:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/profile-menu-2.png" alt="Screenshot of profile menu">
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_deploying_the_application"><a class="anchor" href="#_deploying_the_application"></a>Deploying the application</h2>
+<h2 id="_preparing_the_application"><a class="anchor" href="#_preparing_the_application"></a>Preparing the application</h2>
 <div class="sectionbody">
-
+<div class="paragraph">
+<p>While we provide a ready to run container of this application, this workshop plans to make changes to the source code.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+While all the following steps are possible without an IDE, you may wish to set up of your favorite IDE alongside
+the process. The tutorial doesn&#8217;t require any IDE specific settings or tasks, everything could be done using plain
+Maven and the most basic text editor. But, feel free to make yourself comfortable.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>We will start directly by cloning the source code of this example, and run it locally:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>git clone https://github.com/drogue-iot/quarkus-mqtt-integration-example</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Next, we need to insert the parameters for connecting the application to the MQTT integration:</p>
+</div>
+<div class="paragraph">
+<p>Create the file <code>src/main/resources/application-dev.properties</code> and add the following content:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>drogue.application.name=my-app <i class="conum" data-value="1"></i><b>(1)</b>
+drogue.api.user=my-username <i class="conum" data-value="2"></i><b>(2)</b>
+drogue.api.key=drg_g0yAUq_3z5pasdcasdeI4YqOP123hdsa821VAtFs4x <i class="conum" data-value="3"></i><b>(3)</b>
+drogue.integration.mqtt.host=mqtt-integration-drogue-dev.apps.wonderful.iot-playground.org <i class="conum" data-value="4"></i><b>(4)</b>
+drogue.integration.mqtt.port=443 <i class="conum" data-value="5"></i><b>(5)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The Drogue IoT application name</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Your Drogue IoT username, as described in <a href="#_finding_your_username">Finding your username</a></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Your Drogue IoT application key, as described in <a href="#_create_a_new_api_key">Create a new API key</a></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>The hostname of the MQTT integration.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>The port number of the MQTT integration.
+<div class="paragraph">
+<p>While <code>443</code> might look strange here for MQTT, it will still work in the
+case of OpenShift, as <em>OpenShift routes</em> patch through TLS based TCP connections directly through to the endpoint.</p>
+</div></td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_testing_the_setup"><a class="anchor" href="#_testing_the_setup"></a>Testing the setup</h2>
 <div class="sectionbody">
-
+<div class="paragraph">
+<p>You can now start the application, <a href="https://quarkus.io/guides/getting-started#running-the-application">like any other Quarkus application</a>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>mvn quarkus:dev</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The output should look something like:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>[INFO] Scanning for projects...
+[INFO]
+[INFO] --------&lt; io.drogue.iot.demo:quarkus-mqtt-integration-example &gt;---------
+[INFO] Building quarkus-mqtt-integration-example 1.0.0-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- quarkus-maven-plugin:1.13.2.Final:dev (default-cli) @ quarkus-mqtt-integration-example ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 4 resources
+[INFO] Nothing to compile - all classes are up to date
+Listening for transport dt_socket at address: 5005
+<em>  </em><em>  </em>  <em><em></em>   <em></em>  </em> <em><em>_  </em><em>_</em>
+ --/ </em> \/ / / / _ | / _ \/ //<em>/ / / / <em>/
+ -/ /</em>/ / /<em>/ / </em> |/ , _/ ,&lt; / /</em>/ /\ \
+--<em>_</em>_\__<em>/<em>/ |</em>/<em>/|</em>/<em>/|</em>|\</em><em>/</em>_/
+2021-05-04 08:43:08,141 INFO  [io.quarkus] (Quarkus Main Thread) quarkus-mqtt-integration-example 1.0.0-SNAPSHOT on JVM (powered by Quarkus 1.13.2.Final) started in 1.512s. Listening on: <strong>http://localhost:8080</strong> <i class="conum" data-value="1"></i><b>(1)</b>
+2021-05-04 08:43:08,144 INFO  [io.quarkus] (Quarkus Main Thread) Profile dev activated. Live Coding activated.
+2021-05-04 08:43:08,144 INFO  [io.quarkus] (Quarkus Main Thread) Installed features: [cdi, mutiny, oidc-client, resteasy-reactive, resteasy-reactive-jackson, smallrye-context-propagation, smallrye-health, smallrye-reactive-messaging, smallrye-reactive-messaging-mqtt, vertx]
+2021-05-04 08:43:08,366 INFO  [io.ver.mqt.imp.MqttClientImpl] (vert.x-eventloop-thread-0) <strong>Connection with mqtt-integration-drogue-dev.apps.wonderful.iot-playground.org:443 established successfully</strong> <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The URL to the web console</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Note the line "Connection … established successfully"</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The application will keep running until you terminate it, by pressing <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>C</kbd></span>.</p>
+</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_checking_out_the_code"><a class="anchor" href="#_checking_out_the_code"></a>Checking out the code</h2>
+<h2 id="_testing_it_out"><a class="anchor" href="#_testing_it_out"></a>Testing it out</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="_receiving_events"><a class="anchor" href="#_receiving_events"></a>Receiving events</h3>
-
+<div class="paragraph">
+<p>Navigate your browser to the web console, as shows in the previous step&#8217;s log output. It should look something like:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/demo-app-1.png" alt="Screenshot of Quarkus application">
+</div>
+</div>
+<div class="paragraph">
+<p>Once you press the blue button on the board, you should see an incoming message, and with that, an outgoing message too.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/demo-app-2.png" alt="Screenshot of Quarkus application">
+</div>
+</div>
+<div class="paragraph">
+<p>Try changing the response to <code>led:on</code>, and press the blue button again. The blue LED on the board should turn on, once
+the green, send indicator, LED turns off again.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>It may be that the blue LED doesn&#8217;t turn on. Give it a second try, by pressing the blue button again.</p>
+</div>
+<div class="paragraph">
+<p>Why is that needed? A short period after the uplink (device-to-cloud) message, the LoRa device switches into receive
+mode, awaiting an optional downlink (cloud-to-device) message. If that time window is missed, then the device will
+not receive the downlink message, and go back to sleep. We will deal with this later, so read on.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_understanding_the_code"><a class="anchor" href="#_understanding_the_code"></a>Understanding the code</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Let&#8217;s take a quick tour through the code.</p>
 </div>
 <div class="sect2">
 <h3 id="_processing"><a class="anchor" href="#_processing"></a>Processing</h3>
+<div class="paragraph">
+<p>The main logic is in class <code>io.drogue.iot.demo.Processor</code>, and it is actually pretty simple:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Incoming("event-stream") <i class="conum" data-value="1"></i><b>(1)</b>
+@Outgoing("device-commands") <i class="conum" data-value="2"></i><b>(2)</b>
+@Broadcast <i class="conum" data-value="3"></i><b>(3)</b>
+public DeviceCommand process(DeviceEvent event) {
 
+    var payload = event.getPayload();
+
+    LOG.info("Received payload: {}", payload);
+
+    if (!event.getPayload().startsWith("ping:")) {
+        return null;
+    }
+
+    var command = new DeviceCommand();
+
+    command.setDeviceId(event.getDeviceId());
+    command.setPayload(this.response.getBytes(StandardCharsets.UTF_8));
+
+    return command; <i class="conum" data-value="4"></i><b>(4)</b>
+
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Annotation for consuming messages from the <code>event-stream</code> channel.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Annotation for delivering messages, coming out of this method, to the <code>device-commands</code> channel.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Indication that all consumers of the <code>device-commands</code> channel should receive the event.
+<div class="paragraph">
+<p>This is required so that all browsers that are attached to the web frontend, and the device will receive the event.</p>
+</div></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>The actual message we generated and want to send out.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_receiving_events"><a class="anchor" href="#_receiving_events"></a>Receiving events</h3>
+<div class="paragraph">
+<p>The processing part already expects messages of the type <code>DeviceEvent</code>. This is an application specific Java message,
+which we don&#8217;t send out in Drogue cloud.</p>
+</div>
+<div class="paragraph">
+<p>The conversion takes place in the class <code>io.drogue.iot.demo.integration.Receiver</code>.</p>
+</div>
+<div class="paragraph">
+<p>It will take the incoming MQTT message, which is a Cloud Events message in <a href="https://github.com/cloudevents/spec/blob/v1.0.1/mqtt-protocol-binding.md#13-content-modes">structured content mode</a>, as with Quarkus, we are using MQTT v3.</p>
+</div>
+<div class="paragraph">
+<p>We decode the data section as a JSON encoded TTN uplink message, and extract the payload from it.</p>
+</div>
+<div class="paragraph">
+<p>As with the <code>Processor</code> class before, the return the processed (converted) message. The returned message will be
+sent to the <code>event-stream</code>, so that both the <code>Processor</code> and any attached web browser will receive it.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_sending_commands"><a class="anchor" href="#_sending_commands"></a>Sending commands</h3>
-
+<div class="paragraph">
+<p>The output of the <code>Processor</code> will be received by the <code>io.drogue.iot.demo.integration.Sender</code> class.</p>
 </div>
+<div class="paragraph">
+<p>This class will construct the MQTT message, which contains the command for the device. It will publish this as an
+MQTT message, which will then be forwarded by Drogue cloud to the command endpoint for the device. Which in our case
+here is the downlink API of The Things Network.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<hr>
+<div class="footnote" id="_footnotedef_1">
+<a href="#_footnoteref_1">1</a>. API keys don&#8217;t expire, while OAuth access tokens do. Even when you can refresh an access token using a refresh token, you still need to do this.
 </div>
 </div>
 </article>
