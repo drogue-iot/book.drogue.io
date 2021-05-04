@@ -239,7 +239,31 @@ LOG.info("Need to update device state");</code></pre>
 <h2 id="_changing_the_device"><a class="anchor" href="#_changing_the_device"></a>Changing the device</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>On the device side, we need to add a <em>ticker</em>. Take a look at the file <code>main.rs</code>, and make the following change:</p>
+<p>On the device side, we need to add a <em>ticker</em>. Take a look at the file <code>main.rs</code>, and make the following changes:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">use drogue_device::{
+    actors::button::*,
+    <strong>actors::ticker::</strong>,* <i class="conum" data-value="1"></i><b>(1)</b>
+    drivers::led::*,
+    drivers::lora::sx127x::*,
+…
+}
+<strong>use embassy::time::Duration;</strong> <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Import the ticker actor.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Import the <code>Duration</code> struct.</td>
+</tr>
+</table>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -362,7 +386,7 @@ when there was a mismatch between the actual and the desired state of the LED.</
 </div>
 </div>
 <div class="sect1">
-<h2 id="_further_ideas"><a class="anchor" href="#_further_ideas"></a>Further ideas</h2>
+<h2 id="_more_ideas"><a class="anchor" href="#_more_ideas"></a>More ideas</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Now it is time to come up with your own ideas. You could:</p>
