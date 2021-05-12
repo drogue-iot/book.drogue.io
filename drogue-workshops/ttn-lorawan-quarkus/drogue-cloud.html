@@ -201,7 +201,7 @@ this only makes things complicated. So try to come up with a name that should st
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>drg create application my-app --spec '{
+<pre class="highlightjs highlight"><code>drg create app my-app --spec '{
     "ttn": {
         "api": {
             "apiKey": "...", <i class="conum" data-value="1"></i><b>(1)</b>
@@ -236,32 +236,19 @@ this only makes things complicated. So try to come up with a name that should st
 </div>
 </div>
 <div class="sect1">
-<h2 id="_create_a_new_device"><a class="anchor" href="#_create_a_new_device"></a>Create a new device</h2>
+<h2 id="_create_device_with_ttn_integration"><a class="anchor" href="#_create_device_with_ttn_integration"></a>Create device with TTN integration</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Simply execute:</p>
+<p>Next, create a device and enable the TTN synchronization:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>drg create device --app my-app my-device</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_enable_the_ttn_integration_for_the_device"><a class="anchor" href="#_enable_the_ttn_integration_for_the_device"></a>Enable the TTN integration for the device</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Next, enable the TTN synchronization:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>drg create --app my-app device my-device --spec '{
+<pre class="highlightjs highlight"><code>drg create device my-device --app my-app --spec '{
     "ttn": {
         "app_eui": "0123456789ABCDEF",
         "dev_eui": "0123456789ABCDEF",
-        "app_key": "0123456789ABCDEF...",
-        "frequency_plan_id": "...", <i class="conum" data-value="1"></i><b>(1)</b>
+        "app_key": "0123456789ABCDEFGHIJKLMNOPQRSTUV", <i class="conum" data-value="1"></i><b>(1)</b>
+        "frequency_plan_id": "...", <i class="conum" data-value="2"></i><b>(2)</b>
         "lorawan_phy_version": "PHY_V1_0",
         "lorawan_version": "MAC_V1_0"
     }
@@ -272,7 +259,11 @@ this only makes things complicated. So try to come up with a name that should st
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>An ID of the TTN supported frequency plans, e.g. <code>EU_863_870</code>. Also see: <a href="https://www.thethingsindustries.com/docs/reference/frequency-plans/" class="bare">https://www.thethingsindustries.com/docs/reference/frequency-plans/</a></td>
+<td>A 32 byte application key. <strong>IMPORTANT</strong> This should be changed to a secret value</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>An ID of the TTN supported frequency plans, e.g. <code>EU_863_870_TTN</code>. Also see: <a href="https://www.thethingsindustries.com/docs/reference/frequency-plans/" class="bare">https://www.thethingsindustries.com/docs/reference/frequency-plans/</a></td>
 </tr>
 </table>
 </div>
