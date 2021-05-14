@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Devices, Gateways &amp; Services :: Drogue IoT</title>
+    <meta name="generator" content="Antora 2.3.4">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4BRXRBJJ1"></script>
+    <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','G-Z4BRXRBJJ1')</script>
+    <script>var uiRootPath = '../../../_'</script>
+    <link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="../../..">
+        <img class="navbar-brand-image" src="../../../_/img/logo.png" alt="Drogue IoT"/>
+      </a>
+
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://blog.drogue.io" target="_blank">Blog</a>
+        <a class="navbar-item" href="https://matrix.to/#/#drogue-iot:matrix.org" target="_blank">Chat</a>
+        <a class="navbar-item" href="https://book.drogue.io">Documentation</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="drogue-cloud" data-version="0.5">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Drogue Cloud</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../concepts.html">Concepts</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Architecture</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="data.html">Data plane</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="control.html">Control plane</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="devices.html">Devices, gateways &amp; services</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="addons.html">Additional components</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="services.html">Noteworthy services</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../deployment/index.html">Deployment</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deployment/index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deployment/pre-reqs.html">Pre-Requisites</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deployment/cluster.html">Prepare the cluster</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deployment/installer.html">Run the installer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deployment/development.html">Deploy from the repository</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Integrations</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">The Things Network</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ttn/index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ttn/app.html">Managing applications</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ttn/device.html">Managing devices</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Drogue Cloud</span>
+    <span class="version">0.5</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../../dev/index.html">Drogue Cloud</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../dev/index.html">dev</a>
+        </li>
+        <li class="version is-current">
+          <a href="../index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4/index.html">0.4</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../drogue-device/dev/index.html">Drogue Device</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../drogue-device/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../drogue-book/index.html">Drogue IoT</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../drogue-book/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../drogue-workshops/index.html">Drogue IoT Workshops</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../drogue-workshops/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../../drogue-book/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Drogue Cloud</a></li>
+    <li><a href="index.html">Architecture</a></li>
+    <li><a href="devices.html">Devices, gateways &amp; services</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">0.5</button>
+  <div class="version-menu">
+    <a class="version" href="../../dev/architecture/devices.html">dev</a>
+    <a class="version is-current" href="devices.html">0.5</a>
+    <a class="version" href="../../0.4/architecture/devices.html">0.4</a>
+  </div>
+</div>
+  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-cloud/edit/release-0.5/docs/modules/architecture/pages/devices.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Devices, Gateways &amp; Services</h1>
+<div class="paragraph">
+<p>Most of this documentation talks about "devices". However, what we actually mean is: devices, gateways, and services.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/devices.svg" alt="Different device types"></span></p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Device</dt>
+<dd>
+<p>A device, directly connected to Drogue Cloud.</p>
+<div class="paragraph">
+<p>This may be an embedded device, or a more powerfull compute node
+with a full blown operating system. It may also be a containerized application, running inside an Edge node, connecting
+to Drogue Cloud.</p>
+</div>
+</dd>
+<dt class="hdlist1">Gateway</dt>
+<dd>
+<p>A device, which acts as a proxy for other devices, that may not directly connect to Drogue Cloud.</p>
+<div class="paragraph">
+<p>This may be some kind of Linux machine, which allows non-IP enabled devices, like Bluetooth Low Energy (BLE) devices,
+to connect to Drogue Cloud, by forwarding messages between the two protocols.</p>
+</div>
+</dd>
+<dt class="hdlist1">Services</dt>
+<dd>
+<p>In some cases a gateway is not a single device, but a bigger, maybe cloud based, service as well. Still it acts
+as a proxy for devices to communicate with Drogue Cloud.</p>
+<div class="paragraph">
+<p>An example might be "The Things Network" (TTN), or "Sigfox". Both services have their own technical infrastructure to which devices
+connect. These services act as a proxy to their devices.</p>
+</div>
+<div class="paragraph">
+<p>From a Drogue Cloud perspective such services are "gateways" as well.</p>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>It may be, that between Drogue Cloud and the actual device, additional "gateways", like a LoRaWAN gateway, are in place. A LoRa
+device might connect to its local gateway, which connects to the TTN network, which then connects to Drogue Cloud.</p>
+</div>
+<div class="paragraph">
+<p>However, for Drogue Cloud only the device which directly connects (TTN service) and the originating device (the actual device) is
+important. Intermediate gateways may be in play, but are not relevant.</p>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../../_/js/site.js"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
