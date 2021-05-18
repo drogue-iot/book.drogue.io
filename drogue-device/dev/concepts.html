@@ -199,16 +199,19 @@ For instance, the <code>Address&lt;SimpleLED&lt;&#8230;&#8203;&gt;&gt;</code> in
 <div class="sect2">
 <h3 id="_bootstrap_mounting"><a class="anchor" href="#_bootstrap_mounting"></a>Bootstrap &amp; Mounting</h3>
 <div class="paragraph">
-<p>A top-level <code>Device</code> struct maintain members for each actor. The <code>derive(Device)</code> type attribute can be used to derive an implementation of <code>Device</code> for a particular application.</p>
+<p>A top-level <code>Device</code> struct maintain members for each actor.</p>
 </div>
 <div class="paragraph">
 <p>The application entry point is specified using a function marked with <code>#[drogue::main]</code>, and it will be passed a <code>DeviceContext</code> that can be used to configure and mount the device.</p>
+</div>
+<div class="paragraph">
+<p>When mounting a device, an <code>ActorSpawner</code> is passed in the closure, which can be used to mount all actors and packages.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_packages"><a class="anchor" href="#_packages"></a>Packages</h3>
 <div class="paragraph">
-<p>In some cases, it may be desirable to have two or more actors involve in a single semantic component or package. Similar to the <code>Device</code> trait, the <code>Package</code> trait may be derived for any struct in order to bootstrap the actors within it.</p>
+<p>In some cases, it may be desirable to have two or more actors involve in a single semantic component or package. The <code>Package</code> trait may be implemented for any type.</p>
 </div>
 </div>
 </div>
