@@ -199,13 +199,11 @@ For instance, the <code>Address&lt;SimpleLED&lt;&#8230;&#8203;&gt;&gt;</code> in
 <div class="sect2">
 <h3 id="_bootstrap_mounting"><a class="anchor" href="#_bootstrap_mounting"></a>Bootstrap &amp; Mounting</h3>
 <div class="paragraph">
-<p>A top-level <code>Device</code> struct maintain members for each actor.</p>
+<p>A top-level <code>Device</code> struct created by the application writer, maintain members for each actor. A static instance of <code>DeviceContext</code> is created to hold a static reference
+to the <code>Device</code> struct.</p>
 </div>
 <div class="paragraph">
-<p>The application entry point is specified using a function marked with <code>#[drogue::main]</code>, and it will be passed a <code>DeviceContext</code> that can be used to configure and mount the device.</p>
-</div>
-<div class="paragraph">
-<p>When mounting a device, an <code>ActorSpawner</code> is passed in the closure, which can be used to mount all actors and packages.</p>
+<p>The application entry point is specified using a function marked with <code>#[embassy::main]</code>, and it will be passed a <code>Spawner</code> that is used when mounting actors and packages.</p>
 </div>
 </div>
 <div class="sect2">
