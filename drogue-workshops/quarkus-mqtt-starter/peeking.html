@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Generating keys :: Drogue IoT</title>
+    <title>What to expect? :: Drogue IoT</title>
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4BRXRBJJ1"></script>
@@ -60,28 +60,28 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">LoRaWAN end-to-end</a>
+    <a class="nav-link" href="../ttn-lorawan-quarkus/index.html">LoRaWAN end-to-end</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="index.html">Overview</a>
+    <a class="nav-link" href="../ttn-lorawan-quarkus/index.html">Overview</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../common/toolchain.html">Embedded toolchain</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="account-setup.html">TTN account setup</a>
+    <a class="nav-link" href="../ttn-lorawan-quarkus/account-setup.html">TTN account setup</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="drogue-cloud.html">Drogue Cloud setup</a>
+    <a class="nav-link" href="../ttn-lorawan-quarkus/drogue-cloud.html">Drogue Cloud setup</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="firmware.html">Device firmware</a>
+    <a class="nav-link" href="../ttn-lorawan-quarkus/firmware.html">Device firmware</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="quarkus-application.html">Quarkus application</a>
+    <a class="nav-link" href="../ttn-lorawan-quarkus/quarkus-application.html">Quarkus application</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="making-changes.html">Making changes</a>
+    <a class="nav-link" href="../ttn-lorawan-quarkus/making-changes.html">Making changes</a>
   </li>
 </ul>
   </li>
@@ -91,25 +91,25 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../quarkus-mqtt-starter/index.html">Quarkus MQTT integration starter</a>
+    <a class="nav-link" href="index.html">Quarkus MQTT integration starter</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../quarkus-mqtt-starter/index.html">Overview</a>
+    <a class="nav-link" href="index.html">Overview</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="peeking.html">What to expect</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../quarkus-mqtt-starter/peeking.html">What to expect</a>
+    <a class="nav-link" href="local.html">Running it locally</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../quarkus-mqtt-starter/local.html">Running it locally</a>
+    <a class="nav-link" href="internals.html">How does it work?</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../quarkus-mqtt-starter/internals.html">How does it work?</a>
+    <a class="nav-link" href="kubernetes.html">Deploying to Kubernetes</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../quarkus-mqtt-starter/kubernetes.html">Deploying to Kubernetes</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../quarkus-mqtt-starter/cloud.html">Moving to the cloud</a>
+    <a class="nav-link" href="cloud.html">Moving to the cloud</a>
   </li>
 </ul>
   </li>
@@ -174,124 +174,52 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Drogue IoT Workshops</a></li>
-    <li><a href="keys.html">Generating keys</a></li>
+    <li><a href="index.html">Quarkus MQTT integration starter</a></li>
+    <li><a href="peeking.html">What to expect</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-workshops/edit/main/modules/ttn-lorawan-quarkus/pages/keys.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-workshops/edit/main/modules/quarkus-mqtt-starter/pages/peeking.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Generating keys</h1>
+<h1 class="page">What to expect?</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>As we are using over-the-air activation, the LoRa device will need the following information:</p>
+<p>As mentioned before, we actually host the application on your sandbox cluster too. You can take a look at <a href="https://quarkus-mqtt-integration-starter-drogue-quarkus-demos.apps.wonderful.iot-playground.org/" class="bare">https://quarkus-mqtt-integration-starter-drogue-quarkus-demos.apps.wonderful.iot-playground.org/</a></p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>Device EUI (8 bytes)</p>
-</li>
-<li>
-<p>Application EUI (8 bytes)</p>
-</li>
-<li>
-<p>Application key (16 bytes, not the API key)</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>On this page, you should see a dashboard like shown in the following screenshot:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/screenshot.png" alt="Screenshot of the dashboard"></span></p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_create_from_the_command_line"><a class="anchor" href="#_create_from_the_command_line"></a>Create from the command line</h2>
+<h2 id="_what_do_you_see"><a class="anchor" href="#_what_do_you_see"></a>What do you see?</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can generate random numbers using the following shell script:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>head -c 8 /dev/urandom | od -An -tx8 | tr a-z A-Z <i class="conum" data-value="1"></i><b>(1)</b>
-head -c 8 /dev/urandom | od -An -tx8 | tr a-z A-Z <i class="conum" data-value="2"></i><b>(2)</b>
-head -c 16 /dev/urandom | od -An -tx16 | tr a-z A-Z <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>For generating the Application EUI</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>For generating the Device EUI</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>For generating the Application Key</td>
-</tr>
-</table>
+<p>This dashboard shows the most recent received message from any device. If the message contained geolocation information,
+then it will also put a marker on the map. Only one marker will be shown at a time, so a new marker will replace
+any previous markers.</p>
 </div>
 <div class="paragraph">
-<p>For example:</p>
+<p>The data comes from a publicly available data stream, hosted on the Drogue IoT sandbox cluster.</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>$ head -c 8 /dev/urandom | od -An -tx8 | tr a-z A-Z
- CDAE10B2F5D4B87C <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>They value to copy, without the leading whitespace.</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>You can subscribe to that data stream with a simple MQTT client yourself.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_other_ways"><a class="anchor" href="#_other_ways"></a>Other ways</h2>
+<h2 id="_whats_next"><a class="anchor" href="#_whats_next"></a>What&#8217;s next?</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can also manually choose the values of the keys.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The values must be unique throughout the LoRa system you are using. So you cannot just re-use them for other
-devices and setups.
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_gather_all_important_information"><a class="anchor" href="#_gather_all_important_information"></a>Gather all important information</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>From this step, you should have noted the following pieces of information:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Device EUI</p>
-</li>
-<li>
-<p>Application EUI</p>
-</li>
-<li>
-<p>Application Key</p>
-</li>
-</ul>
+<p>Here? Not much! Now it is up to you to replicate this.</p>
 </div>
 </div>
 </div>

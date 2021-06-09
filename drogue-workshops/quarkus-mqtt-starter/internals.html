@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>How does it work? :: Drogue IoT</title>
+    <meta name="generator" content="Antora 2.3.4">
+    <link rel="stylesheet" href="../../_/css/site.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4BRXRBJJ1"></script>
+    <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','G-Z4BRXRBJJ1')</script>
+    <script>var uiRootPath = '../../_'</script>
+    <link rel="icon" href="../../_/img/favicon.svg" type="image/svg+xml">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="../..">
+        <img class="navbar-brand-image" src="../../_/img/logo.png" alt="Drogue IoT"/>
+      </a>
+
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://blog.drogue.io" target="_blank">Blog</a>
+        <a class="navbar-item" href="https://matrix.to/#/#drogue-iot:matrix.org" target="_blank">Chat</a>
+        <a class="navbar-item" href="https://book.drogue.io">Documentation</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="drogue-workshops" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Drogue IoT Workshops</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Introduction</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../getting-started/index.html">Getting started</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../ttn-lorawan-quarkus/index.html">LoRaWAN end-to-end</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ttn-lorawan-quarkus/index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../common/toolchain.html">Embedded toolchain</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ttn-lorawan-quarkus/account-setup.html">TTN account setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ttn-lorawan-quarkus/drogue-cloud.html">Drogue Cloud setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ttn-lorawan-quarkus/firmware.html">Device firmware</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ttn-lorawan-quarkus/quarkus-application.html">Quarkus application</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ttn-lorawan-quarkus/making-changes.html">Making changes</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Quarkus MQTT integration starter</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="peeking.html">What to expect</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="local.html">Running it locally</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="internals.html">How does it work?</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="kubernetes.html">Deploying to Kubernetes</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cloud.html">Moving to the cloud</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Drogue IoT Workshops</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <a class="title" href="../../drogue-cloud/dev/index.html">Drogue Cloud</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../drogue-cloud/dev/index.html">dev</a>
+        </li>
+        <li class="version">
+          <a href="../../drogue-cloud/0.5/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../drogue-cloud/0.4/index.html">0.4</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../drogue-device/dev/index.html">Drogue Device</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../drogue-device/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../drogue-book/index.html">Drogue IoT</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../drogue-book/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <a class="title" href="../index.html">Drogue IoT Workshops</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../drogue-book/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Drogue IoT Workshops</a></li>
+    <li><a href="index.html">Quarkus MQTT integration starter</a></li>
+    <li><a href="internals.html">How does it work?</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-workshops/edit/main/modules/quarkus-mqtt-starter/pages/internals.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">How does it work?</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>In the following sections we will walk through the important code sections of the different components.</p>
+</div>
+<div class="paragraph">
+<p>The full code is available at: <a href="https://github.com/drogue-iot/quarkus-mqtt-integration-starter/tree/main/src/main" class="bare">https://github.com/drogue-iot/quarkus-mqtt-integration-starter/tree/main/src/main</a> but
+here, we will show some of the most important concepts.</p>
+</div>
+<div class="paragraph">
+<p>A brief overview of the flow of events is:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/architecture-1.svg" alt="Architecture"></span></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_receiving_events"><a class="anchor" href="#_receiving_events"></a>Receiving events</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Receiving events from Drogue IoT is done using the MQTT integration. This endpoint of Drogue Cloud is an MQTT server
+to which an application can connect and subscribe to some specific topics, in order to receive events from the
+system. It is not a full MQTT broker though, and only provides some dedicates topics and operations, required for this
+use case.</p>
+</div>
+<div class="paragraph">
+<p>The core logic for receiving events is in the file <a href="https://github.com/drogue-iot/quarkus-mqtt-integration-starter/blob/main/src/main/java/io/drogue/iot/demo/integration/Receiver.java">Receiver.java</a>.</p>
+</div>
+<div class="sect2">
+<h3 id="_mqtt_events"><a class="anchor" href="#_mqtt_events"></a>MQTT Events</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Startup <i class="conum" data-value="1"></i><b>(1)</b>
+@ApplicationScoped
+public class Receiver {
+    @Incoming(Channels.DROGUE_INBOUND)
+    @Outgoing(Channels.TELEMETRY)
+    @Broadcast
+    public DeviceEvent process(Message&lt;byte[]&gt; rawMessage ) { <i class="conum" data-value="2"></i><b>(2)</b>
+        // ...
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The receiver is a bean, which is annotated with the <code>@Startup</code> annotation, so that it does start to process events,
+even if no user has yet access the web frontend. This is required for this example, as events are already being generated
+and need to be processed by our logic, so that when a user connects to our application, which have some existing data
+to show.
+<div class="paragraph">
+<p>This pattern also works in cases where you don&#8217;t even have a web frontend, but an application which only processes
+events in the background.</p>
+</div></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The message you will receive is a raw <code>byte[]</code> message.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_processing_as_a_cloud_event"><a class="anchor" href="#_processing_as_a_cloud_event"></a>Processing as a cloud event</h3>
+<div class="paragraph">
+<p>As Drogue IoT sends out Cloud Events, we need to parse the raw MQTT payload as a cloud event, and then map the payload
+of the cloud event to the actual payload we expect:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">var format = EventFormatProvider
+        .getInstance()
+        .resolveFormat(JsonFormat.CONTENT_TYPE); <i class="conum" data-value="1"></i><b>(1)</b>
+
+var message = format.deserialize(rawMessage.getPayload()); <i class="conum" data-value="2"></i><b>(2)</b>
+
+var mappedMessage = mapData(
+        message,
+        PojoCloudEventDataMapper.from(this.objectMapper, Payload.class)
+); <i class="conum" data-value="3"></i><b>(3)</b>
+
+var payload = mappedMessage.getValue(); <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Get the format provider for the Cloud Events JSON format. As we are using MQTT 3.1.1, we are sure that we are using
+the structural format, which encodes the full cloud event using JSON.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Deserialize the message using the format provider.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Map the payload of the cloud event to the Java class <code>Payload</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Extract the mapped payload from the payload mapper.</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The actual code is a bit more complex, and properly handles error cases. That is why your local cloned code or the
+code from the git repository looks a bit more complex.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_assembling_the_outbound_event"><a class="anchor" href="#_assembling_the_outbound_event"></a>Assembling the outbound event</h3>
+<div class="paragraph">
+<p>The <code>Receiver</code> bean actually is an event transformer. It transforms the incoming MQTT messages into system internal
+events. The target event is created by the following section:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">var device = new DeviceEvent();
+
+var deviceId = message.getExtension("device"); <i class="conum" data-value="1"></i><b>(1)</b>
+device.setDeviceId(deviceId.toString());
+
+var timestamp = message.getTime(); <i class="conum" data-value="1"></i><b>(1)</b>
+device.setTimestamp(timestamp.toInstant());
+device.setTemperature(payload.getTemperature()); <i class="conum" data-value="2"></i><b>(2)</b>
+device.setLocation(payload.getGeoloc()); <i class="conum" data-value="2"></i><b>(2)</b>
+
+return device; <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Extracts information from the cloud event&#8217;s metadata</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Extracts information from the payload</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The resulting, internal, event</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>As the <code>process</code> method is annotated with both the <code>@Inbound</code> and <code>@Outbound</code> annotation, it will receive events but
+also forward events which are returned by the method. The event which returned, is sent on internally to the
+event channel defined by <code>Channels.TELEMETRY</code>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_understanding_the_channel_mappings"><a class="anchor" href="#_understanding_the_channel_mappings"></a>Understanding the channel mappings</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We saw before that events flow in from a channel <code>Channels.DROGUE_INBOUND</code> and leave to a channel
+named <code>Channels.TELEMETRY</code>. There is a bit more to the channels than just their names.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s take a look at the application configuration: <a href="https://github.com/drogue-iot/quarkus-mqtt-integration-starter/blob/main/src/main/resources/application.yaml">application.yaml</a></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">mp:
+  messaging:
+    #
+    # Configure the MQTT source (we read from it)
+    #
+    incoming:
+      drogue-inbound: <i class="conum" data-value="1"></i><b>(1)</b>
+        type: smallrye-mqtt <i class="conum" data-value="2"></i><b>(2)</b>
+        topic: app/${drogue.integration.application} <i class="conum" data-value="3"></i><b>(3)</b>
+        host: ${drogue.integration.mqtt.host}
+        port: ${drogue.integration.mqtt.port}
+    #
+    # Configure the MQTT sink (we send commands to)
+    #
+    outgoing:
+      drogue-outbound: <i class="conum" data-value="1"></i><b>(1)</b>
+        type: smallrye-mqtt <i class="conum" data-value="2"></i><b>(2)</b>
+        host: ${drogue.integration.mqtt.host}
+        port: ${drogue.integration.mqtt.port}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The names of the channels, aligns with the constants in <code>Channels</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Declares the channels as "backed by MQTT".</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The inbound topic. For the outbound channel it is possible to provide this "per message", and so it may be omitted.</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Although this examples configures an outbound channel, it is actually not used in this starter. However, it is
+left in for completeness.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>As the internal <code>telemetry</code> channel does not have any configuration, it is an internal channel, not backed by any
+transport technology.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_consuming_events"><a class="anchor" href="#_consuming_events"></a>Consuming events</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The internal component, which consumes these events are actually two:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/drogue-iot/quarkus-mqtt-integration-starter/blob/main/src/main/java/io/drogue/iot/demo/state/CurrentState.java">state/CurrentState</a></p>
+</li>
+<li>
+<p><a href="https://github.com/drogue-iot/quarkus-mqtt-integration-starter/blob/main/src/main/java/io/drogue/iot/demo/ui/EventsResource.java">ui/EventsResource</a></p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_current_state"><a class="anchor" href="#_current_state"></a>Current state</h3>
+<div class="paragraph">
+<p>The bean <code>CurrentState</code> simply records the "last known event":</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class CurrentState {
+
+    private DeviceEvent lastEvent;
+
+    @Incoming(Channels.TELEMETRY) <i class="conum" data-value="1"></i><b>(1)</b>
+    public void telemetryChange(final DeviceEvent event) {
+        this.lastEvent = event; <i class="conum" data-value="2"></i><b>(2)</b>
+    }
+
+    public DeviceEvent getLastEvent() {
+        return this.lastEvent; <i class="conum" data-value="3"></i><b>(3)</b>
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Bind the method to receive events from the internal "telemetry" channel. The one we are feeding from the <code>Receiver</code> bean.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Simply remember the last known event.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Return the last known event when we need it.</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This example doesn&#8217;t make use of the state stored by this bean. In the next section you will see why. But still,
+this pattern might come in handy for you in other cases.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ui_event_stream"><a class="anchor" href="#_ui_event_stream"></a>UI event stream</h3>
+<div class="paragraph">
+<p>The dashboard is connected to the backend using WebSockets. When the dashboard is loaded, it connects to the backend.
+Those connections are handled by the <code>EventsResource</code> bean:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@ServerEndpoint("/ws")
+@ApplicationScoped
+public class EventsResource {
+
+    private final Map&lt;String, Session&gt; sessions = new ConcurrentHashMap&lt;&gt;(); <i class="conum" data-value="1"></i><b>(1)</b>
+
+    private Object lastEvent; <i class="conum" data-value="2"></i><b>(2)</b>
+
+    @OnOpen
+    public void onOpen(Session session) {
+        if (lastEvent != null) {
+            session.getAsyncRemote().sendObject(lastEvent); <i class="conum" data-value="3"></i><b>(3)</b>
+        }
+        sessions.put(session.getId(), session);
+    }
+
+    @OnClose
+    public void onClose(Session session) {
+        sessions.remove(session.getId());
+    }
+
+    @OnError
+    public void onError(Session session, Throwable throwable) {
+        sessions.remove(session.getId());
+    }
+
+    @Incoming(Channels.TELEMETRY)
+    void telemetryEvent(DeviceEvent event) { <i class="conum" data-value="4"></i><b>(4)</b>
+        Object nextEvent = new JsonObject()
+                .put("type", "telemetry")
+                .put("payload", JsonObject.mapFrom(event)).toString();
+        this.lastEvent = nextEvent; <i class="conum" data-value="5"></i><b>(5)</b>
+        sessions.values().forEach(s -&gt; { <i class="conum" data-value="6"></i><b>(6)</b>
+            s.getAsyncRemote().sendObject(nextEvent);
+        });
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The map used to keep track of all connected clients. As the bean is annotated with <code>@ApplicationScoped</code> there will
+only be once instance of it, and we can track all sessions.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The last known state, preformatted for directly sending out to clients.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>When a new client connects, and we have a previous state, we send it out before anything else.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>The method which will receive the internal events from the <code>Receiver</code> bean.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Remembers the last event formatted for the client.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>Send out the event to all known clients.</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_whats_next"><a class="anchor" href="#_whats_next"></a>What&#8217;s next?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We walked through the flow of events and learned how events get processes, converted and consumed in the application.</p>
+</div>
+<div class="paragraph">
+<p>You might want to take a look at the web frontend too. This is just a small HTML page, with some CSS and JavaScript
+to subscribe to the backend and receive data.</p>
+</div>
+<div class="paragraph">
+<p>The content is located at: <a href="https://github.com/drogue-iot/quarkus-mqtt-integration-starter/blob/main/src/main/resources/META-INF/resources/index.html">main/src/main/resources/META-INF/resources/index.html</a>.</p>
+</div>
+<div class="paragraph">
+<p>Maybe you already have some ideas to tweak this. Making changes is easy: take your editor of choice, and go ahead.
+In some cases, when modifying application global beans, you need to re-start the application, as hot-reloading doesn&#8217;t
+work. Press <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>C</kbd></span> and re-run <code>mvn quarkus:dev</code>.</p>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

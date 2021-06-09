@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Deploying to Kubernetes :: Drogue IoT</title>
+    <meta name="generator" content="Antora 2.3.4">
+    <link rel="stylesheet" href="../../_/css/site.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4BRXRBJJ1"></script>
+    <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','G-Z4BRXRBJJ1')</script>
+    <script>var uiRootPath = '../../_'</script>
+    <link rel="icon" href="../../_/img/favicon.svg" type="image/svg+xml">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="../..">
+        <img class="navbar-brand-image" src="../../_/img/logo.png" alt="Drogue IoT"/>
+      </a>
+
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://blog.drogue.io" target="_blank">Blog</a>
+        <a class="navbar-item" href="https://matrix.to/#/#drogue-iot:matrix.org" target="_blank">Chat</a>
+        <a class="navbar-item" href="https://book.drogue.io">Documentation</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="drogue-workshops" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Drogue IoT Workshops</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Introduction</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../getting-started/index.html">Getting started</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../ttn-lorawan-quarkus/index.html">LoRaWAN end-to-end</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ttn-lorawan-quarkus/index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../common/toolchain.html">Embedded toolchain</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ttn-lorawan-quarkus/account-setup.html">TTN account setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ttn-lorawan-quarkus/drogue-cloud.html">Drogue Cloud setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ttn-lorawan-quarkus/firmware.html">Device firmware</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ttn-lorawan-quarkus/quarkus-application.html">Quarkus application</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ttn-lorawan-quarkus/making-changes.html">Making changes</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Quarkus MQTT integration starter</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="peeking.html">What to expect</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="local.html">Running it locally</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="internals.html">How does it work?</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="kubernetes.html">Deploying to Kubernetes</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cloud.html">Moving to the cloud</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Drogue IoT Workshops</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <a class="title" href="../../drogue-cloud/dev/index.html">Drogue Cloud</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../drogue-cloud/dev/index.html">dev</a>
+        </li>
+        <li class="version">
+          <a href="../../drogue-cloud/0.5/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../drogue-cloud/0.4/index.html">0.4</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../drogue-device/dev/index.html">Drogue Device</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../drogue-device/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../drogue-book/index.html">Drogue IoT</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../drogue-book/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <a class="title" href="../index.html">Drogue IoT Workshops</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../drogue-book/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Drogue IoT Workshops</a></li>
+    <li><a href="index.html">Quarkus MQTT integration starter</a></li>
+    <li><a href="kubernetes.html">Deploying to Kubernetes</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-workshops/edit/main/modules/quarkus-mqtt-starter/pages/kubernetes.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Deploying to Kubernetes</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>In order to deploy this to a Kubernetes cluster, we will first need to create a container image for the application.</p>
+</div>
+<div class="paragraph">
+<p>Later on, we will also show how you can build this in the cloud, and automatically re-deploy when you make changes.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_creating_a_container"><a class="anchor" href="#_creating_a_container"></a>Creating a container</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can build container images locally. First, ensure that you have an up-to-date Maven build:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>mvn clean package</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And then, create a container image from it:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>docker build -t my-quarkus-mqtt-starter . -f src/main/docker/Dockerfile.jvm</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Of course, you can simply replace the <code>docker</code> command with <code>podman</code>, it works the same way.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_pushing_images"><a class="anchor" href="#_pushing_images"></a>Pushing images</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The previous step created a container image in your local machine. However, when using a Kubernetes cluster, that may
+not be sufficient. You might need to push the image to a container registry. Reasonable choices are <a href="https://quay.io">quay.io</a>
+or <a href="https://github.blog/2020-09-01-introducing-github-container-registry/">GitHub container registry</a>.</p>
+</div>
+<div class="paragraph">
+<p>Assuming you push to <code>quay.io</code> with your user being <code>myaccount</code>, you would need to run the following commands:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>docker tag my-quarkus-starter quay.io/myaccount/my-quarkus-mqtt-starter:latest
+docker push quay.io/myaccount/my-quarkus-mqtt-starter:latest</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deploying_the_application"><a class="anchor" href="#_deploying_the_application"></a>Deploying the application</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In the folder <a href="https://github.com/drogue-iot/quarkus-mqtt-integration-starter/tree/main/deploy"><code>deploy/</code></a>, you will find
+some example deployment files.</p>
+</div>
+<div class="paragraph">
+<p>First, if you want to deploy your changed container image, you will need to replace the image name in the file
+<code>deploy/020-deployment.yaml</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">kind: Deployment
+apiVersion: apps/v1
+
+metadata:
+  name: quarkus-mqtt-integration-starter
+  # …
+spec:
+  # …
+  template:
+    # …
+    spec:
+      containers:
+        - name: service
+          image: ghcr.io/drogue-iot/quarkus-mqtt-integration-starter-jvm:latest <i class="conum" data-value="1"></i><b>(1)</b>
+          imagePullPolicy: Always
+          # …</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The original name image, which you may replace if you want to deploy your own version</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+For all examples, it is a good idea to use a dedicated namespace, in order to isolate your deployment.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_openshift"><a class="anchor" href="#_openshift"></a>OpenShift</h3>
+<div class="paragraph">
+<p>If you are using OpenShift as a cluster, you can simply run the following command to deploy the application:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -f deploy/</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can then get the HTTP endpoint using the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl get route quarkus-mqtt-integration-starter</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Which should print out the information on the console like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>NAME                               HOST/PORT                                                                                     PATH   SERVICES                           PORT   TERMINATION     WILDCARD
+quarkus-mqtt-integration-starter   quarkus-mqtt-integration-starter-my-user-stage.apps.sandbox-m2.ll9k.p1.openshiftapps.com          quarkus-mqtt-integration-starter   http   edge/Redirect   None</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The hostname is in the "HOST" column, and normally it is an HTTPS link. So the web-frontend URL (in this case)
+would be <a href="https://quarkus-mqtt-integration-starter-my-user-stage.apps.sandbox-m2.ll9k.p1.openshiftapps.com" class="bare">https://quarkus-mqtt-integration-starter-my-user-stage.apps.sandbox-m2.ll9k.p1.openshiftapps.com</a></p>
+</div>
+<div class="sect3">
+<h4 id="_using_openshift_developer_sandbox"><a class="anchor" href="#_using_openshift_developer_sandbox"></a>Using OpenShift Developer Sandbox</h4>
+<div class="paragraph">
+<p>You can also use the <a href="https://developers.redhat.com/developer-sandbox">Developer Sandbox for Red Hat OpenShift</a> to
+directly host this application.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_azure_kubernetes_service"><a class="anchor" href="#_azure_kubernetes_service"></a>Azure Kubernetes Service</h3>
+<div class="paragraph">
+<p>Before you start, you will need an Azure account and have the <code>az</code> command installed and connected to your account.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="title">This may cost money</div>
+<div class="paragraph">
+<p>Deploying the example on Azure may result on costs being billed to your account. You need to understand
+what the following commands actually do and ensure that you clean up resources after you are finished testing.</p>
+</div>
+<div class="paragraph">
+<p>If in doubt, consider a locally hosted Kubernetes solution like Minikube or Kind.</p>
+</div>
+<div class="paragraph">
+<p>Also see the documentation: <a href="https://docs.microsoft.com/en-us/azure/aks/" class="bare">https://docs.microsoft.com/en-us/azure/aks/</a></p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_creating_a_cluster"><a class="anchor" href="#_creating_a_cluster"></a>Creating a cluster</h4>
+<div class="paragraph">
+<p>If you don&#8217;t have a cluster yet, you can create a simple test cluster by executing the following commands.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The following steps are an opinionated setup, focused on this specific use case. It follows the quick start
+instructions for the Azure Kubernetes Service.</p>
+</div>
+<div class="paragraph">
+<p>Also see the documentation: <a href="https://docs.microsoft.com/en-us/azure/aks/kubernetes-walkthrough" class="bare">https://docs.microsoft.com/en-us/azure/aks/kubernetes-walkthrough</a></p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">az group create --name my-quarkus-mqtt-starter --location eastus
+az aks create --resource-group my-quarkus-mqtt-starter --name my-quarkus-mqtt-cluster --node-count 1 --enable-addons monitoring,http_application_routing --generate-ssh-keys
+az aks get-credentials --resource-group my-quarkus-mqtt-starter --name my-quarkus-mqtt-cluster</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Finally, verify that the cluster is running and that <code>kubectl</code> is properly configured to access it. Execute the following
+command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl get nodes</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Which should result in an output like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>NAME                                STATUS   ROLES   AGE   VERSION
+aks-nodepool1-20363394-vmss000000   Ready    agent   81s   v1.19.11</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_deploying_the_application_2"><a class="anchor" href="#_deploying_the_application_2"></a>Deploying the application</h4>
+<div class="paragraph">
+<p>Create a new namespace:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl create namespace quarkus-mqtt-starter</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Deploy the application:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl -n quarkus-mqtt-starter apply -f deploy/010-configuration.yaml
+kubectl -n quarkus-mqtt-starter apply -f deploy/020-deployment.yaml
+kubectl -n quarkus-mqtt-starter apply -f deploy/030-service.yaml</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_routing_ingress_traffic"><a class="anchor" href="#_routing_ingress_traffic"></a>Routing ingress traffic</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">az aks show --resource-group my-quarkus-mqtt-starter --name my-quarkus-mqtt-cluster --query addonProfiles.httpApplicationRouting.config.HTTPApplicationRoutingZoneName -o table</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This should print out the cluster&#8217;s domain name:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>Result
+-------------------------------------
+d578cb0564094cf8979c.eastus.aksapp.io <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Cluster DNS name</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Create a new ingress using:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>kubectl apply -f - &lt;&lt;EOF
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+metadata:
+  namespace: quarkus-mqtt-starter
+  name: web-frontend
+  annotations:
+    kubernetes.io/ingress.class: addon-http-application-routing
+spec:
+  rules:
+    - host: web-frontend.d578cb0564094cf8979c.eastus.aksapp.io <i class="conum" data-value="1"></i><b>(1)</b>
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: quarkus-mqtt-integration-starter
+                port:
+                  name: http
+EOF</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>A combination of <code>web-frontend.</code> plus the cluster domain name from before.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The link to the web-frontend is (in this case): <a href="http://web-frontend.d578cb0564094cf8979c.eastus.aksapp.io" class="bare">http://web-frontend.d578cb0564094cf8979c.eastus.aksapp.io</a></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_clean_up"><a class="anchor" href="#_clean_up"></a>Clean up</h4>
+<div class="paragraph">
+<p>If you created a cluster in an earlier step, you should clean it up by deleting the resource group.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+The following command will delete the whole resource group without asking for confirmation. Ensure that this
+is really what you want to do.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">az group delete --name my-quarkus-mqtt-starter --yes</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+To avoid unexpected charges, manually double check that all resources have indeed been cleaned up.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_any_other_kubernetes"><a class="anchor" href="#_any_other_kubernetes"></a>Any other Kubernetes</h3>
+<div class="paragraph">
+<p>For any other Kubernetes, you will need some kind of Ingress controller, and need to map the ingress traffic to
+the application <code>Service</code>. Since this is very difference between different Kubernetes providers, it is hard to give
+a reasonable example.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_whats_next"><a class="anchor" href="#_whats_next"></a>What&#8217;s next?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We deployed the application into a Kubernetes cluster, and have it running and processing our data there.</p>
+</div>
+<div class="paragraph">
+<p>Of course, you can start making changes already. If you wait for the next chapter, you might see how you can make this
+process a bit simpler.</p>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

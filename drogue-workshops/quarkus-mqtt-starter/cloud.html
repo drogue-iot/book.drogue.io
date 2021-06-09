@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Moving to the cloud :: Drogue IoT</title>
+    <meta name="generator" content="Antora 2.3.4">
+    <link rel="stylesheet" href="../../_/css/site.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4BRXRBJJ1"></script>
+    <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','G-Z4BRXRBJJ1')</script>
+    <script>var uiRootPath = '../../_'</script>
+    <link rel="icon" href="../../_/img/favicon.svg" type="image/svg+xml">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="../..">
+        <img class="navbar-brand-image" src="../../_/img/logo.png" alt="Drogue IoT"/>
+      </a>
+
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://blog.drogue.io" target="_blank">Blog</a>
+        <a class="navbar-item" href="https://matrix.to/#/#drogue-iot:matrix.org" target="_blank">Chat</a>
+        <a class="navbar-item" href="https://book.drogue.io">Documentation</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="drogue-workshops" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Drogue IoT Workshops</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Introduction</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../getting-started/index.html">Getting started</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../ttn-lorawan-quarkus/index.html">LoRaWAN end-to-end</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ttn-lorawan-quarkus/index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../common/toolchain.html">Embedded toolchain</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ttn-lorawan-quarkus/account-setup.html">TTN account setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ttn-lorawan-quarkus/drogue-cloud.html">Drogue Cloud setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ttn-lorawan-quarkus/firmware.html">Device firmware</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ttn-lorawan-quarkus/quarkus-application.html">Quarkus application</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ttn-lorawan-quarkus/making-changes.html">Making changes</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Quarkus MQTT integration starter</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="peeking.html">What to expect</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="local.html">Running it locally</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="internals.html">How does it work?</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="kubernetes.html">Deploying to Kubernetes</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="cloud.html">Moving to the cloud</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Drogue IoT Workshops</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <a class="title" href="../../drogue-cloud/dev/index.html">Drogue Cloud</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../drogue-cloud/dev/index.html">dev</a>
+        </li>
+        <li class="version">
+          <a href="../../drogue-cloud/0.5/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../drogue-cloud/0.4/index.html">0.4</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../drogue-device/dev/index.html">Drogue Device</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../drogue-device/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../drogue-book/index.html">Drogue IoT</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../drogue-book/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <a class="title" href="../index.html">Drogue IoT Workshops</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../drogue-book/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Drogue IoT Workshops</a></li>
+    <li><a href="index.html">Quarkus MQTT integration starter</a></li>
+    <li><a href="cloud.html">Moving to the cloud</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-workshops/edit/main/modules/quarkus-mqtt-starter/pages/cloud.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Moving to the cloud</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>So far, we have run the application locally, and then deployed it to the cloud.</p>
+</div>
+<div class="paragraph">
+<p>However, we could move our workflow even more to the cloud. In the next steps, will build and deploy in the cloud,
+and set up a cloud IDE afterwards.</p>
+</div>
+<div class="paragraph">
+<p>For this, you will need an account for the <a href="https://developers.redhat.com/developer-sandbox">Developer Sandbox for OpenShift</a>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The following steps assume that you have an active instance, and that <code>kubectl</code> or <code>oc</code> are logged in to this
+instance.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Normally you have two namespaces pre-created (you cannot create new namespaces): <code>-dev</code> and <code>-stage</code>. We will use the
+<code>-stage</code> for deploying the application and leave the <code>-dev</code> to the cloud IDE.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_creating_the_quarkus_build_using_helm"><a class="anchor" href="#_creating_the_quarkus_build_using_helm"></a>Creating the Quarkus build using Helm</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The first step is to deploy the same application, but let the OpenShift cluster build the container image.</p>
+</div>
+<div class="paragraph">
+<p>We can deploy this setup, using a Quarkus Helm chart:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">helm install --repo https://redhat-developer.github.io/redhat-helm-charts \
+    my-drogue-quarkus-mqtt-integration quarkus \
+    --set build.uri=https://github.com/drogue-iot/quarkus-mqtt-integration-starter <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The Git repository which will be fed into the build. You can replace this with your own Git repository.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Once you ran the Helm chart, the "Developer" perspective of OpenShift should show you the current state:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/building.png" alt="Screenshot of the deployment"></span></p>
+</div>
+<div class="paragraph">
+<p>Note the <code>ImagePullBackOff</code> error, that is fine for the moment, as the build isn&#8217;t complete yet. Once the build is
+complete, it will trigger a re-deployment and roll out the new (first) version.</p>
+</div>
+<div class="paragraph">
+<p>Once the deployment has been rolled out, you can also click on the "route" on the right-hand side:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/deployed.png" alt="Screenshot of the rolled out deployment"></span></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_rebuilding"><a class="anchor" href="#_rebuilding"></a>Rebuilding</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Trigger a new build is easy: Just click on the "Start Build" button on the right side. You can also trigger
+a new build from the command line:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc start-build my-drogue-quarkus-mqtt-integration</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will start a new build, push the image to the internal image registry, and notify the deployment to rollout
+a new version once the build is complete.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="title">Automatic builds</div>
+<div class="paragraph">
+<p>You can also trigger builds automatically. Whenever you push to your git repository, it will pick up the change and
+start the whole process for you.</p>
+</div>
+<div class="paragraph">
+<p>However, setting this up is a bit off-topic for this tutorial. But if you are interested, maybe take a look at:
+<a href="https://docs.openshift.com/container-platform/4.7/cicd/builds/triggering-builds-build-hooks.html">Triggering and modifying builds</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_cloud_ide"><a class="anchor" href="#_cloud_ide"></a>Cloud IDE</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Now we can make local modifications, and push changes to our git repository, and build and rollout a new version
+from that.</p>
+</div>
+<div class="paragraph">
+<p>Cloud IDEs may or may not be your cup of tea. Anyway, let&#8217;s explore what we can do with it.</p>
+</div>
+<div class="sect2">
+<h3 id="_getting_ready"><a class="anchor" href="#_getting_ready"></a>Getting ready</h3>
+<div class="paragraph">
+<p>Navigate to the <a href="https://developers.redhat.com/developer-sandbox/ide">CodeReady instance on the Developer Sandbox</a>.</p>
+</div>
+<div class="paragraph">
+<p>From there, you can create a new workspace. Create a new workspace, and use the following URL as "Devfile": <code><a href="https://raw.githubusercontent.com/drogue-iot/quarkus-mqtt-integration-starter/main/devfile.yaml" class="bare">https://raw.githubusercontent.com/drogue-iot/quarkus-mqtt-integration-starter/main/devfile.yaml</a></code></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+By default, the "Devfile", will import the original Git repository. Instead of using the URL for creating
+the workspace, you can also copy and paste the content of the Devfile into the creation screen, and tweak the
+repository URL to use your own.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Starting the workspace may take a minute or two. Once it is ready, it will clone and import the Git repository.</p>
+</div>
+<div class="paragraph">
+<p>During this process, the IDE might offer you to install additional addons:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/bubbles.png" alt="Screenshot of notifications"></span></p>
+</div>
+<div class="paragraph">
+<p>If you like, go ahead and install additional functionality to your workspace. However, all the required plugins are
+already listed in the "Devfile", and so you can skip these offers as well.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_a_first_build"><a class="anchor" href="#_a_first_build"></a>A first build</h3>
+<div class="paragraph">
+<p>Once the source code is imported, click on <span class="menuseq"><b class="menu">My Workspace</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Start Development Mode</b></span> to start a first build. This
+will trigger an initial Maven build, which may again take a bit until it is compiled:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/building-2.png" alt="Screenshot of build"></span></p>
+</div>
+<div class="paragraph">
+<p>Once the build is finished, the Quarkus Maven plugin will run the application, just like on your local machine.
+Eclipse Che will ask you if you want to navigate your browser to the started endpoint:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/browse-endpoint.png" alt="Screenshot of endpoint notication"></span></p>
+</div>
+<div class="paragraph">
+<p>You can click on <b class="button">Open In New Tab</b> to open the web frontend in your browser.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_what_just_happened"><a class="anchor" href="#_what_just_happened"></a>What just happened?</h3>
+<div class="paragraph">
+<p>You just built the example on the cluster itself, running inside a cloud IDE. And on the same cluster, you are running
+the actual application.</p>
+</div>
+<div class="paragraph">
+<p>Is that better than doing the same on your local machine? Maybe, maybe not. This really depends on your use case
+and environment. In this case you could simply access the MQTT data stream from a public endpoint. Just assume,
+that this MQTT stream is not a public one, but hosted inside a local area network. With an on-premise cloud IDE,
+you could get access from a remote place and develop with the actual stream of data.</p>
+</div>
+<div class="paragraph">
+<p>And if you set up the Git build trigger, then you can commit and push from the cloud IDE, and start a new build and
+rollout by doing so.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_whats_next"><a class="anchor" href="#_whats_next"></a>What&#8217;s next?</h3>
+<div class="paragraph">
+<p>This concludes the workshop. There are many things that you can try out next. Maybe show more
+than one bubble in the Web UI. Or show some more information (like timestamps and device IDs). Do some data processing,
+like building aggregated values for local regions.</p>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

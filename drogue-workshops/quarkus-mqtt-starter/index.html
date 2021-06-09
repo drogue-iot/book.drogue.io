@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Generating keys :: Drogue IoT</title>
+    <title>Quarkus MQTT integration starter :: Drogue IoT</title>
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4BRXRBJJ1"></script>
@@ -60,28 +60,28 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">LoRaWAN end-to-end</a>
+    <a class="nav-link" href="../ttn-lorawan-quarkus/index.html">LoRaWAN end-to-end</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="index.html">Overview</a>
+    <a class="nav-link" href="../ttn-lorawan-quarkus/index.html">Overview</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../common/toolchain.html">Embedded toolchain</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="account-setup.html">TTN account setup</a>
+    <a class="nav-link" href="../ttn-lorawan-quarkus/account-setup.html">TTN account setup</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="drogue-cloud.html">Drogue Cloud setup</a>
+    <a class="nav-link" href="../ttn-lorawan-quarkus/drogue-cloud.html">Drogue Cloud setup</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="firmware.html">Device firmware</a>
+    <a class="nav-link" href="../ttn-lorawan-quarkus/firmware.html">Device firmware</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="quarkus-application.html">Quarkus application</a>
+    <a class="nav-link" href="../ttn-lorawan-quarkus/quarkus-application.html">Quarkus application</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="making-changes.html">Making changes</a>
+    <a class="nav-link" href="../ttn-lorawan-quarkus/making-changes.html">Making changes</a>
   </li>
 </ul>
   </li>
@@ -89,27 +89,27 @@
   </li>
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../quarkus-mqtt-starter/index.html">Quarkus MQTT integration starter</a>
+    <a class="nav-link" href="index.html">Quarkus MQTT integration starter</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../quarkus-mqtt-starter/index.html">Overview</a>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="index.html">Overview</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../quarkus-mqtt-starter/peeking.html">What to expect</a>
+    <a class="nav-link" href="peeking.html">What to expect</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../quarkus-mqtt-starter/local.html">Running it locally</a>
+    <a class="nav-link" href="local.html">Running it locally</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../quarkus-mqtt-starter/internals.html">How does it work?</a>
+    <a class="nav-link" href="internals.html">How does it work?</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../quarkus-mqtt-starter/kubernetes.html">Deploying to Kubernetes</a>
+    <a class="nav-link" href="kubernetes.html">Deploying to Kubernetes</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../quarkus-mqtt-starter/cloud.html">Moving to the cloud</a>
+    <a class="nav-link" href="cloud.html">Moving to the cloud</a>
   </li>
 </ul>
   </li>
@@ -174,100 +174,42 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Drogue IoT Workshops</a></li>
-    <li><a href="keys.html">Generating keys</a></li>
+    <li><a href="index.html">Quarkus MQTT integration starter</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-workshops/edit/main/modules/ttn-lorawan-quarkus/pages/keys.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-workshops/edit/main/modules/quarkus-mqtt-starter/pages/index.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Generating keys</h1>
+<h1 class="page">Quarkus MQTT integration starter</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>As we are using over-the-air activation, the LoRa device will need the following information:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Device EUI (8 bytes)</p>
-</li>
-<li>
-<p>Application EUI (8 bytes)</p>
-</li>
-<li>
-<p>Application key (16 bytes, not the API key)</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_create_from_the_command_line"><a class="anchor" href="#_create_from_the_command_line"></a>Create from the command line</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>You can generate random numbers using the following shell script:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>head -c 8 /dev/urandom | od -An -tx8 | tr a-z A-Z <i class="conum" data-value="1"></i><b>(1)</b>
-head -c 8 /dev/urandom | od -An -tx8 | tr a-z A-Z <i class="conum" data-value="2"></i><b>(2)</b>
-head -c 16 /dev/urandom | od -An -tx16 | tr a-z A-Z <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>For generating the Application EUI</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>For generating the Device EUI</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>For generating the Application Key</td>
-</tr>
-</table>
+<p>This workshop focuses on the consumption of telemetry data, coming from the MQTT integration API of Drogue Cloud.</p>
 </div>
 <div class="paragraph">
-<p>For example:</p>
+<p>It will consume data from a public application, which runs on our public sandbox installation, so that the workshop
+can focus on the cloud side data processing.</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>$ head -c 8 /dev/urandom | od -An -tx8 | tr a-z A-Z
- CDAE10B2F5D4B87C <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>They value to copy, without the leading whitespace.</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_other_ways"><a class="anchor" href="#_other_ways"></a>Other ways</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>You can also manually choose the values of the keys.</p>
-</div>
-<div class="admonitionblock note">
+<div class="admonitionblock important">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-The values must be unique throughout the LoRa system you are using. So you cannot just re-use them for other
-devices and setups.
+<div class="title">Drogue Cloud sandbox</div>
+<div class="paragraph">
+<p>This workshop consumes data from the public sandbox. This allows you to re-use an existing stream of data, without
+the need to set up your own instance. However, it maybe the that the sandbox is down. We will definitely fix this,
+but it may take a bit.</p>
+</div>
+<div class="paragraph">
+<p>Of course, you can also host your own Drogue IoT cloud instance, and even use Minikube or Kind to do so.</p>
+</div>
 </td>
 </tr>
 </table>
@@ -275,23 +217,42 @@ devices and setups.
 </div>
 </div>
 <div class="sect1">
-<h2 id="_gather_all_important_information"><a class="anchor" href="#_gather_all_important_information"></a>Gather all important information</h2>
+<h2 id="_pre_requisites"><a class="anchor" href="#_pre_requisites"></a>Pre-requisites</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>From this step, you should have noted the following pieces of information:</p>
+<p>The final web dashboard can be viewed with just a web browser, as it is hosted on our sandbox server too. So all that
+you need is just a web browser.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>Device EUI</p>
-</li>
-<li>
-<p>Application EUI</p>
-</li>
-<li>
-<p>Application Key</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>However, if you want to get a bit more hands-on, you might need some additional pre-requisites.</p>
+</div>
+<div class="sect2">
+<h3 id="_local_developer_setup"><a class="anchor" href="#_local_developer_setup"></a>Local developer setup</h3>
+<div class="paragraph">
+<p>For locally running the starter, you will need a standard Java developer setup. A Java 11+ JDK, a code editor or IDE,
+and the ability to run some commands like <code>mvn</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_deploy_to_kubernetes"><a class="anchor" href="#_deploy_to_kubernetes"></a>Deploy to Kubernetes</h3>
+<div class="paragraph">
+<p>For this, you will of course need a Kubernetes cluster. If a local test deployment is sufficient for you, then you
+can also use something like Minikube or Kind.</p>
+</div>
+<div class="paragraph">
+<p>Instead of setting up your own cluster, you can also use something like the
+<a href="https://developers.redhat.com/developer-sandbox">OpenShift Developer Sandbox</a>.</p>
+</div>
+<div class="paragraph">
+<p>In any case, you will need the <code>kubectl</code> binary on your local machine, and be logged in to your Kubernetes cluster.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_deploy_to_kubernetes_using_helm"><a class="anchor" href="#_deploy_to_kubernetes_using_helm"></a>Deploy to Kubernetes (using Helm)</h3>
+<div class="paragraph">
+<p>You can also deploy the code using Helm. Additionally to a Kubernetes cluster (as described above), you will of course
+ also need the <code>helm</code> binary (version 3.x).</p>
+</div>
 </div>
 </div>
 </div>
