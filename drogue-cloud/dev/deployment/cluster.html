@@ -218,7 +218,7 @@
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">minikube start --cpus 4 --memory 16384 --disk-size 20gb --addons ingress</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">minikube start --cpus 4 --memory 16384 --disk-size 20gb --addons ingress</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -227,7 +227,7 @@ as this command must be running until you shut down your cluster, or the tunnel.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">minikube tunnel</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">minikube tunnel</code></pre>
 </div>
 </div>
 </div>
@@ -236,12 +236,29 @@ as this command must be running until you shut down your cluster, or the tunnel.
 <h2 id="_kind"><a class="anchor" href="#_kind"></a>Kind</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Creating a new cluster with Kind only requires to execute the following command:</p>
+<p>Creating a new cluster with Kind requires to execute the following command:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kind create cluster</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kind create cluster --config=deploy/kind/cluster-config.yaml</code></pre>
 </div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="title">Ingress controller required</div>
+<div class="paragraph">
+<p>The deployment requires a Kubernetes ingress controller to be deployed. When using Kind, the deployment script will
+automatically deploy the <a href="https://kubernetes.github.io/ingress-nginx/">NGINX Ingress Controller</a>, but you still need
+to export the ports as shown above.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -258,6 +275,9 @@ as this command must be running until you shut down your cluster, or the tunnel.
 </li>
 <li>
 <p>You will need to be able to create new namespaces, being <em>admin</em> helps.</p>
+</li>
+<li>
+<p>You need a working Ingress Controller.  For OpenShift, you can use <code>Routes</code>.</p>
 </li>
 <li>
 <p>You need some kind of <code>LoadBalancer</code> support. For OpenShift, you can use <code>Routes</code>.</p>

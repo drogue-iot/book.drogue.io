@@ -291,7 +291,7 @@ local test cluster.</p>
 <h2 id="_running_the_installer"><a class="anchor" href="#_running_the_installer"></a>Running the installer</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Run the installer script <code>./script/drogue.sh</code>, adding the options appropriate for your setup.</p>
+<p>Run the installer script <code>./script/drgadm deploy</code>, adding the options appropriate for your setup.</p>
 </div>
 <div class="paragraph">
 <p>You can use the environment variable <code>CLUSTER</code> to define which cluster type you have.</p>
@@ -310,7 +310,7 @@ value will be changed to the installer type you downloaded. You can still overri
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">env CLUSTER=kind ./script/drogue.sh</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">env CLUSTER=kind ./script/drgadm deploy</code></pre>
 </div>
 </div>
 </td>
@@ -323,12 +323,47 @@ value will be changed to the installer type you downloaded. You can still overri
 <h2 id="_additional_installer_options"><a class="anchor" href="#_additional_installer_options"></a>Additional installer options</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Most options are controlled by using environment variables. You can set them by prefixing the
-call to the installation script, using <code>env</code> and the variable assignment:</p>
+<p>The <code>deploy</code> command of <code>drgadm</code> supports the following argument</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>-k</code> or <code>INSTALL_DEPS</code></dt>
+<dd>
+<p>Don&#8217;t install any dependency by default.</p>
+</dd>
+<dt class="hdlist1"><code>-s &lt;key=value&gt;</code></dt>
+<dd>
+<p>Set additional Helm values. May be repeated multiple times.</p>
+</dd>
+<dt class="hdlist1"><code>-m</code></dt>
+<dd>
+<p>Minimize: Reduces the default resource requests to allow deploying on more constrained environments.</p>
+</dd>
+<dt class="hdlist1"><code>-d</code> or <code>DOMAIN</code></dt>
+<dd>
+<p>Manually provide the application DNS domain.</p>
+</dd>
+<dt class="hdlist1"><code>-c</code> or  <code>CLUSTER</code></dt>
+<dd>
+<p>Specify the cluster type (any of <code>minikube</code>, <code>kind</code>, <code>openshift</code>, <code>kubernetes</code>).</p>
+</dd>
+<dt class="hdlist1"><code>-p &lt;profile&gt;</code></dt>
+<dd>
+<p>Adds an additional Helm value file, named <code>deploy/helm/profiles/&lt;profile&gt;.yaml</code>.</p>
+</dd>
+<dt class="hdlist1"><code>-n &lt;namespace&gt;</code> or <code>DROGUE_NS</code></dt>
+<dd>
+<p>Changes the target Drogue IoT namespace.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>The installer has a few additional options which are controlled by using environment variables.
+You can set them by prefixing the call to the installation script, using <code>env</code> and the variable assignment:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">env CLUSTER=kind INSTALL_DEPS=false ./script/drogue.sh</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">env CLUSTER=kind INSTALL_DEPS=false ./script/drgadm deploy</code></pre>
 </div>
 </div>
 <div class="sect2">

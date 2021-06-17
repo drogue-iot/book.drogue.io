@@ -252,12 +252,12 @@ the repository, this will always install <code>latest</code>. If you want to ins
 <h2 id="_deploy_standard_images"><a class="anchor" href="#_deploy_standard_images"></a>Deploy standard images</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Installing Drogue Cloud, using the standard images, can be done by calling the "installation" script (<code>drogue.sh</code>)
-directly from the repsitory:</p>
+<p>Installing Drogue Cloud, using the standard images, can be done by calling the "installation" script (<code>drgadm</code>)
+directly from the repository:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./script/drogue.sh</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./script/drgadm deploy</code></pre>
 </div>
 </div>
 <div class="admonitionblock tip">
@@ -282,7 +282,7 @@ This is the same script as from the installer packages explained before. Thus is
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">make CONTAINER_REGISTRY=quay.io/my-repo build images</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">make CONTAINER_REGISTRY=quay.io/my-repo build images</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -290,7 +290,7 @@ This is the same script as from the installer packages explained before. Thus is
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">make CONTAINER_REGISTRY=quay.io/my-repo deploy</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">make CONTAINER_REGISTRY=quay.io/my-repo deploy</code></pre>
 </div>
 </div>
 </div>
