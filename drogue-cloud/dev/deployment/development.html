@@ -252,25 +252,12 @@ the repository, this will always install <code>latest</code>. If you want to ins
 <h2 id="_deploy_standard_images"><a class="anchor" href="#_deploy_standard_images"></a>Deploy standard images</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Installing Drogue Cloud, using the standard images, can be done by calling the "installation" script (<code>drgadm</code>)
-directly from the repository:</p>
+<p>Installing Drogue Cloud, using the standard images, can be done by calling the makefile target <code>deploy</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./script/drgadm deploy</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">make deploy</code></pre>
 </div>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-This is the same script as from the installer packages explained before. Thus is accepts the same variables/options.
-</td>
-</tr>
-</table>
 </div>
 </div>
 </div>
@@ -278,7 +265,7 @@ This is the same script as from the installer packages explained before. Thus is
 <h2 id="_deploy_custom_images"><a class="anchor" href="#_deploy_custom_images"></a>Deploy custom images</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>If you built custom images, and pushed them to a container repository:</p>
+<p>If you built custom images, and pushed them to a container repository, you can deploy them using the following command:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -292,6 +279,29 @@ This is the same script as from the installer packages explained before. Thus is
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">make CONTAINER_REGISTRY=quay.io/my-repo deploy</code></pre>
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_using_the_installer_script_for_development"><a class="anchor" href="#_using_the_installer_script_for_development"></a>Using the installer script for development</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The makefile actually uses the installer script <code>scripts/drgadm</code> internally. It only passes in the right arguments,
+so that the installer will install images from a different registry, or use a different tag.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+By default, the installer scripts, even on the main branch, will install a tagged version. Sometimes tagged
+versions are not yet available on the container registry, and thus, the installation may fail. It is therefore
+recommended to install "latest" images using the <code>make deploy</code> command.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
