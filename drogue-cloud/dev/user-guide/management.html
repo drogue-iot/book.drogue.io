@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Noteworthy services :: Drogue IoT</title>
+    <title>Managing applications and devices :: Drogue IoT</title>
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4BRXRBJJ1"></script>
@@ -53,25 +53,25 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Architecture</a>
+    <a class="nav-link" href="../architecture/index.html">Architecture</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="index.html">Overview</a>
+    <a class="nav-link" href="../architecture/index.html">Overview</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="data.html">Data plane</a>
+    <a class="nav-link" href="../architecture/data.html">Data plane</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="control.html">Control plane</a>
+    <a class="nav-link" href="../architecture/control.html">Control plane</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="devices.html">Devices, gateways &amp; services</a>
+    <a class="nav-link" href="../architecture/devices.html">Devices, gateways &amp; services</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="addons.html">Additional components</a>
+    <a class="nav-link" href="../architecture/addons.html">Additional components</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="services.html">Noteworthy services</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../architecture/services.html">Noteworthy services</a>
   </li>
 </ul>
   </li>
@@ -189,129 +189,69 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Drogue Cloud</a></li>
-    <li><a href="index.html">Architecture</a></li>
-    <li><a href="services.html">Noteworthy services</a></li>
+    <li><a href="management.html">Managing applications and devices</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">dev</button>
   <div class="version-menu">
-    <a class="version is-current" href="services.html">dev</a>
-    <a class="version" href="../../0.6/architecture/services.html">0.6</a>
-    <a class="version" href="../../0.5/architecture/services.html">0.5</a>
-    <a class="version" href="../../0.4/architecture/services.html">0.4</a>
+    <a class="version is-current" href="management.html">dev</a>
+    <a class="version is-missing" href="../../0.6/index.html">0.6</a>
+    <a class="version is-missing" href="../../0.5/index.html">0.5</a>
+    <a class="version is-missing" href="../../0.4/index.html">0.4</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-cloud/edit/main/docs/modules/architecture/pages/services.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-cloud/edit/main/docs/modules/user-guide/pages/management.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Noteworthy services</h1>
-<div id="preamble">
+<h1 class="page">Managing applications and devices</h1>
+<div class="sect1">
+<h2 id="_applications"><a class="anchor" href="#_applications"></a>Applications</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>Drogue Cloud consists of multiple internal and external services, as explained in this chapter. The following sub-sections
-list a few of the core services, considered interfacing points for users of Drogue Cloud.</p>
+<div class="sect2">
+<h3 id="_creating_a_new_application"><a class="anchor" href="#_creating_a_new_application"></a>Creating a new application</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_modifying_an_application"><a class="anchor" href="#_modifying_an_application"></a>Modifying an application</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_deleting_an_application"><a class="anchor" href="#_deleting_an_application"></a>Deleting an application</h3>
+
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_device_registry"><a class="anchor" href="#_device_registry"></a>Device Registry</h2>
+<h2 id="_devices"><a class="anchor" href="#_devices"></a>Devices</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_management_api"><a class="anchor" href="#_management_api"></a>Management API</h3>
-<div class="paragraph">
-<p>The management access to the device registry.</p>
-</div>
+<h3 id="_create_a_new_device"><a class="anchor" href="#_create_a_new_device"></a>Create a new device</h3>
+
 </div>
 <div class="sect2">
-<h3 id="_operators"><a class="anchor" href="#_operators"></a>Operators</h3>
-<div class="paragraph">
-<p>Acting on device change events, operators will reconcile the desired state of applications and devices, with internal
-or external services.</p>
-</div>
-<div class="sect3">
-<h4 id="_topic_operator"><a class="anchor" href="#_topic_operator"></a>Topic operator</h4>
-<div class="paragraph">
-<p>The topic operator creates Kafka topics as required by the applications.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_the_things_network_operator"><a class="anchor" href="#_the_things_network_operator"></a>The Things Network operator</h4>
-<div class="paragraph">
-<p>The Things Network operator (TTN operator) sets up a connection between Drogue Cloud and a TTN V3  instance. It will
-also synchronize devices from Drogue Cloud to TTN.</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_endpoints"><a class="anchor" href="#_endpoints"></a>Endpoints</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Protocol endpoints, used for devices to communicate with the system.</p>
+<h3 id="_modifying_a_device"><a class="anchor" href="#_modifying_a_device"></a>Modifying a device</h3>
+
 </div>
 <div class="sect2">
-<h3 id="_coap_endpoint"><a class="anchor" href="#_coap_endpoint"></a>CoAP endpoint</h3>
-<div class="paragraph">
-<p>A general purpose CoAP endpoint, providing a Drogue IoT specific API.</p>
-</div>
+<h3 id="_deleting_a_device"><a class="anchor" href="#_deleting_a_device"></a>Deleting a device</h3>
+
 </div>
 <div class="sect2">
-<h3 id="_http_endpoint"><a class="anchor" href="#_http_endpoint"></a>HTTP endpoint</h3>
-<div class="paragraph">
-<p>A general purpose HTTP endpoint.</p>
-</div>
-<div class="paragraph">
-<p>It provides API compatible with:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Drogue IoT</p>
-</li>
-<li>
-<p>The Things Network</p>
-</li>
-<li>
-<p>Eclipse Hono</p>
-</li>
-</ul>
-</div>
+<h3 id="_setting_password_credentials"><a class="anchor" href="#_setting_password_credentials"></a>Setting password credentials</h3>
+
 </div>
 <div class="sect2">
-<h3 id="_mqtt_endpoint"><a class="anchor" href="#_mqtt_endpoint"></a>MQTT endpoint</h3>
-<div class="paragraph">
-<p>A general purpose MQTT endpoint, providing a Drogue IoT specific API.</p>
-</div>
+<h3 id="_setting_x_509_client_certificate_credentials"><a class="anchor" href="#_setting_x_509_client_certificate_credentials"></a>Setting X.509 client certificate credentials</h3>
+
 </div>
 <div class="sect2">
-<h3 id="_command_endpoint"><a class="anchor" href="#_command_endpoint"></a>Command endpoint</h3>
-<div class="paragraph">
-<p>A drop-off point, with an HTTP API, for cloud-to-device messages.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_integrations"><a class="anchor" href="#_integrations"></a>Integrations</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Integration services allow cloud side applications to interface with Drogue IoT, in order to communicate with devices.</p>
-</div>
-<div class="sect2">
-<h3 id="_mqtt_integration"><a class="anchor" href="#_mqtt_integration"></a>MQTT Integration</h3>
-<div class="paragraph">
-<p>The MQTT integration is a multi-application, push based integration, which allows to use MQTT v3.1.1 and v5 for
-receiving events coming from devices.</p>
-</div>
-<div class="paragraph">
-<p>It provides events in the MQTT cloud events format 1.0, in both <em>structured</em> and <em>binary</em> mode.</p>
-</div>
+<h3 id="_configuring_a_gateway_device"><a class="anchor" href="#_configuring_a_gateway_device"></a>Configuring a gateway device</h3>
+
 </div>
 </div>
 </div>
