@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Control plane :: Drogue IoT</title>
+    <title>Devices, Gateways &amp; Services :: Drogue IoT</title>
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4BRXRBJJ1"></script>
@@ -53,7 +53,7 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Architecture</a>
+    <a class="nav-link" href="index.html">Introduction</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="index.html">Overview</a>
@@ -61,10 +61,10 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="data.html">Data plane</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="control.html">Control plane</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="devices.html">Devices, gateways &amp; services</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -106,7 +106,56 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../user-guide/index.html">User Guide</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../user-guide/index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../user-guide/management.html">Management</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Endpoints</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../user-guide/endpoint-coap.html">CoAP Endpoint</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../user-guide/endpoint-http.html">HTTP Endpoint</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../user-guide/endpoint-mqtt.html">MQTT Endpoint</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
     <span class="nav-text">Integrations</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../user-guide/integration-kafka.html">Apache Kafka™ Integration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../user-guide/integration-command.html">HTTP Command Integration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../user-guide/integration-mqtt.html">MQTT Integration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../user-guide/integration-ws.html">WebSocket Integration</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">System Integrations</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
@@ -189,135 +238,73 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Drogue Cloud</a></li>
-    <li><a href="index.html">Architecture</a></li>
-    <li><a href="control.html">Control plane</a></li>
+    <li><a href="index.html">Introduction</a></li>
+    <li><a href="devices.html">Devices, gateways &amp; services</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">dev</button>
   <div class="version-menu">
-    <a class="version is-current" href="control.html">dev</a>
-    <a class="version" href="../../0.6/architecture/control.html">0.6</a>
-    <a class="version" href="../../0.5/architecture/control.html">0.5</a>
-    <a class="version" href="../../0.4/architecture/control.html">0.4</a>
+    <a class="version is-current" href="devices.html">dev</a>
+    <a class="version is-missing" href="../../0.6/index.html">0.6</a>
+    <a class="version is-missing" href="../../0.5/index.html">0.5</a>
+    <a class="version is-missing" href="../../0.4/index.html">0.4</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-cloud/edit/main/docs/modules/architecture/pages/control.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-cloud/edit/main/docs/modules/introduction/pages/devices.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Control plane</h1>
-<div class="sect1">
-<h2 id="_device_registry"><a class="anchor" href="#_device_registry"></a>Device registry</h2>
-<div class="sectionbody">
+<h1 class="page">Devices, Gateways &amp; Services</h1>
 <div class="paragraph">
-<p>The device registry stores the configuration of <a href="../concepts.html#applications" class="page">applications</a> and <a href="../concepts.html#devices" class="page">devices</a>.</p>
+<p>Most of this documentation talks about "devices". However, what we actually mean is: devices, gateways, and services.</p>
 </div>
 <div class="paragraph">
-<p>While the system has a single sign-on system for the user facing services, devices, especially embedded devices, are
-more limited and using OAuth tokens might not be a good fit. In general, devices have different usage patterns when it
-comes to authentication and authorization. Open ID connect and OAuth are designed with a strong focus on HTTP. Which is
-great, when it comes to authenticate users using browsers and REST clients, but becomes a burden when embedded systems
-and protocols like MQTT and CoAP come into play.</p>
+<p><span class="image"><img src="_images/devices.svg" alt="Different device types"></span></p>
 </div>
-<div class="paragraph">
-<p>Drogue Cloud tries to make it as easy as possible for devices to connect to the cloud side, and so we believe that
-technologies like pre-shared keys, X.509 client certificates, or simple "username/password" credentials are a better fit
-for devices. Still, for user/application facing application we use Open ID connect, as you can read in <a href="#_single_sign_on">Single sign-on</a>.</p>
-</div>
-<div class="paragraph">
-<p>A PostgreSQL compatible database is used to persist the information. The device registry component consists of several
-services, which provides internal and external APIs to access the data stored in this database.</p>
-</div>
-<div class="paragraph">
-<p><span class="image"><img src="_images/control-plane.svg" alt="Control plane overview"></span></p>
-</div>
-<div class="sect2">
-<h3 id="_provided_services"><a class="anchor" href="#_provided_services"></a>Provided services</h3>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">(Device) Management API</dt>
+<dt class="hdlist1">Device</dt>
 <dd>
-<p>Allows external access to the application and device information. This is a REST API, which
-allows using management tools and applications to create, edit, delete, and view data stored inside the device registry.</p>
-</dd>
-<dt class="hdlist1">User Auth Service</dt>
-<dd>
-<p>Allows internal applications to check if a user has access to a requested resource.</p>
+<p>A device, directly connected to Drogue Cloud.</p>
 <div class="paragraph">
-<p>This is for example used by the web frontend, to ensure a user may use the "message spy" to access messages of this
-application. Or by the management API to check if a user may perform the requested operation on a resource.</p>
-</div>
-<div class="paragraph">
-<p>This service works with read-only access to the database, and can work with a ready-only slave replica.</p>
+<p>This may be an embedded device, or a more powerfull compute node
+with a full blown operating system. It may also be a containerized application, running inside an Edge node, connecting
+to Drogue Cloud.</p>
 </div>
 </dd>
-<dt class="hdlist1">Device Auth Service</dt>
+<dt class="hdlist1">Gateway</dt>
 <dd>
-<p>Allows internal application to authenticate and authorize a device.</p>
+<p>A device, which acts as a proxy for other devices, that may not directly connect to Drogue Cloud.</p>
 <div class="paragraph">
-<p>For example, this service is being used by the protocol endpoints, to grant devices access for publishing data to the
-system. Validating credentials like passwords or X.509 client certificates. Once authenticated, it also reports backs
-additional device configuration for the endpoints, like core mapping information for the LoRaWAN "function ports".</p>
+<p>This may be some kind of Linux machine, which allows non-IP enabled devices, like Bluetooth Low Energy (BLE) devices,
+to connect to Drogue Cloud, by forwarding messages between the two protocols.</p>
+</div>
+</dd>
+<dt class="hdlist1">Services</dt>
+<dd>
+<p>In some cases a gateway is not a single device, but a bigger, maybe cloud based, service as well. Still it acts
+as a proxy for devices to communicate with Drogue Cloud.</p>
+<div class="paragraph">
+<p>An example might be "The Things Network" (TTN), or "Sigfox". Both services have their own technical infrastructure to which devices
+connect. These services act as a proxy to their devices.</p>
 </div>
 <div class="paragraph">
-<p>This service works with read-only access to the database, and can work with a ready-only slave replica.</p>
+<p>From a Drogue Cloud perspective such services are "gateways" as well.</p>
 </div>
 </dd>
 </dl>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_change_events_for_integration"><a class="anchor" href="#_change_events_for_integration"></a>Change events for integration</h3>
 <div class="paragraph">
-<p>In addition to the management API, which allows getting/reading information out of the registry, the registry will also
-send "change events", when resources get modified.</p>
+<p>It may be, that between Drogue Cloud and the actual device, additional "gateways", like a LoRaWAN gateway, are in place. A LoRa
+device might connect to its local gateway, which connects to the TTN network, which then connects to Drogue Cloud.</p>
 </div>
 <div class="paragraph">
-<p>This is again built on top of Knative eventing, and allows services to act on the modification of applications and
-devices. Using this concept, it is possible to implement "controllers" (or "operators"), which reconcile the desired
-state of a resource.</p>
-</div>
-<div class="paragraph">
-<p>One example of this, is the "The Things Network" (TTN) controller, which detects a TTN specific section in the device
-configuration, and then tries to create an appropriate device in a linked TTN instance.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Currently, this functionality is considered "internal", and such change events cannot be consumed from outside the
-system.
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_single_sign_on"><a class="anchor" href="#_single_sign_on"></a>Single sign-on</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Drogue Cloud has a single sign-on (SSO) service, which by default is implemented by Keycloak. As mentioned before, the
-SSO service is used to authenticate users and applications, not devices. It is also used internally, to manage access
-between the internal services.</p>
-</div>
-<div class="paragraph">
-<p>The authorization however, the check if a user has access to a device or application, is handled by the
-"user auth service", which is backed by the device registry.</p>
-</div>
-<div class="paragraph">
-<p>The SSO service is also used in order to integrate other services, like the Eclipse Ditto based digital twin service,
-or the example Grafana Dashboard.</p>
-</div>
-</div>
+<p>However, for Drogue Cloud only the device which directly connects (TTN service) and the originating device (the actual device) is
+important. Intermediate gateways may be in play, but are not relevant.</p>
 </div>
 </article>
   </div>

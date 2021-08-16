@@ -53,25 +53,25 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../architecture/index.html">Architecture</a>
+    <a class="nav-link" href="../introduction/index.html">Introduction</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../architecture/index.html">Overview</a>
+    <a class="nav-link" href="../introduction/index.html">Overview</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../architecture/data.html">Data plane</a>
+    <a class="nav-link" href="../introduction/data.html">Data plane</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../architecture/control.html">Control plane</a>
+    <a class="nav-link" href="../introduction/control.html">Control plane</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../architecture/devices.html">Devices, gateways &amp; services</a>
+    <a class="nav-link" href="../introduction/devices.html">Devices, gateways &amp; services</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../architecture/addons.html">Additional components</a>
+    <a class="nav-link" href="../introduction/addons.html">Additional components</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../architecture/services.html">Noteworthy services</a>
+    <a class="nav-link" href="../introduction/services.html">Noteworthy services</a>
   </li>
 </ul>
   </li>
@@ -106,7 +106,56 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">User Guide</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html">Overview</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="management.html">Management</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Endpoints</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="endpoint-coap.html">CoAP Endpoint</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="endpoint-http.html">HTTP Endpoint</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="endpoint-mqtt.html">MQTT Endpoint</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
     <span class="nav-text">Integrations</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="integration-kafka.html">Apache Kafka™ Integration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="integration-command.html">HTTP Command Integration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="integration-mqtt.html">MQTT Integration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="integration-ws.html">WebSocket Integration</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">System Integrations</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
@@ -189,7 +238,8 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Drogue Cloud</a></li>
-    <li><a href="management.html">Managing applications and devices</a></li>
+    <li><a href="index.html">User Guide</a></li>
+    <li><a href="management.html">Management</a></li>
   </ul>
 </nav>
 <div class="page-versions">
@@ -209,37 +259,169 @@
 </aside>
 <article class="doc">
 <h1 class="page">Managing applications and devices</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following sections will guide you through the basic management capabilities of Drogue Cloud.</p>
+</div>
+<div class="paragraph">
+<p>All management operations are available through the API. However, for an easier getting started experience,
+the following examples will use the command line tool <code>drg</code> for performing the operations.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+All following examples require that you are already logged in to a Drogue Cloud cluster using the command line
+tool <code>drg</code>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="_applications"><a class="anchor" href="#_applications"></a>Applications</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>An application is the container for devices. A user can have multiple applications, but each device belongs to
+a single application.</p>
+</div>
 <div class="sect2">
 <h3 id="_creating_a_new_application"><a class="anchor" href="#_creating_a_new_application"></a>Creating a new application</h3>
-
+<div class="paragraph">
+<p>Create a new application using the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">drg create app my-app</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will create a new application named <code>my-app</code>. If the application name is already used, you will receive an
+error, as application names are unique.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_modifying_an_application"><a class="anchor" href="#_modifying_an_application"></a>Modifying an application</h3>
-
+<div class="paragraph">
+<p>Applications are defined by a JSON structure. It is possible to edit this structure in YAML format (for easier editing)
+using the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">drg edit app my-app</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will open an editor, and allow you to make modifications to the YAML source. When you close the editor, the change
+will be sent to the server for updating.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_deleting_an_application"><a class="anchor" href="#_deleting_an_application"></a>Deleting an application</h3>
-
+<div class="paragraph">
+<p>An existing application can be deleted using the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">drg delete app my-app</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Deleting an application me be delayed, as first all devices which require to be cleaned up will be processes. Once
+this is finished, the application might require cleanup too. Only once all resources are properly cleaned up, the
+application will be actually deleted.
+</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_devices"><a class="anchor" href="#_devices"></a>Devices</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>As devices belong to an application, you need to create an application first.</p>
+</div>
+<div class="paragraph">
+<p>The following commands will explicitly select the application by providing the <code>--app &lt;app name&gt;</code> argument. You can
+however use <code>drg config set-default-app</code>, to set a default application and omit the <code>--app</code> argument.</p>
+</div>
 <div class="sect2">
 <h3 id="_create_a_new_device"><a class="anchor" href="#_create_a_new_device"></a>Create a new device</h3>
-
+<div class="paragraph">
+<p>A new device is being created using the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">drg create device --app my-app my-device-1</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will create <code>my-device-1</code> as part of <code>my-app</code>.</p>
+</div>
+<div class="paragraph">
+<p>In most cases a device will require additional information, like access credentials or gateway assignments. You can
+provide initial configuration using the <code>--spec &lt;json&gt;</code> argument:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">drg create device --app my-app my-device-1 --spec '{"credentials": {"credentials":[{ "pass": "foobar" }]}}'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>--spec</code> argument accepts a JSON string of the full "spec" section of the device.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_modifying_a_device"><a class="anchor" href="#_modifying_a_device"></a>Modifying a device</h3>
-
+<div class="paragraph">
+<p>You can edit the device configuration in YAML the same as the application:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">drg edit device --app my-app my-device-1</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will open an editor, and allow you to make modifications to the YAML source. When you close the editor, the change
+will be sent to the server for updating.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_deleting_a_device"><a class="anchor" href="#_deleting_a_device"></a>Deleting a device</h3>
-
+<div class="paragraph">
+<p>An existing device can be deleted using the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">drg delete device --app my-app my-device-1</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If a device requires any cleanup, the device will be first marked as deleted, the cleanup will be processed,
+and then the device will be deleted.
+</td>
+</tr>
+</table>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_setting_password_credentials"><a class="anchor" href="#_setting_password_credentials"></a>Setting password credentials</h3>

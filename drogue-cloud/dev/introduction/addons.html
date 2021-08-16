@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Devices, Gateways &amp; Services :: Drogue IoT</title>
+    <title>Additional components :: Drogue IoT</title>
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4BRXRBJJ1"></script>
@@ -53,7 +53,7 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Architecture</a>
+    <a class="nav-link" href="index.html">Introduction</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="index.html">Overview</a>
@@ -64,10 +64,10 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="control.html">Control plane</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="devices.html">Devices, gateways &amp; services</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="addons.html">Additional components</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -106,7 +106,56 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../user-guide/index.html">User Guide</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../user-guide/index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../user-guide/management.html">Management</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Endpoints</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../user-guide/endpoint-coap.html">CoAP Endpoint</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../user-guide/endpoint-http.html">HTTP Endpoint</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../user-guide/endpoint-mqtt.html">MQTT Endpoint</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
     <span class="nav-text">Integrations</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../user-guide/integration-kafka.html">Apache Kafka™ Integration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../user-guide/integration-command.html">HTTP Command Integration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../user-guide/integration-mqtt.html">MQTT Integration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../user-guide/integration-ws.html">WebSocket Integration</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">System Integrations</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
@@ -189,73 +238,66 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Drogue Cloud</a></li>
-    <li><a href="index.html">Architecture</a></li>
-    <li><a href="devices.html">Devices, gateways &amp; services</a></li>
+    <li><a href="index.html">Introduction</a></li>
+    <li><a href="addons.html">Additional components</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">dev</button>
   <div class="version-menu">
-    <a class="version is-current" href="devices.html">dev</a>
-    <a class="version" href="../../0.6/architecture/devices.html">0.6</a>
-    <a class="version" href="../../0.5/architecture/devices.html">0.5</a>
-    <a class="version" href="../../0.4/architecture/devices.html">0.4</a>
+    <a class="version is-current" href="addons.html">dev</a>
+    <a class="version is-missing" href="../../0.6/index.html">0.6</a>
+    <a class="version is-missing" href="../../0.5/index.html">0.5</a>
+    <a class="version is-missing" href="../../0.4/index.html">0.4</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-cloud/edit/main/docs/modules/architecture/pages/devices.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-cloud/edit/main/docs/modules/introduction/pages/addons.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Devices, Gateways &amp; Services</h1>
+<h1 class="page">Additional components</h1>
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
-<p>Most of this documentation talks about "devices". However, what we actually mean is: devices, gateways, and services.</p>
+<p>When deploying Drogue Cloud, or using the sandbox, you might encounter additional services, which are not part of the
+core Drogue Cloud architecture (yet).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_grafana_timescaledb"><a class="anchor" href="#_grafana_timescaledb"></a>Grafana &amp; TimescaleDB</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The default deployment contains a Grafana and a TimescaleDB instance, which is set up in a way that temperature readings
+are automatically stored in the TimescaleDB instance. The Grafana dashboard has an example dashboard visualizing these
+readings.</p>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="_images/devices.svg" alt="Different device types"></span></p>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">Device</dt>
-<dd>
-<p>A device, directly connected to Drogue Cloud.</p>
-<div class="paragraph">
-<p>This may be an embedded device, or a more powerfull compute node
-with a full blown operating system. It may also be a containerized application, running inside an Edge node, connecting
-to Drogue Cloud.</p>
-</div>
-</dd>
-<dt class="hdlist1">Gateway</dt>
-<dd>
-<p>A device, which acts as a proxy for other devices, that may not directly connect to Drogue Cloud.</p>
-<div class="paragraph">
-<p>This may be some kind of Linux machine, which allows non-IP enabled devices, like Bluetooth Low Energy (BLE) devices,
-to connect to Drogue Cloud, by forwarding messages between the two protocols.</p>
-</div>
-</dd>
-<dt class="hdlist1">Services</dt>
-<dd>
-<p>In some cases a gateway is not a single device, but a bigger, maybe cloud based, service as well. Still it acts
-as a proxy for devices to communicate with Drogue Cloud.</p>
-<div class="paragraph">
-<p>An example might be "The Things Network" (TTN), or "Sigfox". Both services have their own technical infrastructure to which devices
-connect. These services act as a proxy to their devices.</p>
+<p>"Temperate readings" are identified by a payload being JSON and containing a <code>temp</code> field on the root level object.</p>
 </div>
 <div class="paragraph">
-<p>From a Drogue Cloud perspective such services are "gateways" as well.</p>
+<p>This is considered an example, and allows to quickly try out Drogue Cloud services. Typically, Grafana and TimescaleDB
+would be a "user application", which would run outside the Drogue Cloud namespace or cluster.</p>
 </div>
-</dd>
-</dl>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_eclipse_ditto"><a class="anchor" href="#_eclipse_ditto"></a>Eclipse Ditto</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Eclipse Ditto is a digital-twin solution, which can be integrated with Cloud Events and Drogue Cloud.</p>
 </div>
 <div class="paragraph">
-<p>It may be, that between Drogue Cloud and the actual device, additional "gateways", like a LoRaWAN gateway, are in place. A LoRa
-device might connect to its local gateway, which connects to the TTN network, which then connects to Drogue Cloud.</p>
+<p>We have an "addon" deployment for this in our repository, and also deploy this on our sandbox instance. However,
+currently Eclipse Ditto is not part of the core Drogue Cloud infrastructure.</p>
 </div>
 <div class="paragraph">
-<p>However, for Drogue Cloud only the device which directly connects (TTN service) and the originating device (the actual device) is
-important. Intermediate gateways may be in play, but are not relevant.</p>
+<p>The integration of Ditto is a future goal, but as of now still a work in progress.</p>
+</div>
+</div>
 </div>
 </article>
   </div>
