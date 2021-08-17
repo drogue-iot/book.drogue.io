@@ -129,7 +129,15 @@
 <article class="doc">
 <h1 class="page">Examples</h1>
 <div class="paragraph">
-<p>There are several examples for different chips to show how drogue device can be used.</p>
+<p>There are several examples for different chips to show how drogue device can be used. The examples are grouped by chip family, then board, then variant. I.e.</p>
+</div>
+<div class="paragraph">
+<p>For instance, the example in <code>nrf52/microbit/esp8266</code> is for the <code>nRF52</code> chip family, using the <code>microbit</code> board,
+with a variant that uses a <code>esp8266</code> WiFi module.</p>
+</div>
+<div class="paragraph">
+<p>All example can be run using <code>cargo run</code>, which in some cases require the <code>probe-run</code> tool (<code>cargo
+install probe-run</code>) to flash the program.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -137,22 +145,25 @@
 <p><a href="https://github.com/drogue-iot/drogue-device/tree/main/examples/std/hello">Hello World in std</a></p>
 </li>
 <li>
-<p><a href="https://github.com/drogue-iot/drogue-device/tree/main/examples/nrf52/microbit-uart">BBC micro:bit v2.0 UART</a></p>
+<p><a href="https://github.com/drogue-iot/drogue-device/tree/main/examples/nrf52/microbit/uart">BBC micro:bit v2.0 UART</a></p>
 </li>
 <li>
-<p><a href="https://github.com/drogue-iot/drogue-device/tree/main/examples/nrf52/microbit-esp8266">BBC micro:bit v2.0 + ESP8266 WiFi Breakout</a></p>
+<p><a href="https://github.com/drogue-iot/drogue-device/tree/main/examples/nrf52/microbit/esp8266">BBC micro:bit v2.0 + ESP8266 WiFi</a></p>
 </li>
 <li>
-<p><a href="https://github.com/drogue-iot/drogue-device/tree/main/examples/std/esp8266">USB Serial + ESP8266 WiFi Breakout</a></p>
+<p><a href="https://github.com/drogue-iot/drogue-device/tree/main/examples/std/esp8266">USB Serial + ESP8266 WiFi</a></p>
 </li>
 <li>
-<p><a href="https://github.com/drogue-iot/drogue-device/tree/main/examples/stm32l0xx/lora-discovery">STM32 LoRaWAN Discovery</a></p>
+<p><a href="https://github.com/drogue-iot/drogue-device/tree/main/examples/nrf52/microbit/rak811">BBC micro:bit v2.0 + RAK811 LoRa</a></p>
 </li>
 <li>
-<p><a href="https://github.com/drogue-iot/drogue-device/tree/main/examples/nrf52/microbit-rak811">BBC micro:bit v2.0 + RAK811 LoRa Breakout</a></p>
+<p><a href="https://github.com/drogue-iot/drogue-device/tree/main/examples/stm32l0/lora-discovery">STM32 LoRaWAN Discovery</a></p>
 </li>
 <li>
-<p><a href="https://github.com/drogue-iot/drogue-device/tree/main/examples/rp/blinky">Raspberry Pi Pico</a></p>
+<p><a href="https://github.com/drogue-iot/drogue-device/tree/main/examples/stm32h7/nucleo-h743zi/esp8266">STM32 Nucleo H743ZI + ESP8266 WiFi</a></p>
+</li>
+<li>
+<p><a href="https://github.com/drogue-iot/drogue-device/tree/main/examples/rp/pico/blinky">Raspberry Pi Pico</a></p>
 </li>
 <li>
 <p><a href="https://github.com/drogue-iot/drogue-device/tree/main/examples/wasm/browser">WebAssembly</a></p>
