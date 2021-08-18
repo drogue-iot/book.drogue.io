@@ -278,6 +278,16 @@ You need to have the developer board attached to your computer.
 <pre class="highlightjs highlight"><code>cargo run --release</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>It may happen that the operation fails, especially when you try to flash the board for the first time. If that&#8217;s the case,
+you can try running the following.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>cargo build --release
+probe-run target/thumbv6m-none-eabi/release/lora-discovery --connect-under-reset --chip STM32L072CZ</code></pre>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
