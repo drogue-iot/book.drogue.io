@@ -260,20 +260,26 @@ pub enum CounterMessage {
 
 impl Actor for AtomicCounter {
     type Message&lt;'m&gt; = CounterMessage;
-    type Response&lt;'m&gt; = u32;
+    type Response = u32;
 
-    type OnStartFuture&lt;'m&gt; = impl Future&lt;Output = ()&gt; + 'm;
-    fn on_start(mut self: Pin&lt;&amp;mut Self&gt;) -&gt; Self::OnStartFuture&lt;'_&gt; {
-       async move {
-       }
-    }
-
-    type OnMessageFuture&lt;'m&gt; = impl Future&lt;Output = u32&gt; + 'm;
-    fn on_message&lt;'m&gt;(self: Pin&lt;&amp;'m mut Self&gt;, message: Self::Message&lt;'m&gt;) -&gt; Self::OnMessageFuture&lt;'m&gt; {
+    type OnMountFuture&lt;'m&gt; = impl Future&lt;Output = ()&gt; + 'm;
+    fn on_mount&lt;'m, M&gt;(
+        &amp;'m mut self,
+        _: Self::Configuration,
+        _: Address&lt;'static, Self&gt;,
+        inbox: &amp;'m mut M,
+    ) -&gt; Self::OnMountFuture&lt;'m, M&gt;
+    where
+        M: Inbox&lt;'m, Self&gt; + 'm
+    {
         async move {
-            match message {
-                CounterMessage::Increment =&gt; self.counter.increment().await,
-                CounterMessage::Add(value) =&gt; self.counter.add(value).await,
+            loop {
+                inbox.process(|message| {
+                    match message {
+                        CounterMessage::Increment =&gt; self.counter.increment().await,
+                        CounterMessage::Add(value) =&gt; self.counter.add(value).await,
+                    }
+                }).await;
             }
         }
     }
