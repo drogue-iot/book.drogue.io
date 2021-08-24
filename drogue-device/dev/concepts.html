@@ -161,9 +161,7 @@ Each actor has exclusive access to its own state and only communicates with othe
 <div class="sect2">
 <h3 id="_async"><a class="anchor" href="#_async"></a>Async</h3>
 <div class="paragraph">
-<p>Each actor is ostensibly single-threaded, able to process a single message at a time, allowing for lock-free processing of each event.
-As embedded processors are ostensibly globally single-threaded, supporting multiple actors requires the usage of <code>async</code> and <code>.await</code> within the Rust ecosystem.
-Each actor can therefore process each message either synchronously if its logic is <em>non-blocking</em> or using an <code>async</code> block if complex processing is required.</p>
+<p>Each actor is single-threaded, able to process a single message at a time, allowing for lock-free processing of each event. As embedded processors are globally single-threaded, supporting multiple actors requires the usage of <code>async</code> and <code>.await</code> within the Rust ecosystem. Each actor can therefore process each message either synchronously if its logic is <em>non-blocking</em> or using an <code>async</code> block if complex processing is required.</p>
 </div>
 <div class="paragraph">
 <p>Each event is fully processed, in the order in which it is received, before the next event is considered.</p>
@@ -175,19 +173,15 @@ Each actor can therefore process each message either synchronously if its logic 
 <div class="sect2">
 <h3 id="_messages"><a class="anchor" href="#_messages"></a>Messages</h3>
 <div class="paragraph">
-<p>All messages are sent using async channels attached to each actor. The channel depth is configurable based on <code>generic-array</code> and <code>heapless</code>. Once const generics is used by heapless, we will
-make the move as well.</p>
+<p>All messages are sent using async channels attached to each actor. The channel depth is configurable based on const generics.
+=== Addresses</p>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_addresses"><a class="anchor" href="#_addresses"></a>Addresses</h3>
 <div class="paragraph">
 <p>Each actor within the system has its own unique <code>Address</code> which is used to communicate with the actor (through it&#8217;s FIFO).
-There is an <em>async</em> <code>send(msg)</code> method on each address to send a message asynchronously to the actor, which may only be used from another <code>async</code> context, as the sender must <code>.await</code> the response.</p>
+There is an <em>async</em> <code>request(msg)</code> method on each address to send a message asynchronously to the actor, which may only be used from another <code>async</code> context, as the sender must <code>.await</code> the response. There is also a <em>sync</em> <code>notify(msg)</code> method on each address to send a message without awaiting a response.</p>
 </div>
 <div class="paragraph">
-<p>Specifically, the <code>Address</code> for a given actor may expose additional async methods to facility fluent APIs for communicating with the underlying actor.
-For instance, the <code>Address&lt;SimpleLED&lt;&#8230;&#8203;&gt;&gt;</code> instance has a <code>turn_on()</code> and <code>turn_off()</code> pair of methods for manipulating the underlying LED.</p>
+<p>Specifically, the <code>Address</code> for a given actor may expose additional async methods or wrap an <code>Address</code> to facility fluent APIs for communicating with the underlying actor. For instance, the <code>Socket</code> type wraps an <code>Address</code> for actors that implement the <code>TcpSocket</code> trait.</p>
 </div>
 </div>
 <div class="sect2">
@@ -202,8 +196,7 @@ For instance, the <code>Address&lt;SimpleLED&lt;&#8230;&#8203;&gt;&gt;</code> in
 <div class="sect2">
 <h3 id="_bootstrap_mounting"><a class="anchor" href="#_bootstrap_mounting"></a>Bootstrap &amp; Mounting</h3>
 <div class="paragraph">
-<p>A top-level <code>Device</code> struct created by the application writer, maintain members for each actor. A static instance of <code>DeviceContext</code> is created to hold a static reference
-to the <code>Device</code> struct.</p>
+<p>A top-level <code>Device</code> struct created by the application writer, maintain members for each actor. A static instance of <code>DeviceContext</code> is created to hold a static reference to the <code>Device</code> struct.</p>
 </div>
 <div class="paragraph">
 <p>The application entry point is specified using a function marked with <code>#[embassy::main]</code>, and it will be passed a <code>Spawner</code> that is used when mounting actors and packages.</p>
