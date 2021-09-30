@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Managing devices :: Drogue IoT</title>
+    <meta name="generator" content="Antora 2.3.4">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4BRXRBJJ1"></script>
+    <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','G-Z4BRXRBJJ1')</script>
+    <script>var uiRootPath = '../../../_'</script>
+    <link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="../../..">
+        <img class="navbar-brand-image" src="../../../_/img/logo.png" alt="Drogue IoT"/>
+      </a>
+
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://blog.drogue.io" target="_blank">Blog</a>
+        <a class="navbar-item" href="https://matrix.to/#/#drogue-iot:matrix.org" target="_blank">Chat</a>
+        <a class="navbar-item" href="https://book.drogue.io">Documentation</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="drogue-cloud" data-version="0.7">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Drogue Cloud</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../concepts.html">Concepts</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../introduction/index.html">Introduction</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../introduction/index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../introduction/data.html">Data plane</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../introduction/control.html">Control plane</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../introduction/devices.html">Devices, gateways &amp; services</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../introduction/addons.html">Additional components</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../introduction/services.html">Noteworthy services</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../deployment/index.html">Deployment</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deployment/index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deployment/pre-reqs.html">Pre-Requisites</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deployment/cluster.html">Prepare the cluster</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deployment/installer.html">Run the installer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deployment/development.html">Deploy from the repository</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../user-guide/index.html">User Guide</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../user-guide/index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../user-guide/management.html">Management</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Endpoints</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../user-guide/endpoint-coap.html">CoAP Endpoint</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../user-guide/endpoint-http.html">HTTP Endpoint</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../user-guide/endpoint-mqtt.html">MQTT Endpoint</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Integrations</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../user-guide/integration-kafka.html">Apache Kafka™ Integration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../user-guide/integration-command.html">HTTP Command Integration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../user-guide/integration-mqtt.html">MQTT Integration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../user-guide/integration-ws.html">WebSocket Integration</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">System Integrations</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">The Things Network</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="app.html">Managing applications</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="device.html">Managing devices</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Drogue Cloud</span>
+    <span class="version">0.7</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../../dev/index.html">Drogue Cloud</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../dev/index.html">dev</a>
+        </li>
+        <li class="version is-current">
+          <a href="../index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../0.6/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../0.5/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4/index.html">0.4</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../drogue-device/dev/index.html">Drogue Device</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../drogue-device/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../drogue-book/index.html">Drogue IoT</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../drogue-book/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../drogue-workshops/index.html">Drogue IoT Workshops</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../drogue-workshops/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../../drogue-book/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Drogue Cloud</a></li>
+    <li>System Integrations</li>
+    <li>The Things Network</li>
+    <li><a href="device.html">Managing devices</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">0.7</button>
+  <div class="version-menu">
+    <a class="version" href="../../dev/ttn/device.html">dev</a>
+    <a class="version is-current" href="device.html">0.7</a>
+    <a class="version" href="../../0.6/ttn/device.html">0.6</a>
+    <a class="version" href="../../0.5/ttn/device.html">0.5</a>
+    <a class="version is-missing" href="../../0.4/index.html">0.4</a>
+  </div>
+</div>
+  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-cloud/edit/release-0.7/docs/modules/ttn/pages/device.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Managing devices</h1>
+<div class="sect1">
+<h2 id="_setting_up_a_new_device"><a class="anchor" href="#_setting_up_a_new_device"></a>Setting up a new device</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This will register a new device, and synchronized it with The Things Network.</p>
+</div>
+<div class="sect2">
+<h3 id="_pre_requisites"><a class="anchor" href="#_pre_requisites"></a>Pre-requisites</h3>
+<div class="paragraph">
+<p>You will need the following information for your device:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Device EUI</p>
+</li>
+<li>
+<p>Application/Join EUI</p>
+</li>
+<li>
+<p>Application Key</p>
+</li>
+<li>
+<p>Supported LoRa capabilities</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_procedure"><a class="anchor" href="#_procedure"></a>Procedure</h3>
+<div class="paragraph">
+<p>Create a new device in Drogue Cloud with TTN specific information:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">drg create --app my-ttn-app device my-ttn-device-1 --spec '{
+    "ttn": {
+        "app_eui": "0123456789ABCDEF",
+        "app_key": "0123456789ABCDEF...",
+        "dev_eui": "0123456789ABCDEF",
+        "frequency_plan_id": "...", <i class="conum" data-value="1"></i><b>(1)</b>
+        "lorawan_phy_version": "...", <i class="conum" data-value="2"></i><b>(2)</b>
+        "lorawan_version": "..." <i class="conum" data-value="3"></i><b>(3)</b>
+    }
+}'</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>An ID of the TTN supported frequency plans, e.g. <code>EU_863_870_TTN</code>. Also see: <a href="https://www.thethingsindustries.com/docs/reference/frequency-plans/" class="bare">https://www.thethingsindustries.com/docs/reference/frequency-plans/</a></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>An ID of the TTN supported LoRa versions, e.g. <code>PHY_V1_0</code></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>An ID of the TTN supported LoRa version, e.g. <code>MAC_V1_0</code></td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>You can also use <code>drg edit device --app my-ttn-app my-ttn-device-1</code> to change the configuration of an existing device.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deleting_a_device"><a class="anchor" href="#_deleting_a_device"></a>Deleting a device</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When you delete a device in Drogue Cloud, it will also be deleted in the TTN system.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_disconnecting_a_device"><a class="anchor" href="#_disconnecting_a_device"></a>Disconnecting a device</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you want to delete the device in TTN, but keep it in Drogue Cloud, then you can simply
+remove or rename the <code>.spec.ttn</code> section.</p>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../../_/js/site.js"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
