@@ -176,9 +176,11 @@ Each actor has exclusive access to its own state and only communicates with othe
 <div class="sect2">
 <h3 id="_messages"><a class="anchor" href="#_messages"></a>Messages</h3>
 <div class="paragraph">
-<p>All messages are sent using async channels attached to each actor. The channel depth is configurable based on const generics.
-=== Addresses</p>
+<p>All messages are sent using async channels attached to each actor. The channel depth is configurable based on const generics.</p>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_addresses"><a class="anchor" href="#_addresses"></a>Addresses</h3>
 <div class="paragraph">
 <p>Each actor within the system has its own unique <code>Address</code> which is used to communicate with the actor (through it&#8217;s FIFO).
 There is an <em>async</em> <code>request(msg)</code> method on each address to send a message asynchronously to the actor, which may only be used from another <code>async</code> context, as the sender must <code>.await</code> the response. There is also a <em>sync</em> <code>notify(msg)</code> method on each address to send a message without awaiting a response.</p>
