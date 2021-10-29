@@ -291,27 +291,23 @@ the hostname would be <code>http-endpoint.1.2.3.4.nip.io</code>.</p>
 <div class="paragraph">
 <p>You need to use one of the following authentication mechanisms:</p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
+<table class="tableblock frame-all grid-all fit-content stretch">
 <colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
+<col>
+<col>
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Name</th>
 <th class="tableblock halign-left valign-top">Information</th>
 <th class="tableblock halign-left valign-top">Details</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X.509 Client certificates</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">X.509 Client certificate</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Provide an X.509 client certificate during the TLS handshake. The certificate must be signed with a trust anchor stored in the device registry on the application level.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top" rowspan="3"><p class="tableblock">Basic authentication</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
 <ul>
 <li>
@@ -354,14 +350,13 @@ either be a device name, device alias, or unique username.</p></td>
 </div>
 <div class="sect3">
 <h4 id="_parameters"><a class="anchor" href="#_parameters"></a>Parameters</h4>
-<table class="tableblock frame-all grid-all stretch">
+<table class="tableblock frame-all grid-all fit-content stretch">
 <colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 16.6666%;">
-<col style="width: 16.6666%;">
-<col style="width: 16.6666%;">
-<col style="width: 16.6666%;">
-<col style="width: 16.667%;">
+<col>
+<col>
+<col>
+<col>
+<col>
 </colgroup>
 <thead>
 <tr>
@@ -369,7 +364,6 @@ either be a device name, device alias, or unique username.</p></td>
 <th class="tableblock halign-left valign-top">Type</th>
 <th class="tableblock halign-left valign-top">Location</th>
 <th class="tableblock halign-left valign-top">Required</th>
-<th class="tableblock halign-left valign-top">Default</th>
 <th class="tableblock halign-left valign-top">Description</th>
 </tr>
 </thead>
@@ -379,14 +373,12 @@ either be a device name, device alias, or unique username.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">path</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The name of the channel to send to</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>application</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">query</p></td>
-<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Override the application for authentication. See above.</p></td>
 </tr>
@@ -395,14 +387,12 @@ either be a device name, device alias, or unique username.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">query</p></td>
 <td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Override the device for authentication. See above.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>as</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">query</p></td>
-<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Allows to specify an alternate device name that this device may act on behalf of. The "as" device must be configured to
 allow the authenticated device (from the credentials or <code>device</code>) to act on its behalf.</p></td>
@@ -413,7 +403,6 @@ allow the authenticated device (from the credentials or <code>device</code>) to 
 <td class="tableblock halign-left valign-top"><p class="tableblock">query</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Number of seconds the endpoint should wait for a command, for returning to the device from the cloud side.</p></td>
 </tr>
 </tbody>
 </table>
