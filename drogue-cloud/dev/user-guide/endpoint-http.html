@@ -269,24 +269,199 @@
 <div class="paragraph">
 <p>The HTTP protocol endpoint is a device facing service offering connectivity using different HTTP based APIs.</p>
 </div>
+<div class="paragraph">
+<p>The base address of the HTTP protocol endpoints depends on your installation. For a local, test installation, this
+is mostly based on the IP address and uses <code>nip.io</code> to resolve this as a DNS name. Assuming your IP address is <code>1.2.3.4</code>
+the hostname would be <code>http-endpoint.1.2.3.4.nip.io</code>.</p>
+</div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_simple_http_api"><a class="anchor" href="#_simple_http_api"></a>Simple HTTP API</h2>
 <div class="sectionbody">
-
+<div class="sect2">
+<h3 id="_publish_telemetry"><a class="anchor" href="#_publish_telemetry"></a>Publish telemetry</h3>
+<div class="listingblock">
+<div class="content">
+<pre>POST /v1/{channel}</pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_authentication"><a class="anchor" href="#_authentication"></a>Authentication</h4>
+<div class="paragraph">
+<p>You need to use one of the following authentication mechanisms:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Information</th>
+<th class="tableblock halign-left valign-top">Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">X.509 Client certificates</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Provide an X.509 client certificate during the TLS handshake. The certificate must be signed with a trust anchor stored in the device registry on the application level.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="3"><p class="tableblock">Basic authentication</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Credentials: <code>&lt;username&gt;@&lt;application&gt;:&lt;password&gt;</code></p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Standard username/password authentication using <code>&lt;username&gt;@&lt;application&gt;</code> as HTTP username. The <code>&lt;username&gt;</code> can
+either be a device name, device alias, or unique username.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Credentials: <code>&lt;username&gt;@&lt;password&gt;</code></p>
+</li>
+<li>
+<p>Query: <code>application=&lt;application&gt;</code></p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Use a standard username and provide the application as part of the HTTP query. The <code>&lt;username&gt;</code> can
+either be a device name, device alias, or unique username.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Credentials: <code>&lt;username&gt;@&lt;password&gt;</code></p>
+</li>
+<li>
+<p>Query: <code>application=&lt;application&gt;&amp;device=&lt;device&gt;</code></p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Use a non-unique username, provide application and device using query parameters.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_parameters"><a class="anchor" href="#_parameters"></a>Parameters</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 16.6666%;">
+<col style="width: 16.6666%;">
+<col style="width: 16.6666%;">
+<col style="width: 16.6666%;">
+<col style="width: 16.667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Location</th>
+<th class="tableblock halign-left valign-top">Required</th>
+<th class="tableblock halign-left valign-top">Default</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>channel</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">path</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the channel to send to</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>application</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">query</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Override the application for authentication. See above.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>device</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">query</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Override the device for authentication. See above.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>as</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">query</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allows to specify an alternate device name that this device may act on behalf of. The "as" device must be configured to
+allow the authenticated device (from the credentials or <code>device</code>) to act on its behalf.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ct</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">integer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">query</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number of seconds the endpoint should wait for a command, for returning to the device from the cloud side.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_code_samples"><a class="anchor" href="#_code_samples"></a>Code samples</h4>
+<div class="sect4">
+<h5 id="_shell"><a class="anchor" href="#_shell"></a>Shell</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">http \
+    --auth device1@example-app:foobar \
+    --verify build/certs/endpoints/root-cert.pem \
+    POST \
+    https://http-endpoint.1.2.3.4.nip.io:30443/v1/telemetry \
+    temp:=42</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">http \
+    --auth device1:foobar \
+    --verify build/certs/endpoints/root-cert.pem \
+    POST \
+    https://http-endpoint.192.168.39.35.nip.io:30443/v1/foo \
+    application==example-app \
+    temp:=42</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_the_things_network_v2"><a class="anchor" href="#_the_things_network_v2"></a>The Things Network v2</h2>
 <div class="sectionbody">
-
+<div class="paragraph">
+<p><strong>Deprecated!</strong></p>
+</div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_the_things_network_v3"><a class="anchor" href="#_the_things_network_v3"></a>The Things Network v3</h2>
 <div class="sectionbody">
-
+<div class="paragraph">
+<p>The entrypoint is <code>/ttn/v3</code>.</p>
+</div>
 </div>
 </div>
 </article>
