@@ -429,7 +429,216 @@ and then the device will be deleted.
 </div>
 <div class="sect2">
 <h3 id="_setting_password_credentials"><a class="anchor" href="#_setting_password_credentials"></a>Setting password credentials</h3>
-
+<div class="paragraph">
+<p>It is possible to set a password as access credentials. This way, when connecting, the username will be the device name.</p>
+</div>
+<div class="sect3">
+<h4 id="_pre_requisites"><a class="anchor" href="#_pre_requisites"></a>Pre-requisites</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>You have created a device</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_procedure"><a class="anchor" href="#_procedure"></a>Procedure</h4>
+<div class="paragraph">
+<p>Configure the device, adding a password credentials entry:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">metadata:
+  name: device
+  # …
+spec:
+  # …
+  credentials:
+    credentials:
+      - pass: my-password <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>One credential entry of type "password".</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>You can also use hashed passwords. For this, you need to specify the hash algorithm:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">metadata:
+  name: device
+  # …
+spec:
+  # …
+  credentials:
+    credentials:
+      - pass:
+          bcrypt: "$2a$12$WsLmgORBv3WHZ3CjCiMzXOeo2hL5UEeq8PEd11q9BfbM/RWqb7c3G" <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>One credential entry of type "password" as "bcrypt" hash.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>See xref:supported-password-hashes for a list of supported password hashes.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="setting_username_password"><a class="anchor" href="#setting_username_password"></a>Setting username/password credentials</h3>
+<div class="paragraph">
+<p>It is also possible to set a username and password as credentials. In this case, the device ID must be transmitted
+through an alternate way, in order to look up the device. The provided username/password combination will then be
+checked against the configured username/password combination.</p>
+</div>
+<div class="paragraph">
+<p>The way the device name is transmitted to the endpoint depends on the capabilities of the protocol endpoint.
+For example, using HTTP, the device name can be provided as an additional query parameter.</p>
+</div>
+<div class="sect3">
+<h4 id="_pre_requisites_2"><a class="anchor" href="#_pre_requisites_2"></a>Pre-requisites</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>You have created a device</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_procedure_2"><a class="anchor" href="#_procedure_2"></a>Procedure</h4>
+<div class="paragraph">
+<p>Configure the device, adding a password credentials entry:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">metadata:
+  name: device <i class="conum" data-value="1"></i><b>(1)</b>
+  # …
+spec:
+  # …
+  credentials:
+    credentials:
+      - user:
+          username: device-user <i class="conum" data-value="2"></i><b>(2)</b>
+          password: bar <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The device name</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The username</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The plain text password</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>You can also use hashed passwords, instead of plain text:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">metadata:
+  name: device <i class="conum" data-value="1"></i><b>(1)</b>
+  # …
+spec:
+  # …
+  credentials:
+    credentials:
+      - user:
+          username: device-user <i class="conum" data-value="2"></i><b>(2)</b>
+          password:
+            bcrypt: "$2a$12$WsLmgORBv3WHZ3CjCiMzXOeo2hL5UEeq8PEd11q9BfbM/RWqb7c3G" <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The device name</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The username</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The bcrypt hashed password</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>See xref:supported-password-hashes for a list of supported password hashes.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_setting_usernamepassword_credentials_unique_username"><a class="anchor" href="#_setting_usernamepassword_credentials_unique_username"></a>Setting username/password credentials (unique username)</h3>
+<div class="paragraph">
+<p>If you want to use the username only for authenticating your device, without the need to provide an additional
+device identifier, you can use "unique usernames". These usernames are unique per application.</p>
+</div>
+<div class="sect3">
+<h4 id="_pre_requisites_3"><a class="anchor" href="#_pre_requisites_3"></a>Pre-requisites</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>You have created a device</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_procedure_3"><a class="anchor" href="#_procedure_3"></a>Procedure</h4>
+<div class="paragraph">
+<p>Configure the device, adding a password credentials entry:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">metadata:
+  name: device
+  # …
+spec:
+  # …
+  credentials:
+    credentials:
+      - user:
+          username: device-user
+          password: bar
+          unique: true <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Setting the value to <code>true</code> makes the entry a unique username entry.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>As described in <a href="#setting_username_password">Setting username/password credentials</a>, you can use hashed passwords too.</p>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_setting_x_509_client_certificate_credentials"><a class="anchor" href="#_setting_x_509_client_certificate_credentials"></a>Setting X.509 client certificate credentials</h3>
@@ -437,7 +646,81 @@ and then the device will be deleted.
 </div>
 <div class="sect2">
 <h3 id="_configuring_a_gateway_device"><a class="anchor" href="#_configuring_a_gateway_device"></a>Configuring a gateway device</h3>
-
+<div class="paragraph">
+<p>Every device can act as a gateway for another device. However, it must be granted the permission to act on behalf
+of that other device.</p>
+</div>
+<div class="paragraph">
+<p>The way this is done, is by adding this information to the device connects through a gateway.</p>
+</div>
+<div class="sect3">
+<h4 id="_pre_requisites_4"><a class="anchor" href="#_pre_requisites_4"></a>Pre-requisites</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>You have created two devices.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>One that should act as gateway (named <code>gateway</code> in the following steps).</p>
+</li>
+<li>
+<p>One that should act as the actual device (named <code>sensor</code> in the following steps).</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>The gateway device has access credentials configured, so that the gateway can connect to the cloud.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_procedure_4"><a class="anchor" href="#_procedure_4"></a>Procedure</h4>
+<div class="paragraph">
+<p>In the configuration of the actual device, select the devices that can act as a gateway:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">metadata:
+  name: sensor
+  # …
+spec:
+  # …
+  gatewaySelector:
+    matchNames:
+      - gateway</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It is possible to use one or more devices as gateway.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_hashed_passwords"><a class="anchor" href="#_hashed_passwords"></a>Hashed passwords</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>It is possible to store passwords either plain text or hashed.</p>
+</div>
+<div class="sect2">
+<h3 id="supported-password-hashes"><a class="anchor" href="#supported-password-hashes"></a>Supported hashes</h3>
+<div class="paragraph">
+<p>The following hash types are currently supported:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>bcrypt</code> – <a href="https://en.wikipedia.org/wiki/Bcrypt">Bcrypt</a> hash</p>
+</li>
+<li>
+<p><code>sha512</code> – SHA512 <a href="https://en.wikipedia.org/wiki/Crypt_&#169;">crypt</a> (Scheme ID 6)</p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </div>
