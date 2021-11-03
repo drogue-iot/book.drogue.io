@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>User Guide :: Drogue IoT</title>
+    <title>Running as a single binary :: Drogue IoT</title>
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4BRXRBJJ1"></script>
@@ -81,25 +81,25 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../deployment/index.html">Deployment</a>
+    <a class="nav-link" href="index.html">Deployment</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../deployment/index.html">Overview</a>
+    <a class="nav-link" href="index.html">Overview</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../deployment/pre-reqs.html">Pre-Requisites</a>
+    <a class="nav-link" href="pre-reqs.html">Pre-Requisites</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../deployment/cluster.html">Prepare the cluster</a>
+    <a class="nav-link" href="cluster.html">Prepare the cluster</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../deployment/installer.html">Run the installer</a>
+    <a class="nav-link" href="installer.html">Run the installer</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../deployment/development.html">Deploy from the repository</a>
+    <a class="nav-link" href="development.html">Deploy from the repository</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../deployment/single-binary.html">Run as a single binary</a>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="single-binary.html">Run as a single binary</a>
   </li>
 </ul>
   </li>
@@ -107,28 +107,28 @@
   </li>
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">User Guide</a>
+    <a class="nav-link" href="../user-guide/index.html">User Guide</a>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="index.html">Overview</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../user-guide/index.html">Overview</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="management.html">Management</a>
+    <a class="nav-link" href="../user-guide/management.html">Management</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Endpoints</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="endpoint-coap.html">CoAP Endpoint</a>
+    <a class="nav-link" href="../user-guide/endpoint-coap.html">CoAP Endpoint</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="endpoint-http.html">HTTP Endpoint</a>
+    <a class="nav-link" href="../user-guide/endpoint-http.html">HTTP Endpoint</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="endpoint-mqtt.html">MQTT Endpoint</a>
+    <a class="nav-link" href="../user-guide/endpoint-mqtt.html">MQTT Endpoint</a>
   </li>
 </ul>
   </li>
@@ -137,16 +137,16 @@
     <span class="nav-text">Integrations</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="integration-kafka.html">Apache Kafka™ Integration</a>
+    <a class="nav-link" href="../user-guide/integration-kafka.html">Apache Kafka™ Integration</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="integration-command.html">HTTP Command Integration</a>
+    <a class="nav-link" href="../user-guide/integration-command.html">HTTP Command Integration</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="integration-mqtt.html">MQTT Integration</a>
+    <a class="nav-link" href="../user-guide/integration-mqtt.html">MQTT Integration</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="integration-ws.html">WebSocket Integration</a>
+    <a class="nav-link" href="../user-guide/integration-ws.html">WebSocket Integration</a>
   </li>
 </ul>
   </li>
@@ -244,29 +244,157 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Drogue Cloud</a></li>
-    <li><a href="index.html">User Guide</a></li>
+    <li><a href="index.html">Deployment</a></li>
+    <li><a href="single-binary.html">Run as a single binary</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">dev</button>
   <div class="version-menu">
-    <a class="version is-current" href="index.html">dev</a>
-    <a class="version" href="../../0.7/user-guide/index.html">0.7</a>
+    <a class="version is-current" href="single-binary.html">dev</a>
+    <a class="version is-missing" href="../../0.7/index.html">0.7</a>
     <a class="version is-missing" href="../../0.6/index.html">0.6</a>
     <a class="version is-missing" href="../../0.5/index.html">0.5</a>
     <a class="version is-missing" href="../../0.4/index.html">0.4</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-cloud/edit/main/docs/modules/user-guide/pages/index.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-cloud/edit/main/docs/modules/deployment/pages/single-binary.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">User Guide</h1>
+<h1 class="page">Running as a single binary</h1>
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
-<p>This guide describes how to use Drogue Cloud, from the perspective of a user, consume Drogue Cloud "as a service".</p>
+<p>In order to make it possible to run Drogue Cloud in other environments, we provide a <code>drogue-server</code> binary to run a single or multiple Drogue Cloud services. This does not require Kubernetes or containers to run.</p>
+</div>
+<div class="paragraph">
+<p>You do need to run an instance of Kafka, Keycloak and PostgreSQL in order to use this binary.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_pre_requisites"><a class="anchor" href="#_pre_requisites"></a>Pre-requisites</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The binary assumes the following services being available locally:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Kafka bootstrap: localhost:9092</p>
+</li>
+<li>
+<p>Keycloak:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Url: <a href="http://localhost:8080" class="bare">http://localhost:8080</a></p>
+</li>
+<li>
+<p>Admin user: admin</p>
+</li>
+<li>
+<p>Admin password: admin123456</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>PostgreSQL</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Database name: drogue</p>
+</li>
+<li>
+<p>Database user: admin</p>
+</li>
+<li>
+<p>Database password: admin123456</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_optional_starting_pre_requisites"><a class="anchor" href="#_optional_starting_pre_requisites"></a>(Optional) Starting pre-requisites</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You thought you didn&#8217;t need containers, HAH! Well, to make it simpler to get the prerequisites running, here is a docker compose file for running them and making them available at the above ports:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>version: "3.9"
+services:
+  postgres:
+    image: docker.io/bitnami/postgresql:13
+    environment:
+      - POSTGRESQL_USERNAME=admin
+      - POSTGRESQL_PASSWORD=admin123456
+      - POSTGRESQL_DATABASE=drogue
+    ports:
+      - "5432:5432"
+  kafka:
+    image: docker.io/moeenz/docker-kafka-kraft:latest
+    ports:
+      - "9092:9092"
+    environment:
+      - KRAFT_CONTAINER_HOST_NAME=localhost
+  keycloak:
+    image: docker.io/jboss/keycloak:13.0.1
+    environment:
+      - KEYCLOAK_USER=admin
+      - KEYCLOAK_PASSWORD=admin123456
+      - DB_VENDOR=h2
+    ports:
+      - "8080:8080"</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_running"><a class="anchor" href="#_running"></a>Running</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Make sure all dependencies are running correcrly. To start the drogue server, run:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>drogue-server --enable-all</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will perform the following steps:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Migrate database schema</p>
+</li>
+<li>
+<p>Create Keycloak OIDC clients</p>
+</li>
+<li>
+<p>Start all drogue services</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>You should be able to connect to the local drogue instance using the <code>drg</code> client:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>drg login http://localhost:10001</code></pre>
+</div>
+</div>
+</div>
 </div>
 </article>
   </div>
