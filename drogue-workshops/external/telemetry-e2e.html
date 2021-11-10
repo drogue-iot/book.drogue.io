@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>What to expect? :: Drogue IoT</title>
+    <title>Telemetry end-to-end :: Drogue IoT</title>
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4BRXRBJJ1"></script>
@@ -58,8 +58,8 @@
   </li>
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../external/telemetry-e2e.html">Telemetry end-to-end</a>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="telemetry-e2e.html">Telemetry end-to-end</a>
   </li>
 </ul>
   </li>
@@ -98,25 +98,25 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Quarkus MQTT integration starter</a>
+    <a class="nav-link" href="../quarkus-mqtt-starter/index.html">Quarkus MQTT integration starter</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="index.html">Overview</a>
-  </li>
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="peeking.html">What to expect</a>
+    <a class="nav-link" href="../quarkus-mqtt-starter/index.html">Overview</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="local.html">Running it locally</a>
+    <a class="nav-link" href="../quarkus-mqtt-starter/peeking.html">What to expect</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="internals.html">How does it work?</a>
+    <a class="nav-link" href="../quarkus-mqtt-starter/local.html">Running it locally</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="kubernetes.html">Deploying to Kubernetes</a>
+    <a class="nav-link" href="../quarkus-mqtt-starter/internals.html">How does it work?</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="cloud.html">Moving to the cloud</a>
+    <a class="nav-link" href="../quarkus-mqtt-starter/kubernetes.html">Deploying to Kubernetes</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quarkus-mqtt-starter/cloud.html">Moving to the cloud</a>
   </li>
 </ul>
   </li>
@@ -187,54 +187,29 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Drogue IoT Workshops</a></li>
-    <li><a href="index.html">Quarkus MQTT integration starter</a></li>
-    <li><a href="peeking.html">What to expect</a></li>
+    <li><a href="telemetry-e2e.html">Telemetry end-to-end</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-workshops/edit/main/modules/quarkus-mqtt-starter/pages/peeking.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-workshops/edit/main/modules/external/pages/telemetry-e2e.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">What to expect?</h1>
-<div id="preamble">
-<div class="sectionbody">
+<h1 class="page">Telemetry end-to-end</h1>
 <div class="paragraph">
-<p>As mentioned before, we actually host the application on your sandbox cluster too. You can take a look at <a href="https://quarkus-mqtt-integration-starter-drogue-quarkus-demos.apps.wonderful.iot-playground.org/" class="bare">https://quarkus-mqtt-integration-starter-drogue-quarkus-demos.apps.wonderful.iot-playground.org/</a></p>
+<p>The Telemetry end-to-end example is a package of the <a href="https://www.eclipse.org/packages">Eclipse IoT Packages™</a> project. It describes itself as:</p>
 </div>
+<div class="quoteblock">
+<blockquote>
 <div class="paragraph">
-<p>On this page, you should see a dashboard like shown in the following screenshot:</p>
+<p>A package showing telemetry data acquisition end-to-end: Microcontroller firmware to cloud side data processing, using Drogue IoT and Apache Kafka in the process.</p>
 </div>
-<div class="paragraph">
-<p><span class="image"><img src="_images/screenshot.png" alt="Screenshot of the dashboard"></span></p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_what_do_you_see"><a class="anchor" href="#_what_do_you_see"></a>What do you see?</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>This dashboard shows the most recent received message from any device. If the message contained geolocation information,
-then it will also put a marker on the map. Only one marker will be shown at a time, so a new marker will replace
-any previous markers.</p>
+</blockquote>
 </div>
 <div class="paragraph">
-<p>The data comes from a publicly available data stream, hosted on the Drogue IoT sandbox cluster.</p>
-</div>
-<div class="paragraph">
-<p>You can subscribe to that data stream with a simple MQTT client yourself.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_whats_next"><a class="anchor" href="#_whats_next"></a>What&#8217;s next?</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Here? Not much! Now it is up to you to replicate this.</p>
-</div>
-</div>
+<p>As the content is part of the IoT packages project, we only link the tutorial. You can take a look at: <a href="https://www.eclipse.org/packages/packages/telemetry-e2e/" class="bare">https://www.eclipse.org/packages/packages/telemetry-e2e/</a></p>
 </div>
 </article>
   </div>
