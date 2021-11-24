@@ -1,0 +1,24 @@
+= Schemas
+
+{% from "templates/types.tpl" import type with context %}
+
+{% for comp,comp_spec in api.components.schemas | dictsort %}
+
+== {{ comp }}
+
+{{ comp_spec.description }}
+
+{% if isSimpleType(comp_spec) %}
+*Type:* {{ type(comp_spec) }}
+{% else %}
+{{ type(comp_spec) }}
+{% endif %}
+
+{% if comp_spec.example %}
+.Example
+----
+{{ comp_spec.example | dump(2) | safe }}
+----
+{% endif %}
+
+{% endfor %}

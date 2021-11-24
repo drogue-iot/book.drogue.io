@@ -1,0 +1,16 @@
+{% if param.$ref %}
+{% set param = resolve(param.$ref) %}
+{% endif %}
+
+a|
+{% if param.required %}
+[pass]
+<b title="required">{{ param.name }}*</b>
+{% else %}
+{{ param.name }}
+{% endif %}
+
+| {{ param.in }}
+a| {{ type(param.schema) }}
+a| {{ markdown(param.description) | safe }}
+

@@ -1,0 +1,16 @@
+= Endpoints
+
+{% for tag in api.tags %}
+== {{ tag.name }}
+
+{{ tag.description }}
+
+{% for path, path_spec in api.groups[tag.name] %}
+{% for method, method_spec in path_spec.methods %}
+{% include "templates/method.adoc" %}
+{% endfor %}
+{% endfor %}
+
+{% endfor %}
+
+

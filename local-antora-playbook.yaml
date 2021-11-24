@@ -7,6 +7,7 @@ site:
   start_page: drogue-book::index.adoc
   keys:
     google_analytics: 'G-Z4BRXRBJJ1'
+
 content:
   sources:
     - url: ./
@@ -20,10 +21,19 @@ content:
       start_path: docs
     - url: ../drogue-workshops
       branches: HEAD
+
+antora:
+  extensions:
+    - require: ./extensions/openapi.js
+      queries:
+        - component: drogue-cloud
+          module: api
+
 ui:
   bundle:
-    url: https://github.com/drogue-iot/drogue-antora-ui/releases/download/v0.1.1/ui-bundle.zip
-    snapshot: false
+    url: https://github.com/drogue-iot/drogue-antora-ui/releases/download/v0.1.2/ui-bundle.zip
+    #url: ../drogue-antora-ui/build/ui-bundle.zip
+    #snapshot: true
 
   supplemental_files:
     - path: ui.yml

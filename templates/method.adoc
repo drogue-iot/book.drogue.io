@@ -1,0 +1,52 @@
+{% from "templates/types.tpl" import type with context %}
+
+=== {% filter upper %}{{ method }}{% endfilter %} `{% filter replace("{", "\\{") %}{{ path }}{% endfilter %}`
+
+{{ method_spec.description }}
+
+{% if ( (path_spec.parameters | length) > 0 ) or ( (method_spec.parameters) | length > 0) %}
+
+==== Parameters
+
+[%autowidth.stretch, frame=none, grid=rows]
+|===
+| Name | Location | Type | Description
+
+{% for param in path_spec.parameters %}
+{% include "templates/param.adoc" %}
+{% endfor %}
+{% for param in method_spec.parameters %}
+{% include "templates/param.adoc" %}
+{% endfor %}
+
+|===
+{% endif %}
+
+
+
+{% if method_spec.requestBody %}
+
+==== Request
+
+{{ method_spec.requestBody.description }}
+
+[%autowidth.stretch, frame=none, grid=rows]
+|===
+| Content Type | Description
+{% for body,body_spec in method_spec.requestBody.content %}
+| `{{ body }}`
+| {{ type(body_spec.schema) }}
+{% endfor %}
+|===
+
+{% endif %}
+
+==== Responses
+
+[%autowidth.stretch, frame=none, grid=rows]
+|===
+|Code | Description
+{% for code, response in method_spec.responses %}
+{% include "templates/response.adoc" %}
+{% endfor %}
+|===

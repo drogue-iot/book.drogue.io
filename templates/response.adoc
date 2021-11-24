@@ -1,0 +1,26 @@
+{% from "templates/types.tpl" import type with context %}
+
+| {{ code }}
+a| {{ response.description }}
+
+{% if response.content | length %}
+{% for ct,spec in response.content %}
+`{{ ct }}`:: {empty}
++
+{{ type(spec.schema) }}
+{% endfor %}
+{% endif %}
+
+{% if response.headers | length %}
+[discrete]
+=== Headers
+{% for name,spec in response.headers %}
+[horizontal]
+{{ name }}:: {{ spec.description | default("{empty}") }}
++
+--
+{{ type(spec.schema) }}
+--
+{% endfor %}
+{% endif %}
+

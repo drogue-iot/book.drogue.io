@@ -1,0 +1,3 @@
+`{{ spec.type }}`
+
+{% if spec.format %}[small]#({{ spec.format }})#{% endif %}
