@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Deploying to Kubernetes :: Drogue IoT</title>
-    <meta name="generator" content="Antora 2.3.4">
+    <meta name="generator" content="Antora 3.0.0-beta.2">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4BRXRBJJ1"></script>
     <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','G-Z4BRXRBJJ1')</script>
@@ -217,7 +217,7 @@
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>mvn clean package</code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">mvn clean package</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -225,7 +225,7 @@
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>docker build -t my-quarkus-mqtt-starter . -f src/main/docker/Dockerfile.jvm</code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">docker build -t my-quarkus-mqtt-starter . -f src/main/docker/Dockerfile.jvm</code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -255,7 +255,7 @@ or <a href="https://github.blog/2020-09-01-introducing-github-container-registry
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>docker tag my-quarkus-starter quay.io/myaccount/my-quarkus-mqtt-starter:latest
+<pre class="highlightjs highlight"><code class="language-none hljs">docker tag my-quarkus-starter quay.io/myaccount/my-quarkus-mqtt-starter:latest
 docker push quay.io/myaccount/my-quarkus-mqtt-starter:latest</code></pre>
 </div>
 </div>
@@ -335,7 +335,7 @@ For all examples, it is a good idea to use a dedicated namespace, in order to is
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>NAME                               HOST/PORT                                                                                     PATH   SERVICES                           PORT   TERMINATION     WILDCARD
+<pre class="highlightjs highlight"><code class="language-none hljs">NAME                               HOST/PORT                                                                                     PATH   SERVICES                           PORT   TERMINATION     WILDCARD
 quarkus-mqtt-integration-starter   quarkus-mqtt-integration-starter-my-user-stage.apps.sandbox-m2.ll9k.p1.openshiftapps.com          quarkus-mqtt-integration-starter   http   edge/Redirect   None</code></pre>
 </div>
 </div>
@@ -422,7 +422,7 @@ command:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>NAME                                STATUS   ROLES   AGE   VERSION
+<pre class="highlightjs highlight"><code class="language-none hljs">NAME                                STATUS   ROLES   AGE   VERSION
 aks-nodepool1-20363394-vmss000000   Ready    agent   81s   v1.19.11</code></pre>
 </div>
 </div>
@@ -460,7 +460,7 @@ kubectl -n quarkus-mqtt-starter apply -f deploy/030-service.yaml</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>Result
+<pre class="highlightjs highlight"><code class="language-none hljs">Result
 -------------------------------------
 d578cb0564094cf8979c.eastus.aksapp.io <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 </div>
@@ -478,7 +478,7 @@ d578cb0564094cf8979c.eastus.aksapp.io <i class="conum" data-value="1"></i><b>(1)
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>kubectl apply -f - &lt;&lt;EOF
+<pre class="highlightjs highlight"><code class="language-none hljs">kubectl apply -f - &lt;&lt;EOF
 kind: Ingress
 apiVersion: networking.k8s.io/v1
 metadata:
@@ -577,7 +577,7 @@ process a bit simpler.</p>
 </main>
 </div>
 <footer class="footer">
-  <p>This page was built using the Antora default UI.</p>
+  <p>This page was built using a modified version of the Antora default UI.</p>
   <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
 </footer>
 <script src="../../_/js/site.js"></script>

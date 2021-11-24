@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Running locally :: Drogue IoT</title>
-    <meta name="generator" content="Antora 2.3.4">
+    <meta name="generator" content="Antora 3.0.0-beta.2">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4BRXRBJJ1"></script>
     <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','G-Z4BRXRBJJ1')</script>
@@ -246,7 +246,7 @@ you to make and push changes to your own copy, and is required for other parts o
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>git clone https://github.com/drogue-iot/quarkus-mqtt-integration-starter</code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">git clone https://github.com/drogue-iot/quarkus-mqtt-integration-starter</code></pre>
 </div>
 </div>
 </div>
@@ -271,7 +271,7 @@ so if you dislike using the command line, you can always use equivalent IDE oper
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>./mvnw quarkus:dev</code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">./mvnw quarkus:dev</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -280,7 +280,7 @@ application&#8217;s log output in the end:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>[INFO] No sources to compile
+<pre class="highlightjs highlight"><code class="language-none hljs">[INFO] No sources to compile
 Listening for transport dt_socket at address: 5005
 __  ____  __  _____   ___  __ ____  ______
  --/ __ \/ / / / _ | / _ \/ //_/ / / / __/
@@ -310,7 +310,7 @@ __  ____  __  _____   ___  __ ____  ______
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>2021-06-08 15:15:36,315 DEBUG [io.sma.rea.mes.mqt.ses.imp.MqttClientSessionImpl] (vert.x-eventloop-thread-0) setState - current: CONNECTING, next: CONNECTED</code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">2021-06-08 15:15:36,315 DEBUG [io.sma.rea.mes.mqt.ses.imp.MqttClientSessionImpl] (vert.x-eventloop-thread-0) setState - current: CONNECTING, next: CONNECTED</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -321,7 +321,7 @@ __  ____  __  _____   ___  __ ____  ______
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>2021-06-08 15:15:44,520 INFO  [io.dro.iot.dem.int.Receiver] (vert.x-eventloop-thread-0) Received message: CloudEvent{id='dec025b8-3ef8-4a15-a531-bda944dcd9db', source=drogue://drogue%2Dpublic%2Dtemperature/A4%3AC1%3A38%3AA2%3A6D%3A42, type='io.drogue.event.v1', datacontenttype='application/json', dataschema=urn:drogue:iot:temperature, subject='status', time=2021-06-08T13:15:44.459994106Z, data=BytesCloudEventData{value=[123, 34, 116, 101, 109, 112, 34, 58, 32, 51, 48, 46, 56, 44, 32, 34, 104, 117, 109, 34, 58, 32, 52, 49, 44, 32, 34, 98, 97, 116, 116, 34, 58, 32, 57, 52, 44, 32, 34, 103, 101, 111, 108, 111, 99, 34, 58, 32, 123, 34, 108, 97, 116, 34, 58, 32, 52, 56, 46, 48, 55, 56, 56, 56, 44, 32, 34, 108, 111, 110, 34, 58, 32, 49, 49, 46, 56, 54, 49, 57, 52, 125, 125]}, extensions={knativehistory=iot-channel-kn-channel.drogue-dev.svc.cluster.local, instance=drogue, partitionkey=drogue%2Dpublic%2Dtemperature/A4%3AC1%3A38%3AA2%3A6D%3A42, application=drogue-public-temperature, device=A4:C1:38:A2:6D:42}}</code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">2021-06-08 15:15:44,520 INFO  [io.dro.iot.dem.int.Receiver] (vert.x-eventloop-thread-0) Received message: CloudEvent{id='dec025b8-3ef8-4a15-a531-bda944dcd9db', source=drogue://drogue%2Dpublic%2Dtemperature/A4%3AC1%3A38%3AA2%3A6D%3A42, type='io.drogue.event.v1', datacontenttype='application/json', dataschema=urn:drogue:iot:temperature, subject='status', time=2021-06-08T13:15:44.459994106Z, data=BytesCloudEventData{value=[123, 34, 116, 101, 109, 112, 34, 58, 32, 51, 48, 46, 56, 44, 32, 34, 104, 117, 109, 34, 58, 32, 52, 49, 44, 32, 34, 98, 97, 116, 116, 34, 58, 32, 57, 52, 44, 32, 34, 103, 101, 111, 108, 111, 99, 34, 58, 32, 123, 34, 108, 97, 116, 34, 58, 32, 52, 56, 46, 48, 55, 56, 56, 56, 44, 32, 34, 108, 111, 110, 34, 58, 32, 49, 49, 46, 56, 54, 49, 57, 52, 125, 125]}, extensions={knativehistory=iot-channel-kn-channel.drogue-dev.svc.cluster.local, instance=drogue, partitionkey=drogue%2Dpublic%2Dtemperature/A4%3AC1%3A38%3AA2%3A6D%3A42, application=drogue-public-temperature, device=A4:C1:38:A2:6D:42}}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -353,7 +353,7 @@ the same dashboard that the sandbox hosts.</p>
 </main>
 </div>
 <footer class="footer">
-  <p>This page was built using the Antora default UI.</p>
+  <p>This page was built using a modified version of the Antora default UI.</p>
   <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
 </footer>
 <script src="../../_/js/site.js"></script>

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>CoAP protocol endpoint :: Drogue IoT</title>
-    <meta name="generator" content="Antora 2.3.4">
+    <meta name="generator" content="Antora 3.0.0-beta.2">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4BRXRBJJ1"></script>
     <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','G-Z4BRXRBJJ1')</script>
@@ -296,7 +296,7 @@ The coap requests made to the endpoint need to be of the following format:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>coap://&lt;coap-endpoint-address&gt;/v1/{channel}/{subject(optional)}</code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">coap://&lt;coap-endpoint-address&gt;/v1/{channel}/{subject(optional)}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -347,7 +347,7 @@ authentication headers. For example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>Basic ZGV2aWNlMUBhcHAxOmhleS1yb2RuZXk</code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">Basic ZGV2aWNlMUBhcHAxOmhleS1yb2RuZXk</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -366,7 +366,7 @@ The format of the device authentication information is <code>&lt;device-id&gt;@&
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>coap://test-url/v1/sample_channel/sample_subject?application=app1&amp;device=device%232&amp;data_schema=application%2Foctet-stream&amp;as=device%232&amp;ct=30</code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">coap://test-url/v1/sample_channel/sample_subject?application=app1&amp;device=device%232&amp;data_schema=application%2Foctet-stream&amp;as=device%232&amp;ct=30</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -378,7 +378,7 @@ The format of the device authentication information is <code>&lt;device-id&gt;@&
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>Basic ZGV2aWNlMUBhcHAxOmhleS1yb2RuZXk // present as bytes</code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">Basic ZGV2aWNlMUBhcHAxOmhleS1yb2RuZXk // present as bytes</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -390,7 +390,7 @@ The format of the device authentication information is <code>&lt;device-id&gt;@&
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>v1, Rust, test // present as bytes</code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">v1, Rust, test // present as bytes</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -402,7 +402,7 @@ The format of the device authentication information is <code>&lt;device-id&gt;@&
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>// present as bytes
+<pre class="highlightjs highlight"><code class="language-none hljs">// present as bytes
 application=app1&amp;device=device%232&amp;data_schema=application%2Foctet-stream&amp;as=device%234&amp;ct=30</code></pre>
 </div>
 </div>
@@ -430,7 +430,7 @@ application=app1&amp;device=device%232&amp;data_schema=application%2Foctet-strea
 </main>
 </div>
 <footer class="footer">
-  <p>This page was built using the Antora default UI.</p>
+  <p>This page was built using a modified version of the Antora default UI.</p>
   <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
 </footer>
 <script src="../../../_/js/site.js"></script>
