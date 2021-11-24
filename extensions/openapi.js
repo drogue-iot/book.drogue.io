@@ -24,11 +24,6 @@ class Openapi {
 
         this.context
             .on('contentClassified', this.onContentClassified.bind(this))
-            .on('playbookBuilt', this.onPlaybookBuilt.bind(this))
-    }
-
-    onPlaybookBuilt({playbook}) {
-        this.baseDir = playbook.dir || "."
     }
 
     async onContentClassified({playbook, contentCatalog}) {
@@ -50,21 +45,35 @@ class Openapi {
     }
 
     async processSpec(contentCatalog, spec) {
+        const os = this.context.require('os');
+        const fsPromises = this.context.require('fs/promises');
         const path = this.context.require('path');
 
-        const target = path.join(path.dirname(path.dirname(spec.src.abspath)), "pages");
-        const targetFile = path.join(target, spec.src.stem + ".adoc");
+        if ( spec.src.abspath ) {
+            // we already got a file
+            await this.renderSpec(contentCatalog, spec, spec.src.abspath);
+        } else {
+            // we need to make a file
 
-        this.logger.debug(`Output: ${target}`);
+            const dir = await fsPromises.mkdtemp(await fsPromises.realpath(os.tmpdir()) + path.sep);
+            const source = path.join(dir, "index.yaml");
 
-        await this.renderSpec(contentCatalog, spec);
+            try {
+                await fsPromises.writeFile(source, spec.contents)
+                await this.renderSpec(contentCatalog, spec, source);
+            } finally {
+                await fsPromises.rm(dir, {recursive: true});
+            }
+
+        }
+
     }
 
-    async renderSpec(contentCatalog, spec) {
+    async renderSpec(contentCatalog, spec, path) {
         const SwaggerParser = this.context.require("@apidevtools/swagger-parser");
 
-        const api = await SwaggerParser.parse(spec.src.abspath);
-        const $refs = await SwaggerParser.resolve(spec.src.abspath);
+        const api = await SwaggerParser.parse(path);
+        const $refs = await SwaggerParser.resolve(api);
 
         this.logger.info("API name: %s, Version: %s", api.info.title, api.info.version);
 
