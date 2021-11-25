@@ -286,15 +286,15 @@
 <article class="doc">
 <h1 class="page">Endpoints</h1>
 <div class="sect1">
-<h2 id="_api_keys"><a class="anchor" href="#_api_keys"></a>API keys</h2>
+<h2 id="_access_token"><a class="anchor" href="#_access_token"></a>Access Token</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Manage access key to the API.</p>
+<p>Manage personal access tokens to authenticate with drogue cloud.</p>
 </div>
 <div class="sect2">
-<h3 id="_get_apikeysv1alpha1"><a class="anchor" href="#_get_apikeysv1alpha1"></a>GET <code>/api/keys/v1alpha1</code></h3>
+<h3 id="_get_apitokensv1alpha1"><a class="anchor" href="#_get_apitokensv1alpha1"></a>GET <code>/api/tokens/v1alpha1</code></h3>
 <div class="paragraph">
-<p>List API keys for this user.</p>
+<p>List access tokens for this user.</p>
 </div>
 <div class="sect3">
 <h4 id="_responses"><a class="anchor" href="#_responses"></a>Responses</h4>
@@ -313,7 +313,7 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>All API keys for this user.</p>
+<p>All access tokens for this user.</p>
 </div>
 <div class="dlist">
 <dl>
@@ -321,7 +321,7 @@
 <dd>
 <p></p>
 <div class="paragraph">
-<p>List of <a href="schemas.html#_responseapikeysv1alpha1get200applicationjsonitems" class="xref page">ResponseApiKeysV1alpha1Get200ApplicationJsonItems</a></p>
+<p>List of <a href="schemas.html#_responseapitokensv1alpha1get200applicationjsonitems" class="xref page">ResponseApiTokensV1alpha1Get200ApplicationJsonItems</a></p>
 </div>
 </dd>
 </dl>
@@ -332,9 +332,9 @@
 </div>
 </div>
 <div class="sect2">
-<h3 id="_post_apikeysv1alpha1"><a class="anchor" href="#_post_apikeysv1alpha1"></a>POST <code>/api/keys/v1alpha1</code></h3>
+<h3 id="_post_apitokensv1alpha1"><a class="anchor" href="#_post_apitokensv1alpha1"></a>POST <code>/api/tokens/v1alpha1</code></h3>
 <div class="paragraph">
-<p>Create a new API key for this user.</p>
+<p>Create a new access tokens for this user.</p>
 </div>
 <div class="sect3">
 <h4 id="_responses_2"><a class="anchor" href="#_responses_2"></a>Responses</h4>
@@ -353,7 +353,7 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>A new API key was created.</p>
+<p>A new access token was created.</p>
 </div>
 <div class="dlist">
 <dl>
@@ -361,7 +361,7 @@
 <dd>
 <p></p>
 <div class="paragraph">
-<p><a href="schemas.html#_responseapikeysv1alpha1post200applicationjson" class="xref page">ResponseApiKeysV1alpha1Post200ApplicationJson</a></p>
+<p><a href="schemas.html#_responseapitokensv1alpha1post200applicationjson" class="xref page">ResponseApiTokensV1alpha1Post200ApplicationJson</a></p>
 </div>
 </dd>
 </dl>
@@ -372,9 +372,9 @@
 </div>
 </div>
 <div class="sect2">
-<h3 id="_delete_apikeysv1alpha1prefix"><a class="anchor" href="#_delete_apikeysv1alpha1prefix"></a>DELETE <code>/api/keys/v1alpha1/{prefix}</code></h3>
+<h3 id="_delete_apitokensv1alpha1prefix"><a class="anchor" href="#_delete_apitokensv1alpha1prefix"></a>DELETE <code>/api/tokens/v1alpha1/{prefix}</code></h3>
 <div class="paragraph">
-<p>Delete an API key by prefix.</p>
+<p>Delete an access token by prefix.</p>
 </div>
 <div class="sect3">
 <h4 id="_parameters"><a class="anchor" href="#_parameters"></a>Parameters</h4>
@@ -400,7 +400,7 @@
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>string</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The prefix of the API key to delete.</p></div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The prefix of the access token to delete.</p></div></div></td>
 </tr>
 </tbody>
 </table>
@@ -422,10 +422,10 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">204</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Successfully deleted the API key.</p>
+<p>Successfully deleted the token.</p>
 </div>
 <div class="paragraph">
-<p>If the API key didn&#39;t exist, still 204 will be returned.</p>
+<p>If the access token didn&#39;t exist, still 204 will be returned.</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -852,12 +852,120 @@ This is modeled after the <a href="https://kubernetes.io/docs/concepts/overview/
 </div>
 </div>
 <div class="sect2">
+<h3 id="_patch_apiregistryv1alpha1appsappid"><a class="anchor" href="#_patch_apiregistryv1alpha1appsappid"></a>PATCH <code>/api/registry/v1alpha1/apps/{appId}</code></h3>
+<div class="paragraph">
+<p>FUTURE USE: Patch existing app</p>
+</div>
+<div class="sect3">
+<h4 id="_parameters_6"><a class="anchor" href="#_parameters_6"></a>Parameters</h4>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Location</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">appId*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">path</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>string</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The Application ID.</p></div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>uid</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">query</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>string</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The expected UID of the entry, for optimistic locking.</p></div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>resourceVersion</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">query</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>string</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The resource version of the existing data, for optimistic locking.</p></div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_request_3"><a class="anchor" href="#_request_3"></a>Request</h4>
+<div class="paragraph">
+<p>The JSON patch to apply</p>
+</div>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Content Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>application/json</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="schemas.html#_#/components/schema/patch" class="xref page">#/components/schema/Patch</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_responses_9"><a class="anchor" href="#_responses_9"></a>Responses</h4>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Code</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">204</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>If the app is updated</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">404</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>If requested apps do not exits or if the user has not access to them.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_get_apiregistryv1alpha1appsappiddevices"><a class="anchor" href="#_get_apiregistryv1alpha1appsappiddevices"></a>GET <code>/api/registry/v1alpha1/apps/{appId}/devices</code></h3>
 <div class="paragraph">
 <p>Return all the devices of the application.</p>
 </div>
 <div class="sect3">
-<h4 id="_parameters_6"><a class="anchor" href="#_parameters_6"></a>Parameters</h4>
+<h4 id="_parameters_7"><a class="anchor" href="#_parameters_7"></a>Parameters</h4>
 <table class="tableblock frame-none grid-rows fit-content stretch">
 <colgroup>
 <col>
@@ -935,7 +1043,7 @@ This is modeled after the <a href="https://kubernetes.io/docs/concepts/overview/
 </table>
 </div>
 <div class="sect3">
-<h4 id="_responses_9"><a class="anchor" href="#_responses_9"></a>Responses</h4>
+<h4 id="_responses_10"><a class="anchor" href="#_responses_10"></a>Responses</h4>
 <table class="tableblock frame-none grid-rows fit-content stretch">
 <colgroup>
 <col>
@@ -970,7 +1078,7 @@ This is modeled after the <a href="https://kubernetes.io/docs/concepts/overview/
 <p>Create a new device.</p>
 </div>
 <div class="sect3">
-<h4 id="_parameters_7"><a class="anchor" href="#_parameters_7"></a>Parameters</h4>
+<h4 id="_parameters_8"><a class="anchor" href="#_parameters_8"></a>Parameters</h4>
 <table class="tableblock frame-none grid-rows fit-content stretch">
 <colgroup>
 <col>
@@ -999,7 +1107,7 @@ This is modeled after the <a href="https://kubernetes.io/docs/concepts/overview/
 </table>
 </div>
 <div class="sect3">
-<h4 id="_request_3"><a class="anchor" href="#_request_3"></a>Request</h4>
+<h4 id="_request_4"><a class="anchor" href="#_request_4"></a>Request</h4>
 <div class="paragraph">
 <p>The device object to add.</p>
 </div>
@@ -1023,7 +1131,7 @@ This is modeled after the <a href="https://kubernetes.io/docs/concepts/overview/
 </table>
 </div>
 <div class="sect3">
-<h4 id="_responses_10"><a class="anchor" href="#_responses_10"></a>Responses</h4>
+<h4 id="_responses_11"><a class="anchor" href="#_responses_11"></a>Responses</h4>
 <table class="tableblock frame-none grid-rows fit-content stretch">
 <colgroup>
 <col>
@@ -1058,7 +1166,7 @@ This is modeled after the <a href="https://kubernetes.io/docs/concepts/overview/
 <p>Return device details.</p>
 </div>
 <div class="sect3">
-<h4 id="_parameters_8"><a class="anchor" href="#_parameters_8"></a>Parameters</h4>
+<h4 id="_parameters_9"><a class="anchor" href="#_parameters_9"></a>Parameters</h4>
 <table class="tableblock frame-none grid-rows fit-content stretch">
 <colgroup>
 <col>
@@ -1095,7 +1203,7 @@ This is modeled after the <a href="https://kubernetes.io/docs/concepts/overview/
 </table>
 </div>
 <div class="sect3">
-<h4 id="_responses_11"><a class="anchor" href="#_responses_11"></a>Responses</h4>
+<h4 id="_responses_12"><a class="anchor" href="#_responses_12"></a>Responses</h4>
 <table class="tableblock frame-none grid-rows fit-content stretch">
 <colgroup>
 <col>
@@ -1141,7 +1249,7 @@ This is modeled after the <a href="https://kubernetes.io/docs/concepts/overview/
 <p>update existing device</p>
 </div>
 <div class="sect3">
-<h4 id="_parameters_9"><a class="anchor" href="#_parameters_9"></a>Parameters</h4>
+<h4 id="_parameters_10"><a class="anchor" href="#_parameters_10"></a>Parameters</h4>
 <table class="tableblock frame-none grid-rows fit-content stretch">
 <colgroup>
 <col>
@@ -1178,7 +1286,7 @@ This is modeled after the <a href="https://kubernetes.io/docs/concepts/overview/
 </table>
 </div>
 <div class="sect3">
-<h4 id="_request_4"><a class="anchor" href="#_request_4"></a>Request</h4>
+<h4 id="_request_5"><a class="anchor" href="#_request_5"></a>Request</h4>
 <div class="paragraph">
 <p>The data object of the device to update</p>
 </div>
@@ -1202,7 +1310,7 @@ This is modeled after the <a href="https://kubernetes.io/docs/concepts/overview/
 </table>
 </div>
 <div class="sect3">
-<h4 id="_responses_12"><a class="anchor" href="#_responses_12"></a>Responses</h4>
+<h4 id="_responses_13"><a class="anchor" href="#_responses_13"></a>Responses</h4>
 <table class="tableblock frame-none grid-rows fit-content stretch">
 <colgroup>
 <col>
@@ -1237,7 +1345,7 @@ This is modeled after the <a href="https://kubernetes.io/docs/concepts/overview/
 <p>Delete existing device</p>
 </div>
 <div class="sect3">
-<h4 id="_parameters_10"><a class="anchor" href="#_parameters_10"></a>Parameters</h4>
+<h4 id="_parameters_11"><a class="anchor" href="#_parameters_11"></a>Parameters</h4>
 <table class="tableblock frame-none grid-rows fit-content stretch">
 <colgroup>
 <col>
@@ -1294,7 +1402,7 @@ This is modeled after the <a href="https://kubernetes.io/docs/concepts/overview/
 </table>
 </div>
 <div class="sect3">
-<h4 id="_responses_13"><a class="anchor" href="#_responses_13"></a>Responses</h4>
+<h4 id="_responses_14"><a class="anchor" href="#_responses_14"></a>Responses</h4>
 <table class="tableblock frame-none grid-rows fit-content stretch">
 <colgroup>
 <col>
@@ -1323,6 +1431,122 @@ This is modeled after the <a href="https://kubernetes.io/docs/concepts/overview/
 </table>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_patch_apiregistryv1alpha1appsappiddevicesdeviceid"><a class="anchor" href="#_patch_apiregistryv1alpha1appsappiddevicesdeviceid"></a>PATCH <code>/api/registry/v1alpha1/apps/{appId}/devices/{deviceId}</code></h3>
+<div class="paragraph">
+<p>FUTURE USE: Patch existing device</p>
+</div>
+<div class="sect3">
+<h4 id="_parameters_12"><a class="anchor" href="#_parameters_12"></a>Parameters</h4>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Location</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">appId*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">path</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>string</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The Application ID.</p></div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">deviceId*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">path</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>string</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The device ID.</p></div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>uid</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">query</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>string</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The expected UID of the entry, for optimistic locking.</p></div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>resourceVersion</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">query</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>string</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The resource version of the existing data, for optimistic locking.</p></div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_request_6"><a class="anchor" href="#_request_6"></a>Request</h4>
+<div class="paragraph">
+<p>The JSON patch to apply</p>
+</div>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Content Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>application/json</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="schemas.html#_patch" class="xref page">Patch</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_responses_15"><a class="anchor" href="#_responses_15"></a>Responses</h4>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Code</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">204</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>If the device is updated</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">404</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>If requested device does not exist or if the user has no access to it.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -1337,7 +1561,7 @@ This is modeled after the <a href="https://kubernetes.io/docs/concepts/overview/
 <p>Retrieve state of the application transfer</p>
 </div>
 <div class="sect3">
-<h4 id="_parameters_11"><a class="anchor" href="#_parameters_11"></a>Parameters</h4>
+<h4 id="_parameters_13"><a class="anchor" href="#_parameters_13"></a>Parameters</h4>
 <table class="tableblock frame-none grid-rows fit-content stretch">
 <colgroup>
 <col>
@@ -1366,7 +1590,7 @@ This is modeled after the <a href="https://kubernetes.io/docs/concepts/overview/
 </table>
 </div>
 <div class="sect3">
-<h4 id="_responses_14"><a class="anchor" href="#_responses_14"></a>Responses</h4>
+<h4 id="_responses_16"><a class="anchor" href="#_responses_16"></a>Responses</h4>
 <table class="tableblock frame-none grid-rows fit-content stretch">
 <colgroup>
 <col>
@@ -1418,7 +1642,7 @@ This is modeled after the <a href="https://kubernetes.io/docs/concepts/overview/
 <p>Initiate the process to transfer the ownership.</p>
 </div>
 <div class="sect3">
-<h4 id="_parameters_12"><a class="anchor" href="#_parameters_12"></a>Parameters</h4>
+<h4 id="_parameters_14"><a class="anchor" href="#_parameters_14"></a>Parameters</h4>
 <table class="tableblock frame-none grid-rows fit-content stretch">
 <colgroup>
 <col>
@@ -1447,7 +1671,7 @@ This is modeled after the <a href="https://kubernetes.io/docs/concepts/overview/
 </table>
 </div>
 <div class="sect3">
-<h4 id="_request_5"><a class="anchor" href="#_request_5"></a>Request</h4>
+<h4 id="_request_7"><a class="anchor" href="#_request_7"></a>Request</h4>
 <table class="tableblock frame-none grid-rows fit-content stretch">
 <colgroup>
 <col>
@@ -1468,7 +1692,7 @@ This is modeled after the <a href="https://kubernetes.io/docs/concepts/overview/
 </table>
 </div>
 <div class="sect3">
-<h4 id="_responses_15"><a class="anchor" href="#_responses_15"></a>Responses</h4>
+<h4 id="_responses_17"><a class="anchor" href="#_responses_17"></a>Responses</h4>
 <table class="tableblock frame-none grid-rows fit-content stretch">
 <colgroup>
 <col>
@@ -1501,137 +1725,6 @@ This is modeled after the <a href="https://kubernetes.io/docs/concepts/overview/
 <h3 id="_delete_apiadminv1alpha1appsappidtransfer_ownership"><a class="anchor" href="#_delete_apiadminv1alpha1appsappidtransfer_ownership"></a>DELETE <code>/api/admin/v1alpha1/apps/{appId}/transfer-ownership</code></h3>
 <div class="paragraph">
 <p>Cancel an ownership transfer.</p>
-</div>
-<div class="sect3">
-<h4 id="_parameters_13"><a class="anchor" href="#_parameters_13"></a>Parameters</h4>
-<table class="tableblock frame-none grid-rows fit-content stretch">
-<colgroup>
-<col>
-<col>
-<col>
-<col>
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Name</th>
-<th class="tableblock halign-left valign-top">Location</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><b title="required">appId*</b></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">path</p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><code>string</code></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The Application ID.</p></div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_responses_16"><a class="anchor" href="#_responses_16"></a>Responses</h4>
-<table class="tableblock frame-none grid-rows fit-content stretch">
-<colgroup>
-<col>
-<col>
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Code</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">204</p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>The transfer was successfully canceled.</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">404</p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>The user has no access to the resource.</p>
-</div>
-<div class="paragraph">
-<p>This is also the case, when the transfer was already completed successfully.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_put_apiadminv1alpha1appsappidaccept_ownership"><a class="anchor" href="#_put_apiadminv1alpha1appsappidaccept_ownership"></a>PUT <code>/api/admin/v1alpha1/apps/{appId}/accept-ownership</code></h3>
-<div class="paragraph">
-<p>Accept an application as new owner.</p>
-</div>
-<div class="sect3">
-<h4 id="_parameters_14"><a class="anchor" href="#_parameters_14"></a>Parameters</h4>
-<table class="tableblock frame-none grid-rows fit-content stretch">
-<colgroup>
-<col>
-<col>
-<col>
-<col>
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Name</th>
-<th class="tableblock halign-left valign-top">Location</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><b title="required">appId*</b></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">path</p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><code>string</code></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The Application ID.</p></div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_responses_17"><a class="anchor" href="#_responses_17"></a>Responses</h4>
-<table class="tableblock frame-none grid-rows fit-content stretch">
-<colgroup>
-<col>
-<col>
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Code</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">204</p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Ownership is transfered.</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">404</p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>If the requested application does not exist or if the user has no access to it.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_get_apiadminv1alpha1appsappidmembers"><a class="anchor" href="#_get_apiadminv1alpha1appsappidmembers"></a>GET <code>/api/admin/v1alpha1/apps/{appId}/members</code></h3>
-<div class="paragraph">
-<p>Get curretn application members.</p>
 </div>
 <div class="sect3">
 <h4 id="_parameters_15"><a class="anchor" href="#_parameters_15"></a>Parameters</h4>
@@ -1677,6 +1770,137 @@ This is modeled after the <a href="https://kubernetes.io/docs/concepts/overview/
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">204</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The transfer was successfully canceled.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">404</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The user has no access to the resource.</p>
+</div>
+<div class="paragraph">
+<p>This is also the case, when the transfer was already completed successfully.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_put_apiadminv1alpha1appsappidaccept_ownership"><a class="anchor" href="#_put_apiadminv1alpha1appsappidaccept_ownership"></a>PUT <code>/api/admin/v1alpha1/apps/{appId}/accept-ownership</code></h3>
+<div class="paragraph">
+<p>Accept an application as new owner.</p>
+</div>
+<div class="sect3">
+<h4 id="_parameters_16"><a class="anchor" href="#_parameters_16"></a>Parameters</h4>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Location</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">appId*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">path</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>string</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The Application ID.</p></div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_responses_19"><a class="anchor" href="#_responses_19"></a>Responses</h4>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Code</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">204</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Ownership is transfered.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">404</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>If the requested application does not exist or if the user has no access to it.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_get_apiadminv1alpha1appsappidmembers"><a class="anchor" href="#_get_apiadminv1alpha1appsappidmembers"></a>GET <code>/api/admin/v1alpha1/apps/{appId}/members</code></h3>
+<div class="paragraph">
+<p>Get curretn application members.</p>
+</div>
+<div class="sect3">
+<h4 id="_parameters_17"><a class="anchor" href="#_parameters_17"></a>Parameters</h4>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Location</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">appId*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">path</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>string</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The Application ID.</p></div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_responses_20"><a class="anchor" href="#_responses_20"></a>Responses</h4>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Code</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>The list of members for this application.</p>
@@ -1709,7 +1933,7 @@ This is modeled after the <a href="https://kubernetes.io/docs/concepts/overview/
 <p>Update existing application member list.</p>
 </div>
 <div class="sect3">
-<h4 id="_parameters_16"><a class="anchor" href="#_parameters_16"></a>Parameters</h4>
+<h4 id="_parameters_18"><a class="anchor" href="#_parameters_18"></a>Parameters</h4>
 <table class="tableblock frame-none grid-rows fit-content stretch">
 <colgroup>
 <col>
@@ -1738,7 +1962,7 @@ This is modeled after the <a href="https://kubernetes.io/docs/concepts/overview/
 </table>
 </div>
 <div class="sect3">
-<h4 id="_request_6"><a class="anchor" href="#_request_6"></a>Request</h4>
+<h4 id="_request_8"><a class="anchor" href="#_request_8"></a>Request</h4>
 <div class="paragraph">
 <p>The new application member list.</p>
 </div>
@@ -1762,7 +1986,7 @@ This is modeled after the <a href="https://kubernetes.io/docs/concepts/overview/
 </table>
 </div>
 <div class="sect3">
-<h4 id="_responses_19"><a class="anchor" href="#_responses_19"></a>Responses</h4>
+<h4 id="_responses_21"><a class="anchor" href="#_responses_21"></a>Responses</h4>
 <table class="tableblock frame-none grid-rows fit-content stretch">
 <colgroup>
 <col>
@@ -1818,7 +2042,7 @@ current version of the resource.</p>
 <p>Get information about the current user.</p>
 </div>
 <div class="sect3">
-<h4 id="_responses_20"><a class="anchor" href="#_responses_20"></a>Responses</h4>
+<h4 id="_responses_22"><a class="anchor" href="#_responses_22"></a>Responses</h4>
 <table class="tableblock frame-none grid-rows fit-content stretch">
 <colgroup>
 <col>
@@ -1872,7 +2096,7 @@ current version of the resource.</p>
 <p>Send one way commands to devices.</p>
 </div>
 <div class="sect3">
-<h4 id="_parameters_17"><a class="anchor" href="#_parameters_17"></a>Parameters</h4>
+<h4 id="_parameters_19"><a class="anchor" href="#_parameters_19"></a>Parameters</h4>
 <table class="tableblock frame-none grid-rows fit-content stretch">
 <colgroup>
 <col>
@@ -1917,7 +2141,7 @@ current version of the resource.</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_request_7"><a class="anchor" href="#_request_7"></a>Request</h4>
+<h4 id="_request_9"><a class="anchor" href="#_request_9"></a>Request</h4>
 <div class="paragraph">
 <p>Optional payload for the command</p>
 </div>
@@ -1941,7 +2165,7 @@ current version of the resource.</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_responses_21"><a class="anchor" href="#_responses_21"></a>Responses</h4>
+<h4 id="_responses_23"><a class="anchor" href="#_responses_23"></a>Responses</h4>
 <table class="tableblock frame-none grid-rows fit-content stretch">
 <colgroup>
 <col>
@@ -1992,7 +2216,7 @@ be sent to the device.</p>
 <p>Explicitly wait for commands</p>
 </div>
 <div class="sect3">
-<h4 id="_parameters_18"><a class="anchor" href="#_parameters_18"></a>Parameters</h4>
+<h4 id="_parameters_20"><a class="anchor" href="#_parameters_20"></a>Parameters</h4>
 <table class="tableblock frame-none grid-rows fit-content stretch">
 <colgroup>
 <col>
@@ -2039,7 +2263,7 @@ be sent to the device.</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_responses_22"><a class="anchor" href="#_responses_22"></a>Responses</h4>
+<h4 id="_responses_24"><a class="anchor" href="#_responses_24"></a>Responses</h4>
 <table class="tableblock frame-none grid-rows fit-content stretch">
 <colgroup>
 <col>
@@ -2124,7 +2348,7 @@ Request
 <p>Send a command result.</p>
 </div>
 <div class="sect3">
-<h4 id="_parameters_19"><a class="anchor" href="#_parameters_19"></a>Parameters</h4>
+<h4 id="_parameters_21"><a class="anchor" href="#_parameters_21"></a>Parameters</h4>
 <table class="tableblock frame-none grid-rows fit-content stretch">
 <colgroup>
 <col>
@@ -2179,7 +2403,7 @@ Request
 </table>
 </div>
 <div class="sect3">
-<h4 id="_request_8"><a class="anchor" href="#_request_8"></a>Request</h4>
+<h4 id="_request_10"><a class="anchor" href="#_request_10"></a>Request</h4>
 <div class="paragraph">
 <p>Optional payload for the command response</p>
 </div>
@@ -2203,7 +2427,7 @@ Request
 </table>
 </div>
 <div class="sect3">
-<h4 id="_responses_23"><a class="anchor" href="#_responses_23"></a>Responses</h4>
+<h4 id="_responses_25"><a class="anchor" href="#_responses_25"></a>Responses</h4>
 <table class="tableblock frame-none grid-rows fit-content stretch">
 <colgroup>
 <col>
@@ -2240,7 +2464,7 @@ Request
 <p>Get version</p>
 </div>
 <div class="sect3">
-<h4 id="_responses_24"><a class="anchor" href="#_responses_24"></a>Responses</h4>
+<h4 id="_responses_26"><a class="anchor" href="#_responses_26"></a>Responses</h4>
 <table class="tableblock frame-none grid-rows fit-content stretch">
 <colgroup>
 <col>
@@ -2280,7 +2504,7 @@ Request
 <p>Get publicly known endpoints</p>
 </div>
 <div class="sect3">
-<h4 id="_responses_25"><a class="anchor" href="#_responses_25"></a>Responses</h4>
+<h4 id="_responses_27"><a class="anchor" href="#_responses_27"></a>Responses</h4>
 <table class="tableblock frame-none grid-rows fit-content stretch">
 <colgroup>
 <col>
