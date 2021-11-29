@@ -1,1 +1,3 @@
 = {{ api.info.title }} {{ api.info.version }}
+
+{{ markdown(api.info.description) | safe }}
