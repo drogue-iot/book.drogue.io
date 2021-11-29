@@ -18,6 +18,8 @@ of Rust to the embedded world:
 [quote, Rust, from the Rust Homepage]
 A language empowering everyone  to build reliable and efficient software.
 
+Read more: xref:drogue-device::index.adoc[Drogue Device]
+
 == The edge
 
 The edge brings together devices and the cloud side if that is required. If that is just onboarding traffic to an IP-based network, or bringing processing logic closer to devices depends on each use case. Thus edge nodes sometimes look more like a device in some cases, and more like _the cloud_ in others.

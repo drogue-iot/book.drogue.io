@@ -16,7 +16,7 @@ content:
     - url: ../drogue-cloud
       branches: HEAD
       start_path: docs
-    - url: https://github.com/drogue-iot/drogue-device.git
+    - url: ../drogue-device
       branches: main
       start_path: docs
     - url: ../drogue-workshops
