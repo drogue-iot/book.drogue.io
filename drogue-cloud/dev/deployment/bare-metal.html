@@ -357,7 +357,7 @@
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">version: "3.9"
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">version: "3.9"
 services:
   postgres:
     image: docker.io/bitnami/postgresql:13
@@ -389,11 +389,11 @@ services:
 <h2 id="_running"><a class="anchor" href="#_running"></a>Running</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Make sure all dependencies are running correcrly. To start the drogue server, run:</p>
+<p>Make sure all dependencies are running correctly. To start the drogue server, run:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">drogue-cloud-server --enable-all</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">drogue-cloud-server run --enable-all</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -417,7 +417,7 @@ services:
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">drg login http://localhost:10001</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">drg login http://localhost:10001</code></pre>
 </div>
 </div>
 </div>
