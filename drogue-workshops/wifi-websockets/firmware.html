@@ -279,34 +279,15 @@ hardware configuration!
 <h2 id="_update_the_device_configuration"><a class="anchor" href="#_update_the_device_configuration"></a>Update the device configuration</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>For the device to access your WiFi network, you must add the SSID and PSK to the following files:</p>
+<p>For the device to access your WiFi network and Drogue Cloud, you must add the WiFi and device credentials to the <code>~/.drogue/config.toml</code> file:</p>
 </div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1"><code>config/wifi.ssid.txt</code></dt>
-<dd>
-<p>The WiFi network SSID</p>
-</dd>
-<dt class="hdlist1"><code>config/wifi.password.txt</code></dt>
-<dd>
-<p>The WiFi network pre-shared key</p>
-</dd>
-</dl>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-toml hljs" data-lang="toml">wifi-ssid = "..."       # The WiFi network SSID
+wifi-password = "..."   # The WiFi network pre-shared key
+http-username = "..."   # The device username (I.e. `device1@wifi-workshop`)
+http-password = "..."   # The device password (I.e. `mysecretpassword`)</code></pre>
 </div>
-<div class="paragraph">
-<p>For the device to access Drogue Cloud, it also needs the device credentials you created earlier:</p>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1"><code>config/http.username.txt</code></dt>
-<dd>
-<p>The device username (I.e. <code>device1@wifi-workshop</code>)</p>
-</dd>
-<dt class="hdlist1"><code>config/http.password.txt</code></dt>
-<dd>
-<p>The device password (I.e. <code>mysecretpassword</code>)</p>
-</dd>
-</dl>
 </div>
 </div>
 </div>
@@ -341,10 +322,15 @@ You need to have the developer board attached to your computer.
 </td>
 <td class="content">
 You might have an IoT01A board with a different chip, e.g. <code>L4S5VI</code>. Please check your board and use appropriate
-value for the <code>PROBE_RUN_CHIP</code> variable , like <code>PROBE_RUN_CHIP=STM32L4S5VI</code>.
+value for the <code>PROBE_RUN_CHIP</code> variable , like <code>PROBE_RUN_CHIP=STM32L4S5VI</code>:
 </td>
 </tr>
 </table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">DEFMT_LOG=info PROBE_RUN_CHIP=STM32L4S5VI cargo run --release --features b-l4s5i-iot01a,tls</code></pre>
+</div>
 </div>
 </div>
 </div>
