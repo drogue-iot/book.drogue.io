@@ -1,3 +1,4 @@
 * xref:drogue-cloud::index.adoc[Drogue Cloud]
 * xref:drogue-device::index.adoc[Drogue Device]
+** xref:embassy::index.adoc[Embassy]
 * xref:drogue-workshops::index.adoc[Workshops]
