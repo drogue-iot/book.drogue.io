@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Getting started :: Drogue IoT</title>
+    <meta name="generator" content="Antora 3.0.0-rc.2">
+    <link rel="stylesheet" href="../../_/css/site.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4BRXRBJJ1"></script>
+    <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','G-Z4BRXRBJJ1')</script>
+    <script>var uiRootPath = '../../_'</script>
+    <link rel="icon" href="../../_/img/favicon.svg" type="image/svg+xml">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="../..">
+        <img class="navbar-brand-image" src="../../_/img/logo.png" alt="Drogue IoT"/>
+      </a>
+
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://blog.drogue.io" target="_blank">Blog</a>
+        <a class="navbar-item" href="https://matrix.to/#/#drogue-iot:matrix.org" target="_blank">Chat</a>
+        <a class="navbar-item" href="https://book.drogue.io">Documentation</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="embassy" data-version="dev">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Embassy</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="runtime.html">Runtime</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="traits.html">APIs</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="hal.html">Hardware Abstraction Layer</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="nrf.html">nRF</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="stm32.html">STM32</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="getting_started.html">Getting started</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="basic_application.html">Basic application</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="examples.html">Examples</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Embassy</span>
+    <span class="version">dev</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <a class="title" href="../../drogue-cloud/dev/index.html">Drogue Cloud</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../drogue-cloud/dev/index.html">dev</a>
+        </li>
+        <li class="version">
+          <a href="../../drogue-cloud/0.8/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../drogue-cloud/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../drogue-cloud/0.6/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../drogue-cloud/0.5/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../drogue-cloud/0.4/index.html">0.4</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../drogue-device/dev/index.html">Drogue Device</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../drogue-device/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../drogue-book/index.html">Drogue IoT</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../drogue-book/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../drogue-workshops/index.html">Drogue IoT Workshops</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../drogue-workshops/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <a class="title" href="index.html">Embassy</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../drogue-book/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Embassy</a></li>
+    <li><a href="getting_started.html">Getting started</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/embassy-rs/embassy/edit/book-poc/docs/modules/ROOT/pages/getting_started.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Getting started</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>So you want to try Embassy, great! To get started, there are a few tools you need to install:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://rustup.rs/">rustup</a> - the Rust toolchain is needed to compile Rust code.</p>
+</li>
+<li>
+<p><a href="https://crates.io/crates/probe-run">probe-run</a> - to flash the firmware on your device. If you already have other tools like <code>OpenOCD</code> setup, you can use that as well.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If you don&#8217;t have any supported board, don&#8217;t worry: you can also run embassy on your PC using the <code>std</code> examples.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_getting_a_board_with_examples"><a class="anchor" href="#_getting_a_board_with_examples"></a>Getting a board with examples</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Embassy supports many microcontroller families, but the easiest ways to get started is if you have one of the more common development kits.</p>
+</div>
+<div class="sect2">
+<h3 id="_nrf_kits"><a class="anchor" href="#_nrf_kits"></a>nRF kits</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.nordicsemi.com/Products/Development-hardware/nrf52-dk">nRF52 DK</a></p>
+</li>
+<li>
+<p><a href="https://www.nordicsemi.com/Products/Development-hardware/nRF9160-DK">nRF9160 DK</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_stm32_kits"><a class="anchor" href="#_stm32_kits"></a>STM32 kits</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.st.com/en/evaluation-tools/nucleo-h743zi.html">STM32 Nucleo-144 development board with STM32H743ZI MCU</a></p>
+</li>
+<li>
+<p><a href="https://www.st.com/en/evaluation-tools/nucleo-f429zi.html">STM32 Nucleo-144 development board with STM32F429ZI MCU</a></p>
+</li>
+<li>
+<p><a href="https://www.st.com/en/evaluation-tools/b-l4s5i-iot01a.html">STM32L4+ Discovery kit IoT node, low-power wireless, BLE, NFC, WiFi</a></p>
+</li>
+<li>
+<p><a href="https://www.st.com/en/evaluation-tools/b-l072z-lrwan1.html">STM32L0 Discovery kit LoRa, Sigfox, low-power wireless</a></p>
+</li>
+<li>
+<p><a href="https://www.st.com/en/evaluation-tools/nucleo-wl55jc.html">STM32 Nucleo-64 development board with STM32WL55JCI MCU</a></p>
+</li>
+<li>
+<p><a href="https://www.st.com/en/evaluation-tools/b-u585i-iot02a.html">Discovery kit for IoT node with STM32U5 series</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_rp2040_kits"><a class="anchor" href="#_rp2040_kits"></a>RP2040 kits</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.raspberrypi.com/products/raspberry-pi-pico/">Raspberry Pi Pico</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_running_an_example"><a class="anchor" href="#_running_an_example"></a>Running an example</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>First you need to clone the [github repository];</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone https://github.com/embassy-rs/embassy.git
+cd embassy</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can run an example by opening a terminal and entering the following commands:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd examples/nrf
+DEFMT_LOG=info cargo run --bin blinky --release</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The DEFMT_LOG environment variable controls the example log verbosity. If you do not specify it, you will not see anything logged to the console.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_whats_next"><a class="anchor" href="#_whats_next"></a>Whats next?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Congratulations, you have your first Embassy application running! Here are some alternatives on where to go from here:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Read more about the <a href="runtime.html" class="xref page">runtime</a>.</p>
+</li>
+<li>
+<p>Read more about the <a href="hal.html" class="xref page">HAL</a>.</p>
+</li>
+<li>
+<p>Start <a href="basic_application.html" class="xref page">writing your application</a>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using a modified version of the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
