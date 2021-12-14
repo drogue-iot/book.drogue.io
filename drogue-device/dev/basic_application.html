@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>A basic Drogue Device application :: Drogue IoT</title>
+    <meta name="generator" content="Antora 3.0.0-rc.2">
+    <link rel="stylesheet" href="../../_/css/site.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4BRXRBJJ1"></script>
+    <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','G-Z4BRXRBJJ1')</script>
+    <script>var uiRootPath = '../../_'</script>
+    <link rel="icon" href="../../_/img/favicon.svg" type="image/svg+xml">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="../..">
+        <img class="navbar-brand-image" src="../../_/img/logo.png" alt="Drogue IoT"/>
+      </a>
+
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://blog.drogue.io" target="_blank">Blog</a>
+        <a class="navbar-item" href="https://matrix.to/#/#drogue-iot:matrix.org" target="_blank">Chat</a>
+        <a class="navbar-item" href="https://book.drogue.io">Documentation</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="drogue-device" data-version="dev">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Drogue Device</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="concepts.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="getting_started.html">Getting Started</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="basic_application.html">Basic Application</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="drivers.html">Drivers</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="examples.html">Examples</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../embassy/dev/index.html">Embassy</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Drogue Device</span>
+    <span class="version">dev</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <a class="title" href="../../drogue-cloud/dev/index.html">Drogue Cloud</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../drogue-cloud/dev/index.html">dev</a>
+        </li>
+        <li class="version">
+          <a href="../../drogue-cloud/0.8/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../drogue-cloud/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../drogue-cloud/0.6/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../drogue-cloud/0.5/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../drogue-cloud/0.4/index.html">0.4</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <a class="title" href="index.html">Drogue Device</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../drogue-book/index.html">Drogue IoT</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../drogue-book/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../drogue-workshops/index.html">Drogue IoT Workshops</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../drogue-workshops/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../embassy/dev/index.html">Embassy</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../embassy/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../drogue-book/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Drogue Device</a></li>
+    <li><a href="basic_application.html">Basic Application</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-device/edit/main/docs/modules/ROOT/pages/basic_application.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">A basic Drogue Device application</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>So you&#8217;ve got one of the <a href="examples.html" class="xref page">examples</a> running, but what now? Let&#8217;s go through a simple application for the BBC:microbit to understand it better.</p>
+</div>
+<div class="paragraph">
+<p>The application is a simple game: As a cursor traverses the LED matrix, use the button to toggle the 'set' state of each individual LED. Once all LEDs are lit, you win!</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_main"><a class="anchor" href="#_main"></a>Main</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The full example can be found <a href="https://github.com/drogue-iot/drogue-device/tree/main/docs/modules/ROOT/examples/basic">here</a>.</p>
+</div>
+<div class="sect2">
+<h3 id="_rust_nightly"><a class="anchor" href="#_rust_nightly"></a>Rust Nightly</h3>
+<div class="paragraph">
+<p>The first thing you&#8217;ll notice is a few declarations stating that the application requires some nightly features:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">#![no_std]
+#![no_main]
+#![macro_use]
+#![feature(generic_associated_types)]
+#![feature(type_alias_impl_trait)]</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_dealing_with_errors"><a class="anchor" href="#_dealing_with_errors"></a>Dealing with errors</h3>
+<div class="paragraph">
+<p>Then, what follows are some declarations on how to deal with panics and faults. During development, a good practice is to rely on <code>defmt-rtt</code> and <code>panic-probe</code> to print diagnostics to the terminal:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">use defmt_rtt as _;
+use panic_probe as _;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_defining_actors"><a class="anchor" href="#_defining_actors"></a>Defining actors</h3>
+<div class="paragraph">
+<p>Lets define the basic game first. We&#8217;ll model the game as an actor named <code>Game</code>, and it will drive the entire game logic and interact with the LED matrix and the 'A' button on the micro:bit board.</p>
+</div>
+<div class="paragraph">
+<p>Luckily, Drogue Device already have actors for buttons and LED matrices, so we only need to create the <code>Game</code> actor.</p>
+</div>
+<div class="paragraph">
+<p>Lets start with the types:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">/// A simple game where the led matrix is traversed at a fixed interval and you press the button
+/// to light a red. You win when the whole board is lit.
+struct Game {
+    matrix: Address&lt;LedMatrixActor&gt;,
+}
+
+#[derive(Clone)]
+pub enum GameMessage {
+    Toggle,
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>Game</code> type holds on to the <code>Address</code> of the led matrix actor. The <code>Address</code> type is a handle that you can use to send messages to an <code>Actor</code>. In addition, we define the <code>GameMessage</code> message that our actor will expect to be notified
+of whenever the button is pressed.</p>
+</div>
+<div class="paragraph">
+<p>We can now have our <code>Game</code> type implement the <code>Actor</code> trait:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">impl Actor for Game {
+    type Message&lt;'m&gt; = GameMessage;
+    type OnMountFuture&lt;'m, M&gt;
+    where
+        M: 'm,
+    = impl Future&lt;Output = ()&gt; + 'm;
+
+    fn on_mount&lt;'m, M&gt;(
+        &amp;'m mut self,
+        _: Address&lt;Self&gt;,
+        inbox: &amp;'m mut M,
+    ) -&gt; Self::OnMountFuture&lt;'m, M&gt;
+    where
+        M: Inbox&lt;Self&gt; + 'm,
+    {</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>Message</code> of an <code>Actor</code> defines the messages that our actor expects to handle. Next, the <code>OnMountFuture</code> associated type needs to be defined.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Why do you have to define the <code>OnMountFuture</code> type? The rust compiler cannot automatically infer the size of the <code>on_mount</code> entry point, and needs some assistance in knowing what to do. This is only temporary until Rust supports basic async traits, so for now we&#8217;ll have to live with it.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>We can now define the main actor logic in the <code>on_mount</code> implementation. The type signature of this method needs to match the lifetimes of the <code>OnMountFuture</code> for the Rust compiler to cope with it.</p>
+</div>
+<div class="paragraph">
+<p>The <code>on_mount</code> entry point is called only once, and should contain the Actor main loop. The actor is handed an address to itself. This can be useful if you need to register the <code>Actor</code> with other actors or types. The <code>Address</code> type can be copied, so it&#8217;s easy to pass around.</p>
+</div>
+<div class="paragraph">
+<p>The <code>Inbox</code> parameter is a handle that the actor can use to wait for incoming messages.</p>
+</div>
+<div class="sect3">
+<h4 id="_game_logic"><a class="anchor" href="#_game_logic"></a>Game logic</h4>
+<div class="paragraph">
+<p>Having the boilerplate out of the way, we can now focus on our application. The game logic can be described as follows:</p>
+</div>
+<div class="olist arabic">
+<div class="title">Game logic</div>
+<ol class="arabic">
+<li>
+<p>Define a set of coordinates in a 5x5 matrix</p>
+</li>
+<li>
+<p>Initialize cursor at (0, 0)</p>
+</li>
+<li>
+<p>Initialize coordinates as not being visited</p>
+</li>
+<li>
+<p>While not all coordinates visited</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Lit the LED at the cursor coordinate</p>
+</li>
+<li>
+<p>Wait for a GameMessage to arrive within a timeout</p>
+</li>
+<li>
+<p>If a GameMessage::Toggle arrived, toggle the visited status at the cursor coordinate</p>
+</li>
+<li>
+<p>Unlit the LED at the cursor coordinate, if not visited</p>
+</li>
+<li>
+<p>Update cursor</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The game logic is implemented here:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">        async move {
+            defmt::info!("Starting game! Press the 'A' button to lit the LED at the cursor.");
+            let speed = Duration::from_millis(200);
+
+            let mut coordinates: [[bool; 5]; 5] = [[false; 5]; 5];
+            let mut cursor = 0;
+            let (mut x, mut y) = (0, 0);
+            let mut done = false;
+
+            while !done {
+                self.matrix.on(x, y).await.unwrap();
+                // Race timeout and button press
+                let timeout = Timer::after(speed);
+                let event = inbox.next();
+                pin_mut!(timeout);
+                pin_mut!(event);
+                match select(timeout, event).await {
+                    // Timeout
+                    Either::Left(_) =&gt; {}
+                    // Set/unset
+                    Either::Right(_) =&gt; {
+                        coordinates[y][x] = !coordinates[y][x];
+                    }
+                }
+
+                // Unlit only if we're not set
+                if !coordinates[y][x] {
+                    self.matrix.off(x, y).await.unwrap();
+                }
+
+                // Check if game is done
+                done = true;
+                for x in 0..5 {
+                    for y in 0..5 {
+                        if !coordinates[y][x] {
+                            done = false;
+                            break;
+                        }
+                    }
+                }
+
+                x = cursor % 5;
+                y = (cursor / 5) % 5;
+                cursor += 1;
+            }</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <code>async move</code> keywords are used to tell the compiler to generate a future based on the code block within. Again this is something that will be hidden once Rust support async traits.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>You can see the use of the <code>self.matrix</code> which of type <code>Address</code>. The <code>on</code> method under the hood sends a message to a <code>LedMatrixActor</code> for toggling the LED at a given coordinate. The <code>inbox.next()</code> is an async funtion that completes when an event have been received.</p>
+</div>
+<div class="paragraph">
+<p>The <code>Timer</code> type can be used to asynchronously wait for an event. Finally, the <code>futures</code> <code>select</code> function can be used to "race" two async functions for completion.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_application_main"><a class="anchor" href="#_application_main"></a>Application main</h3>
+<div class="paragraph">
+<p>With the game logic defined, we can now wire our three actors together in the application main:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">#[embassy::main]
+async fn main(spawner: embassy::executor::Spawner, p: Peripherals) {
+    // Using a board support package to simplify setup
+    let board = Microbit::new(p);
+
+    // Led Matrix actor that will handle the display refresh loop and state of LED matrix
+    static LED_MATRIX: ActorContext&lt;LedMatrixActor&gt; = ActorContext::new();
+
+    // Mounting will start the display loop
+    let matrix = LED_MATRIX.mount(spawner, LedMatrixActor::new(board.led_matrix, None));
+
+    // An actor for the game logic
+    static GAME: ActorContext&lt;Game&gt; = ActorContext::new();
+    let game = GAME.mount(spawner, Game::new(matrix));
+
+    // Actor for button 'A'
+    static BUTTON_A: ActorContext&lt;Button&lt;ButtonA, ButtonPressed&lt;Game&gt;&gt;&gt; = ActorContext::new();
+    BUTTON_A.mount(
+        spawner,
+        Button::new(board.button_a, ButtonPressed(game, GameMessage::Toggle)),
+    );
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The main entry point is defined using the <code>#[embassy::main]</code> macro. The entry point is also required to take a <code>Spawner</code> and a <code>Peripherals</code> argument.</p>
+</div>
+<div class="paragraph">
+<p>The <code>Spawner</code> is the way the main application spawns tasks and actors. The <code>Peripherals</code> type holds all peripherals that the application may use.</p>
+</div>
+<div class="paragraph">
+<p>For some boards, Drogue Device provide a Board Support Package (BSP) that helps locating peripherals for a given board. You can also access all peripherals using
+the <code>Peripherals</code> type. The board simply helps setting them up and giving them a name that maps to your particular board. In our case, we can use the
+<code>Microbit</code> board.</p>
+</div>
+<div class="paragraph">
+<p>Finally, we create a static <code>ActorContext</code> instance for each of the actors in our system: LED_MATRIX, GAME, and BUTTON_A. The <code>ActorContext</code> must be
+static, as this is a requirement for spawning tasks in Embassy.</p>
+</div>
+<div class="paragraph">
+<p>The Actors are started when they are <code>mounted</code>. When mounted, an <code>Address</code> handle of that actor is returned, and can be used as a parameter to other actors, or directly in the main function.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_summary"><a class="anchor" href="#_summary"></a>Summary</h3>
+<div class="paragraph">
+<p>We&#8217;ve gone through a basic application written for the BBC micro:bit. We&#8217;ve created our own <code>Actor</code> instance to drive the game logic, and wired it together with two other actors already defined by Drogue Device, which was simple due to the composability of actors.</p>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using a modified version of the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

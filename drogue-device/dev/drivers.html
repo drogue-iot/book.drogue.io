@@ -45,13 +45,22 @@
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="concepts.html">Concepts</a>
+    <a class="nav-link" href="concepts.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="getting_started.html">Getting Started</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="basic_application.html">Basic Application</a>
   </li>
   <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="drivers.html">Drivers</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="examples.html">Examples</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../embassy/dev/index.html">Embassy</a>
   </li>
 </ul>
   </li>
@@ -282,12 +291,11 @@ impl Actor for AtomicCounter {
     type OnMountFuture&lt;'m&gt; = impl Future&lt;Output = ()&gt; + 'm;
     fn on_mount&lt;'m, M&gt;(
         &amp;'m mut self,
-        _: Self::Configuration,
-        _: Address&lt;'static, Self&gt;,
+        _: Address&lt;Self&gt;,
         inbox: &amp;'m mut M,
     ) -&gt; Self::OnMountFuture&lt;'m, M&gt;
     where
-        M: Inbox&lt;'m, Self&gt; + 'm
+        M: Inbox&lt;Self&gt; + 'm
     {
         async move {
             loop {
