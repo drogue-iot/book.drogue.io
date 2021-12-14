@@ -16,7 +16,7 @@ content:
       branches: main
       start_path: docs
     - url: https://github.com/embassy-rs/embassy.git
-      branches: book-poc
+      branches: master
       start_path: docs
     - url: https://github.com/drogue-iot/drogue-workshops.git
       branches: main
