@@ -315,51 +315,51 @@ Why do you have to define the <code>OnMountFuture</code> type? The rust compiler
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">        async move {
-            defmt::info!("Starting game! Press the 'A' button to lit the LED at the cursor.");
-            let speed = Duration::from_millis(200);
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">async move {
+    defmt::info!("Starting game! Press the 'A' button to lit the LED at the cursor.");
+    let speed = Duration::from_millis(200);
 
-            let mut coordinates: [[bool; 5]; 5] = [[false; 5]; 5];
-            let mut cursor = 0;
-            let (mut x, mut y) = (0, 0);
-            let mut done = false;
+    let mut coordinates: [[bool; 5]; 5] = [[false; 5]; 5];
+    let mut cursor = 0;
+    let (mut x, mut y) = (0, 0);
+    let mut done = false;
 
-            while !done {
-                self.matrix.on(x, y).await.unwrap();
-                // Race timeout and button press
-                let timeout = Timer::after(speed);
-                let event = inbox.next();
-                pin_mut!(timeout);
-                pin_mut!(event);
-                match select(timeout, event).await {
-                    // Timeout
-                    Either::Left(_) =&gt; {}
-                    // Set/unset
-                    Either::Right(_) =&gt; {
-                        coordinates[y][x] = !coordinates[y][x];
-                    }
-                }
+    while !done {
+        self.matrix.on(x, y).await.unwrap();
+        // Race timeout and button press
+        let timeout = Timer::after(speed);
+        let event = inbox.next();
+        pin_mut!(timeout);
+        pin_mut!(event);
+        match select(timeout, event).await {
+            // Timeout
+            Either::Left(_) =&gt; {}
+            // Set/unset
+            Either::Right(_) =&gt; {
+                coordinates[y][x] = !coordinates[y][x];
+            }
+        }
 
-                // Unlit only if we're not set
+        // Unlit only if we're not set
+        if !coordinates[y][x] {
+            self.matrix.off(x, y).await.unwrap();
+        }
+
+        // Check if game is done
+        done = true;
+        for x in 0..5 {
+            for y in 0..5 {
                 if !coordinates[y][x] {
-                    self.matrix.off(x, y).await.unwrap();
+                    done = false;
+                    break;
                 }
+            }
+        }
 
-                // Check if game is done
-                done = true;
-                for x in 0..5 {
-                    for y in 0..5 {
-                        if !coordinates[y][x] {
-                            done = false;
-                            break;
-                        }
-                    }
-                }
-
-                x = cursor % 5;
-                y = (cursor / 5) % 5;
-                cursor += 1;
-            }</code></pre>
+        x = cursor % 5;
+        y = (cursor / 5) % 5;
+        cursor += 1;
+    }</code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
