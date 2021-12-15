@@ -153,34 +153,52 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Drogue device is an open source async, no-alloc actor framework for embedded devices. With drogue device, you can write safe, composable and connected embedded applications.</p>
-</div>
-<div class="paragraph">
-<p>To learn more about drogue device, see the <a href="concepts.html" class="xref page">introduction</a> section.</p>
+<p>Drogue Device is a framework for writing safe and efficient applications on microcontroller type of systems.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_built_for_safety"><a class="anchor" href="#_built_for_safety"></a>Built for safety</h2>
+<h2 id="_robustness"><a class="anchor" href="#_robustness"></a>Robustness</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Drogue device is built using <a href="https://www.rust-lang.org">rust</a>, an efficient, memory safe and thread safe programming language.</p>
+<p>In a world without memory management or operating system it is more important than ever to avoid memory corruption and undefined behavior. Drogue Device is built using [Rust](<a href="https://www.rust-lang.org" class="bare">https://www.rust-lang.org</a>), an efficient, memory safe and thread safe programming language.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_built_for_internet_of_things"><a class="anchor" href="#_built_for_internet_of_things"></a>Built for Internet of Things</h2>
+<h2 id="_efficiency"><a class="anchor" href="#_efficiency"></a>Efficiency</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Drogue device offers built-in drivers for internet connectivity, such as WiFi and LoRaWAN.</p>
+<p>Embedded systems must make efficient uses of the resources available. At the same time, having a programming model that fits embedded devices is important. Drogue Device integrates with [embassy](<a href="https://github.com/embassy-rs/embassy" class="bare">https://github.com/embassy-rs/embassy</a>), the embedded async project, to deliver a fast and small runtime that
+also provides a great programming experience.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_open_source"><a class="anchor" href="#_open_source"></a>Open source</h2>
+<h2 id="_composition"><a class="anchor" href="#_composition"></a>Composition</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Drogue IoT is all about an open source IoT ecosystem. All software is licensed under the Apache 2.0 open source license.</p>
+<p>Code reuse and composition should be first class in embedded software! Drogue Device provides an Actor-based programming model for writing composable applications. With actors, you can transparently share access to peripherals, reuse application logic and compose other actors to build new functionality.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_iot_ready"><a class="anchor" href="#_iot_ready"></a>IoT Ready</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Many developers just want to have drivers and functionality ready to be used so they can focus on their application. Drogue Device provides out of the box drivers, actors and examples for WiFi, LoRaWAN, BLE combined with different sensors, while still allowing you to consume
+third party drivers.</p>
+</div>
+<div class="paragraph">
+<p>Drogue Device also provides out of the box examples reporting sensor data to <a href="../../drogue-cloud/dev/index.html" class="xref page">Drogue Cloud</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_open_source"><a class="anchor" href="#_open_source"></a>Open Source</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>All software is licensed under the Apache 2.0 open source license, no contributor agreement required.</p>
 </div>
 </div>
 </div>
