@@ -554,18 +554,22 @@ certificate, you can instruct the installer to use these. There are two options 
 <div class="sect3">
 <h4 id="_manually_create_the_tls_secrets"><a class="anchor" href="#_manually_create_the_tls_secrets"></a>Manually create the TLS secrets</h4>
 <div class="paragraph">
-<p>The installer will check if the secrets <code>http-endpoint-tls</code> and <code>mqtt-endpoint-tls</code> exist. If they don&#8217;t it will
-create them either using provided or generated key and certificate material.</p>
+<p>The installer will check if the secrets <code>http-endpoint-tls</code>, <code>mqtt-endpoint-tls</code> and <code>coap-endpoint-tls</code> exist. If they don&#8217;t it will
+create them using generated key and certificate material.</p>
 </div>
 <div class="paragraph">
 <p>If you manually create these TLS secrets, using those names, <strong>before</strong> running the installer, it will not override
-these existing secrets.</p>
+these existing secrets. You can do that by running shell commands similar to these:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl -n drogue-iot create secret tls http-endpoint-tls --key $PATH_TO_CERT/tls.key --cert $PATH_TO_CERT/tls.crt --dry-run=client -o json | kubectl -n drogue-iot apply -f -
+kubectl -n drogue-iot create secret tls mqtt-endpoint-tls --key $PATH_TO_CERT/tls.key --cert $PATH_TO_CERT/tls.crt --dry-run=client -o json | kubectl -n drogue-iot apply -f -
+kubectl -n drogue-iot create secret tls coap-endpoint-tls --key $PATH_TO_CERT/tls.key --cert $PATH_TO_CERT/tls.crt --dry-run=client -o json | kubectl -n drogue-iot apply -f -</code></pre>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_using_local_key_and_certificate_files"><a class="anchor" href="#_using_local_key_and_certificate_files"></a>Using local key and certificate files</h4>
 <div class="paragraph">
-<p>You can set the environment variable <code>TLS_KEY</code> and <code>TLS_CRT</code>, pointing them to PEM encoded key and certificate.</p>
+<p>Where <code>$PATH_TO_CERT</code> should point to the path location of your certificate.</p>
 </div>
 </div>
 </div>
