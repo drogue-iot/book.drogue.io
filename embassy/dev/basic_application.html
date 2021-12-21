@@ -212,9 +212,9 @@ use panic_probe as _;</code></pre>
 <pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">#[embassy::task]
 async fn blinker(mut led: Output&lt;'static, P0_13&gt;, interval: Duration) {
     loop {
-        unwrap!(led.set_high());
+        led.set_high();
         Timer::after(interval).await;
-        unwrap!(led.set_low());
+        led.set_low();
         Timer::after(interval).await;
     }
 }</code></pre>
