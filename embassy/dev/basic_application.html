@@ -230,7 +230,7 @@ async fn blinker(mut led: Output&lt;'static, P0_13&gt;, interval: Duration) {
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Notice that there is not busy waiting going on in this task. It is using the Embassy timer to yield execution, allowing the microcontroller to sleep in between the blinking.
+Notice that there is no busy waiting going on in this task. It is using the Embassy timer to yield execution, allowing the microcontroller to sleep in between the blinking.
 </td>
 </tr>
 </table>
