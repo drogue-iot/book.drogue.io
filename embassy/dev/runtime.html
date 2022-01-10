@@ -204,7 +204,7 @@
 <h2 id="_executor"><a class="anchor" href="#_executor"></a>Executor</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The executor function is described below. The executor keeps a queue of tasks that it should poll. When a task is created, it is polled (1). The task will attempt to make progress until reaches a point where it would be blocked. This may happen whenever a task is .await&#8217;ing an async function. When that happens, the task yields execution by (2) returning <code>Poll::Pending</code>. Once a task yields, the executor enqueues the task at the end of the run queue, and proceeds to (3) poll the next task in the queue. If a task returns <code>Poll::Ready</code> it essentially means that the task is finished and will not be enqueued again.</p>
+<p>The executor function is described below. The executor keeps a queue of tasks that it should poll. When a task is created, it is polled (1). The task will attempt to make progress until it reaches a point where it would be blocked. This may happen whenever a task is .await&#8217;ing an async function. When that happens, the task yields execution by (2) returning <code>Poll::Pending</code>. Once a task yields, the executor enqueues the task at the end of the run queue, and proceeds to (3) poll the next task in the queue. If a task returns <code>Poll::Ready</code> it essentially means that the task is finished and will not be enqueued again.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -266,7 +266,7 @@ There exists a special executor named <code>InterruptExecutor</code> which can b
 <p>The timer driver implementations for the embedded platforms might support only a fixed number of alarms that can be set. Make sure the number of tasks you expect wanting to use the timer at the same time do not exceed this limit.</p>
 </div>
 <div class="paragraph">
-<p>The timer speed is configurable at compile time using the <code>time-tick-&lt;frequency&gt;</code>. At present, the the timer may be configured to run at 1000 Hz, 32768 Hz, or 1 MHz. Before changing the defaults, make sure the target HAL supports the particular frequency setting.</p>
+<p>The timer speed is configurable at compile time using the <code>time-tick-&lt;frequency&gt;</code>. At present, the timer may be configured to run at 1000 Hz, 32768 Hz, or 1 MHz. Before changing the defaults, make sure the target HAL supports the particular frequency setting.</p>
 </div>
 <div class="admonitionblock note">
 <table>
