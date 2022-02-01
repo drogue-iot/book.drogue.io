@@ -426,9 +426,20 @@ rejected (QoS 1).
 </tr>
 </table>
 </div>
+<div class="sect2">
+<h3 id="_payload_content_type"><a class="anchor" href="#_payload_content_type"></a>Payload &amp; Content type</h3>
+<div class="paragraph">
+<p>The payload of the publish message will be the "data" of the generated event.</p>
+</div>
 <div class="paragraph">
 <p>For MQTT v5, it is possible to set the "content type" property, which will be used as the content type for
 the generated event.</p>
+</div>
+<div class="paragraph">
+<p>By default (for MQTT 3.1.1, or when the content type is not provided), the content-type will be evaluated. If
+the payload can be successfully parsed as JSON, the content type will be <code>application/json</code>. Otherwise it will
+be <code>application/octet-stream</code>.</p>
+</div>
 </div>
 </div>
 </div>
@@ -512,6 +523,9 @@ to specific commands only.</p>
 </tr>
 </tbody>
 </table>
+<div class="paragraph">
+<p>The payload of the command, will be the payload of the received message.</p>
+</div>
 </div>
 </div>
 </article>
