@@ -326,6 +326,54 @@ providing access to Drogue Cloud specific functionality, using the MQTT protocol
 </div>
 </div>
 <div class="sect1">
+<h2 id="_simple_device_vs_gateway_device"><a class="anchor" href="#_simple_device_vs_gateway_device"></a>Simple device vs gateway device</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>As MQTT is a long-lived connection, it makes sense to use it in gateway device use-cases. In this case, a device
+connects to the MQTT endpoint, and then also performs operations for other devices (connected via the gateway)
+device.</p>
+</div>
+<div class="paragraph">
+<p>Drogue Cloud supports this model. Basically every device connecting via MQTT can act as a gateway device. The devices
+which allow other devices to act on their behalf, must indicate this by explicitly selecting a device as their gateway.</p>
+</div>
+<div class="paragraph">
+<p>This is done using the device configuration on the device:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">metadata:
+  name: sensor01 <i class="conum" data-value="1"></i><b>(1)</b>
+  application: my-app
+spec:
+  credentials: {} <i class="conum" data-value="2"></i><b>(2)</b>
+  gatewaySelector:
+    matchNames: <i class="conum" data-value="3"></i><b>(3)</b>
+      - gateway01</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Name of the actual device.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Empty credentials, as this device doesn&#8217;t need to allow a direct connection.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Names of the devices (gateways) which are allowed to act on behalf of this device.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>A device can act both as direct device and as gateway a the same time.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_connecting"><a class="anchor" href="#_connecting"></a>Connecting</h2>
 <div class="sectionbody">
 <div class="ulist">
@@ -340,42 +388,130 @@ providing access to Drogue Cloud specific functionality, using the MQTT protocol
 <div class="sect1">
 <h2 id="_authenticating"><a class="anchor" href="#_authenticating"></a>Authenticating</h2>
 <div class="sectionbody">
-<div class="ulist">
+<div class="sect2">
+<h3 id="_x_509_client_certificates"><a class="anchor" href="#_x_509_client_certificates"></a>X.509 Client certificates</h3>
+<div class="paragraph">
+<p>You may use X.509 client certificates when establishing the TLS connection. The certificate must be signed with a
+trust anchor stored in the device registry on the application level.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_usernamepassword"><a class="anchor" href="#_usernamepassword"></a>Username/password</h3>
+<div class="paragraph">
+<p>Use <code>&lt;device&gt;@&lt;application&gt;</code> and a configured password for the device.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_publish_data"><a class="anchor" href="#_publish_data"></a>Publish data</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To publish data as the connected device, publish to <code>&lt;channel&gt;</code>. The channel information will be encoded in
+the <code>subject</code> header of the generated event.</p>
+</div>
+<div class="paragraph">
+<p>To publish data on behalf of another device, publish to <code>&lt;channel&gt;/&lt;device&gt;</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the connected device is not listed as the specified device. The message will be dropped (QoS 0) or
+rejected (QoS 1).
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>For MQTT v5, it is possible to set the "content type" property, which will be used as the content type for
+the generated event.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_subscribe_to_commands"><a class="anchor" href="#_subscribe_to_commands"></a>Subscribe to commands</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In general, the command topic structure is <code>command/inbox/&lt;device&gt;/&lt;command&gt;</code>. It is however not possible to subscribe
+to specific commands only.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Topic pattern</th>
+<th class="tableblock halign-left valign-top">Example topic</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
 <ul>
 <li>
-<p>X.509 Client certificates</p>
-</li>
-<li>
-<p>Username/password</p>
+<p><code>command/inbox//#</code></p>
 </li>
 </ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_simple_device"><a class="anchor" href="#_simple_device"></a>Simple device</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_publish_data"><a class="anchor" href="#_publish_data"></a>Publish data</h3>
-
-</div>
-<div class="sect2">
-<h3 id="_subscribe_to_commands"><a class="anchor" href="#_subscribe_to_commands"></a>Subscribe to commands</h3>
-
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_gateway_device"><a class="anchor" href="#_gateway_device"></a>Gateway device</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_publish_data_2"><a class="anchor" href="#_publish_data_2"></a>Publish data</h3>
-
-</div>
-<div class="sect2">
-<h3 id="_subscribe_to_commands_2"><a class="anchor" href="#_subscribe_to_commands_2"></a>Subscribe to commands</h3>
-
-</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p><code>command/inbox//set-temp</code></p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Subscribe to commands for the actual device</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p><code>command/inbox/my-device/#</code></p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p><code>command/inbox/my-device/set-temp</code></p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Subscribe to commands for the device <code>my-device</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p><code>command/inbox/#</code></p>
+</li>
+<li>
+<p><code>command/inbox/+/#</code></p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p><code>command/inbox/my-device/set-temp</code></p>
+</li>
+<li>
+<p><code>command/inbox//set-temp</code></p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Subscribe to commands for actual device and all devices it acts as a gateway for.</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </article>
