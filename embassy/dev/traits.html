@@ -172,9 +172,6 @@
 <p><code>embassy::io</code>: <code>AsyncBufRead</code>, <code>AsyncWrite</code>. Traits for byte-stream IO, essentially <code>no_std</code> compatible versions of <code>futures::io</code>. The primary reason for re-defining these traits is that the <code>futures::io</code> variant requires <code>std::io::Error</code>, which does not work in the <code>no_std</code> environment.</p>
 </li>
 <li>
-<p><code>embassy::traits</code>: Async traits for Flash, SPI, I2C, UART, RNG, GPIO and more.</p>
-</li>
-<li>
 <p><code>embassy::time</code>: Time <code>Driver</code> trait that is implemented for different platforms. Time in Embassy is represented using the <code>Duration</code> and <code>Instant</code> types.</p>
 </li>
 </ul>
