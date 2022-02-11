@@ -254,6 +254,21 @@ async fn main(spawner: Spawner, p: Peripherals) {
 </div>
 </div>
 <div class="paragraph">
+<p><code>#[embassy::main]</code> takes an optional <code>config</code> paramter specifying a function that returns an instance of HAL&#8217;s <code>Config</code> struct. For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">fn embassy_config() -&gt; embassy_nrf::config::Config {
+    embassy_nrf::config::Config::default()
+}
+
+#[embassy::main(config = "embassy_config()")]
+async fn main(_spawner: embassy::executor::Spawner, p: embassy_nrf::Peripherals) {
+    // ...
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
 <p>What happens when the <code>blinker</code> task have been spawned and main returns? Well, the main entry point is actually just like any other task, except that you can only have one and it takes some specific type arguments. The magic lies within the <code>#[embassy::main]</code> macro. The macro does the following:</p>
 </div>
 <div class="olist arabic">
