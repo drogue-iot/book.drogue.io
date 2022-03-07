@@ -8,8 +8,8 @@
     "doc": "docs"
   },
   "dependencies": {
-    "@antora/cli": "^3.0.0-rc.2",
-    "@antora/site-generator-default": "^3.0.0-rc.2",
+    "@antora/cli": "^3.0.1",
+    "@antora/site-generator-default": "^3.0.1",
     "@apidevtools/swagger-parser": "^10.0.3",
     "marked": "^4.0.4",
     "nunjucks": "^3.2.3"
