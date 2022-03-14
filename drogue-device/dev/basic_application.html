@@ -230,10 +230,7 @@ of whenever the button is pressed.</p>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">impl Actor for Game {
     type Message&lt;'m&gt; = GameMessage;
-    type OnMountFuture&lt;'m, M&gt;
-    where
-        M: 'm,
-    = impl Future&lt;Output = ()&gt; + 'm;
+    type OnMountFuture&lt;'m, M&gt; = impl Future&lt;Output = ()&gt; + 'm where M: 'm + Inbox&lt;Self&gt;;
 
     fn on_mount&lt;'m, M&gt;(
         &amp;'m mut self,
@@ -242,7 +239,10 @@ of whenever the button is pressed.</p>
     ) -&gt; Self::OnMountFuture&lt;'m, M&gt;
     where
         M: Inbox&lt;Self&gt; + 'm,
-    {</code></pre>
+    {
+        async move {
+            defmt::info!("Starting game! Press the 'A' button to lit the LED at the cursor.");
+            let speed = Duration::from_millis(200);</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -315,51 +315,50 @@ Why do you have to define the <code>OnMountFuture</code> type? The rust compiler
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">async move {
-    defmt::info!("Starting game! Press the 'A' button to lit the LED at the cursor.");
-    let speed = Duration::from_millis(200);
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">            let mut coordinates: [[bool; 5]; 5] = [[false; 5]; 5];
+            let mut cursor = 0;
+            let (mut x, mut y) = (0, 0);
+            let mut done = false;
 
-    let mut coordinates: [[bool; 5]; 5] = [[false; 5]; 5];
-    let mut cursor = 0;
-    let (mut x, mut y) = (0, 0);
-    let mut done = false;
-
-    while !done {
-        self.matrix.on(x, y).await.unwrap();
-        // Race timeout and button press
-        let timeout = Timer::after(speed);
-        let event = inbox.next();
-        pin_mut!(timeout);
-        pin_mut!(event);
-        match select(timeout, event).await {
-            // Timeout
-            Either::Left(_) =&gt; {}
-            // Set/unset
-            Either::Right(_) =&gt; {
-                coordinates[y][x] = !coordinates[y][x];
-            }
-        }
-
-        // Unlit only if we're not set
-        if !coordinates[y][x] {
-            self.matrix.off(x, y).await.unwrap();
-        }
-
-        // Check if game is done
-        done = true;
-        for x in 0..5 {
-            for y in 0..5 {
-                if !coordinates[y][x] {
-                    done = false;
-                    break;
+            while !done {
+                self.matrix.on(x, y).await.unwrap();
+                // Race timeout and button press
+                let timeout = Timer::after(speed);
+                let event = inbox.next();
+                pin_mut!(timeout);
+                pin_mut!(event);
+                match select(timeout, event).await {
+                    // Timeout
+                    Either::Left(_) =&gt; {}
+                    // Set/unset
+                    Either::Right(_) =&gt; {
+                        coordinates[y][x] = !coordinates[y][x];
+                    }
                 }
+
+                // Unlit only if we're not set
+                if !coordinates[y][x] {
+                    self.matrix.off(x, y).await.unwrap();
+                }
+
+                // Check if game is done
+                done = true;
+                for x in 0..5 {
+                    for y in 0..5 {
+                        if !coordinates[y][x] {
+                            done = false;
+                            break;
+                        }
+                    }
+                }
+
+                x = cursor % 5;
+                y = (cursor / 5) % 5;
+                cursor += 1;
             }
         }
-
-        x = cursor % 5;
-        y = (cursor / 5) % 5;
-        cursor += 1;
-    }</code></pre>
+    }
+}</code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -389,10 +388,7 @@ The <code>async move</code> keywords are used to tell the compiler to generate a
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">#[embassy::main]
-async fn main(spawner: embassy::executor::Spawner, p: Peripherals) {
-    // Using a board support package to simplify setup
-    let board = Microbit::new(p);
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">    let board = Microbit::new(p);
 
     // Led Matrix actor that will handle the display refresh loop and state of LED matrix
     static LED_MATRIX: ActorContext&lt;LedMatrixActor&gt; = ActorContext::new();
