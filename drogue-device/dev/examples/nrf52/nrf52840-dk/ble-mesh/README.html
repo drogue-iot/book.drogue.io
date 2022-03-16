@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Untitled :: Drogue IoT</title>
+    <meta name="generator" content="Antora 3.0.1">
+    <link rel="stylesheet" href="../../../../../../_/css/site.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4BRXRBJJ1"></script>
+    <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','G-Z4BRXRBJJ1')</script>
+    <script>var uiRootPath = '../../../../../../_'</script>
+    <link rel="icon" href="../../../../../../_/img/favicon.svg" type="image/svg+xml">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="../../../../../..">
+        <img class="navbar-brand-image" src="../../../../../../_/img/logo.png" alt="Drogue IoT"/>
+      </a>
+
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://blog.drogue.io" target="_blank">Blog</a>
+        <a class="navbar-item" href="https://matrix.to/#/#drogue-iot:matrix.org" target="_blank">Chat</a>
+        <a class="navbar-item" href="https://book.drogue.io">Documentation</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="drogue-device" data-version="dev">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../../../../index.html">Drogue Device</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../../../concepts.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../../../getting_started.html">Getting Started</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../../../basic_application.html">Basic Application</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../../../drivers.html">Drivers</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../../../../../embassy/dev/index.html">Embassy</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../../../examples.html">Examples</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Basic</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../../rp/pico/blinky/README.html">Raspberry Pi Pico Blinky</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../../std/package/README.html">Example application demonstrating how to write packages containing multiple actors</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../../std/pingpong/README.html">Ping pong show how to use circular dependencies between actors</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../../stm32h7/nucleo-h743zi/blinky/README.html">STM32 Nucleo-H743 blinky</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../../stm32u5/iot02a/blinky/README.html">STM32 IoT Discovery board blinky</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Ble</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../microbit/ble-temperature/README.html">BBC micro:bit v2 BLE temperature sensor</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="README.html">nrf52840-dk BLE Mesh example</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Cloud</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../microbit/esp8266/README.html">BBC micro:bit v2 + ESP8266 WiFi adapter</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../../std/cloud/README.html">Example sending telemetry data from Drogue Device to Drogue Cloud</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../../std/esp8266/README.html">Example using a USB-to-Serial adapter + ESP8266 adapter</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../../stm32l4/iot01a-wifi/README.html">STM32 IoT Discovery board (iot01a) reporting sensor data using WiFi</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Display</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../microbit/compass/README.html">BBC micro:bit v2 compass showing direction in led display</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../microbit/jukebox/README.html">BBC micro:bit v2 disco jukebox and light show</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../microbit/uart/README.html">BBC micro:bit v2 uart and matrix display</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../../stm32h7/nucleo-h743zi/epd/README.html">STM32 Nucleo-H743 7-color e-paper display</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Lorawan</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../../std/rak811/README.html">RAK811 LoRa Adapter with AT command firmware</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../../stm32l0/lora-discovery/README.html">STM32 LoRaWAN Discovery board connecting to The Things Network</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../../stm32l1/rak811/README.html">RAK811 Tracker Node connecting to The Things Network</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../../stm32wl/nucleo-wl55/README.html">STM32 Nucleo-WL55 using LoRaWAN connecting to The Things Network</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Uart</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../microbit/uart/README.html">BBC micro:bit v2 uart and matrix display</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Wifi</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../microbit/esp8266/README.html">BBC micro:bit v2 + ESP8266 WiFi adapter</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../../std/esp8266/README.html">Example using a USB-to-Serial adapter + ESP8266 adapter</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../../stm32l4/iot01a-wifi/README.html">STM32 IoT Discovery board (iot01a) reporting sensor data using WiFi</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Drogue Device</span>
+    <span class="version">dev</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <a class="title" href="../../../../../../drogue-cloud/dev/index.html">Drogue Cloud</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../../../../drogue-cloud/dev/index.html">dev</a>
+        </li>
+        <li class="version">
+          <a href="../../../../../../drogue-cloud/0.8/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../../../../../drogue-cloud/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../../../../../drogue-cloud/0.6/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../../../../../drogue-cloud/0.5/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../../../../../drogue-cloud/0.4/index.html">0.4</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <a class="title" href="../../../../index.html">Drogue Device</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../../../../index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../../../../drogue-book/index.html">Drogue IoT</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../../../../drogue-book/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../../../../drogue-workshops/index.html">Drogue IoT Workshops</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../../../../drogue-workshops/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../../../../embassy/dev/index.html">Embassy</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../../../../embassy/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../../../../../drogue-book/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../../../../index.html">Drogue Device</a></li>
+    <li><a href="../../../../examples.html">Examples</a></li>
+    <li>Ble</li>
+    <li><a href="README.html">nrf52840-dk BLE Mesh example</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-device/edit/main/docs/modules/ROOT/pages/examples/nrf52/nrf52840-dk/ble-mesh/README.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<div class="sect2">
+<h3 id="_nrf_52840_bluetooth_mesh_example"><a class="anchor" href="#_nrf_52840_bluetooth_mesh_example"></a>nRF 52840 Bluetooth Mesh Example</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_raspberry_pi_with_bluetooth"><a class="anchor" href="#_raspberry_pi_with_bluetooth"></a>Raspberry Pi with Bluetooth</h3>
+<div class="paragraph">
+<p>The "bullseye" Raspbian distro should include enough kernel mods to
+let the PB-ADV mesh work. Unfortunately, the version of <code>bluez</code> is
+5.55, which is known to be flaky. You should enable the apt <code>testing</code>
+repo to install at least version <code>5.62</code>.</p>
+</div>
+<div class="paragraph">
+<p>This requires adding a line to <code>/etc/apt/sources.list</code> and creating a
+file beneath <code>/etc/apt/preferences.d</code>.</p>
+</div>
+<div class="paragraph">
+<p>To do that, run these commands:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs"># Become root
+sudo su -
+
+# Add the testing repo
+cat &gt;&gt;/etc/apt/sources.list &lt;&lt;EOF
+deb http://raspbian.raspberrypi.org/raspbian/ testing main contrib non-free rpi
+EOF
+
+# Prioritize stable packages
+cat &gt;/etc/apt/preferences.d/prefs &lt;&lt;EOF
+Package: *
+Pin: release a=stable
+Pin-Priority: 700
+
+Package: *
+Pin: release a=testing
+Pin-Priority: 650
+EOF
+
+# Update the list of available packages
+apt update</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To get a working version of <code>bluez</code>, do the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ sudo apt -t testing install bluez bluez-meshd</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now you&#8217;re ready to fire up a BLE mesh.  Most of this is based upon
+the details from the
+<a href="https://www.bluetooth.com/wp-content/uploads/2020/04/Developer-Study-Guide-How-to-Deploy-BlueZ-on-a-Raspberry-Pi-Board-as-a-Bluetooth-Mesh-Provisioner.pdf">Bluetooth
+Site</a></p>
+</div>
+<div class="sect3">
+<h4 id="_first_manually_stop_the_existing_bluetoothd"><a class="anchor" href="#_first_manually_stop_the_existing_bluetoothd"></a>First manually stop the existing <code>bluetoothd</code></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs"># sudo service bluetooth stop</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then start the PB-ADV-based mesh.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs"># sudo /usr/libexec/bluetooth/bluetooth-meshd -nd --debug</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will leave the process running in the foreground to help with debugging, etc.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_secondly_on_the_pi_use_mesh_cfgclient"><a class="anchor" href="#_secondly_on_the_pi_use_mesh_cfgclient"></a>Secondly, on the Pi, use <code>mesh-cfgclient</code></h3>
+<div class="paragraph">
+<p>This can be done as non-root regular user.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ mesh-cfgclient</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If it fails silently, ensure you have a <code>~/.config</code> directory.</p>
+</div>
+<div class="paragraph">
+<p>If it complains about a missing <code>config_db.json</code> file, create one
+using the <code>create</code> command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">pi@raspberrypi:~ $ mesh-cfgclient
+
+Warning: config file "/home/pi/.config/meshcfg/config_db.json" not found
+Proxy added: org.bluez.mesh.Network1 (/org/bluez/mesh)
+[mesh-cfgclient]# create
+Created new node with token 176b9238fa48857c
+Proxy added: org.bluez.mesh.Node1 (/org/bluez/mesh/node326d83779e8ccbaf254d4b604dfec674)
+Proxy added: org.bluez.mesh.Management1 (/org/bluez/mesh/node326d83779e8ccbaf254d4b604dfec674)
+Attached with path /org/bluez/mesh/node326d83779e8ccbaf254d4b604dfec674</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_on_the_board"><a class="anchor" href="#_on_the_board"></a>On the board</h3>
+<div class="paragraph">
+<p>Flash this example onto an nRF 52840</p>
+</div>
+<div class="paragraph">
+<p><code>DEFMT_LOG=debug cargo run --release</code></p>
+</div>
+<div class="sect3">
+<h4 id="_if_that_fails"><a class="anchor" href="#_if_that_fails"></a>If that fails&#8230;&#8203;</h4>
+<div class="paragraph">
+<p>If you get an error mentioning a more recent version of <code>probe-run</code>&#8230;&#8203;</p>
+</div>
+<div class="paragraph">
+<p><code>cargo install probe-run</code></p>
+</div>
+<div class="paragraph">
+<p>&#8230;&#8203;for which, on linux, you may need <code>libudev</code>&#8230;&#8203;</p>
+</div>
+<div class="paragraph">
+<p><code>sudo dnf install rust-libudev-devel</code></p>
+</div>
+<div class="paragraph">
+<p>If the app quits after a few seconds, try <a href="https://github.com/embassy-rs/nrf-softdevice#running-examples">flashing the softdevice</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_provision"><a class="anchor" href="#_provision"></a>Provision!</h3>
+<div class="sect3">
+<h4 id="_on_the_pi_running_mesh_cfgclient"><a class="anchor" href="#_on_the_pi_running_mesh_cfgclient"></a>On the pi, running mesh-cfgclient:</h4>
+<div class="paragraph">
+<p>If you know your board&#8217;s UUID&#8201;&#8212;&#8201;look in its startup output&#8201;&#8212;&#8201;feed it
+to the the <code>provision</code> command. For example,</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">[mesh-cfgclient]# provision 066187E34A19B375F1A02A1E934DB15A</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you don&#8217;t have the UUID, you can discover it:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">[mesh-cfgclient]# discover-unprovisioned on
+Unprovisioned scan started</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Wait for it to discover your nRF broadcasting the "please provision
+me" packets. Once you see the board&#8217;s UUID, provision it.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">[mesh-cfgclient]# discover-unprovisioned off
+[mesh-cfgclient]# provision 066187E34A19B375F1A02A1E934DB15A</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If all goes well, you should see it assigning addresses and other happiness.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_do_stuff"><a class="anchor" href="#_do_stuff"></a>Do Stuff</h3>
+<div class="paragraph">
+<p>Right now, nothing you can really do other than taking note of the primary unicast address
+it assigned to your board, and then:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">[mesh-cfgclient]# menu config
+[mesh-cfgclient]# target 00d9
+Configuring node 00d9
+[config: Target = 00d9]# beacon-get</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Which should <strong>hopefully</strong> report back a <code>0x01</code> for the beacon-status.</p>
+</div>
+<div class="paragraph">
+<p>If the packet gets lost, you&#8217;ll see a <code>no response</code> type of output.</p>
+</div>
+<div class="paragraph">
+<p>This is where we are currently.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_what_might_go_wrong"><a class="anchor" href="#_what_might_go_wrong"></a>What might go wrong</h3>
+<div class="paragraph">
+<p>If the packet goes lost, no retransmits of config stuff happens (yet) so just keep repeating it until you
+a response if you&#8217;ve successfully provisioned.</p>
+</div>
+<div class="paragraph">
+<p>If the board complains about nRF Softdevice interrupts being disabled for too long, that&#8217;s because of the
+debug output using too much critical sections. You can reduce the log level or just try again.</p>
+</div>
+<div class="paragraph">
+<p>If you want to start back from scratch, alter the <code>main.rs</code> to use the <code>.force_reset()</code> line (once) which will
+factory-reset the board.</p>
+</div>
+<div class="paragraph">
+<p>On the pi side, after <code>menu config</code> and setting the <code>target</code> to the board:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">[config: Target = 00d9]# node-reset</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will remove it from the DB.</p>
+</div>
+<div class="paragraph">
+<p>You can then <code>back</code> and do the <code>discover-unprovisioned on</code> and the <code>provision $UUID</code> bits again.</p>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using a modified version of the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../../../../../_/js/site.js"></script>
+<script async src="../../../../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
