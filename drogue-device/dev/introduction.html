@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: Drogue IoT</title>
+    <title>Introduction :: Drogue IoT</title>
     <meta name="generator" content="Antora 3.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4BRXRBJJ1"></script>
@@ -44,7 +44,7 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="introduction.html">Introduction</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -259,29 +259,94 @@
 <button class="nav-toggle"></button>
   <a href="../../drogue-book/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Drogue Device</a></li>
+    <li><a href="introduction.html">Introduction</a></li>
+  </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-device/edit/main/docs/modules/ROOT/pages/examples_display.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-device/edit/main/docs/modules/ROOT/pages/introduction.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
+<h1 class="page">Introduction</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>async</code> and actors are not concepts commonly familiar to embedded developers, and have usually been associated with programming languages not suitable for embedded. With Rust, this
+is about to change, as Rust allows you to use these techniques without the traditional overhead associated with it.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_what_is_async"><a class="anchor" href="#_what_is_async"></a>What is async</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Software written without async may block on I/O operations. In an std environment, such as a PC, software can handle this either by using threads or non-blocking operations.</p>
+</div>
+<div class="paragraph">
+<p>With threads, one thread blocks on an I/O operation, another is able to take its place. However, even on a PC, threads are relatively heavy, and therefore some programming languages, such as Go, have implemented a concept called coroutines or 'goroutines' that are much lighter and less-intensive than threads.</p>
+</div>
+<div class="paragraph">
+<p>The other way to handle blocking I/O operations is to support polling the state of the underlying peripherals to check whether it is available to perform the requested operation. In programming languages without builtin async support, this requires building a complex loop checking for events.</p>
+</div>
+<div class="paragraph">
+<p>In Rust, non-blocking operations can be implemented using async-await. Async-await works by transforming each async function into an object called a future. When a future blocks on I/O the future yields, and the scheduler, called an executor, can select a different future to execute. Compared to alternatives such as an RTOS, async can yield better performance and lower power consumption because the executor doesn’t have to guess when a future is ready to execute. However, program size may be higher than other alternatives, which may be a problem for certain space-constrained devices with very low memory. On the devices Embassy supports, such as stm32 and nrf, memory is generally large enough to accommodate the modestly-increased program size.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_what_is_an_actor"><a class="anchor" href="#_what_is_an_actor"></a>What is an actor</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Actors make it convenient to write stateful concurrent systems using message passing. Actors only process one message at a time, and communicate with other actors by sending messages to their addresses. Actors compose easily due to their decoupled nature, making it easier to maintain an expanding code base.</p>
+</div>
+<div class="paragraph">
+<p>Actors in drogue-device are <strong>async</strong>, which means that they process messages using async-await support in Rust. This does not mean you have to write async code, but you will have the option to do so. The <a href="https://rust-lang.github.io/async-book/">async book</a> is a great way to learn more about async Rust.</p>
+</div>
+<div class="paragraph">
+<p>Read more about actors <a href="concepts.html" class="xref page">here</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_actors_vs_tasks"><a class="anchor" href="#_actors_vs_tasks"></a>Actors vs Tasks</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Although Drogue Device is focused on Actors, you can also use standard <code>embassy</code> tasks, and combine them to get the best of both worlds.</p>
+</div>
+<div class="paragraph">
+<p>Tasks are a good fit if:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="examples/nrf52/microbit/compass/README.html" class="xref page">BBC micro:bit v2 compass showing direction in led display</a></p>
+<p>You are doing 'standalone' work that doesn&#8217;t require any input from other parts of your application</p>
 </li>
 <li>
-<p><a href="examples/nrf52/microbit/jukebox/README.html" class="xref page">BBC micro:bit v2 disco jukebox and light show</a></p>
-</li>
-<li>
-<p><a href="examples/nrf52/microbit/uart/README.html" class="xref page">BBC micro:bit v2 uart and matrix display</a></p>
-</li>
-<li>
-<p><a href="examples/stm32h7/nucleo-h743zi/epd/README.html" class="xref page">STM32 Nucleo-H743 7-color e-paper display</a></p>
+<p>You are not going to reuse the task functionality in multiple applications</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>Actors are a good fit if:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>You want to run a process that handles messages through a channel</p>
+</li>
+<li>
+<p>You want to reuse this process in multiple applications or for multiple purposes</p>
+</li>
+<li>
+<p>You like the ability to compose your application and isolate the business logic in different units</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </article>
   </div>
