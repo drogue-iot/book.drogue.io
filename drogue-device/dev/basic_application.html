@@ -60,6 +60,9 @@
     <a class="nav-link" href="drivers.html">Drivers</a>
   </li>
   <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="bsp.html">Board Support Packages</a>
+  </li>
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../../embassy/dev/index.html">Embassy</a>
   </li>
 </ul>
@@ -515,7 +518,7 @@ The <code>async move</code> keywords are used to tell the compiler to generate a
     static LED_MATRIX: ActorContext&lt;LedMatrixActor&gt; = ActorContext::new();
 
     // Mounting will start the display loop
-    let matrix = LED_MATRIX.mount(spawner, LedMatrixActor::new(board.led_matrix, None));
+    let matrix = LED_MATRIX.mount(spawner, LedMatrixActor::new(board.display, None));
 
     // An actor for the game logic
     static GAME: ActorContext&lt;Game&gt; = ActorContext::new();
@@ -525,7 +528,7 @@ The <code>async move</code> keywords are used to tell the compiler to generate a
     static BUTTON_A: ActorContext&lt;Button&lt;ButtonA, ButtonPressed&lt;Game&gt;&gt;&gt; = ActorContext::new();
     BUTTON_A.mount(
         spawner,
-        Button::new(board.button_a, ButtonPressed(game, GameMessage::Toggle)),
+        Button::new(board.btn_a, ButtonPressed(game, GameMessage::Toggle)),
     );
 }</code></pre>
 </div>

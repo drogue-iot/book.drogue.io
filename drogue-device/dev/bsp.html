@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Actors :: Drogue IoT</title>
+    <title>Board Support Packages :: Drogue IoT</title>
     <meta name="generator" content="Antora 3.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4BRXRBJJ1"></script>
@@ -47,7 +47,7 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="introduction.html">Introduction</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="concepts.html">Actors</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -59,7 +59,7 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="drivers.html">Drivers</a>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="bsp.html">Board Support Packages</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -264,88 +264,22 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Drogue Device</a></li>
-    <li><a href="concepts.html">Actors</a></li>
+    <li><a href="bsp.html">Board Support Packages</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-device/edit/main/docs/modules/ROOT/pages/concepts.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-device/edit/main/docs/modules/ROOT/pages/bsp.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Actors</h1>
-<div id="preamble">
-<div class="sectionbody">
+<h1 class="page">Board Support Packages</h1>
 <div class="paragraph">
-<p>An <em>actor system</em> is a framework that allows for isolating state within narrow contexts, making it easier to reason about system. Within a actor system, the primary component is an <em>Actor</em>, which represents the boundary of state usage. Each actor has exclusive access to its own state and only communicates with other actors through message-passing.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/actor-model.png" alt="Actor model example">
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_drogue_actor_model"><a class="anchor" href="#_drogue_actor_model"></a>Drogue Actor Model</h2>
-<div class="sectionbody">
-<div class="imageblock">
-<div class="content">
-<img src="_images/drogue-device-actor-model.png" alt="Drogue Device Actor Model">
-</div>
-</div>
-<div class="sect2">
-<h3 id="_async"><a class="anchor" href="#_async"></a>Async</h3>
-<div class="paragraph">
-<p>Each actor is single-threaded, able to process a single message at a time, allowing for lock-free processing of each event. As embedded processors are globally single-threaded, supporting multiple actors requires the usage of <code>async</code> and <code>.await</code> within the Rust ecosystem. Each actor can therefore process each message either synchronously if its logic is <em>non-blocking</em> or using an <code>async</code> block if complex processing is required.</p>
+<p>Drogue Device contains Board Support Packages for the most commonly used boards in the community. A Board Support Package makes it easier to use a particular board with Embassy and Drogue Device, and typically uses pin and peripheral names that match what is defined on the board itself or in the board documentation.</p>
 </div>
 <div class="paragraph">
-<p>Each event is fully processed, in the order in which it is received, before the next event is considered.</p>
-</div>
-<div class="paragraph">
-<p>While processing an event, an actor may send a message to another actor, which itself is an asynchronous action, allowing the system to continue to make progress with actors that are able to.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_messages"><a class="anchor" href="#_messages"></a>Messages</h3>
-<div class="paragraph">
-<p>All messages are sent using async channels attached to each actor. The channel depth is configurable based on const generics. Upon starting, the actor
-is given a handle to an <code>Inbox</code> from which it can await messages to arrive.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_addresses"><a class="anchor" href="#_addresses"></a>Addresses</h3>
-<div class="paragraph">
-<p>Each actor within the system has its own unique <code>Address</code> which is used to communicate with the actor (through it&#8217;s FIFO).
-There is an <em>async</em> <code>request(msg)</code> method on each address to send a message asynchronously to the actor, which may only be used from another <code>async</code> context, as the sender must <code>.await</code> the response. There is also a <em>sync</em> <code>notify(msg)</code> method on each address to send a message without awaiting a response.</p>
-</div>
-<div class="paragraph">
-<p>Specifically, the <code>Address</code> for a given actor may implement user provided traits to provide fluent APIs for communicating with the underlying actor. For instance, the <code>Socket</code> type wraps an <code>Address</code> for actors that implement the <code>TcpSocket</code> trait.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_lifecycle"><a class="anchor" href="#_lifecycle"></a>Lifecycle</h3>
-<div class="paragraph">
-<p>Each actor is wrapped in an <code>ActorContext</code> object which is stored as a <code>static</code> (global). When the application starts, each context is `mount(&#8230;&#8203;)`ed, and provided an instance of the actor to "run".</p>
-</div>
-<div class="paragraph">
-<p>During mount, the actor system will initialize the channels, and spawn the underlying <code>embassy</code> task. Once spawned, the actors <code>Address&lt;&#8230;&#8203;&gt;</code> is made available.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_bootstrap"><a class="anchor" href="#_bootstrap"></a>Bootstrap</h3>
-<div class="paragraph">
-<p>As with any embassy application, the entry point is specified using an async function marked with <code>#[embassy::main]</code>, and it will be passed a <code>Spawner</code> that is passed to each actor context <code>mount(&#8230;&#8203;)</code>.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_packages"><a class="anchor" href="#_packages"></a>Packages</h3>
-<div class="paragraph">
-<p>In some cases, it may be desirable to have two or more actors involve in a single semantic component or package. The <code>Package</code> trait may be implemented for any type.</p>
-</div>
-</div>
-</div>
+<p>You are free to choose if you wish to use Board Support Packages or not, but we have found they remove some of the common boilerplate for board peripherals that are commonly used, and makes it easier to mentally map the pin names used in your code to the pin names on the board.</p>
 </div>
 </article>
   </div>
