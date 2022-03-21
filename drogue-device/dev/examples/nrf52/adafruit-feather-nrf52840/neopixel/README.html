@@ -260,7 +260,7 @@
   <a href="../../../../../../drogue-book/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-device/edit/main/docs/modules/ROOT/pages/examples/nrf52/adafruit-feather-sense/blinky/README.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-device/edit/main/docs/modules/ROOT/pages/examples/nrf52/adafruit-feather-nrf52840/neopixel/README.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -268,71 +268,9 @@
 </aside>
 <article class="doc">
 <div class="sect1">
-<h2 id="_adafruit_feather_nrf52840_sense"><a class="anchor" href="#_adafruit_feather_nrf52840_sense"></a>Adafruit Feather nRF52840 Sense</h2>
+<h2 id="_write_me"><a class="anchor" href="#_write_me"></a>Write me.</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>This example application runs out of the box on the Adafruit Feather nRF52840 Sense</p>
-</div>
-<div class="sect2">
-<h3 id="_prerequisites"><a class="anchor" href="#_prerequisites"></a>Prerequisites</h3>
-<div class="sect3">
-<h4 id="_hardware"><a class="anchor" href="#_hardware"></a>Hardware</h4>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://www.adafruit.com/product/4516">Adafruit Feather nRF52840 Sense</a></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_software"><a class="anchor" href="#_software"></a>Software</h4>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://rustup.rs/">rustup</a> to build the code</p>
-</li>
-<li>
-<p><a href="https://github.com/microsoft/uf2">uf2conv.py</a></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>For the <code>uf2conf.py</code>, make sure you have the <code>utils/</code> folder in <code>$PATH</code>.</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_building"><a class="anchor" href="#_building"></a>Building</h3>
-<div class="paragraph">
-<p>To build the firmware:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>cargo build --release</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_flashing"><a class="anchor" href="#_flashing"></a>Flashing</h3>
-<div class="paragraph">
-<p>Flashing the firmware uses the uf2conf.py tool with the built-in bootloader.</p>
-</div>
-<div class="paragraph">
-<p>First, power up the board and press the reset button twice quickly. This should put turn the board into a USB mass storage device that will be attached to your computer.</p>
-</div>
-<div class="paragraph">
-<p>To flash the device, run:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>MEDIA=/Volumes/SOMETHINGFEATHER cargo run --release</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Where you replace MEDIA with the drive your feather attaches to.</p>
-</div>
-</div>
+
 </div>
 </div>
 </article>

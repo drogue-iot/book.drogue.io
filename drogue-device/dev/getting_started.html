@@ -396,6 +396,23 @@ The DEFMT_LOG environment variable controls the example log verbosity. If not se
 </div>
 </div>
 <div class="sect1">
+<h2 id="_creating_your_own_project"><a class="anchor" href="#_creating_your_own_project"></a>Creating your own project</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Found an example you like? Using the examples in tree have all the dependencies set up for you, but which dependencies should you specify when creating your own project? Since drogue-device is still using nightly rust, and still have dependencies
+that are not released on crates.io, we&#8217;ve prepared a mechanism for you to clone an example into its own folder.</p>
+</div>
+<div class="paragraph">
+<p>To create a project based on one of the microbit examples, run the following command in the toplevel folder of the drogue-device repository:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">cargo xtask clone examples/nrf52/microbit/jukebox $HOME/myexample</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_whats_next"><a class="anchor" href="#_whats_next"></a>Whats next?</h2>
 <div class="sectionbody">
 <div class="paragraph">
