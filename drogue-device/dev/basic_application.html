@@ -525,7 +525,7 @@ The <code>async move</code> keywords are used to tell the compiler to generate a
     let game = GAME.mount(spawner, Game::new(matrix));
 
     // Actor for button 'A'
-    static BUTTON_A: ActorContext&lt;Button&lt;ButtonA, ButtonPressed&lt;Game&gt;&gt;&gt; = ActorContext::new();
+    static BUTTON_A: ActorContext&lt;Button&lt;PinButtonA, ButtonPressed&lt;Game&gt;&gt;&gt; = ActorContext::new();
     BUTTON_A.mount(
         spawner,
         Button::new(board.btn_a, ButtonPressed(game, GameMessage::Toggle)),
