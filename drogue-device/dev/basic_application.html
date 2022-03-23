@@ -81,10 +81,10 @@
     <a class="nav-link" href="examples/rp/pico/blinky/README.html">Raspberry Pi Pico Blinky</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="examples/std/package/README.html">Example application demonstrating how to write packages containing multiple actors</a>
+    <a class="nav-link" href="examples/std/package/README.html">How to write a package containing multiple actors</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="examples/std/pingpong/README.html">Ping pong show how to use circular dependencies between actors</a>
+    <a class="nav-link" href="examples/std/pingpong/README.html">Using circular dependencies between actors</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="examples/stm32h7/nucleo-h743zi/blinky/README.html">STM32 Nucleo-H743 blinky</a>
@@ -358,25 +358,17 @@ of whenever the button is pressed.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">impl Actor for Game {
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">#[actor]
+impl Actor for Game {
     type Message&lt;'m&gt; = GameMessage;
-    type OnMountFuture&lt;'m, M&gt; = impl Future&lt;Output = ()&gt; + 'm where M: 'm + Inbox&lt;Self&gt;;
 
-    fn on_mount&lt;'m, M&gt;(
-        &amp;'m mut self,
-        _: Address&lt;Self&gt;,
-        inbox: &amp;'m mut M,
-    ) -&gt; Self::OnMountFuture&lt;'m, M&gt;
+    async fn on_mount&lt;M&gt;(&amp;mut self, _: Address&lt;Self&gt;, inbox: &amp;mut M)
     where
-        M: Inbox&lt;Self&gt; + 'm,
-    {
-        async move {
-            defmt::info!("Starting game! Press the 'A' button to lit the LED at the cursor.");
-            let speed = Duration::from_millis(200);</code></pre>
+        M: Inbox&lt;Self&gt; + 'm,</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>Message</code> of an <code>Actor</code> defines the messages that our actor expects to handle. Next, the <code>OnMountFuture</code> associated type needs to be defined.</p>
+<p>The <code>Message</code> of an <code>Actor</code> defines the messages that our actor expects to handle.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -385,13 +377,13 @@ of whenever the button is pressed.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Why do you have to define the <code>OnMountFuture</code> type? The rust compiler cannot automatically infer the size of the <code>on_mount</code> entry point, and needs some assistance in knowing what to do. This is only temporary until Rust supports basic async traits, so for now we&#8217;ll have to live with it.
+Why do you have to define the <code>actor</code> attribute? Rust does not yet support async methods in traits, and needs some assistance in knowing what to do. This is only temporary until Rust supports basic async traits, so for now we&#8217;ll have to live with it.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>We can now define the main actor logic in the <code>on_mount</code> implementation. The type signature of this method needs to match the lifetimes of the <code>OnMountFuture</code> for the Rust compiler to cope with it.</p>
+<p>We can now define the main actor logic in the <code>on_mount</code> implementation.</p>
 </div>
 <div class="paragraph">
 <p>The <code>on_mount</code> entry point is called only once, and should contain the Actor main loop. The actor is handed an address to itself. This can be useful if you need to register the <code>Actor</code> with other actors or types. The <code>Address</code> type can be copied, so it&#8217;s easy to pass around.</p>
@@ -445,63 +437,53 @@ Why do you have to define the <code>OnMountFuture</code> type? The rust compiler
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">            let mut coordinates: [[bool; 5]; 5] = [[false; 5]; 5];
-            let mut cursor = 0;
-            let (mut x, mut y) = (0, 0);
-            let mut done = false;
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">{
+    defmt::info!("Starting game! Press the 'A' button to lit the LED at the cursor.");
+    let speed = Duration::from_millis(200);
 
-            while !done {
-                self.matrix.on(x, y).await.unwrap();
-                // Race timeout and button press
-                let timeout = Timer::after(speed);
-                let event = inbox.next();
-                pin_mut!(timeout);
-                pin_mut!(event);
-                match select(timeout, event).await {
-                    // Timeout
-                    Either::Left(_) =&gt; {}
-                    // Set/unset
-                    Either::Right(_) =&gt; {
-                        coordinates[y][x] = !coordinates[y][x];
-                    }
-                }
+    let mut coordinates: [[bool; 5]; 5] = [[false; 5]; 5];
+    let mut cursor = 0;
+    let (mut x, mut y) = (0, 0);
+    let mut done = false;
 
-                // Unlit only if we're not set
-                if !coordinates[y][x] {
-                    self.matrix.off(x, y).await.unwrap();
-                }
-
-                // Check if game is done
-                done = true;
-                for x in 0..5 {
-                    for y in 0..5 {
-                        if !coordinates[y][x] {
-                            done = false;
-                            break;
-                        }
-                    }
-                }
-
-                x = cursor % 5;
-                y = (cursor / 5) % 5;
-                cursor += 1;
+    while !done {
+        self.matrix.on(x, y).await.unwrap();
+        // Race timeout and button press
+        let timeout = Timer::after(speed);
+        let event = inbox.next();
+        pin_mut!(timeout);
+        pin_mut!(event);
+        match select(timeout, event).await {
+            // Timeout
+            Either::Left(_) =&gt; {}
+            // Set/unset
+            Either::Right(_) =&gt; {
+                coordinates[y][x] = !coordinates[y][x];
             }
         }
+
+        // Unlit only if we're not set
+        if !coordinates[y][x] {
+            self.matrix.off(x, y).await.unwrap();
+        }
+
+        // Check if game is done
+        done = true;
+        for x in 0..5 {
+            for y in 0..5 {
+                if !coordinates[y][x] {
+                    done = false;
+                    break;
+                }
+            }
+        }
+
+        x = cursor % 5;
+        y = (cursor / 5) % 5;
+        cursor += 1;
     }
 }</code></pre>
 </div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The <code>async move</code> keywords are used to tell the compiler to generate a future based on the code block within. Again this is something that will be hidden once Rust support async traits.
-</td>
-</tr>
-</table>
 </div>
 <div class="paragraph">
 <p>You can see the use of the <code>self.matrix</code> which of type <code>Address</code>. The <code>on</code> method under the hood sends a message to a <code>LedMatrixActor</code> for toggling the LED at a given coordinate. The <code>inbox.next()</code> is an async funtion that completes when an event have been received.</p>
@@ -518,24 +500,24 @@ The <code>async move</code> keywords are used to tell the compiler to generate a
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">    let board = Microbit::new(p);
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">#[embassy::main]
+async fn main(spawner: embassy::executor::Spawner, p: Peripherals) {
+    // Using a board support package to simplify setup
+    let board = Microbit::new(p);
 
-    // Led Matrix actor that will handle the display refresh loop and state of LED matrix
-    static LED_MATRIX: ActorContext&lt;LedMatrixActor&gt; = ActorContext::new();
-
-    // Mounting will start the display loop
-    let matrix = LED_MATRIX.mount(spawner, LedMatrixActor::new(board.display, None));
+    // Spawning will start the display loop
+    let matrix = spawn_actor!(
+        spawner,
+        LED_MATRIX,
+        LedMatrixActor,
+        LedMatrixActor::new(board.display, None)
+    );
 
     // An actor for the game logic
-    static GAME: ActorContext&lt;Game&gt; = ActorContext::new();
-    let game = GAME.mount(spawner, Game::new(matrix));
+    let game = spawn_actor!(spawner, GAME, Game, Game::new(matrix));
 
     // Actor for button 'A'
-    static BUTTON_A: ActorContext&lt;Button&lt;PinButtonA, ButtonPressed&lt;Game&gt;&gt;&gt; = ActorContext::new();
-    BUTTON_A.mount(
-        spawner,
-        Button::new(board.btn_a, ButtonPressed(game, GameMessage::Toggle)),
-    );
+    spawn_actor!(spawner, BUTTON_A, Button&lt;PinButtonA, ButtonPressed&lt;Game&gt;&gt;, Button::new(board.btn_a, ButtonPressed(game, GameMessage::Toggle)));
 }</code></pre>
 </div>
 </div>
@@ -551,11 +533,10 @@ the <code>Peripherals</code> type. The board simply helps setting them up and gi
 <code>Microbit</code> board.</p>
 </div>
 <div class="paragraph">
-<p>Finally, we create a static <code>ActorContext</code> instance for each of the actors in our system: LED_MATRIX, GAME, and BUTTON_A. The <code>ActorContext</code> must be
-static, as this is a requirement for spawning tasks in Embassy.</p>
+<p>Finally, we spawn an instance for each of the actors in our system: LED_MATRIX, GAME, and BUTTON_A.</p>
 </div>
 <div class="paragraph">
-<p>The Actors are started when they are <code>mounted</code>. When mounted, an <code>Address</code> handle of that actor is returned, and can be used as a parameter to other actors, or directly in the main function.</p>
+<p>An <code>Address</code> handle of the actor is returned when spawned, and can be used as a parameter to other actors, or directly in the main function.</p>
 </div>
 </div>
 <div class="sect2">

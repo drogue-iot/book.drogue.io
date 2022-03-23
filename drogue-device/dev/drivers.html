@@ -81,10 +81,10 @@
     <a class="nav-link" href="examples/rp/pico/blinky/README.html">Raspberry Pi Pico Blinky</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="examples/std/package/README.html">Example application demonstrating how to write packages containing multiple actors</a>
+    <a class="nav-link" href="examples/std/package/README.html">How to write a package containing multiple actors</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="examples/std/pingpong/README.html">Ping pong show how to use circular dependencies between actors</a>
+    <a class="nav-link" href="examples/std/pingpong/README.html">Using circular dependencies between actors</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="examples/stm32h7/nucleo-h743zi/blinky/README.html">STM32 Nucleo-H743 blinky</a>
@@ -405,6 +405,9 @@ runtime. An actor providing an atomic counter using the above driver is shown be
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">#![feature(type_alias_impl_trait)]
 #![feature(generic_associated_types)]
+
+use drogue_device::*;
+
 pub struct AtomicCounter {
     counter: MyCounter
 }
@@ -414,7 +417,35 @@ pub enum CounterMessage {
     Add(u32),
 }
 
+#[actor]
 impl Actor for AtomicCounter {
+    type Message&lt;'m&gt; = CounterMessage;
+    type Response = u32;
+
+    async fn on_mount&lt;M&gt;(&amp;mut self, _: Address&lt;Self&gt;, inbox: &amp;mut M)
+    where
+        M: Inbox&lt;Self&gt; + 'm
+    {
+        loop {
+            if let Some(m) = inbox.next().await {
+                let value = match m.message() {
+                    CounterMessage::Increment =&gt; self.counter.increment().await,
+                    CounterMessage::Add(value) =&gt; self.counter.add(*value).await,
+                }
+                // Set the response value
+                message.set_response(value);
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Notice the <code>actor</code> attribute, which handles a lot of the boilerplate of writing actors. This actor expands the code to the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">impl Actor for AtomicCounter {
     type Message&lt;'m&gt; = CounterMessage;
     type Response = u32;
 
@@ -442,6 +473,9 @@ impl Actor for AtomicCounter {
     }
 }</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Once Rust has native support for async traits, the attribute will no longer be necessary.</p>
 </div>
 <div class="paragraph">
 <p>Although a very complex way to implement an atomic counter, it gives you an idea of how actors provide exclusive access to a resource.</p>
