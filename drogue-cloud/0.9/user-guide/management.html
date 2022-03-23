@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Managing applications and devices :: Drogue IoT</title>
+    <meta name="generator" content="Antora 3.0.1">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4BRXRBJJ1"></script>
+    <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','G-Z4BRXRBJJ1')</script>
+    <script>var uiRootPath = '../../../_'</script>
+    <link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="../../..">
+        <img class="navbar-brand-image" src="../../../_/img/logo.png" alt="Drogue IoT"/>
+      </a>
+
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://blog.drogue.io" target="_blank">Blog</a>
+        <a class="navbar-item" href="https://matrix.to/#/#drogue-iot:matrix.org" target="_blank">Chat</a>
+        <a class="navbar-item" href="https://book.drogue.io">Documentation</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="drogue-cloud" data-version="0.9">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Drogue Cloud</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../concepts.html">Concepts</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../introduction/index.html">Introduction</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../introduction/index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../introduction/data.html">Data plane</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../introduction/control.html">Control plane</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../introduction/devices.html">Devices, gateways &amp; services</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../introduction/addons.html">Additional components</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../introduction/services.html">Noteworthy services</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../deployment/index.html">Deployment</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deployment/index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deployment/pre-reqs.html">Pre-Requisites</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deployment/cluster.html">Prepare the cluster</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deployment/installer.html">Run the installer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deployment/development.html">Deploy from the repository</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deployment/bare-metal.html">Deploying on bare metal</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deployment/monitoring.html">Monitoring a deployment</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deployment/tracing.html">Tracing</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">User Guide</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html">Overview</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="management.html">Management</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text">TODO: write about upstream and downstream processing</span>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Endpoints</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="endpoint-coap.html">CoAP Endpoint</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="endpoint-http.html">HTTP Endpoint</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="endpoint-mqtt.html">MQTT Endpoint</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Integrations</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="integration-kafka.html">Apache Kafka™ Integration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="integration-command.html">HTTP Command Integration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="integration-knative.html">Knative Integration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="integration-mqtt.html">MQTT Integration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="integration-ws.html">WebSocket Integration</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="common.html">Common topics</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">System Integrations</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">The Things Network</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ttn/index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ttn/app.html">Managing applications</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ttn/device.html">Managing devices</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../api/index.html">API</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../api/index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../api/endpoints.html">Endpoints</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../api/schemas.html">Schemas</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Drogue Cloud</span>
+    <span class="version">0.9</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../../dev/index.html">Drogue Cloud</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../dev/index.html">dev</a>
+        </li>
+        <li class="version is-current">
+          <a href="../index.html">0.9</a>
+        </li>
+        <li class="version">
+          <a href="../../0.8/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../0.6/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../0.5/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4/index.html">0.4</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../drogue-device/dev/index.html">Drogue Device</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../drogue-device/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../drogue-book/index.html">Drogue IoT</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../drogue-book/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../drogue-workshops/index.html">Drogue IoT Workshops</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../drogue-workshops/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../embassy/dev/index.html">Embassy</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../embassy/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../../drogue-book/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Drogue Cloud</a></li>
+    <li><a href="index.html">User Guide</a></li>
+    <li><a href="management.html">Management</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">0.9</button>
+  <div class="version-menu">
+    <a class="version" href="../../dev/user-guide/management.html">dev</a>
+    <a class="version is-current" href="management.html">0.9</a>
+    <a class="version" href="../../0.8/user-guide/management.html">0.8</a>
+    <a class="version" href="../../0.7/user-guide/management.html">0.7</a>
+    <a class="version is-missing" href="../../0.6/index.html">0.6</a>
+    <a class="version is-missing" href="../../0.5/index.html">0.5</a>
+    <a class="version is-missing" href="../../0.4/index.html">0.4</a>
+  </div>
+</div>
+  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-cloud/edit/release-0.9/docs/modules/user-guide/pages/management.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Managing applications and devices</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following sections will guide you through the basic management capabilities of Drogue Cloud.</p>
+</div>
+<div class="paragraph">
+<p>All management operations are available through the API. However, for an easier getting started experience,
+the following examples will use the command line tool <code>drg</code> for performing the operations.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+All following examples require that you are already logged in to a Drogue Cloud cluster using the command line
+tool <code>drg</code>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_applications"><a class="anchor" href="#_applications"></a>Applications</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>An application is the container for devices. A user can have multiple applications, but each device belongs to
+a single application.</p>
+</div>
+<div class="sect2">
+<h3 id="_creating_a_new_application"><a class="anchor" href="#_creating_a_new_application"></a>Creating a new application</h3>
+<div class="paragraph">
+<p>Create a new application using the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">drg create app my-app</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will create a new application named <code>my-app</code>. If the application name is already used, you will receive an
+error, as application names are unique.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_modifying_an_application"><a class="anchor" href="#_modifying_an_application"></a>Modifying an application</h3>
+<div class="paragraph">
+<p>Applications are defined by a JSON structure. It is possible to edit this structure in YAML format (for easier editing)
+using the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">drg edit app my-app</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will open an editor, and allow you to make modifications to the YAML source. When you close the editor, the change
+will be sent to the server for updating.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_deleting_an_application"><a class="anchor" href="#_deleting_an_application"></a>Deleting an application</h3>
+<div class="paragraph">
+<p>An existing application can be deleted using the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">drg delete app my-app</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Deleting an application me be delayed, as first all devices which require to be cleaned up will be processes. Once
+this is finished, the application might require cleanup too. Only once all resources are properly cleaned up, the
+application will be actually deleted.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_devices"><a class="anchor" href="#_devices"></a>Devices</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>As devices belong to an application, you need to create an application first.</p>
+</div>
+<div class="paragraph">
+<p>The following commands will explicitly select the application by providing the <code>--app &lt;app name&gt;</code> argument. You can
+however use <code>drg config set-default-app</code>, to set a default application and omit the <code>--app</code> argument.</p>
+</div>
+<div class="sect2">
+<h3 id="_create_a_new_device"><a class="anchor" href="#_create_a_new_device"></a>Create a new device</h3>
+<div class="paragraph">
+<p>A new device is being created using the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">drg create device --app my-app my-device-1</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will create <code>my-device-1</code> as part of <code>my-app</code>.</p>
+</div>
+<div class="paragraph">
+<p>In most cases a device will require additional information, like access credentials or gateway assignments. You can
+provide initial configuration using the <code>--spec &lt;json&gt;</code> argument:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">drg create device --app my-app my-device-1 --spec '{"credentials": {"credentials":[{ "pass": "foobar" }]}}'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>--spec</code> argument accepts a JSON string of the full "spec" section of the device.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_modifying_a_device"><a class="anchor" href="#_modifying_a_device"></a>Modifying a device</h3>
+<div class="paragraph">
+<p>You can edit the device configuration in YAML the same as the application:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">drg edit device --app my-app my-device-1</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will open an editor, and allow you to make modifications to the YAML source. When you close the editor, the change
+will be sent to the server for updating.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_deleting_a_device"><a class="anchor" href="#_deleting_a_device"></a>Deleting a device</h3>
+<div class="paragraph">
+<p>An existing device can be deleted using the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">drg delete device --app my-app my-device-1</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If a device requires any cleanup, the device will be first marked as deleted, the cleanup will be processed,
+and then the device will be deleted.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_setting_password_credentials"><a class="anchor" href="#_setting_password_credentials"></a>Setting password credentials</h3>
+<div class="paragraph">
+<p>It is possible to set a password as access credentials. This way, when connecting, the username will be the device name.</p>
+</div>
+<div class="sect3">
+<h4 id="_pre_requisites"><a class="anchor" href="#_pre_requisites"></a>Pre-requisites</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>You have created a device</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_procedure"><a class="anchor" href="#_procedure"></a>Procedure</h4>
+<div class="paragraph">
+<p>Configure the device, adding a password credentials entry:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">metadata:
+  name: device
+  # …
+spec:
+  # …
+  credentials:
+    credentials:
+      - pass: my-password <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>One credential entry of type "password".</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>You can also use hashed passwords. For this, you need to specify the hash algorithm:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">metadata:
+  name: device
+  # …
+spec:
+  # …
+  credentials:
+    credentials:
+      - pass:
+          bcrypt: "$2a$12$WsLmgORBv3WHZ3CjCiMzXOeo2hL5UEeq8PEd11q9BfbM/RWqb7c3G" <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>One credential entry of type "password" as "bcrypt" hash.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>See <a href="#supported-password-hashes">Supported hashes</a> for a list of supported password hashes.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="setting_username_password"><a class="anchor" href="#setting_username_password"></a>Setting username/password credentials</h3>
+<div class="paragraph">
+<p>It is also possible to set a username and password as credentials. In this case, the device ID must be transmitted
+through an alternate way, in order to look up the device. The provided username/password combination will then be
+checked against the configured username/password combination.</p>
+</div>
+<div class="paragraph">
+<p>The way the device name is transmitted to the endpoint depends on the capabilities of the protocol endpoint.
+For example, using HTTP, the device name can be provided as an additional query parameter.</p>
+</div>
+<div class="sect3">
+<h4 id="_pre_requisites_2"><a class="anchor" href="#_pre_requisites_2"></a>Pre-requisites</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>You have created a device</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_procedure_2"><a class="anchor" href="#_procedure_2"></a>Procedure</h4>
+<div class="paragraph">
+<p>Configure the device, adding a password credentials entry:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">metadata:
+  name: device <i class="conum" data-value="1"></i><b>(1)</b>
+  # …
+spec:
+  # …
+  credentials:
+    credentials:
+      - user:
+          username: device-user <i class="conum" data-value="2"></i><b>(2)</b>
+          password: bar <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The device name</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The username</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The plain text password</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>You can also use hashed passwords, instead of plain text:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">metadata:
+  name: device <i class="conum" data-value="1"></i><b>(1)</b>
+  # …
+spec:
+  # …
+  credentials:
+    credentials:
+      - user:
+          username: device-user <i class="conum" data-value="2"></i><b>(2)</b>
+          password:
+            bcrypt: "$2a$12$WsLmgORBv3WHZ3CjCiMzXOeo2hL5UEeq8PEd11q9BfbM/RWqb7c3G" <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The device name</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The username</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The bcrypt hashed password</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>See <a href="#supported-password-hashes">Supported hashes</a> for a list of supported password hashes.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_setting_usernamepassword_credentials_unique_username"><a class="anchor" href="#_setting_usernamepassword_credentials_unique_username"></a>Setting username/password credentials (unique username)</h3>
+<div class="paragraph">
+<p>If you want to use the username only for authenticating your device, without the need to provide an additional
+device identifier, you can use "unique usernames". These usernames are unique per application.</p>
+</div>
+<div class="sect3">
+<h4 id="_pre_requisites_3"><a class="anchor" href="#_pre_requisites_3"></a>Pre-requisites</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>You have created a device</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_procedure_3"><a class="anchor" href="#_procedure_3"></a>Procedure</h4>
+<div class="paragraph">
+<p>Configure the device, adding a password credentials entry:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">metadata:
+  name: device
+  # …
+spec:
+  # …
+  credentials:
+    credentials:
+      - user:
+          username: device-user
+          password: bar
+          unique: true <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Setting the value to <code>true</code> makes the entry a unique username entry.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>As described in <a href="#setting_username_password">Setting username/password credentials</a>, you can use hashed passwords too.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_setting_x_509_client_certificate_credentials"><a class="anchor" href="#_setting_x_509_client_certificate_credentials"></a>Setting X.509 client certificate credentials</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_configuring_a_gateway_device"><a class="anchor" href="#_configuring_a_gateway_device"></a>Configuring a gateway device</h3>
+<div class="paragraph">
+<p>Every device can act as a gateway for another device. However, it must be granted the permission to act on behalf
+of that other device.</p>
+</div>
+<div class="paragraph">
+<p>The way this is done, is by adding this information to the device connects through a gateway.</p>
+</div>
+<div class="sect3">
+<h4 id="_pre_requisites_4"><a class="anchor" href="#_pre_requisites_4"></a>Pre-requisites</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>You have created two devices.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>One that should act as gateway (named <code>gateway</code> in the following steps).</p>
+</li>
+<li>
+<p>One that should act as the actual device (named <code>sensor</code> in the following steps).</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>The gateway device has access credentials configured, so that the gateway can connect to the cloud.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_procedure_4"><a class="anchor" href="#_procedure_4"></a>Procedure</h4>
+<div class="paragraph">
+<p>In the configuration of the actual device, select the devices that can act as a gateway:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">metadata:
+  name: sensor
+  # …
+spec:
+  # …
+  gatewaySelector:
+    matchNames:
+      - gateway</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It is possible to use one or more devices as gateway.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_hashed_passwords"><a class="anchor" href="#_hashed_passwords"></a>Hashed passwords</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>It is possible to store passwords either plain text or hashed.</p>
+</div>
+<div class="sect2">
+<h3 id="supported-password-hashes"><a class="anchor" href="#supported-password-hashes"></a>Supported hashes</h3>
+<div class="paragraph">
+<p>The following hash types are currently supported:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>bcrypt</code> – <a href="https://en.wikipedia.org/wiki/Bcrypt">Bcrypt</a> hash</p>
+</li>
+<li>
+<p><code>sha512</code> – SHA512 <a href="https://en.wikipedia.org/wiki/Crypt_&#169;">crypt</a> (Scheme ID 6)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using a modified version of the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../../_/js/site.js"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

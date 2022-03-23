@@ -1,0 +1,2619 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Endpoints :: Drogue IoT</title>
+    <meta name="generator" content="Antora 3.0.1">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4BRXRBJJ1"></script>
+    <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','G-Z4BRXRBJJ1')</script>
+    <script>var uiRootPath = '../../../_'</script>
+    <link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="../../..">
+        <img class="navbar-brand-image" src="../../../_/img/logo.png" alt="Drogue IoT"/>
+      </a>
+
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://blog.drogue.io" target="_blank">Blog</a>
+        <a class="navbar-item" href="https://matrix.to/#/#drogue-iot:matrix.org" target="_blank">Chat</a>
+        <a class="navbar-item" href="https://book.drogue.io">Documentation</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="drogue-cloud" data-version="0.9">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Drogue Cloud</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../concepts.html">Concepts</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../introduction/index.html">Introduction</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../introduction/index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../introduction/data.html">Data plane</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../introduction/control.html">Control plane</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../introduction/devices.html">Devices, gateways &amp; services</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../introduction/addons.html">Additional components</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../introduction/services.html">Noteworthy services</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../deployment/index.html">Deployment</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deployment/index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deployment/pre-reqs.html">Pre-Requisites</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deployment/cluster.html">Prepare the cluster</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deployment/installer.html">Run the installer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deployment/development.html">Deploy from the repository</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deployment/bare-metal.html">Deploying on bare metal</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deployment/monitoring.html">Monitoring a deployment</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deployment/tracing.html">Tracing</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../user-guide/index.html">User Guide</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../user-guide/index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../user-guide/management.html">Management</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text">TODO: write about upstream and downstream processing</span>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Endpoints</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../user-guide/endpoint-coap.html">CoAP Endpoint</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../user-guide/endpoint-http.html">HTTP Endpoint</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../user-guide/endpoint-mqtt.html">MQTT Endpoint</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Integrations</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../user-guide/integration-kafka.html">Apache Kafka™ Integration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../user-guide/integration-command.html">HTTP Command Integration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../user-guide/integration-knative.html">Knative Integration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../user-guide/integration-mqtt.html">MQTT Integration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../user-guide/integration-ws.html">WebSocket Integration</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../user-guide/common.html">Common topics</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">System Integrations</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">The Things Network</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ttn/index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ttn/app.html">Managing applications</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ttn/device.html">Managing devices</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">API</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html">Overview</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="endpoints.html">Endpoints</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="schemas.html">Schemas</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Drogue Cloud</span>
+    <span class="version">0.9</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../../dev/index.html">Drogue Cloud</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../dev/index.html">dev</a>
+        </li>
+        <li class="version is-current">
+          <a href="../index.html">0.9</a>
+        </li>
+        <li class="version">
+          <a href="../../0.8/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../0.6/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../0.5/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4/index.html">0.4</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../drogue-device/dev/index.html">Drogue Device</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../drogue-device/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../drogue-book/index.html">Drogue IoT</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../drogue-book/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../drogue-workshops/index.html">Drogue IoT Workshops</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../drogue-workshops/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../embassy/dev/index.html">Embassy</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../embassy/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../../drogue-book/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Drogue Cloud</a></li>
+    <li><a href="index.html">API</a></li>
+    <li><a href="endpoints.html">Endpoints</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">0.9</button>
+  <div class="version-menu">
+    <a class="version" href="../../dev/api/endpoints.html">dev</a>
+    <a class="version is-current" href="endpoints.html">0.9</a>
+    <a class="version" href="../../0.8/api/endpoints.html">0.8</a>
+    <a class="version is-missing" href="../../0.7/index.html">0.7</a>
+    <a class="version is-missing" href="../../0.6/index.html">0.6</a>
+    <a class="version is-missing" href="../../0.5/index.html">0.5</a>
+    <a class="version is-missing" href="../../0.4/index.html">0.4</a>
+  </div>
+</div>
+  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-cloud/edit/release-0.9/docs/modules/api/attachments/index.yaml">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Endpoints</h1>
+<div class="sect1">
+<h2 id="_access_token"><a class="anchor" href="#_access_token"></a>Access Token</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Manage personal access tokens to authenticate with drogue cloud.</p>
+</div>
+<div class="sect2">
+<h3 id="_get_apitokensv1alpha1"><a class="anchor" href="#_get_apitokensv1alpha1"></a>GET <code>/api/tokens/v1alpha1</code></h3>
+<div class="paragraph">
+<p>List access tokens for this user.</p>
+</div>
+<div class="sect3">
+<h4 id="_responses"><a class="anchor" href="#_responses"></a>Responses</h4>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Code</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>All access tokens for this user.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>application/json</code></dt>
+<dd>
+<p></p>
+<div class="paragraph">
+<p>List of <a href="schemas.html#_responseapitokensv1alpha1get200applicationjsonitems" class="xref page">ResponseApiTokensV1alpha1Get200ApplicationJsonItems</a></p>
+</div>
+</dd>
+</dl>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_post_apitokensv1alpha1"><a class="anchor" href="#_post_apitokensv1alpha1"></a>POST <code>/api/tokens/v1alpha1</code></h3>
+<div class="paragraph">
+<p>Create a new access tokens for this user.</p>
+</div>
+<div class="sect3">
+<h4 id="_parameters"><a class="anchor" href="#_parameters"></a>Parameters</h4>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Location</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>description</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">query</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>string</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>A description to attach to the token entry.</p></div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_responses_2"><a class="anchor" href="#_responses_2"></a>Responses</h4>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Code</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>A new access token was created.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>application/json</code></dt>
+<dd>
+<p></p>
+<div class="paragraph">
+<p><a href="schemas.html#_responseapitokensv1alpha1post200applicationjson" class="xref page">ResponseApiTokensV1alpha1Post200ApplicationJson</a></p>
+</div>
+</dd>
+</dl>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_delete_apitokensv1alpha1prefix"><a class="anchor" href="#_delete_apitokensv1alpha1prefix"></a>DELETE <code>/api/tokens/v1alpha1/{prefix}</code></h3>
+<div class="paragraph">
+<p>Delete an access token by prefix.</p>
+</div>
+<div class="sect3">
+<h4 id="_parameters_2"><a class="anchor" href="#_parameters_2"></a>Parameters</h4>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Location</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">prefix*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">path</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>string</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The prefix of the access token to delete.</p></div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_responses_3"><a class="anchor" href="#_responses_3"></a>Responses</h4>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Code</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">204</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Successfully deleted the token.</p>
+</div>
+<div class="paragraph">
+<p>If the access token didn&#39;t exist, still 204 will be returned.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_registry"><a class="anchor" href="#_registry"></a>Registry</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Manage application and devices in the registry.</p>
+</div>
+<div class="sect2">
+<h3 id="_get_apiregistryv1alpha1apps"><a class="anchor" href="#_get_apiregistryv1alpha1apps"></a>GET <code>/api/registry/v1alpha1/apps</code></h3>
+<div class="paragraph">
+<p>Return all the applications the user has access to</p>
+</div>
+<div class="sect3">
+<h4 id="_parameters_3"><a class="anchor" href="#_parameters_3"></a>Parameters</h4>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Location</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>labels</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">query</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>List of
+<code>string</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>Labels selectors.</p></div><div class="paragraph"><p>Labels are arbitrary &lt;key&gt;:&lt;value&gt; pairs that can be associated with a resource.
+A selector matches labels values using equality, inequality and filtering.
+It can check the existence of a label key, ignoring the value.<br/>
+To summarize, there are 6 available operations and their associated symbol :</p></div><ul>
+<li>equality: <code>=</code></li>
+<li>inequality: <code>!=</code></li>
+<li>filtering: <code>in</code></li>
+<li>negative-filetering: <code>notin</code></li>
+<li>existence: <code>&lt;key&gt;</code></li>
+<li>non-existence: <code>!&lt;key&gt;</code></li>
+</ul>
+<div class="paragraph"><p>For example :<br/>
+<code>zone=europe</code> will match a label where the value for key <code>zone</code> is equal to <code>europe</code>. <br/>
+<code>zone!=europe</code> will match all the labels where the value for key <code>zone</code> is not equal to <code>europe</code>. <br/>
+<code>country in (france, germany)</code> will match all the labels where the value for key <code>country</code> is equal to <code>france</code> or <code>germany</code>. <br/>
+<code>country notin (spain, italy)</code> will match all the labels where the value for key <code>country</code> is not equal to <code>spain</code> or <code>italy</code>. <br/>
+<code>power</code> will match all the labels where the key <code>power</code> exist, regardless of the value. <br/>
+<code>!power</code> will match all the labels where the key <code>power</code> do not exist.</p></div><div class="paragraph"><p>Multiple selectors can be submited, separated with a coma. A coma implies a AND operation between selectors.<br/>
+This is modeled after the <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/">kubernetes labels</a>.</p></div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>limit</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">query</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>integer</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The maximum number of elements to return.</p></div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>offset</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">query</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>integer</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The number of elements to skip when returning. The elements will by ordered &quot;by name&quot;.</p></div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_responses_4"><a class="anchor" href="#_responses_4"></a>Responses</h4>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Code</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>A list of applications.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">401</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Unauthorized.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_post_apiregistryv1alpha1apps"><a class="anchor" href="#_post_apiregistryv1alpha1apps"></a>POST <code>/api/registry/v1alpha1/apps</code></h3>
+<div class="paragraph">
+<p>create new application.</p>
+</div>
+<div class="sect3">
+<h4 id="_request"><a class="anchor" href="#_request"></a>Request</h4>
+<div class="paragraph">
+<p>The data section of the application to add</p>
+</div>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Content Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>application/json</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="schemas.html#_app" class="xref page">App</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_responses_5"><a class="anchor" href="#_responses_5"></a>Responses</h4>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Code</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">201</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>If the application is created</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">409</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>If the application id is already used.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_get_apiregistryv1alpha1appsappid"><a class="anchor" href="#_get_apiregistryv1alpha1appsappid"></a>GET <code>/api/registry/v1alpha1/apps/{appId}</code></h3>
+<div class="paragraph">
+<p>Return application details.</p>
+</div>
+<div class="sect3">
+<h4 id="_parameters_4"><a class="anchor" href="#_parameters_4"></a>Parameters</h4>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Location</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">appId*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">path</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>string</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The Application ID.</p></div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_responses_6"><a class="anchor" href="#_responses_6"></a>Responses</h4>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Code</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The data of the application</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>application/json</code></dt>
+<dd>
+<p></p>
+<div class="paragraph">
+<p><a href="schemas.html#_app" class="xref page">App</a></p>
+</div>
+</dd>
+</dl>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">404</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>If the requested application does not exist or if the user has no access to it.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_put_apiregistryv1alpha1appsappid"><a class="anchor" href="#_put_apiregistryv1alpha1appsappid"></a>PUT <code>/api/registry/v1alpha1/apps/{appId}</code></h3>
+<div class="paragraph">
+<p>update existing app</p>
+</div>
+<div class="sect3">
+<h4 id="_parameters_5"><a class="anchor" href="#_parameters_5"></a>Parameters</h4>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Location</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">appId*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">path</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>string</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The Application ID.</p></div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_request_2"><a class="anchor" href="#_request_2"></a>Request</h4>
+<div class="paragraph">
+<p>The data of the application to update</p>
+</div>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Content Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>application/json</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="schemas.html#_app" class="xref page">App</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_responses_7"><a class="anchor" href="#_responses_7"></a>Responses</h4>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Code</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">204</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>If the application is updated</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">404</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>If the requested application does not exist or if the user has no access to it.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_delete_apiregistryv1alpha1appsappid"><a class="anchor" href="#_delete_apiregistryv1alpha1appsappid"></a>DELETE <code>/api/registry/v1alpha1/apps/{appId}</code></h3>
+<div class="paragraph">
+<p>Delete existing application</p>
+</div>
+<div class="sect3">
+<h4 id="_parameters_6"><a class="anchor" href="#_parameters_6"></a>Parameters</h4>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Location</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">appId*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">path</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>string</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The Application ID.</p></div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>uid</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">query</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>string</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The expected UID of the entry, for optimistic locking.</p></div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>resourceVersion</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">query</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>string</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The resource version of the existing data, for optimistic locking.</p></div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_responses_8"><a class="anchor" href="#_responses_8"></a>Responses</h4>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Code</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">204</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>If the application is deleted</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">404</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>If the requested application does not exist or if the user has not access to it.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_patch_apiregistryv1alpha1appsappid"><a class="anchor" href="#_patch_apiregistryv1alpha1appsappid"></a>PATCH <code>/api/registry/v1alpha1/apps/{appId}</code></h3>
+<div class="paragraph">
+<p>FUTURE USE: Patch existing app</p>
+</div>
+<div class="sect3">
+<h4 id="_parameters_7"><a class="anchor" href="#_parameters_7"></a>Parameters</h4>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Location</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">appId*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">path</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>string</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The Application ID.</p></div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>uid</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">query</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>string</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The expected UID of the entry, for optimistic locking.</p></div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>resourceVersion</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">query</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>string</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The resource version of the existing data, for optimistic locking.</p></div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_request_3"><a class="anchor" href="#_request_3"></a>Request</h4>
+<div class="paragraph">
+<p>The JSON patch to apply</p>
+</div>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Content Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>application/json</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="schemas.html#_#/components/schema/patch" class="xref page">#/components/schema/Patch</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_responses_9"><a class="anchor" href="#_responses_9"></a>Responses</h4>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Code</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">204</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>If the app is updated</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">404</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>If requested apps do not exits or if the user has not access to them.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_get_apiregistryv1alpha1appsappiddevices"><a class="anchor" href="#_get_apiregistryv1alpha1appsappiddevices"></a>GET <code>/api/registry/v1alpha1/apps/{appId}/devices</code></h3>
+<div class="paragraph">
+<p>Return all the devices of the application.</p>
+</div>
+<div class="sect3">
+<h4 id="_parameters_8"><a class="anchor" href="#_parameters_8"></a>Parameters</h4>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Location</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">appId*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">path</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>string</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The Application ID.</p></div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>labels</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">query</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>List of
+<code>string</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>Labels selectors.</p></div><div class="paragraph"><p>Labels are arbitrary &lt;key&gt;:&lt;value&gt; pairs that can be associated with a resource.
+A selector matches labels values using equality, inequality and filtering.
+It can check the existence of a label key, ignoring the value.<br/>
+To summarize, there are 6 available operations and their associated symbol :</p></div><ul>
+<li>equality: <code>=</code></li>
+<li>inequality: <code>!=</code></li>
+<li>filtering: <code>in</code></li>
+<li>negative-filetering: <code>notin</code></li>
+<li>existence: <code>&lt;key&gt;</code></li>
+<li>non-existence: <code>!&lt;key&gt;</code></li>
+</ul>
+<div class="paragraph"><p>For example :<br/>
+<code>zone=europe</code> will match a label where the value for key <code>zone</code> is equal to <code>europe</code>. <br/>
+<code>zone!=europe</code> will match all the labels where the value for key <code>zone</code> is not equal to <code>europe</code>. <br/>
+<code>country in (france, germany)</code> will match all the labels where the value for key <code>country</code> is equal to <code>france</code> or <code>germany</code>. <br/>
+<code>country notin (spain, italy)</code> will match all the labels where the value for key <code>country</code> is not equal to <code>spain</code> or <code>italy</code>. <br/>
+<code>power</code> will match all the labels where the key <code>power</code> exist, regardless of the value. <br/>
+<code>!power</code> will match all the labels where the key <code>power</code> do not exist.</p></div><div class="paragraph"><p>Multiple selectors can be submited, separated with a coma. A coma implies a AND operation between selectors.<br/>
+This is modeled after the <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/">kubernetes labels</a>.</p></div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>limit</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">query</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>integer</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The maximum number of elements to return.</p></div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>offset</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">query</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>integer</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The number of elements to skip when returning. The elements will by ordered &quot;by name&quot;.</p></div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_responses_10"><a class="anchor" href="#_responses_10"></a>Responses</h4>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Code</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>A list of devices.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">401</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Unauthorized.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_post_apiregistryv1alpha1appsappiddevices"><a class="anchor" href="#_post_apiregistryv1alpha1appsappiddevices"></a>POST <code>/api/registry/v1alpha1/apps/{appId}/devices</code></h3>
+<div class="paragraph">
+<p>Create a new device.</p>
+</div>
+<div class="sect3">
+<h4 id="_parameters_9"><a class="anchor" href="#_parameters_9"></a>Parameters</h4>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Location</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">appId*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">path</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>string</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The Application ID.</p></div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_request_4"><a class="anchor" href="#_request_4"></a>Request</h4>
+<div class="paragraph">
+<p>The device object to add.</p>
+</div>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Content Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>application/json</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="schemas.html#_device" class="xref page">Device</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_responses_11"><a class="anchor" href="#_responses_11"></a>Responses</h4>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Code</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">201</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>If the device is created.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">409</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>If the device id is already used.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_get_apiregistryv1alpha1appsappiddevicesdeviceid"><a class="anchor" href="#_get_apiregistryv1alpha1appsappiddevicesdeviceid"></a>GET <code>/api/registry/v1alpha1/apps/{appId}/devices/{deviceId}</code></h3>
+<div class="paragraph">
+<p>Return device details.</p>
+</div>
+<div class="sect3">
+<h4 id="_parameters_10"><a class="anchor" href="#_parameters_10"></a>Parameters</h4>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Location</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">appId*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">path</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>string</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The Application ID.</p></div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">deviceId*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">path</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>string</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The device ID.</p></div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_responses_12"><a class="anchor" href="#_responses_12"></a>Responses</h4>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Code</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The data of the device</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>application/json</code></dt>
+<dd>
+<p></p>
+<div class="paragraph">
+<p><a href="schemas.html#_device" class="xref page">Device</a></p>
+</div>
+</dd>
+</dl>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">404</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>If requested device does not exist or if the user has no access to it.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_put_apiregistryv1alpha1appsappiddevicesdeviceid"><a class="anchor" href="#_put_apiregistryv1alpha1appsappiddevicesdeviceid"></a>PUT <code>/api/registry/v1alpha1/apps/{appId}/devices/{deviceId}</code></h3>
+<div class="paragraph">
+<p>update existing device</p>
+</div>
+<div class="sect3">
+<h4 id="_parameters_11"><a class="anchor" href="#_parameters_11"></a>Parameters</h4>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Location</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">appId*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">path</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>string</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The Application ID.</p></div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">deviceId*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">path</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>string</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The device ID.</p></div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_request_5"><a class="anchor" href="#_request_5"></a>Request</h4>
+<div class="paragraph">
+<p>The data object of the device to update</p>
+</div>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Content Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>application/json</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="schemas.html#_device" class="xref page">Device</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_responses_13"><a class="anchor" href="#_responses_13"></a>Responses</h4>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Code</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">204</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>If the device is updated</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">404</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>If requested device does not exist or if the user has no access to it.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_delete_apiregistryv1alpha1appsappiddevicesdeviceid"><a class="anchor" href="#_delete_apiregistryv1alpha1appsappiddevicesdeviceid"></a>DELETE <code>/api/registry/v1alpha1/apps/{appId}/devices/{deviceId}</code></h3>
+<div class="paragraph">
+<p>Delete existing device</p>
+</div>
+<div class="sect3">
+<h4 id="_parameters_12"><a class="anchor" href="#_parameters_12"></a>Parameters</h4>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Location</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">appId*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">path</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>string</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The Application ID.</p></div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">deviceId*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">path</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>string</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The device ID.</p></div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>uid</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">query</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>string</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The expected UID of the entry, for optimistic locking.</p></div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>resourceVersion</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">query</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>string</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The resource version of the existing data, for optimistic locking.</p></div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_responses_14"><a class="anchor" href="#_responses_14"></a>Responses</h4>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Code</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">204</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>If the device is deleted</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">404</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>If requested device does not exist or if the user has no access to it.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_patch_apiregistryv1alpha1appsappiddevicesdeviceid"><a class="anchor" href="#_patch_apiregistryv1alpha1appsappiddevicesdeviceid"></a>PATCH <code>/api/registry/v1alpha1/apps/{appId}/devices/{deviceId}</code></h3>
+<div class="paragraph">
+<p>FUTURE USE: Patch existing device</p>
+</div>
+<div class="sect3">
+<h4 id="_parameters_13"><a class="anchor" href="#_parameters_13"></a>Parameters</h4>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Location</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">appId*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">path</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>string</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The Application ID.</p></div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">deviceId*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">path</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>string</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The device ID.</p></div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>uid</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">query</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>string</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The expected UID of the entry, for optimistic locking.</p></div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>resourceVersion</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">query</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>string</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The resource version of the existing data, for optimistic locking.</p></div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_request_6"><a class="anchor" href="#_request_6"></a>Request</h4>
+<div class="paragraph">
+<p>The JSON patch to apply</p>
+</div>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Content Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>application/json</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="schemas.html#_patch" class="xref page">Patch</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_responses_15"><a class="anchor" href="#_responses_15"></a>Responses</h4>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Code</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">204</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>If the device is updated</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">404</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>If requested device does not exist or if the user has no access to it.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_application_administration"><a class="anchor" href="#_application_administration"></a>Application administration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Manage applications members and authorizations.</p>
+</div>
+<div class="sect2">
+<h3 id="_get_apiadminv1alpha1appsappidtransfer_ownership"><a class="anchor" href="#_get_apiadminv1alpha1appsappidtransfer_ownership"></a>GET <code>/api/admin/v1alpha1/apps/{appId}/transfer-ownership</code></h3>
+<div class="paragraph">
+<p>Retrieve state of the application transfer</p>
+</div>
+<div class="sect3">
+<h4 id="_parameters_14"><a class="anchor" href="#_parameters_14"></a>Parameters</h4>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Location</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">appId*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">path</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>string</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The Application ID.</p></div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_responses_16"><a class="anchor" href="#_responses_16"></a>Responses</h4>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Code</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>An transfer is pending for this application.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>application/json</code></dt>
+<dd>
+<p></p>
+<div class="paragraph">
+<p><a href="schemas.html#_responseapiadminv1alpha1appsappidtransferownershipget200applicationjson" class="xref page">ResponseApiAdminV1alpha1AppsAppIdTransferOwnershipGet200ApplicationJson</a></p>
+</div>
+</dd>
+</dl>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">204</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>There is no current pending transfer for this application.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">404</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The application does not exist, or the user does not have access to the information.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_put_apiadminv1alpha1appsappidtransfer_ownership"><a class="anchor" href="#_put_apiadminv1alpha1appsappidtransfer_ownership"></a>PUT <code>/api/admin/v1alpha1/apps/{appId}/transfer-ownership</code></h3>
+<div class="paragraph">
+<p>Initiate the process to transfer the ownership.</p>
+</div>
+<div class="sect3">
+<h4 id="_parameters_15"><a class="anchor" href="#_parameters_15"></a>Parameters</h4>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Location</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">appId*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">path</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>string</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The Application ID.</p></div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_request_7"><a class="anchor" href="#_request_7"></a>Request</h4>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Content Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>application/json</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="schemas.html#_requestbodyapiadminv1alpha1appsappidtransferownershipputapplicationjson" class="xref page">RequestBodyApiAdminV1alpha1AppsAppIdTransferOwnershipPutApplicationJson</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_responses_17"><a class="anchor" href="#_responses_17"></a>Responses</h4>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Code</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">202</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Transfer process is initiated.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">404</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>If the requested application does not exist or if the user has no access to it.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_delete_apiadminv1alpha1appsappidtransfer_ownership"><a class="anchor" href="#_delete_apiadminv1alpha1appsappidtransfer_ownership"></a>DELETE <code>/api/admin/v1alpha1/apps/{appId}/transfer-ownership</code></h3>
+<div class="paragraph">
+<p>Cancel an ownership transfer.</p>
+</div>
+<div class="sect3">
+<h4 id="_parameters_16"><a class="anchor" href="#_parameters_16"></a>Parameters</h4>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Location</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">appId*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">path</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>string</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The Application ID.</p></div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_responses_18"><a class="anchor" href="#_responses_18"></a>Responses</h4>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Code</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">204</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The transfer was successfully canceled.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">404</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The user has no access to the resource.</p>
+</div>
+<div class="paragraph">
+<p>This is also the case, when the transfer was already completed successfully.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_put_apiadminv1alpha1appsappidaccept_ownership"><a class="anchor" href="#_put_apiadminv1alpha1appsappidaccept_ownership"></a>PUT <code>/api/admin/v1alpha1/apps/{appId}/accept-ownership</code></h3>
+<div class="paragraph">
+<p>Accept an application as new owner.</p>
+</div>
+<div class="sect3">
+<h4 id="_parameters_17"><a class="anchor" href="#_parameters_17"></a>Parameters</h4>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Location</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">appId*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">path</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>string</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The Application ID.</p></div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_responses_19"><a class="anchor" href="#_responses_19"></a>Responses</h4>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Code</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">204</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Ownership is transfered.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">404</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>If the requested application does not exist or if the user has no access to it.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_get_apiadminv1alpha1appsappidmembers"><a class="anchor" href="#_get_apiadminv1alpha1appsappidmembers"></a>GET <code>/api/admin/v1alpha1/apps/{appId}/members</code></h3>
+<div class="paragraph">
+<p>Get curretn application members.</p>
+</div>
+<div class="sect3">
+<h4 id="_parameters_18"><a class="anchor" href="#_parameters_18"></a>Parameters</h4>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Location</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">appId*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">path</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>string</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The Application ID.</p></div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_responses_20"><a class="anchor" href="#_responses_20"></a>Responses</h4>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Code</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The list of members for this application.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>application/json</code></dt>
+<dd>
+<p></p>
+<div class="paragraph">
+<p><a href="schemas.html#_applicationmembers" class="xref page">ApplicationMembers</a></p>
+</div>
+</dd>
+</dl>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">404</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>If the requested application does not exist or if the user has no access to it.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_put_apiadminv1alpha1appsappidmembers"><a class="anchor" href="#_put_apiadminv1alpha1appsappidmembers"></a>PUT <code>/api/admin/v1alpha1/apps/{appId}/members</code></h3>
+<div class="paragraph">
+<p>Update existing application member list.</p>
+</div>
+<div class="sect3">
+<h4 id="_parameters_19"><a class="anchor" href="#_parameters_19"></a>Parameters</h4>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Location</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">appId*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">path</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>string</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The Application ID.</p></div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_request_8"><a class="anchor" href="#_request_8"></a>Request</h4>
+<div class="paragraph">
+<p>The new application member list.</p>
+</div>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Content Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>application/json</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="schemas.html#_applicationmembers" class="xref page">ApplicationMembers</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_responses_21"><a class="anchor" href="#_responses_21"></a>Responses</h4>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Code</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">204</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The application&#39;s member list was updated.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">400</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The payload format was invalid.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">404</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>If requested application does not exist or if the user has no access to it.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">409</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>In case a resource version was provided in the update, but it did not match the
+current version of the resource.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_user_administration"><a class="anchor" href="#_user_administration"></a>User administration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Manage users</p>
+</div>
+<div class="sect2">
+<h3 id="_get_apiadminv1alpha1userwhoami"><a class="anchor" href="#_get_apiadminv1alpha1userwhoami"></a>GET <code>/api/admin/v1alpha1/user/whoami</code></h3>
+<div class="paragraph">
+<p>Get information about the current user.</p>
+</div>
+<div class="sect3">
+<h4 id="_responses_22"><a class="anchor" href="#_responses_22"></a>Responses</h4>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Code</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Information about the current user.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>application/json</code></dt>
+<dd>
+<p></p>
+<div class="paragraph">
+<p><a href="schemas.html#_responseapiadminv1alpha1userwhoamiget200applicationjson" class="xref page">ResponseApiAdminV1alpha1UserWhoamiGet200ApplicationJson</a></p>
+</div>
+</dd>
+</dl>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">403</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>In case the user is not logged in.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_command_control"><a class="anchor" href="#_command_control"></a>Command &amp; Control</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Send commands to devices and check the results.</p>
+</div>
+<div class="sect2">
+<h3 id="_post_apicommandv1alpha1appsappiddevicesdeviceid"><a class="anchor" href="#_post_apicommandv1alpha1appsappiddevicesdeviceid"></a>POST <code>/api/command/v1alpha1/apps/{appId}/devices/{deviceId}</code></h3>
+<div class="paragraph">
+<p>Send one way commands to devices.</p>
+</div>
+<div class="sect3">
+<h4 id="_parameters_20"><a class="anchor" href="#_parameters_20"></a>Parameters</h4>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Location</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">appId*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">path</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>string</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The Application ID.</p></div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">deviceId*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">path</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>string</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The device ID.</p></div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">command*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">query</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="schemas.html#_commandname" class="xref page">CommandName</a></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>Command to execute</p></div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_request_9"><a class="anchor" href="#_request_9"></a>Request</h4>
+<div class="paragraph">
+<p>Optional payload for the command</p>
+</div>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Content Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>application/json</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="schemas.html#_commandobject" class="xref page">CommandObject</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_responses_23"><a class="anchor" href="#_responses_23"></a>Responses</h4>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Code</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">202</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The command was accepted for processing, but there is no further information if or when the command will
+be sent to the device.</p>
+</div>
+<div class="paragraph">
+<p>As commands are considered short-lived, command which cannot be sent in the near future will get discarded.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">401</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Invalid authentication.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">404</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Device or application not found.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">406</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Device is not found or disabled.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_get_apicommandv1alpha1inboxappsappiddevicesdeviceid"><a class="anchor" href="#_get_apicommandv1alpha1inboxappsappiddevicesdeviceid"></a>GET <code>/api/command/v1alpha1/inbox/apps/{appId}/devices/{deviceId}</code></h3>
+<div class="paragraph">
+<p>Explicitly wait for commands</p>
+</div>
+<div class="sect3">
+<h4 id="_parameters_21"><a class="anchor" href="#_parameters_21"></a>Parameters</h4>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Location</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">appId*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">path</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>string</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The Application ID.</p></div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">deviceId*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">path</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>string</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The device ID.</p></div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>timeout</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">query</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="schemas.html#_timeout" class="xref page">Timeout</a></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>Wait for commands for specified amount of time in seconds.</p></div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_responses_24"><a class="anchor" href="#_responses_24"></a>Responses</h4>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Code</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The response contain a command.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>application/json</code></dt>
+<dd>
+<p></p>
+<div class="paragraph">
+<p><a href="schemas.html#_commandobject" class="xref page">CommandObject</a></p>
+</div>
+</dd>
+</dl>
+</div>
+<h3 id="_headers" class="discrete">Headers</h3>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Command
+</td>
+<td class="hdlist2">
+<p>Command to be executed</p>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Map of objects</p>
+</div>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Request
+</td>
+<td class="hdlist2">
+<p>Request identifier used to correlate response with.</p>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p><code>string</code></p>
+</div>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">404</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>No command available.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_post_apicommandv1alpha1outboxappsappiddevicesdeviceid"><a class="anchor" href="#_post_apicommandv1alpha1outboxappsappiddevicesdeviceid"></a>POST <code>/api/command/v1alpha1/outbox/apps/{appId}/devices/{deviceId}</code></h3>
+<div class="paragraph">
+<p>Send a command result.</p>
+</div>
+<div class="sect3">
+<h4 id="_parameters_22"><a class="anchor" href="#_parameters_22"></a>Parameters</h4>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Location</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">appId*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">path</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>string</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The Application ID.</p></div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">deviceId*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">path</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>string</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The device ID.</p></div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>request</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">query</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>string</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>Request identifier used to correlate response with.</p></div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">status*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">query</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>string</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>Status code of commands execution.</p></div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_request_10"><a class="anchor" href="#_request_10"></a>Request</h4>
+<div class="paragraph">
+<p>Optional payload for the command response</p>
+</div>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Content Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>application/json</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Map of objects</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_responses_25"><a class="anchor" href="#_responses_25"></a>Responses</h4>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Code</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Command result saved.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_system_information"><a class="anchor" href="#_system_information"></a>System information</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Get information of the system.</p>
+</div>
+<div class="sect2">
+<h3 id="_get_well_knowndrogue_version"><a class="anchor" href="#_get_well_knowndrogue_version"></a>GET <code>/.well-known/drogue-version</code></h3>
+<div class="paragraph">
+<p>Get version</p>
+</div>
+<div class="sect3">
+<h4 id="_responses_26"><a class="anchor" href="#_responses_26"></a>Responses</h4>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Code</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Version response</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>application/json</code></dt>
+<dd>
+<p></p>
+<div class="paragraph">
+<p><a href="schemas.html#_responsewellknowndrogueversionget200applicationjson" class="xref page">ResponseWellKnownDrogueVersionGet200ApplicationJson</a></p>
+</div>
+</dd>
+</dl>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_get_well_knowndrogue_endpoints"><a class="anchor" href="#_get_well_knowndrogue_endpoints"></a>GET <code>/.well-known/drogue-endpoints</code></h3>
+<div class="paragraph">
+<p>Get publicly known endpoints</p>
+</div>
+<div class="sect3">
+<h4 id="_responses_27"><a class="anchor" href="#_responses_27"></a>Responses</h4>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Code</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Public endpoints</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>application/json</code></dt>
+<dd>
+<p></p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>Map of objects</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using a modified version of the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../../_/js/site.js"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
