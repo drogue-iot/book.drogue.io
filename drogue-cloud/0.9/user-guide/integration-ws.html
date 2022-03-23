@@ -125,7 +125,7 @@
     <a class="nav-link" href="management.html">Management</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <span class="nav-text">TODO: write about upstream and downstream processing</span>
+    <a class="nav-link" href="management-rules.html">Event pre-processing</a>
   </li>
 </ul>
   </li>
@@ -166,7 +166,16 @@
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="common.html">Common topics</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="common.html">Configuration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="common-mqtt-websocket.html">MQTT over websocket</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -320,9 +329,77 @@
 </aside>
 <article class="doc">
 <h1 class="page">WebSocket integration</h1>
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
 <p>The WebSocket integration allows consuming device events using a simple WebSockets based protocol.Events are
 encoded as CloudEvents.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_authentication"><a class="anchor" href="#_authentication"></a>Authentication</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Websocket endpoint allows you to authenticate using the standard HTTP <code>Authorization</code> header. Both using an OAuth2
+bearer token or by using HTTP "basic auth" using username and API key.</p>
+</div>
+<div class="paragraph">
+<p>However, when using a web socket client from inside a browser, that is not supported. In this case it is however
+possible to provide the same information using HTTP query parameters:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Query Parameters</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>token</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Provide an OAuth2 bearer token</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>username</code>  and <code>api_key</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Provide username and API key</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_consumer_group_id"><a class="anchor" href="#_consumer_group_id"></a>Consumer Group ID</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can set the consumer group ID by providing a query parameter named <code>group_id</code>. This will set the Kafka consumer
+group ID to the provided value, which allows to share the load between different consumers.</p>
+</div>
+<div class="paragraph">
+<p>If no consumer group id is provided, a temporary one will be provided.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Using a temporary consumer group might lead to missed events during re-connects. If that is a problem for your
+use case, you need to provide a stable group id.
+</td>
+</tr>
+</table>
+</div>
+</div>
 </div>
 </article>
   </div>
