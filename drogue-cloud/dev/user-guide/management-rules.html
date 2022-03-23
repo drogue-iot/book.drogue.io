@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Event pre-processing :: Drogue IoT</title>
+    <meta name="generator" content="Antora 3.0.1">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4BRXRBJJ1"></script>
+    <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','G-Z4BRXRBJJ1')</script>
+    <script>var uiRootPath = '../../../_'</script>
+    <link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="../../..">
+        <img class="navbar-brand-image" src="../../../_/img/logo.png" alt="Drogue IoT"/>
+      </a>
+
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://blog.drogue.io" target="_blank">Blog</a>
+        <a class="navbar-item" href="https://matrix.to/#/#drogue-iot:matrix.org" target="_blank">Chat</a>
+        <a class="navbar-item" href="https://book.drogue.io">Documentation</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="drogue-cloud" data-version="dev">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Drogue Cloud</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../concepts.html">Concepts</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../introduction/index.html">Introduction</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../introduction/index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../introduction/data.html">Data plane</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../introduction/control.html">Control plane</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../introduction/devices.html">Devices, gateways &amp; services</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../introduction/addons.html">Additional components</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../introduction/services.html">Noteworthy services</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../deployment/index.html">Deployment</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deployment/index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deployment/pre-reqs.html">Pre-Requisites</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deployment/cluster.html">Prepare the cluster</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deployment/installer.html">Run the installer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deployment/development.html">Deploy from the repository</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deployment/bare-metal.html">Deploying on bare metal</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deployment/monitoring.html">Monitoring a deployment</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deployment/tracing.html">Tracing</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">User Guide</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="management.html">Management</a>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="management-rules.html">Event pre-processing</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Endpoints</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="endpoint-coap.html">CoAP Endpoint</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="endpoint-http.html">HTTP Endpoint</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="endpoint-mqtt.html">MQTT Endpoint</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Integrations</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="integration-kafka.html">Apache Kafka™ Integration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="integration-command.html">HTTP Command Integration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="integration-knative.html">Knative Integration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="integration-mqtt.html">MQTT Integration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="integration-ws.html">WebSocket Integration</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="common.html">Common topics</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="common.html">Configuration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="common-mqtt-websocket.html">MQTT over websocket</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">System Integrations</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">The Things Network</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ttn/index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ttn/app.html">Managing applications</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ttn/device.html">Managing devices</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../api/index.html">API</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../api/index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../api/endpoints.html">Endpoints</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../api/schemas.html">Schemas</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Drogue Cloud</span>
+    <span class="version">dev</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../index.html">Drogue Cloud</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">dev</a>
+        </li>
+        <li class="version">
+          <a href="../../0.9/index.html">0.9</a>
+        </li>
+        <li class="version">
+          <a href="../../0.8/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../0.6/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../0.5/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4/index.html">0.4</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../drogue-device/dev/index.html">Drogue Device</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../drogue-device/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../drogue-book/index.html">Drogue IoT</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../drogue-book/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../drogue-workshops/index.html">Drogue IoT Workshops</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../drogue-workshops/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../embassy/dev/index.html">Embassy</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../embassy/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../../drogue-book/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Drogue Cloud</a></li>
+    <li><a href="index.html">User Guide</a></li>
+    <li><a href="management.html">Management</a></li>
+    <li><a href="management-rules.html">Event pre-processing</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">dev</button>
+  <div class="version-menu">
+    <a class="version is-current" href="management-rules.html">dev</a>
+    <a class="version is-missing" href="../../0.9/index.html">0.9</a>
+    <a class="version is-missing" href="../../0.8/index.html">0.8</a>
+    <a class="version is-missing" href="../../0.7/index.html">0.7</a>
+    <a class="version is-missing" href="../../0.6/index.html">0.6</a>
+    <a class="version is-missing" href="../../0.5/index.html">0.5</a>
+    <a class="version is-missing" href="../../0.4/index.html">0.4</a>
+  </div>
+</div>
+  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-cloud/edit/main/docs/modules/user-guide/pages/management-rules.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Event pre-processing</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>One core functionality of Drogue Cloud is to take device events and send deliver them to a Kafka topic, so that
+interested application can consume them. In that process, Drogue Cloud takes care of device connectivity,
+authentication &amp; authorization, and some very basic validation steps. However, most of that processing is payload
+agnostic. By default, payload and metadata just forwarded as is.</p>
+</div>
+<div class="paragraph">
+<p>In some cases it would be helpful though, if metadata or payload could be altered of verified with additional logic
+during the reception of the event.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_scope"><a class="anchor" href="#_scope"></a>Scope</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>What might come in handy in situation like this, is a rule based engine, which allows inspecting metadata and payload
+and decide how to process the event further. Rejecting, diverting, or altering it in the process.</p>
+</div>
+<div class="paragraph">
+<p>However, such a system can get out of hand pretty quickly, and we do not want to re-invent the wheel. A lot of systems
+like that already exists: Apache Camel for example, to mention just one of them.</p>
+</div>
+<div class="paragraph">
+<p>Also, allowing a user to configure a complex piece of logic for a cloud side, "as a service" platform can be rather
+tricky. Just imagine someone would validate "what the next matching bitcoin hash" is. It would be difficult to measure
+and project the costs caused by user provided validations.</p>
+</div>
+<div class="paragraph">
+<p>So Drogue Cloud tries to strike a balance. Support very simple and stateless operations, while allowing to integrate
+for more complex operations, hosted by the user.</p>
+</div>
+<div class="paragraph">
+<p>Just two quick examples: Drogue Cloud does offer a way to overwrite the "content type" attribute for an event if its
+channels matches a specific value. But for letting an AI/ML model categorize values of an even, we allow passing the
+event into an external endpoint, and consume it back as the response, before passing it along the chain. This way you
+can spin up your own (optionally Knative serving based) endpoint, and do complex calculations there, but do all of this
+as part of the Drogue Cloud device facing endpoints.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_configuration"><a class="anchor" href="#_configuration"></a>Configuration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The functionality is configured as part of the "application" resource in the <code>.spec.publish</code> path.</p>
+</div>
+<div class="paragraph">
+<p>The configuration consists of two main parts:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>rules which select when operations get triggered</p>
+</li>
+<li>
+<p>what operations should be performed when a rule matches</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Overall, even pre-processing will iterate over all rules, as defined in the order of the configuration and check if
+a rule matches. If it does, its operations will be executed. The outcome of an operation can one of:
+continue, accept, reject, drop.</p>
+</div>
+<div class="paragraph">
+<p>When the outcome is to continue, the event might have been modified, and the processing will continue with the next
+rule to check.</p>
+</div>
+<div class="paragraph">
+<p>When the outcome is to accept, the event might have been modified, the processing will stop, and the event will directly
+be delivered to the final destination.</p>
+</div>
+<div class="paragraph">
+<p>When the outcome is to reject, the event will be rejected as invalid, responding this condition to the device that sent
+the event, in case the device waits for a response.</p>
+</div>
+<div class="paragraph">
+<p>When the outcome is to drop, the event will be silently dropped. Towards the device, the operation is still successful.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">spec:
+  publish:
+    rules:
+      - when: {} <i class="conum" data-value="1"></i><b>(1)</b>
+        then: [] <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>One object which defines if the rule should be activated</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>An array of operations which should be executed when the rule matches</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_rules"><a class="anchor" href="#_rules"></a>Rules</h3>
+<div class="sect3">
+<h4 id="_checking_for_a_channel"><a class="anchor" href="#_checking_for_a_channel"></a>Checking for a channel</h4>
+<div class="paragraph">
+<p>You can use the <code>isChannel</code> matcher. For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">when:
+  isChannel: my-channel <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The name of the channel which the event must match</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_inverting"><a class="anchor" href="#_inverting"></a>Inverting</h4>
+<div class="paragraph">
+<p>You can invert the outcome of a check using the <code>not</code> operation:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">when:
+  not:
+    isChannel: my-channel</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This checks if "the channel is not `my-channel`".</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_always_matching"><a class="anchor" href="#_always_matching"></a>Always matching</h4>
+<div class="paragraph">
+<p>A rule that always matches is <code>always</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">when: always</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can also turn this into "never" using the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">when:
+  not: always</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_andor"><a class="anchor" href="#_andor"></a>And/Or</h4>
+<div class="paragraph">
+<p>It is also possible to use multiple checks and combined them with <code>and</code> or <code>or</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">when:
+  or:
+    - isChannel: foo
+    - isChannel: bar
+    - isChannel: baz</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Which would match if the channel is either <code>foo</code>, <code>bar</code>, or <code>baz</code>.</p>
+</div>
+<div class="paragraph">
+<p>When an <code>or</code> or <code>and</code> check has no sub-checks, it evaluates to <code>false</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_operations"><a class="anchor" href="#_operations"></a>Operations</h3>
+<div class="paragraph">
+<p>Operations are part of the <code>then</code> field, which is an array. All operations will be executed in order. The outcome of
+an operation may influence the processing of the next. If the array is empty, then simply no operations will be executed.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_drop_accept_reject"><a class="anchor" href="#_drop_accept_reject"></a>Drop / Accept / Reject</h3>
+<div class="paragraph">
+<p>You can silently drop the event using <code>drop</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">then: drop</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Or accept the event directly, and stop processing following operations and rules:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">then:
+  - break</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Rejecting the event will also stop processing, but return the provided reason back to the sender:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">then:
+  - reject: This is not right</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_settingremoving_attributesextensions"><a class="anchor" href="#_settingremoving_attributesextensions"></a>Setting/Removing attributes/extensions</h3>
+<div class="paragraph">
+<p>It also is possible to set or remove cloud event attributes or extensions.</p>
+</div>
+<div class="paragraph">
+<p>Cloud event attributes are similar to extensions, they are just extensions that are part of the official specification
+and thus are treated differently.</p>
+</div>
+<div class="paragraph">
+<p>You can set or remove arbitrary extensions using:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">then:
+  - setExtension: <i class="conum" data-value="1"></i><b>(1)</b>
+      name: my-ext
+      value: my-value
+  - removeExtension: my-other-ext <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Set extension <code>my-ext</code> to value <code>my-value</code></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Remove extension <code>my-other-ext</code></td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Setting an extension which already exists will overwrite the value. Removing an extension that does not exist is a
+no-op.</p>
+</div>
+<div class="paragraph">
+<p>As attributes are somewhat special it is only possible to set some of them. The following attributes are supported
+and can be set similar to the <code>setExtension</code> operation:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>datacontenttype</code> - The content type of the event, e.g. <code>application/json</code></p>
+</li>
+<li>
+<p><code>dataschema</code> - The schema of the data, e.g. some JSON schema if the content type is JSON</p>
+</li>
+<li>
+<p><code>subject</code> - The subject of the event, originally the "channel" information</p>
+</li>
+<li>
+<p><code>type</code> - The type of the event, originally <code>io.drogue.event.v1</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_externally_validate_an_event"><a class="anchor" href="#_externally_validate_an_event"></a>Externally validate an event</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This will send an event to an external endpoint and wait for the response.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">HTTP status code</th>
+<th class="tableblock halign-left valign-top">Outcome</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">200, 204</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Continue</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The event can continue processing</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">202</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Accept</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The event gets directly accepted. No further procesing is performed.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">400..=499</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reject</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The event gets rejected. If the response payload is JSON, and contains a <code>.reason</code> field, that value of that field is used as rejection cause.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">any other</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This will the processing with a server side error. Devices are encouraged to re-try later.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">then:
+  validate:
+    endpoint: {} <i class="conum" data-value="1"></i><b>(1)</b>
+    request: <i class="conum" data-value="2"></i><b>(2)</b>
+      type: cloudEvent <i class="conum" data-value="3"></i><b>(3)</b>
+      mode: binary # or structured <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Endpoint configuration as described in <a href="common.html#defining_external_endpoints" class="xref page">External endpoints</a></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Parameters for the outgoing request. Defaults to binary encoded cloud event.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Selects the type of the encoding</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>The cloud events mode: <code>binary</code> or <code>structured</code></td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_externally_enrich_an_event"><a class="anchor" href="#_externally_enrich_an_event"></a>Externally enrich an event</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This will send an event to an external endpoint and wait for the response. The headers and body of the response
+will be used as the metadata and payload of the new event.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">then:
+  enrich:
+    endpoint: {} <i class="conum" data-value="1"></i><b>(1)</b>
+    request: <i class="conum" data-value="2"></i><b>(2)</b>
+      type: cloudEvent <i class="conum" data-value="3"></i><b>(3)</b>
+      mode: binary # or structured <i class="conum" data-value="4"></i><b>(4)</b>
+    response: <i class="conum" data-value="5"></i><b>(5)</b>
+      type: cloudEvent <i class="conum" data-value="6"></i><b>(6)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Endpoint configuration as described in <a href="common.html#defining_external_endpoints" class="xref page">External endpoints</a></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Parameters for the outgoing request. Defaults to binary encoded cloud event.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Selects the type of the encoding</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>The cloud events mode: <code>binary</code> or <code>structured</code></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Parameters for the incoming response. Defaults to binary encoded cloud event.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>The response type</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The response can be one of:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>cloudEvent</code> - A cloud event (binary of structured).</p>
+</li>
+<li>
+<p><code>raw</code> - Only use the response body as payload, keep the metadata.</p>
+</li>
+<li>
+<p><code>assumeStructuredCloudEvent</code> - Assume the response body contains a structured cloud event, with attributes/extensions as part of the root level. However, the response content type is ignored, although it normally must be <code>application/cloudevents+json; charset=UTF-8</code>. This can be used for broken cloud events serialization.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using a modified version of the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../../_/js/site.js"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
