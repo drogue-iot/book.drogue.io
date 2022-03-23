@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>nRF 52840 DFU example :: Drogue IoT</title>
+    <title>Adarfuit nRF52840 Feather DFU example :: Drogue IoT</title>
     <meta name="generator" content="Antora 3.0.1">
     <link rel="stylesheet" href="../../../../../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4BRXRBJJ1"></script>
@@ -98,11 +98,14 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Ble</span>
 <ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="README.html">Adafruit Feather nRF52840 Bootloader DFU example</a>
+  </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../../microbit/ble-temperature/README.html">BBC micro:bit v2 BLE temperature sensor</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../ble-mesh/README.html">nrf52840-dk BLE Mesh example</a>
+    <a class="nav-link" href="../../nrf52840-dk/ble-mesh/README.html">nrf52840-dk BLE Mesh example</a>
   </li>
 </ul>
   </li>
@@ -267,41 +270,79 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../../../../index.html">Drogue Device</a></li>
-    <li><a href="README.html">nRF 52840 DFU example</a></li>
+    <li><a href="../../../../examples.html">Examples</a></li>
+    <li>Ble</li>
+    <li><a href="README.html">Adafruit Feather nRF52840 Bootloader DFU example</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-device/edit/main/docs/modules/ROOT/pages/examples/nrf52/nrf52840-dk/bootloader-dfu/README.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-device/edit/main/docs/modules/ROOT/pages/examples/nrf52/adafruit-feather-nrf52840/bootloader-dfu/README.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">nRF 52840 DFU example</h1>
+<h1 class="page">Adarfuit nRF52840 Feather DFU example</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Example for nRF52 demonstrating the bootloader. The example consists of application binaries, 'a'
-which allows you to press a button to start the DFU process, and 'b' which is the updated
-application.</p>
+<p>Example for the Adafruit nRF52840 Feather demonstrating bootloader and firmware update capabilities. The example assumes that the nRF softdevice is installed. With this example, you can use three different options to update the firmare:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>BLE</p>
+</li>
+<li>
+<p>USB</p>
+</li>
+<li>
+<p>UART</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_prerequisites"><a class="anchor" href="#_prerequisites"></a>Prerequisites</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_hardware"><a class="anchor" href="#_hardware"></a>Hardware</h3>
 <div class="ulist">
 <ul>
 <li>
-<p><code>cargo-binutils</code></p>
+<p>One of <a href="https://www.adafruit.com/product/4062">Adafruit nRF52840 Feather Express</a> or <a href="https://www.adafruit.com/product/4516">Adafruit nRF52840 Feather Sense</a> (requires soldering to the bottom debug pads).</p>
+</li>
+<li>
+<p>A SWD debug probe such as <a href="https://github.com/probe-rs/rusty-probe">Rusty Probe</a> or using a <a href="https://www.raspberrypi.com/products/raspberry-pi-pico/">Raspberry Pi Pico</a> and load it with <a href="https://github.com/majbthrd/DapperMime">this firmware</a>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_software"><a class="anchor" href="#_software"></a>Software</h3>
+<div class="paragraph">
+<p>Clone the <a href="https://github.com/embassy-rs/embassy">embassy repository</a>. This example will assume it&#8217;s available locally in the <code>$EMBASSY_REPO</code> environment variable.</p>
+</div>
+<div class="paragraph">
+<p>Make sure you have the latest versions (<code>cargo install &lt;tool&gt;</code>) of these tools:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>probe-run</code></p>
+</li>
+<li>
+<p><code>probe-rs-cli</code></p>
 </li>
 <li>
 <p><code>cargo-flash</code></p>
 </li>
 <li>
-<p><code>embassy-boot-nrf</code></p>
+<p><code>cargo-binutils</code></p>
 </li>
 </ul>
+</div>
 </div>
 </div>
 </div>
@@ -309,35 +350,89 @@ application.</p>
 <h2 id="_usage"><a class="anchor" href="#_usage"></a>Usage</h2>
 <div class="sectionbody">
 <div class="sect2">
+<h3 id="_erase_current_settings"><a class="anchor" href="#_erase_current_settings"></a>Erase current settings</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">probe-rs-cli erase --chip nRF52840_xxAA</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_flash_bootloader"><a class="anchor" href="#_flash_bootloader"></a>Flash bootloader</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">cargo flash --manifest-path $EMBASSY_GIT_REPO/embassy-boot/nrf/Cargo.toml --release --features embassy-nrf/nrf52840,softdevice --chip nRF52840_xxAA</code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">cargo flash --manifest-path $EMBASSY_REPO/embassy-boot/nrf/Cargo.toml --release --features embassy-nrf/nrf52840,softdevice --chip nRF52840_xxAA</code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_build_b"><a class="anchor" href="#_build_b"></a>Build 'b'</h3>
+<h3 id="_flash_nrf_softdevice"><a class="anchor" href="#_flash_nrf_softdevice"></a>Flash nRF Softdevice</h3>
+<div class="paragraph">
+<p>Download the softdevice version 7.3.0 <a href="https://www.nordicsemi.com/Products/Development-software/s140/download">here</a>.</p>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">cargo build --release --features b,panic-reset --no-default-features</code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">probe-rs-cli download path-to-softdevice.hex --format Hex --chip nRF52840_xxAA</code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_generate_binary_for_b"><a class="anchor" href="#_generate_binary_for_b"></a>Generate binary for 'b'</h3>
+<h3 id="_flash_application"><a class="anchor" href="#_flash_application"></a>Flash application</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">cargo objcopy --release --features b,panic-reset --no-default-features -- -O binary b.bin</code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">cargo flash --release --chip nRF52840_xxAA</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>When started, the device will blink it&#8217;s LED at a fixed interval. You can now modify the example, and DFU it to the device with the using BLE GATT. To do that, it&#8217;s convenient to use the <code>drgdfu</code> tool (<code>cargo install <a href="https://github.com/drogue-iot/drgdfu" class="bare">https://github.com/drogue-iot/drgdfu</a></code>).</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_flash_a_which_includes_b_bin"><a class="anchor" href="#_flash_a_which_includes_b_bin"></a>Flash <code>a</code> (which includes b.bin)</h3>
+<h3 id="_flashing_a_new_revision_using_firmware_update"><a class="anchor" href="#_flashing_a_new_revision_using_firmware_update"></a>Flashing a new revision using firmware update</h3>
+<div class="paragraph">
+<p>One change you can do is to adjust the BLINK_INTERVAL constant to a different value. We can then rebuild the application and flash it using the <code>drgdfu</code> tool.</p>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">cargo flash --features a --release --chip nRF52840_xxAA</code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">REVISION=myupdate cargo objcopy --release -- -O binary update.bin</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Modifying the version in <code>Cargo.toml</code> or passing a <code>REVISION</code> environment variable will compile the firmware with a new version identifier. This identifier can be used to decide if a firmware update is needed at all by the <code>drgdfu</code>.</p>
+</div>
+<div class="paragraph">
+<p>To use the <code>drgdfu</code> tool to update over BLE, generate a metadata file first:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">drgdfu generate 0.2.0 update.bin &gt; update.json</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We can then use refer to the metadata file when running the DFU process (The MAC address can be found from discovering your device using any tool like <code>bluetoothsctl</code> and the command <code>scan on</code>):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">drgdfu upload ble-gatt --device F8:56:35:45:1C:3C file update.json</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Be patient! The firmware update process on the device takes up to 20-30 seconds.</p>
+</div>
+<div class="paragraph">
+<p>Once finished, the <code>drgdfu</code> tool will wait for the device to swap the new firmware and report back the expected version. If not, it will restart the DFU process.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+When using the USB or serial update, the serial port might disappear when the swap is performed. Follow the instructions as provided by the tool.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
