@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: Drogue IoT</title>
+    <title>Microbit BLE DFU example :: Drogue IoT</title>
     <meta name="generator" content="Antora 3.0.1">
     <link rel="stylesheet" href="../../../../../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4BRXRBJJ1"></script>
@@ -86,8 +86,8 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../../../std/pingpong/README.html">Using circular dependencies between actors</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="3">
-    <a class="nav-link" href="README.html">STM32 Nucleo-H743 blinky</a>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../../stm32h7/nucleo-h743zi/blinky/README.html">STM32 Nucleo-H743 blinky</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../../../stm32u5/iot02a/blinky/README.html">STM32 IoT Discovery board blinky</a>
@@ -99,16 +99,16 @@
     <span class="nav-text">Ble</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../../nrf52/adafruit-feather-nrf52840/bootloader-dfu/README.html">Adafruit Feather nRF52840 Bootloader DFU example</a>
+    <a class="nav-link" href="../../adafruit-feather-nrf52840/bootloader-dfu/README.html">Adafruit Feather nRF52840 Bootloader DFU example</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="README.html">Microbit Bootloader DFU example</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../../nrf52/microbit/ble-dfu/README.html">Microbit Bootloader DFU example</a>
+    <a class="nav-link" href="../ble-temperature/README.html">BBC micro:bit v2 BLE temperature sensor</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../../nrf52/microbit/ble-temperature/README.html">BBC micro:bit v2 BLE temperature sensor</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../../nrf52/nrf52840-dk/ble-mesh/README.html">nrf52840-dk BLE Mesh example</a>
+    <a class="nav-link" href="../../nrf52840-dk/ble-mesh/README.html">nrf52840-dk BLE Mesh example</a>
   </li>
 </ul>
   </li>
@@ -117,7 +117,7 @@
     <span class="nav-text">Cloud</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../../nrf52/microbit/esp8266/README.html">BBC micro:bit v2 + ESP8266 WiFi adapter</a>
+    <a class="nav-link" href="../esp8266/README.html">BBC micro:bit v2 + ESP8266 WiFi adapter</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../../../std/cloud/README.html">Example sending telemetry data from Drogue Device to Drogue Cloud</a>
@@ -135,16 +135,16 @@
     <span class="nav-text">Display</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../../nrf52/microbit/compass/README.html">BBC micro:bit v2 compass showing direction in led display</a>
+    <a class="nav-link" href="../compass/README.html">BBC micro:bit v2 compass showing direction in led display</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../../nrf52/microbit/jukebox/README.html">BBC micro:bit v2 disco jukebox and light show</a>
+    <a class="nav-link" href="../jukebox/README.html">BBC micro:bit v2 disco jukebox and light show</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../../nrf52/microbit/uart/README.html">BBC micro:bit v2 uart and matrix display</a>
+    <a class="nav-link" href="../uart/README.html">BBC micro:bit v2 uart and matrix display</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../epd/README.html">STM32 Nucleo-H743 7-color e-paper display</a>
+    <a class="nav-link" href="../../../stm32h7/nucleo-h743zi/epd/README.html">STM32 Nucleo-H743 7-color e-paper display</a>
   </li>
 </ul>
   </li>
@@ -171,7 +171,7 @@
     <span class="nav-text">Uart</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../../nrf52/microbit/uart/README.html">BBC micro:bit v2 uart and matrix display</a>
+    <a class="nav-link" href="../uart/README.html">BBC micro:bit v2 uart and matrix display</a>
   </li>
 </ul>
   </li>
@@ -180,7 +180,7 @@
     <span class="nav-text">Wifi</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../../nrf52/microbit/esp8266/README.html">BBC micro:bit v2 + ESP8266 WiFi adapter</a>
+    <a class="nav-link" href="../esp8266/README.html">BBC micro:bit v2 + ESP8266 WiFi adapter</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../../../std/esp8266/README.html">Example using a USB-to-Serial adapter + ESP8266 adapter</a>
@@ -274,79 +274,142 @@
   <ul>
     <li><a href="../../../../index.html">Drogue Device</a></li>
     <li><a href="../../../../examples.html">Examples</a></li>
-    <li>Basic</li>
-    <li><a href="README.html">STM32 Nucleo-H743 blinky</a></li>
+    <li>Ble</li>
+    <li><a href="README.html">Microbit Bootloader DFU example</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-device/edit/main/docs/modules/ROOT/pages/examples/stm32h7/nucleo-h743zi/blinky/README.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-device/edit/main/docs/modules/ROOT/pages/examples/nrf52/microbit/ble-dfu/README.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<div class="sect1">
-<h2 id="_nucleo_h743zi_blinkdance_drogue_device_example"><a class="anchor" href="#_nucleo_h743zi_blinkdance_drogue_device_example"></a>nucleo-h743zi-blinkdance drogue-device example</h2>
+<h1 class="page">Microbit BLE DFU example</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>This example application runs out of the box on the STM32 Nucleo H743ZI development kit.</p>
+<p>Example for the BBC Micro:bit demonstrating bootloader and firmware update capabilities. The example assumes that the nRF softdevice is installed. With this example, you can use BLE to update your microbit.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prerequisites"><a class="anchor" href="#_prerequisites"></a>Prerequisites</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_hardware"><a class="anchor" href="#_hardware"></a>Hardware</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>BBC Micro:bit</p>
+</li>
+</ul>
+</div>
 </div>
 <div class="sect2">
-<h3 id="_prerequisites"><a class="anchor" href="#_prerequisites"></a>Prerequisites</h3>
-<div class="sect3">
-<h4 id="_hardware"><a class="anchor" href="#_hardware"></a>Hardware</h4>
-<div class="ulist">
-<ul>
-<li>
-<p>STM32 Nucleo H743ZI development kit.</p>
-</li>
-<li>
-<p>A finger or other stick-like device to push a button.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_software"><a class="anchor" href="#_software"></a>Software</h4>
-<div class="ulist">
-<ul>
-<li>
-<p>To build the example, you need to have <a href="https://rustup.rs/">rustup</a>.</p>
-</li>
-<li>
-<p>To flash the example on the device, you need <code>probe-run</code> installed (<code>cargo install probe-run</code>).</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_running"><a class="anchor" href="#_running"></a>Running</h4>
+<h3 id="_software"><a class="anchor" href="#_software"></a>Software</h3>
 <div class="paragraph">
-<p>To run the firmware:</p>
+<p>Clone the <a href="https://github.com/embassy-rs/embassy">embassy repository</a>. This example will assume it&#8217;s available locally in the <code>$EMBASSY_REPO</code> environment variable.</p>
 </div>
-<div class="literalblock">
-<div class="content">
-<pre>cargo run --release</pre>
+<div class="paragraph">
+<p>Make sure you have the latest versions (<code>cargo install &lt;tool&gt;</code>) of these tools:</p>
 </div>
-</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>probe-run</code></p>
+</li>
+<li>
+<p><code>probe-rs-cli</code></p>
+</li>
+<li>
+<p><code>cargo-flash</code></p>
+</li>
+<li>
+<p><code>cargo-binutils</code></p>
+</li>
+</ul>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_troubleshooting"><a class="anchor" href="#_troubleshooting"></a>Troubleshooting</h2>
+<h2 id="_usage"><a class="anchor" href="#_usage"></a>Usage</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>If you’re experiencing problems, try setting the <code>VID:PID</code> values to that of your probe (you can find that from lsusb once your board is powered).</p>
-</div>
-<div class="literalblock">
+<div class="sect2">
+<h3 id="_erase_current_settings"><a class="anchor" href="#_erase_current_settings"></a>Erase current settings</h3>
+<div class="listingblock">
 <div class="content">
-<pre>cargo run --release -- --probe &lt;VID&gt;:&lt;PID&gt;</pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">probe-rs-cli erase --chip nRF52833_xxAA</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_flash_bootloader"><a class="anchor" href="#_flash_bootloader"></a>Flash bootloader</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">cp memory-bl.x $EMBASSY_REPO/embassy-boot/nrf/memory.x
+cargo flash --manifest-path $EMBASSY_REPO/embassy-boot/nrf/Cargo.toml --release --features embassy-nrf/nrf52833,softdevice --chip nRF52833_xxAA</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_flash_nrf_softdevice"><a class="anchor" href="#_flash_nrf_softdevice"></a>Flash nRF Softdevice</h3>
+<div class="paragraph">
+<p>Download the softdevice version 7.3.0 <a href="https://www.nordicsemi.com/Products/Development-software/s113/download">here</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">probe-rs-cli download path-to-softdevice.hex --format Hex --chip nRF52833_xxAA</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_flash_application"><a class="anchor" href="#_flash_application"></a>Flash application</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">cargo flash --release --chip nRF52833_xxAA</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Once flashed, the device will reset and look no different at first.
-Upon pressing the blue user button, the LEDS will randomly blink individually until the button is released.</p>
+<p>When started, the device scroll the current version across the LED matrix.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_flashing_a_new_revision_using_firmware_update"><a class="anchor" href="#_flashing_a_new_revision_using_firmware_update"></a>Flashing a new revision using firmware update</h3>
+<div class="paragraph">
+<p>One change you can do is to set the REVISION environment variable, which will adjust the text that is printed on the LED matrix. We can then rebuild the application and flash it using the <code>drgdfu</code> tool.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">REVISION=myupdate cargo objcopy --release -- -O binary update.bin</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Modifying the version in <code>Cargo.toml</code> or passing a <code>REVISION</code> environment variable will compile the firmware with a new version identifier. This identifier can be used to decide if a firmware update is needed at all by the <code>drgdfu</code>.</p>
+</div>
+<div class="paragraph">
+<p>To use the <code>drgdfu</code> tool to update over BLE, generate a metadata file first:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">drgdfu generate --version myupdate --file update.bin &gt; update.json</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We can then use refer to the metadata file when running the DFU process (The MAC address can be found from discovering your device using any tool like <code>bluetoothsctl</code> and the command <code>scan on</code>):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">drgdfu upload ble-gatt --device F8:56:35:45:1C:3C file update.json</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Be patient! The firmware update process on the device takes up to 20-30 seconds.</p>
+</div>
+<div class="paragraph">
+<p>Once finished, the <code>drgdfu</code> tool will wait for the device to swap the new firmware and report back the expected version. If not, it will restart the DFU process.</p>
+</div>
 </div>
 </div>
 </div>
