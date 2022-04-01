@@ -125,7 +125,16 @@
     <a class="nav-link" href="management.html">Management</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="management.html#_applications">Applications</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="management.html#devices">Devices</a>
+  </li>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="management-rules.html">Event pre-processing</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="management-mqtt.html">MQTT dialects</a>
   </li>
 </ul>
   </li>
@@ -419,7 +428,7 @@ spec:
 <div class="sect2">
 <h3 id="_x_509_client_certificates"><a class="anchor" href="#_x_509_client_certificates"></a>X.509 Client certificates</h3>
 <div class="paragraph">
-<p>You may use X.509 client certificates when establishing the TLS connection. The certificate must be signed with a
+<p>You may use X.509 client certificates when establishing the TLS connection.The certificate must be signed with a
 trust anchor stored in the device registry on the application level.</p>
 </div>
 </div>
@@ -432,8 +441,21 @@ trust anchor stored in the device registry on the application level.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_publish_data"><a class="anchor" href="#_publish_data"></a>Publish data</h2>
+<h2 id="protocol_dialects"><a class="anchor" href="#protocol_dialects"></a>Protocol dialects</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>The MQTT endpoint supports different "dialects" or APIs.The following subsections describe these dialects.By default,
+the "Drogue V1" dialect is use. However, you can configure the dialect of a device through the application or device
+configuration: see <a href="management-mqtt.html" class="xref page">MQTT dialects</a>.</p>
+</div>
+<div class="sect2">
+<h3 id="_drogue_v1_dialect"><a class="anchor" href="#_drogue_v1_dialect"></a>Drogue V1 dialect</h3>
+<div class="paragraph">
+<p>The Drogue V1 dialect is the original one, which supports all the features that Drogue Cloud offers using the MQTT
+endpoint.</p>
+</div>
+<div class="sect3">
+<h4 id="_publish_data"><a class="anchor" href="#_publish_data"></a>Publish data</h4>
 <div class="paragraph">
 <p>To publish data as the connected device, publish to <code>&lt;channel&gt;</code>. The channel information will be encoded in
 the <code>subject</code> header of the generated event.</p>
@@ -454,8 +476,8 @@ rejected (QoS 1).
 </tr>
 </table>
 </div>
-<div class="sect2">
-<h3 id="_payload_content_type"><a class="anchor" href="#_payload_content_type"></a>Payload &amp; Content type</h3>
+<div class="sect4">
+<h5 id="_payload_content_type"><a class="anchor" href="#_payload_content_type"></a>Payload &amp; Content type</h5>
 <div class="paragraph">
 <p>The payload of the publish message will be the "data" of the generated event.</p>
 </div>
@@ -470,10 +492,8 @@ be <code>application/octet-stream</code>.</p>
 </div>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_subscribe_to_commands"><a class="anchor" href="#_subscribe_to_commands"></a>Subscribe to commands</h2>
-<div class="sectionbody">
+<div class="sect3">
+<h4 id="_subscribe_to_commands"><a class="anchor" href="#_subscribe_to_commands"></a>Subscribe to commands</h4>
 <div class="paragraph">
 <p>In general, the command topic structure is <code>command/inbox/&lt;device&gt;/&lt;command&gt;</code>. It is however not possible to subscribe
 to specific commands only.</p>
@@ -553,6 +573,29 @@ to specific commands only.</p>
 </table>
 <div class="paragraph">
 <p>The payload of the command, will be the payload of the received message.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_plain_topic_dialect"><a class="anchor" href="#_plain_topic_dialect"></a>Plain topic dialect</h3>
+<div class="paragraph">
+<p>The "plain topic" dialect doesn&#8217;t impose any restrictions on the topic naming that devices publish to. So it is ideal
+for connecting existing clients via MQTT, without the need to change the publish topic structure.</p>
+</div>
+<div class="paragraph">
+<p>The downside is, that additional information (like sending on behalft of another device) which could go in the topic
+structure, now cannot be assigned a special meaning.</p>
+</div>
+<div class="sect3">
+<h4 id="_publish_data_2"><a class="anchor" href="#_publish_data_2"></a>Publish data</h4>
+<div class="paragraph">
+<p>The topic the client publishes to will directly be used as the channel information.</p>
+</div>
+<div class="paragraph">
+<p>If the "device prefix" option is enabled, then the first segment of the topic will <strong>always</strong> be used a device ID. The
+connected device will only act as a gateway. The same access rules apply as for all gateways and devices.</p>
+</div>
+</div>
 </div>
 </div>
 </div>

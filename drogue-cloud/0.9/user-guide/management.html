@@ -125,7 +125,16 @@
     <a class="nav-link" href="management.html">Management</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#_applications">Applications</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#devices">Devices</a>
+  </li>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="management-rules.html">Event pre-processing</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="management-mqtt.html">MQTT dialects</a>
   </li>
 </ul>
   </li>
@@ -353,10 +362,10 @@ tool <code>drg</code>.
 </div>
 </div>
 <div class="sect1">
-<h2 id="_applications"><a class="anchor" href="#_applications"></a>Applications</h2>
+<h2 id="applications"><a class="anchor" href="#applications"></a>Applications</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>An application is the container for devices. A user can have multiple applications, but each device belongs to
+<p>An application is the container for devices.A user can have multiple applications, but each device belongs to
 a single application.</p>
 </div>
 <div class="sect2">
@@ -407,8 +416,8 @@ will be sent to the server for updating.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Deleting an application me be delayed, as first all devices which require to be cleaned up will be processes. Once
-this is finished, the application might require cleanup too. Only once all resources are properly cleaned up, the
+Deleting an application me be delayed, as first all devices which require to be cleaned up will be processes.Once
+this is finished, the application might require cleanup too.Only once all resources are properly cleaned up, the
 application will be actually deleted.
 </td>
 </tr>
@@ -418,13 +427,13 @@ application will be actually deleted.
 </div>
 </div>
 <div class="sect1">
-<h2 id="_devices"><a class="anchor" href="#_devices"></a>Devices</h2>
+<h2 id="devices"><a class="anchor" href="#devices"></a>Devices</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>As devices belong to an application, you need to create an application first.</p>
 </div>
 <div class="paragraph">
-<p>The following commands will explicitly select the application by providing the <code>--app &lt;app name&gt;</code> argument. You can
+<p>The following commands will explicitly select the application by providing the <code>--app &lt;app name&gt;</code> argument.You can
 however use <code>drg config set-default-app</code>, to set a default application and omit the <code>--app</code> argument.</p>
 </div>
 <div class="sect2">
