@@ -423,20 +423,17 @@ pub enum CounterMessage {
 #[actor]
 impl Actor for AtomicCounter {
     type Message&lt;'m&gt; = CounterMessage;
-    type Response = u32;
 
-    async fn on_mount&lt;M&gt;(&amp;mut self, _: Address&lt;Self&gt;, inbox: &amp;mut M)
+    async fn on_mount&lt;M&gt;(&amp;mut self, _: Address&lt;CounterMessage&gt;, mut inbox: M)
     where
-        M: Inbox&lt;Self&gt; + 'm
+        M: Inbox&lt;CounterMessage&gt;
     {
         loop {
-            if let Some(m) = inbox.next().await {
-                let value = match m.message() {
+            if let Some(mut m) = inbox.next().await {
+                match *m.message() {
                     CounterMessage::Increment =&gt; self.counter.increment().await,
                     CounterMessage::Add(value) =&gt; self.counter.add(*value).await,
                 }
-                // Set the response value
-                message.set_response(value);
             }
         }
     }
@@ -450,12 +447,11 @@ impl Actor for AtomicCounter {
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">impl Actor for AtomicCounter {
     type Message&lt;'m&gt; = CounterMessage;
-    type Response = u32;
 
     type OnMountFuture&lt;'m&gt; = impl Future&lt;Output = ()&gt; + 'm;
     fn on_mount&lt;'m, M&gt;(
         &amp;'m mut self,
-        _: Address&lt;Self&gt;,
+        _: Address&lt;CounterMessage&gt;,
         inbox: &amp;'m mut M,
     ) -&gt; Self::OnMountFuture&lt;'m, M&gt;
     where
@@ -463,13 +459,11 @@ impl Actor for AtomicCounter {
     {
         async move {
             loop {
-                if let Some(m) = inbox.next().await {
-                    let value = match m.message() {
+                if let Some(mut m) = inbox.next().await {
+                    match *m.message() {
                         CounterMessage::Increment =&gt; self.counter.increment().await,
                         CounterMessage::Add(value) =&gt; self.counter.add(*value).await,
                     }
-                    // Set the response value
-                    message.set_response(value);
                 }
             }
         }
