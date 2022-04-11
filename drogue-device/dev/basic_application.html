@@ -81,12 +81,6 @@
     <a class="nav-link" href="examples/rp/pico/blinky/README.html">Raspberry Pi Pico Blinky</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="examples/std/package/README.html">How to write a package containing multiple actors</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="examples/std/pingpong/README.html">Using circular dependencies between actors</a>
-  </li>
-  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="examples/stm32h7/nucleo-h743zi/blinky/README.html">STM32 Nucleo-H743 blinky</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -333,28 +327,44 @@ use panic_probe as _;</code></pre>
 <p>Lets define the basic game first. We&#8217;ll model the game as an actor named <code>Game</code>, and it will drive the entire game logic and interact with the LED matrix and the 'A' button on the micro:bit board.</p>
 </div>
 <div class="paragraph">
-<p>Luckily, Drogue Device already have actors for buttons and LED matrices, so we only need to create the <code>Game</code> actor.</p>
+<p>Luckily, Drogue Device already have actors for buttons and a LED matrix driver, so we only need to create the <code>Game</code> actor.</p>
 </div>
 <div class="paragraph">
 <p>Lets start with the types:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">/// A simple game where the led matrix is traversed at a fixed interval and you press the button
-/// to light a red. You win when the whole board is lit.
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">/// to light a red. You win when the whole board is lit.
 struct Game {
-    matrix: Address&lt;LedMatrixActor&gt;,
+    matrix: LedMatrix,
 }
 
 #[derive(Clone)]
 pub enum GameMessage {
     Toggle,
+}
+
+impl TryFrom&lt;ButtonEvent&gt; for GameMessage {
+    type Error = ();
+    fn try_from(event: ButtonEvent) -&gt; Result&lt;Self, Self::Error&gt; {
+        match event {
+            ButtonEvent::Released =&gt; Ok(GameMessage::Toggle),
+            _ =&gt; Err(()),
+        }
+    }
+}
+
+impl Game {
+    pub fn new(matrix: LedMatrix) -&gt; Self {
+        Self { matrix }
+    }
 }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>Game</code> type holds on to the <code>Address</code> of the led matrix actor. The <code>Address</code> type is a handle that you can use to send messages to an <code>Actor</code>. In addition, we define the <code>GameMessage</code> message that our actor will expect to be notified
-of whenever the button is pressed.</p>
+<p>The <code>Game</code> type holds on to the led matrix. In addition, we define the <code>GameMessage</code> message that our actor will expect to be notified of whenever the button is pressed.
+The <code>Address</code> type is a handle that you can use to send messages to an <code>Actor</code>. Our Game actor will be reachable using an <code>Address&lt;GameCommand&gt;</code> instance, which you get when mounting an actor. The predefined <code>Button</code> actor
+can work with any handle that implements the <code>TryFrom&lt;ButtonEvent&gt;</code> trait, so we&#8217;ll add an implemented for our <code>GameMessage</code> type.</p>
 </div>
 <div class="paragraph">
 <p>We can now have our <code>Game</code> type implement the <code>Actor</code> trait:</p>
@@ -365,9 +375,10 @@ of whenever the button is pressed.</p>
 impl Actor for Game {
     type Message&lt;'m&gt; = GameMessage;
 
-    async fn on_mount&lt;M&gt;(&amp;mut self, _: Address&lt;Self&gt;, inbox: &amp;mut M)
+    async fn on_mount&lt;M&gt;(&amp;mut self, _: Address&lt;GameMessage&gt;, mut inbox: M)
     where
-        M: Inbox&lt;Self&gt; + 'm,</code></pre>
+        M: Inbox&lt;GameMessage&gt; + 'm,
+    {</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -389,7 +400,7 @@ Why do you have to define the <code>actor</code> attribute? Rust does not yet su
 <p>We can now define the main actor logic in the <code>on_mount</code> implementation.</p>
 </div>
 <div class="paragraph">
-<p>The <code>on_mount</code> entry point is called only once, and should contain the Actor main loop. The actor is handed an address to itself. This can be useful if you need to register the <code>Actor</code> with other actors or types. The <code>Address</code> type can be copied, so it&#8217;s easy to pass around.</p>
+<p>The <code>on_mount</code> entry point is called only once, and should contain the Actor main loop. The actor is handed an address to itself. This can be useful if you need to register the <code>Actor</code> with other actors or types. The <code>Address</code> type can be cloned, so it&#8217;s easy to pass around.</p>
 </div>
 <div class="paragraph">
 <p>The <code>Inbox</code> parameter is a handle that the actor can use to wait for incoming messages.</p>
@@ -440,59 +451,79 @@ Why do you have to define the <code>actor</code> attribute? Rust does not yet su
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">{
-    defmt::info!("Starting game! Press the 'A' button to lit the LED at the cursor.");
-    let speed = Duration::from_millis(200);
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">defmt::info!("Starting game! Press the 'A' button to lit the LED at the cursor.");
+let speed = Duration::from_millis(200);
 
-    let mut coordinates: [[bool; 5]; 5] = [[false; 5]; 5];
-    let mut cursor = 0;
-    let (mut x, mut y) = (0, 0);
-    let mut done = false;
+let mut coordinates: [[bool; 5]; 5] = [[false; 5]; 5];
+let mut cursor = 0;
+let (mut x, mut y) = (0, 0);
+let mut done = false;
 
-    while !done {
-        self.matrix.on(x, y).await.unwrap();
-        // Race timeout and button press
-        let timeout = Timer::after(speed);
-        let event = inbox.next();
-        pin_mut!(timeout);
-        pin_mut!(event);
-        match select(timeout, event).await {
-            // Timeout
-            Either::Left(_) =&gt; {}
-            // Set/unset
-            Either::Right(_) =&gt; {
-                coordinates[y][x] = !coordinates[y][x];
+let mut render = Ticker::every(Duration::from_millis(5));
+while !done {
+    self.matrix.on(x, y);
+    // Race timeout and button press
+    let timeout = Timer::after(speed);
+    let event = inbox.next();
+    pin_mut!(timeout);
+    pin_mut!(event);
+
+    let mut logic = select(timeout, event);
+    loop {
+        let tick = render.next();
+        pin_mut!(tick);
+        match select(tick, &amp;mut logic).await {
+            Either::Left((_, _)) =&gt; {
+                self.matrix.render();
             }
-        }
-
-        // Unlit only if we're not set
-        if !coordinates[y][x] {
-            self.matrix.off(x, y).await.unwrap();
-        }
-
-        // Check if game is done
-        done = true;
-        for x in 0..5 {
-            for y in 0..5 {
-                if !coordinates[y][x] {
-                    done = false;
+            Either::Right((f, _)) =&gt; match f {
+                Either::Left(_) =&gt; {
                     break;
                 }
+                Either::Right(_) =&gt; {
+                    // Set/unset
+                    coordinates[y][x] = !coordinates[y][x];
+                    break;
+                }
+            },
+        }
+    }
+
+    // Unlit only if we're not set
+    if !coordinates[y][x] {
+        self.matrix.off(x, y)
+    }
+
+    // Check if game is done
+    done = true;
+    for x in 0..5 {
+        for y in 0..5 {
+            if !coordinates[y][x] {
+                done = false;
+                break;
             }
         }
-
-        x = cursor % 5;
-        y = (cursor / 5) % 5;
-        cursor += 1;
     }
+
+    x = cursor % 5;
+    y = (cursor / 5) % 5;
+    cursor += 1;
+    self.matrix.render();
 }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>You can see the use of the <code>self.matrix</code> which of type <code>Address</code>. The <code>on</code> method under the hood sends a message to a <code>LedMatrixActor</code> for toggling the LED at a given coordinate. The <code>inbox.next()</code> is an async funtion that completes when an event have been received.</p>
+<p>The LedMatrix has an <code>on</code> and <code>off</code> method to toggle the LED at a given coordinate. In order to render the current LedMatrix state, we need
+to call a render function at the desired refresh interval. The "outer" loop does just that until one of the 'game logic' futures are completing.</p>
 </div>
 <div class="paragraph">
-<p>The <code>Timer</code> type can be used to asynchronously wait for an event. Finally, the <code>futures</code> <code>select</code> function can be used to "race" two async functions for completion.</p>
+<p>The <code>inbox.next()</code> is an async funtion that completes when an event have been received (i.e. button has been pressed).</p>
+</div>
+<div class="paragraph">
+<p>The <code>Timer</code> type can be used to asynchronously wait for an event. The <code>futures</code> <code>select</code> function can be used to "race" two async functions for completion.</p>
+</div>
+<div class="paragraph">
+<p>Therefore, the outer select races the rending loop and the <code>inbox.next()</code> and timer, whereas they are raced against eachother. If there is an event or timeout, we update the game state.</p>
 </div>
 </div>
 </div>
@@ -508,19 +539,11 @@ async fn main(spawner: embassy::executor::Spawner, p: Peripherals) {
     // Using a board support package to simplify setup
     let board = Microbit::new(p);
 
-    // Spawning will start the display loop
-    let matrix = spawn_actor!(
-        spawner,
-        LED_MATRIX,
-        LedMatrixActor,
-        LedMatrixActor::new(board.display, None)
-    );
-
     // An actor for the game logic
-    let game = spawn_actor!(spawner, GAME, Game, Game::new(matrix));
+    let game = spawn_actor!(spawner, GAME, Game, Game::new(board.display));
 
     // Actor for button 'A'
-    spawn_actor!(spawner, BUTTON_A, Button&lt;PinButtonA, ButtonPressed&lt;Game&gt;&gt;, Button::new(board.btn_a, ButtonPressed(game, GameMessage::Toggle)));
+    spawn_actor!(spawner, BUTTON_A, Button&lt;PinButtonA, GameMessage&gt;, Button::new(board.btn_a, game));
 }</code></pre>
 </div>
 </div>
