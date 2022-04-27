@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Embassy runtime :: Drogue IoT</title>
+    <title>Bootloader :: Drogue IoT</title>
     <meta name="generator" content="Antora 3.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4BRXRBJJ1"></script>
@@ -44,7 +44,7 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="runtime.html">Runtime</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -62,7 +62,7 @@
   </li>
 </ul>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="bootloader.html">Bootloader</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -161,133 +161,81 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Embassy</a></li>
-    <li><a href="runtime.html">Runtime</a></li>
+    <li><a href="bootloader.html">Bootloader</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/embassy-rs/embassy/edit/master/docs/modules/ROOT/pages/runtime.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/embassy-rs/embassy/edit/master/docs/modules/ROOT/pages/bootloader.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Embassy runtime</h1>
+<h1 class="page">Bootloader</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>The Embassy runtime is an async/await executor designed for embedded usage along with support functionality for interrupts and timers.</p>
+<p><code>embassy-boot</code> a lightweight bootloader supporting firmware application upgrades in a power-fail-safe way, with trial boots and rollbacks.</p>
+</div>
+<div class="paragraph">
+<p>The bootloader can be used either as a library or be flashed directly if you are happy with the default configuration and capabilities.</p>
+</div>
+<div class="paragraph">
+<p>By design, the bootloader does not provide any network capabilities. Networking capabilities for fetching new firmware can be provided by the user application, using the bootloader as a library for updating the firmware, or by using the bootloader as a library and adding this capability yourself.</p>
+</div>
+<div class="paragraph">
+<p>The bootloader supports both internal and external flash by relying on the <code>embedded-storage</code> traits.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_features"><a class="anchor" href="#_features"></a>Features</h2>
+<h2 id="_hardware_support"><a class="anchor" href="#_hardware_support"></a>Hardware support</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>The bootloader supports</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p>No <code>alloc</code>, no heap needed. Task are statically allocated.</p>
+<p>nRF52 with and without softdevice</p>
 </li>
 <li>
-<p>No "fixed capacity" data structures, executor works with 1 or 1000 tasks without needing config/tuning.</p>
-</li>
-<li>
-<p>Integrated timer queue: sleeping is easy, just do <code>Timer::after(Duration::from_secs(1)).await;</code>.</p>
-</li>
-<li>
-<p>No busy-loop polling: CPU sleeps when there&#8217;s no work to do, using interrupts or <code>WFE/SEV</code>.</p>
-</li>
-<li>
-<p>Efficient polling: a wake will only poll the woken task, not all of them.</p>
-</li>
-<li>
-<p>Fair: a task can&#8217;t monopolize CPU time even if it&#8217;s constantly being woken. All other tasks get a chance to run before a given task gets polled for the second time.</p>
-</li>
-<li>
-<p>Creating multiple executor instances is supported, to run tasks with multiple priority levels. This allows higher-priority tasks to preempt lower-priority tasks.</p>
+<p>STM32 L4, WB, WL, L1 and L0</p>
 </li>
 </ul>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_executor"><a class="anchor" href="#_executor"></a>Executor</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>The executor function is described below. The executor keeps a queue of tasks that it should poll. When a task is created, it is polled (1). The task will attempt to make progress until it reaches a point where it would be blocked. This may happen whenever a task is .await&#8217;ing an async function. When that happens, the task yields execution by (2) returning <code>Poll::Pending</code>. Once a task yields, the executor enqueues the task at the end of the run queue, and proceeds to (3) poll the next task in the queue. When a task is finished or canceled, it will not be enqueued again.</p>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-The executor relies on tasks not blocking indefinitely, as this prevents the executor to regain control and schedule another task.
-</td>
-</tr>
-</table>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/embassy_executor.png" alt="Executor model">
-</div>
-</div>
-<div class="paragraph">
-<p>If you use the <code>#[embassy::main]</code> macro in your application, it creates the <code>Executor</code> for you and spawns the main entry point as the first task. You can also create the Executor manually, and you can in fact create multiple Executors.</p>
+<p>In general, the bootloader works on any platform that implements the <code>embedded-storage</code> traits for its internal flash, but may require custom initialization code to work.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_interrupts"><a class="anchor" href="#_interrupts"></a>Interrupts</h2>
+<h2 id="_design"><a class="anchor" href="#_design"></a>Design</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Interrupts are a common way for peripherals to signal completion of some operation and fits well with the async execution model. The following diagram describes a typical application flow where (1) a task is polled and is attempting to make progress. The task then (2) instructs the peripheral to perform some operation, and awaits. After some time has passed, (3) an interrupt is raised, marking the completion of the operation.</p>
+<p>The bootloader divides the storage into 4 main partitions, configured by a linker script:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>BOOTLOADER - Where the bootloader is placed. The bootloader itself consumes about 8kB of flash.</p>
+</li>
+<li>
+<p>ACTIVE - Where the main application is placed. The bootloader will attempt to load the application at the start of this partition. This partition is only written to by the bootloader.</p>
+</li>
+<li>
+<p>DFU - Where the application-to-be-swapped is placed. This partition is written to by the application.</p>
+</li>
+<li>
+<p>BOOTLOADER STATE - Where the bootloader stores the current state describing if the active and dfu partitions need to be swapped. When the new firmware has been written to the DFU partition, a flag is set to instruct the bootloader that the partitions should be swapped.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>The peripheral HAL then (4) ensures that interrupt signals are routed to to the peripheral and updating the peripheral state with the results of the operation. The executor is then (5) notified that the task should be polled, which it will do.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/embassy_irq.png" alt="Interrupt handling">
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-There exists a special executor named <code>InterruptExecutor</code> which can be driven by an interrupt. This can be used to drive tasks at different priority levels by creating multiple <code>InterruptExecutor</code> instances.
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_time"><a class="anchor" href="#_time"></a>Time</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Embassy features an internal timer queue enabled by the <code>time</code> feature flag. When enabled, Embassy assumes a time <code>Driver</code> implementation existing for the platform. Embassy provides time drivers for the nRF, STM32, RPi Pico, WASM and Std platforms.</p>
+<p>The partitions for ACTIVE (+BOOTLOADER), DFU and BOOTLOADER_STATE may be placed in separate flash, but they have to support compatible page sizes.</p>
 </div>
 <div class="paragraph">
-<p>The timer driver implementations for the embedded platforms might support only a fixed number of alarms that can be set. Make sure the number of tasks you expect wanting to use the timer at the same time do not exceed this limit.</p>
-</div>
-<div class="paragraph">
-<p>The timer speed is configurable at compile time using the <code>time-tick-&lt;frequency&gt;</code>. At present, the timer may be configured to run at 1000 Hz, 32768 Hz, or 1 MHz. Before changing the defaults, make sure the target HAL supports the particular frequency setting.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If you do not require timers in your application, not enabling the <code>time</code> feature can save some CPU cycles and reduce power usage.
-</td>
-</tr>
-</table>
+<p>The bootloader has a platform-agnostic part, which implements the power fail safe swapping algorithm given the boundaries set by the partitions. The platform-specific part is a minimal shim that provides additional functionality such as watchdogs or supporting the nRF52 softdevice.</p>
 </div>
 </div>
 </div>
