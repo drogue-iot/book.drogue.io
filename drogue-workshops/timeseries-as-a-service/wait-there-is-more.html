@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Wait, there is more! :: Drogue IoT</title>
+    <meta name="generator" content="Antora 3.0.1">
+    <link rel="stylesheet" href="../../_/css/site.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4BRXRBJJ1"></script>
+    <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','G-Z4BRXRBJJ1')</script>
+    <script>var uiRootPath = '../../_'</script>
+    <link rel="icon" href="../../_/img/favicon.svg" type="image/svg+xml">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="../..">
+        <img class="navbar-brand-image" src="../../_/img/logo.png" alt="Drogue IoT"/>
+      </a>
+
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://blog.drogue.io" target="_blank">Blog</a>
+        <a class="navbar-item" href="https://matrix.to/#/#drogue-iot:matrix.org" target="_blank">Chat</a>
+        <a class="navbar-item" href="https://book.drogue.io">Documentation</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="drogue-workshops" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Drogue IoT Workshops</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Introduction</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../getting-started/index.html">Getting started</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../external/telemetry-e2e.html">Telemetry end-to-end</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../ttn-lorawan-quarkus/index.html">LoRaWAN end-to-end</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ttn-lorawan-quarkus/index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ttn-lorawan-quarkus/toolchain.html">Embedded toolchain</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ttn-lorawan-quarkus/account-setup.html">TTN account setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ttn-lorawan-quarkus/drogue-cloud.html">Drogue Cloud setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ttn-lorawan-quarkus/firmware.html">Device firmware</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ttn-lorawan-quarkus/quarkus-application.html">Quarkus application</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ttn-lorawan-quarkus/making-changes.html">Making changes</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../quarkus-mqtt-starter/index.html">Quarkus MQTT integration starter</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quarkus-mqtt-starter/index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quarkus-mqtt-starter/peeking.html">What to expect</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quarkus-mqtt-starter/local.html">Running it locally</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quarkus-mqtt-starter/internals.html">How does it work?</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quarkus-mqtt-starter/kubernetes.html">Deploying to Kubernetes</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quarkus-mqtt-starter/cloud.html">Moving to the cloud</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../wifi-websockets/index.html">From WiFi to Websocket</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../wifi-websockets/index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../wifi-websockets/toolchain.html">Embedded toolchain</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../wifi-websockets/drogue-cloud.html">Drogue Cloud setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../wifi-websockets/firmware.html">Device firmware</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../wifi-websockets/websocket.html">Websocket Application</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../wifi-websockets/db-and-grafana.html">TimescaleDB and Grafana</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../wifi-websockets/summary.html">Summary</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Time series database, as a service</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="architecture.html">Architecture</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="timescale.html">Timescale</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="knative.html">Knative</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="drogue.html">Drogue Cloud</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="grafana.html">Grafana</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="simulating-data.html">Simulating data</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="summary.html">Summary</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Drogue IoT Workshops</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <a class="title" href="../../drogue-cloud/dev/index.html">Drogue Cloud</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../drogue-cloud/dev/index.html">dev</a>
+        </li>
+        <li class="version">
+          <a href="../../drogue-cloud/0.9/index.html">0.9</a>
+        </li>
+        <li class="version">
+          <a href="../../drogue-cloud/0.8/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../drogue-cloud/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../drogue-cloud/0.6/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../drogue-cloud/0.5/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../drogue-cloud/0.4/index.html">0.4</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../drogue-device/dev/index.html">Drogue Device</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../drogue-device/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../drogue-book/index.html">Drogue IoT</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../drogue-book/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <a class="title" href="../index.html">Drogue IoT Workshops</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../embassy/dev/index.html">Embassy</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../embassy/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../drogue-book/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Drogue IoT Workshops</a></li>
+    <li><a href="wait-there-is-more.html">Wait, there is more!</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-workshops/edit/main/modules/timeseries-as-a-service/pages/wait-there-is-more.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Wait, there is more!</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+WORK IN PROGRESS!
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>We got a nice IoT example set up. What we are missing, is data. So, let&#8217;s generate some and see what we can do with
+it.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_generating_data"><a class="anchor" href="#_generating_data"></a>Generating data</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Of course, you can set up a device and publish real data to the device you configured. However, explaining this may
+take some time, and we would like to keep this example focused on part of processing the data on the cloud side.</p>
+</div>
+<div class="paragraph">
+<p>So, for this workshop we are using our device simulator. Clicking on the following link, will open the simulator
+in your browser. It will simulate a device using MQTT over websocket, and comes pre-configured with a sine wave
+generator, which generates an artificial temperature value.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You will need to update the device credentials (application, device id, password) on the connection screen
+after loading.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Click here: <a href="https://v1.device-simulator.com/?c=eyJhcHBsaWNhdGlvbiI6Im15LWFwcGxpY2F0aW9uIiwiYXV0b0Nvbm5lY3QiOmZhbHNlLCJkZXZpY2UiOiJteS1kZXZpY2UiLCJpbXBvcnQiOnsiaGludENvbm5lY3Rpb24iOnRydWV9LCJzaW11bGF0aW9ucyI6eyJ0ZW1wZXJhdHVyZSI6eyJ3YXZlIjp7ImFtcGxpdHVkZXMiOls1LjAsMjAuMCwxLjBdLCJsZW5ndGhzIjpbIjFoIiwiNW0iLCIxMHMiXSwib2Zmc2V0IjoyMC4wLCJwZXJpb2QiOiIyNTBtcyIsInRhcmdldCI6eyJjaGFubmVsIjoic3RhdGUiLCJmZWF0dXJlIjoidGVtcGVyYXR1cmUiLCJwcm9wZXJ0eSI6InZhbHVlIn19fX0sInRhcmdldCI6eyJtcXR0Ijp7ImNyZWRlbnRpYWxzIjp7InBhc3N3b3JkIjoibXktcGFzc3dvcmQifSwidXJsIjoid3NzOi8vbXF0dC1lbmRwb2ludC13cy1icm93c2VyLWRyb2d1ZS1pb3QuYXBwcy53b25kZXJmdWwuaW90LXBsYXlncm91bmQub3JnL21xdHQifX19" target="_blank" rel="noopener">open simulator</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_update_credentials"><a class="anchor" href="#_update_credentials"></a>Update credentials</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Update the credentials on the "Connection" page. Activate them by pressing the <b class="button">Apply</b> button.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="title">Persisting configuration</div>
+<div class="paragraph">
+<p>By default, all changes made to the simulator instance are temporary. Closing the browser tab will simply discard them.</p>
+</div>
+<div class="paragraph">
+<p>If you want to persist the changes, you can store one configuration as default. Navigate to the "Configuration" page,
+and click on the <b class="button">Set as default</b> button.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_start_the_connection"><a class="anchor" href="#_start_the_connection"></a>Start the connection</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In order to let the simulator send data, you need to start the connection by pressing on the <b class="button">▶</b> button in the top
+right navigation area.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_send_data"><a class="anchor" href="#_send_data"></a>Send data</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Once the simulator is connected, it will start sending data towards the system with a 250ms update period. You should
+also see the data coming in the Grafana dashboard.</p>
+</div>
+<div class="paragraph">
+<p>Keep the simulator running for a while, and don&#8217;t close the tab. Maybe grab a coffee and check out the data when you
+come back.</p>
+</div>
+<div class="paragraph">
+<p>Maybe also disconnect the simulator for a few minutes, and reconnect it afterwards, letting it push some more data
+(simulating a gap in the data too)</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_improving_the_dashboard_query"><a class="anchor" href="#_improving_the_dashboard_query"></a>Improving the dashboard query</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Now that we have more data pushed to TimescaleDB, let&#8217;s focus on the dashboard query a bit. The current query we have
+in Grafana is a pretty basic one. Great to get started, but TimescaleDB can do way better.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s take a look at the following query:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">SELECT $__timeGroup("time", $__interval, NULL), device_id as metric, avg(avg(temperature)) OVER w as temp
+FROM temperatures
+WHERE
+  $__timeFilter("time") AND
+  device_id = ANY(ARRAY[$device_id]::varchar[])
+GROUP BY time, device_id
+WINDOW w as (PARTITION BY device_id ORDER BY time RANGE '1 minute'::INTERVAL PRECEDING)
+ORDER BY time, device_id</code></pre>
+</div>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+Prevents duplicate time entries. But re-runs average.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">SELECT time, metric, avg(temp) FROM (
+
+SELECT $__timeGroup("time", $__interval, NULL), device_id AS metric, avg(avg(temperature)) OVER w AS temp
+FROM temperatures
+WHERE
+  $__timeFilter("time") AND
+  device_id = ANY(ARRAY[$device_id]::varchar[])
+GROUP BY time, device_id
+WINDOW w as (PARTITION BY device_id ORDER BY time RANGE '1 minute'::INTERVAL PRECEDING)
+ORDER BY time, device_id
+
+) grouped_temps
+GROUP BY time, metric</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In a nutshell, this query takes the data, and builds a moving average over a time period of 1 minute. Portioning the
+data by device, so that the moving average is build for each device, instead of over all devices. It will also not just
+skip gaps, but actively report them using <code>NULL</code> as value. This can be used in Grafana to make the user aware of
+the gaps, rather than just drawing a straight line.</p>
+</div>
+<div class="paragraph">
+<p>In addition to the existing query, add a new panel in the Grafana dashboard. Using the query from above. Apply and
+save, and then take a look at the different visualization of the data:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/more-grafana-moving-average.png" alt="Screenshot of moving average">
+</div>
+</div>
+<div class="paragraph">
+<p>You can see that the measurement is much smoother now. Still, internally you have the actual, raw data available. Also,
+it is pretty easy to spot the gap in the data. In both variants. Bust just assume how that would look if the data
+would not be in such a predictable pattern. You might actually miss if the sensor value is a flat line, or if it was a
+gap in the data.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_better_partitioning"><a class="anchor" href="#_better_partitioning"></a>Better partitioning</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Of course, in the background, TimescaleDB knows how to best optimize the data and queries. By transforming the standard
+table into a "hypertable" earlier on, we allowed the database to create chunks of data, grouped by time. When building
+a Grafana dashboard, showing the last 30 minutes of data, some chunks might not even be touched when collecting
+the data.</p>
+</div>
+<div class="paragraph">
+<p>However, we can do even better. Remember that we allow the user to filter by device, and also used the "device id"
+when partitioning the data for the moving average. We could add the device ID as an additional portioning dimension.</p>
+</div>
+<div class="paragraph">
+<p>Execute the following statement using the <code>psql</code> tool:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">CREATE TABLE temperatures2
+(
+    time            TIMESTAMP WITH TIME ZONE NOT NULL,
+
+    device_id       VARCHAR(64)              NOT NULL,
+
+    temperature     DOUBLE PRECISION         NOT NULL
+);
+
+SELECT create_hypertable('temperatures2', 'time', partitioning_column =&gt; 'device_id', number_partitions =&gt; 3);
+INSERT INTO temperatures2 (SELECT * FROM temperatures);
+
+-- now swap tables
+ALTER TABLE temperatures RENAME TO temperatures_old;
+ALTER TABLE temperatures2 RENAME TO temperatures;
+DROP TABLE temperatures_old;
+
+GRANT INSERT ON ALL TABLES IN SCHEMA public TO pusher;
+GRANT SELECT ON ALL TABLES IN SCHEMA public TO dashboard;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_materializing_queries"><a class="anchor" href="#_materializing_queries"></a>Materializing queries</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">CREATE MATERIALIZED VIEW temperature_summary_minute
+WITH (timescaledb.continuous) AS
+SELECT
+   time_bucket_gapfill(INTERVAL '1 minute', time, NULL) AS ts,
+   device_id,
+   AVG(temperature) as temperature
+FROM temperatures
+GROUP BY ts, device_id;
+
+SELECT add_continuous_aggregate_policy('temperature_summary_minute',
+     start_offset =&gt; INTERVAL '1 month',
+     end_offset =&gt; INTERVAL '1 minute',
+     schedule_interval =&gt; INTERVAL '1 minute');
+
+GRANT SELECT ON ALL TABLES IN SCHEMA public TO dashboard;
+
+DROP MATERIALIZE VIEW temperature_summary_minute;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_just_testing"><a class="anchor" href="#_just_testing"></a>Just testing</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">SELECT ts, metric, avg(temp) FROM (
+
+SELECT time_bucket('10s',"time") AS ts, device_id as metric, avg(avg(temperature)) OVER w as temp
+FROM temperatures
+WHERE
+  "time" BETWEEN now() - INTERVAL '5m' AND NOW() AND
+  device_id = 'device1'
+GROUP BY ts, time, device_id
+WINDOW w as (PARTITION BY device_id ORDER BY time RANGE '1 minute'::INTERVAL PRECEDING)
+ORDER BY ts, device_id
+
+) grouped_temps
+GROUP BY ts, metric
+;</code></pre>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using a modified version of the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

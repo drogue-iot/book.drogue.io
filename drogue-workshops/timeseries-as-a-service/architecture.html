@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>TTN account setup :: Drogue IoT</title>
+    <title>Architecture :: Drogue IoT</title>
     <meta name="generator" content="Antora 3.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4BRXRBJJ1"></script>
@@ -67,28 +67,28 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">LoRaWAN end-to-end</a>
+    <a class="nav-link" href="../ttn-lorawan-quarkus/index.html">LoRaWAN end-to-end</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="index.html">Overview</a>
+    <a class="nav-link" href="../ttn-lorawan-quarkus/index.html">Overview</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="toolchain.html">Embedded toolchain</a>
-  </li>
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="account-setup.html">TTN account setup</a>
+    <a class="nav-link" href="../ttn-lorawan-quarkus/toolchain.html">Embedded toolchain</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="drogue-cloud.html">Drogue Cloud setup</a>
+    <a class="nav-link" href="../ttn-lorawan-quarkus/account-setup.html">TTN account setup</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="firmware.html">Device firmware</a>
+    <a class="nav-link" href="../ttn-lorawan-quarkus/drogue-cloud.html">Drogue Cloud setup</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="quarkus-application.html">Quarkus application</a>
+    <a class="nav-link" href="../ttn-lorawan-quarkus/firmware.html">Device firmware</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="making-changes.html">Making changes</a>
+    <a class="nav-link" href="../ttn-lorawan-quarkus/quarkus-application.html">Quarkus application</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ttn-lorawan-quarkus/making-changes.html">Making changes</a>
   </li>
 </ul>
   </li>
@@ -157,31 +157,31 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../timeseries-as-a-service/index.html">Time series database, as a service</a>
+    <a class="nav-link" href="index.html">Time series database, as a service</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../timeseries-as-a-service/index.html">Introduction</a>
+    <a class="nav-link" href="index.html">Introduction</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="architecture.html">Architecture</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../timeseries-as-a-service/architecture.html">Architecture</a>
+    <a class="nav-link" href="timescale.html">Timescale</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../timeseries-as-a-service/timescale.html">Timescale</a>
+    <a class="nav-link" href="knative.html">Knative</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../timeseries-as-a-service/knative.html">Knative</a>
+    <a class="nav-link" href="drogue.html">Drogue Cloud</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../timeseries-as-a-service/drogue.html">Drogue Cloud</a>
+    <a class="nav-link" href="grafana.html">Grafana</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../timeseries-as-a-service/grafana.html">Grafana</a>
+    <a class="nav-link" href="simulating-data.html">Simulating data</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../timeseries-as-a-service/simulating-data.html">Simulating data</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../timeseries-as-a-service/summary.html">Summary</a>
+    <a class="nav-link" href="summary.html">Summary</a>
   </li>
 </ul>
   </li>
@@ -266,162 +266,60 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Drogue IoT Workshops</a></li>
-    <li><a href="index.html">LoRaWAN end-to-end</a></li>
-    <li><a href="account-setup.html">TTN account setup</a></li>
+    <li><a href="index.html">Time series database, as a service</a></li>
+    <li><a href="architecture.html">Architecture</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-workshops/edit/main/modules/ttn-lorawan-quarkus/pages/account-setup.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-workshops/edit/main/modules/timeseries-as-a-service/pages/architecture.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">TTN account setup</h1>
-<div id="preamble">
-<div class="sectionbody">
+<h1 class="page">Architecture</h1>
 <div class="paragraph">
-<p>The step will guide you through the setup of your TTN (v3) account.</p>
-</div>
-<div class="paragraph">
-<p>If you already have an account, you can of course re-use that. However, we will still need to create an API key. Of
-course, you can also re-use an existing one.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_choose_a_location"><a class="anchor" href="#_choose_a_location"></a>Choose a location</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Start by navigating to the "cluster picker": <a href="https://console.cloud.thethings.network/" class="bare">https://console.cloud.thethings.network/</a></p>
+<p>The overall architecture of this tutorial looks like this:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/cluster-picker.png" alt="Screenshot of cluster picker">
+<img src="_images/architecture.svg" alt="Overall architecture">
 </div>
-</div>
-<div class="paragraph">
-<p>Pick the location that is best for you and proceed.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_create_the_account"><a class="anchor" href="#_create_the_account"></a>Create the account</h2>
-<div class="sectionbody">
-<div class="imageblock">
-<div class="content">
-<img src="_images/login.png" alt="Login screen">
-</div>
+<div class="title">Figure 1. Architecture overview</div>
 </div>
 <div class="paragraph">
-<p>On the login screen, choose "Login with The Things ID".</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/login-2.png" alt="Login screen">
-</div>
+<p><strong>Drogue Cloud</strong> will receive the telemetry data from the devices. It will authenticate and authorize the devices,
+normalize the events into "Cloud Events", but keep the payload unchanged. The events will be pushed to a Knative
+serving endpoint.</p>
 </div>
 <div class="paragraph">
-<p>Then, continue through the registration process by clicking on "Register".</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_create_an_api_key"><a class="anchor" href="#_create_an_api_key"></a>Create an API key</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Once you are done, you can create a new API key.</p>
+<p><strong>Knative</strong> will host an endpoint, which receives Cloud Events, and translates them into insert statement for the
+Timescale database.</p>
 </div>
 <div class="paragraph">
-<p>Click on the "Personal API keys" menu entry, in the top right corner of the screen:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/profile-menu.png" alt="Screenshot of profile menu">
-</div>
+<p><strong>TimescaleDB</strong> is the database, which will persist the data and serve queries coming from different applications
+interested in the data, like Grafana.</p>
 </div>
 <div class="paragraph">
-<p>The click on the button labeled "+ Add API Key":</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/add-new-key.png" alt="Screenshot of add button">
-</div>
+<p><strong>Grafana</strong> will act as visualization tool for the data.</p>
 </div>
 <div class="paragraph">
-<p>This will take you the screen for customizing the new API key. Enter a reasonable name, and select the option
-"Grant all current and future rights". Confirm by pressing button "Create API key" on the bottom of the page.</p>
+<p>With the exception of Knative, we do re-use existing services, all managed for us. And even for Knative itself, we
+re-use an existing service and only need to focus on the actual translation of the data.</p>
 </div>
 <div class="paragraph">
-<p>Next, you will see a dialog page, showing the giving you access to the API key:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/api-key.png" alt="API key dialog">
-</div>
+<p>Using this architecture, we do indeed achieve both: keeping our own, existing data structures, and on-boarding as many
+managed services as possible at the same time.</p>
 </div>
 <div class="paragraph">
-<p>This is the only time you will have access to the API key, unless you copy it now. Of course, you can delete the API
-key in the TTN console and set up a new one.</p>
+<p>Some solutions do offer you the ability to convert data using a script language, like JavaScript, in the processing.
+However, with existing data models and formats, you most likely already have code to process your data, but not
+necessarily in JavaScript. Or using the limited subset of JavaScript that the solution allows you to use.</p>
 </div>
 <div class="paragraph">
-<p>Copy the API key, and store it somewhere safe! You will need it later on, but it will also give full access to your TTN
-account.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The API key is longer than the text entry field in the dialog. Either use the copy button, or ensure that you
-really copied all characters in this field.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-The API key will give full access to your TTN account. Be sure not to leak it. Don&#8217;t make it public. If you
-did, e.g. by accidentally pushing it to GitHub, you can (and should) delete it right away.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Close the dialog by pressing the button "I have copied the key".</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_gather_all_important_information"><a class="anchor" href="#_gather_all_important_information"></a>Gather all important information</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>From this step, you should have noted the following pieces of information:</p>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">Cluster location</dt>
-<dd>
-<p>The cluster location, e.g. <code>eu1</code></p>
-</dd>
-<dt class="hdlist1">Account name</dt>
-<dd>
-<p>The name of your TTN account, e.g. <code>my-ttn-user</code></p>
-</dd>
-<dt class="hdlist1">API key</dt>
-<dd>
-<p>The API key, e.g. <code>0123456789ABCDEF.0123456789ABCDEF</code> (your actual API key will look different)</p>
-</dd>
-</dl>
-</div>
-</div>
+<p>Having Knative in the mix, you can leverage your full existing portfolio of code, and favorite programming language
+to do the job. Still, you only need to focus on the actual translation. Deploying, scheduling, and scaling is all
+part of a Knative. And it will even scale down to zero. So if you don&#8217;t use it, you don&#8217;t pay for it.</p>
 </div>
 </article>
   </div>

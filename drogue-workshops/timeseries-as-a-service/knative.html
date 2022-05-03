@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Knative :: Drogue IoT</title>
+    <meta name="generator" content="Antora 3.0.1">
+    <link rel="stylesheet" href="../../_/css/site.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4BRXRBJJ1"></script>
+    <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','G-Z4BRXRBJJ1')</script>
+    <script>var uiRootPath = '../../_'</script>
+    <link rel="icon" href="../../_/img/favicon.svg" type="image/svg+xml">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="../..">
+        <img class="navbar-brand-image" src="../../_/img/logo.png" alt="Drogue IoT"/>
+      </a>
+
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://blog.drogue.io" target="_blank">Blog</a>
+        <a class="navbar-item" href="https://matrix.to/#/#drogue-iot:matrix.org" target="_blank">Chat</a>
+        <a class="navbar-item" href="https://book.drogue.io">Documentation</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="drogue-workshops" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Drogue IoT Workshops</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Introduction</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../getting-started/index.html">Getting started</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../external/telemetry-e2e.html">Telemetry end-to-end</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../ttn-lorawan-quarkus/index.html">LoRaWAN end-to-end</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ttn-lorawan-quarkus/index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ttn-lorawan-quarkus/toolchain.html">Embedded toolchain</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ttn-lorawan-quarkus/account-setup.html">TTN account setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ttn-lorawan-quarkus/drogue-cloud.html">Drogue Cloud setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ttn-lorawan-quarkus/firmware.html">Device firmware</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ttn-lorawan-quarkus/quarkus-application.html">Quarkus application</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ttn-lorawan-quarkus/making-changes.html">Making changes</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../quarkus-mqtt-starter/index.html">Quarkus MQTT integration starter</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quarkus-mqtt-starter/index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quarkus-mqtt-starter/peeking.html">What to expect</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quarkus-mqtt-starter/local.html">Running it locally</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quarkus-mqtt-starter/internals.html">How does it work?</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quarkus-mqtt-starter/kubernetes.html">Deploying to Kubernetes</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quarkus-mqtt-starter/cloud.html">Moving to the cloud</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../wifi-websockets/index.html">From WiFi to Websocket</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../wifi-websockets/index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../wifi-websockets/toolchain.html">Embedded toolchain</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../wifi-websockets/drogue-cloud.html">Drogue Cloud setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../wifi-websockets/firmware.html">Device firmware</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../wifi-websockets/websocket.html">Websocket Application</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../wifi-websockets/db-and-grafana.html">TimescaleDB and Grafana</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../wifi-websockets/summary.html">Summary</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Time series database, as a service</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="architecture.html">Architecture</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="timescale.html">Timescale</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="knative.html">Knative</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="drogue.html">Drogue Cloud</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="grafana.html">Grafana</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="simulating-data.html">Simulating data</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="summary.html">Summary</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Drogue IoT Workshops</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <a class="title" href="../../drogue-cloud/dev/index.html">Drogue Cloud</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../drogue-cloud/dev/index.html">dev</a>
+        </li>
+        <li class="version">
+          <a href="../../drogue-cloud/0.9/index.html">0.9</a>
+        </li>
+        <li class="version">
+          <a href="../../drogue-cloud/0.8/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../drogue-cloud/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../drogue-cloud/0.6/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../drogue-cloud/0.5/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../drogue-cloud/0.4/index.html">0.4</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../drogue-device/dev/index.html">Drogue Device</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../drogue-device/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../drogue-book/index.html">Drogue IoT</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../drogue-book/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <a class="title" href="../index.html">Drogue IoT Workshops</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../embassy/dev/index.html">Embassy</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../embassy/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../drogue-book/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Drogue IoT Workshops</a></li>
+    <li><a href="index.html">Time series database, as a service</a></li>
+    <li><a href="knative.html">Knative</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-workshops/edit/main/modules/timeseries-as-a-service/pages/knative.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Knative</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Using <a href="https://knative.dev/">Knative</a>, we will send data towards the Timescale database. Coming from an IoT world, protocols like MQTT and HTTP
+are much more common than "SQL". So we need to translate the data coming from our devices into SQL statements, and
+execute them against the Timescale database, using a PostgresSQL connection.</p>
+</div>
+<div class="paragraph">
+<p>We will perform the following steps:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Set up a new project</p>
+</li>
+<li>
+<p>Create a Knative endpoint</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="title">Costs</div>
+<div class="paragraph">
+<p>Using Knative, we actually run user provided code. That is why it is pretty hard to create a "free tier" for a service
+like that. You could just mine bitcoins.</p>
+</div>
+<div class="paragraph">
+<p>So what we get is some free CPU time. Once we used that up, we will get charged. However, for a simple workshop like
+this, that is more than enough. And don&#8217;t forget that when you don&#8217;t use the service, it will idle and scale down to
+zero.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_whats_the_plan"><a class="anchor" href="#_whats_the_plan"></a>What&#8217;s the plan?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Assuming we receive "Cloud Events", that is actually rather simple: take the data, make an SQL statement, execute.
+Assuming further we already know the data format, that is just a few lines of code.</p>
+</div>
+<div class="paragraph">
+<p>However, we cannot just run a few lines of code. We need some service, some infrastructure, some storage, &#8230;&#8203; or, do we?</p>
+</div>
+<div class="paragraph">
+<p>That is where the "serverless" buzzword comes into play. We focus on the actual code of the translation. A serverless
+stack will take care of running this. Ideal for this case.</p>
+</div>
+<div class="paragraph">
+<p>Going even further, we adopt "Knative" and "Knative eventing", which is based on "Cloud Events". And with that, we
+know how we receive our events, in which envelope format we get the event. The payload is still specific to our
+device.</p>
+</div>
+<div class="paragraph">
+<p>Still, what we can do, is to tap into the Knative eventing ecosystem, and pick an existing image, which takes care
+of extracting information from a JSON based payload using JSONPath, and assembling an SQL statement for us. That comes
+in the form of an existing container image, and all that we need to do is to configure it, using environment variables.</p>
+</div>
+<div class="paragraph">
+<p>If you are curious, you can check out the code at: <a href="https://github.com/drogue-iot/drogue-postgresql-pusher" class="bare">https://github.com/drogue-iot/drogue-postgresql-pusher</a></p>
+</div>
+<div class="paragraph">
+<p>So all that we need to do, is to configure a service to run an existing container for us. Using Knative we get
+scalability, scale-down to zero, monitoring, A/B deployments, and much more for free.</p>
+</div>
+<div class="paragraph">
+<p>We&#8217;ll provide you with two options on where you can run your Knative function:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://developers.redhat.com/developer-sandbox">OpenShift developer sandbox</a> - provides you with an quick getting started experience and a place where you can host your function up to 30 days for free</p>
+</li>
+<li>
+<p><a href="https://www.ibm.com/cloud/code-engine">IBM Cloud instance</a> - also provides you a free tier to start with, but offer you an option to automatically convert to paying option if you wish to run your function for a longer period of time.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In both cases we need to configure our function with appropriate environment variables.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Variable name</th>
+<th class="tableblock halign-left valign-top">Value</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ENDPOINT__TOKEN</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Some random value you define and recall later</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The bearer token a caller needs to present in order to get access to the endpoint</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>POSTGRESQL__CONNECTION__HOST</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Hostname portion from the <code>psql</code> connection URL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The hostname of the TimescaleDB instance</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>POSTGRESQL__CONNECTION__PORT</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Port portion from the <code>psql</code> connection URL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The port of the TimescaleDB instance</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>POSTGRESQL__CONNECTION__DBNAME</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>tsdb</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the database</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>POSTGRESQL__CONNECTION__USER</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>pusher</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The database user which has write-access</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>POSTGRESQL__CONNECTION__PASSWORD</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The password you in the previous section for the <code>pusher</code> database user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The password of the database user.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>POSTGRESQL__TABLE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>temperatures</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the table</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>POSTGRESQL__TIME_COLUMN</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>time</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the timestamp field</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>FIELD_TEMPERATURE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>$.features.temperature.value</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The JSON path for extracting the temperature value from the actual payload</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>TYPE_FIELD_TEMPERATURE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>float</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The data type of the temperature</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>TAG_DEVICE_ID</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>$.device</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The JSON path for extracting the device ID from the full event</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>As we&#8217;ll see in the following section, these variables are configured differently with various providers, but the values are always the same.
+Now let&#8217;s dig into the hosting our function.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_openshift"><a class="anchor" href="#_openshift"></a>OpenShift</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>For OpenShift, log into the console, select "Administration" view and navigate to the "Serverless" section</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/openshift-serverless.png" alt="Serverless section">
+</div>
+<div class="title">Figure 1. Serverless section</div>
+</div>
+<div class="paragraph">
+<p>Now select the "Serving" menu and click on the <b class="button">Create &gt; Service</b> button. Here, you can enter the YAML definition of your function,
+with all necessary variables properly configured, like:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: sample
+  namespace: dejan-bosanac-dev
+spec:
+  template:
+    spec:
+      containers:
+        - image: ghcr.io/drogue-iot/postgresql-pusher:0.2.1
+          env:
+            - name: ENDPOINT__TOKEN
+              value: "abcdef123456"
+            - name: POSTGRESQL__CONNECTION__HOST
+              value: "xxx.tsdb.cloud.timescale.com"
+            - name: POSTGRESQL__CONNECTION__PORT
+              value: "32740"
+            - name: POSTGRESQL__CONNECTION__DBNAME
+              value: "tsdb"
+            - name: POSTGRESQL__CONNECTION__USER
+              value: "pusher"
+            - name: POSTGRESQL__CONNECTION__PASSWORD
+              value: "pusher-password"
+            - name: POSTGRESQL__TABLE
+              value: "temperatures"
+            - name: POSTGRESQL__TIME_COLUMN
+              value: "time"
+            - name: FIELD_TEMPERATURE
+              value: "$.features.temperature.value"
+            - name: TYPE_FIELD_TEMPERATURE
+              value: "float"
+            - name: TAG_DEVICE_ID
+              value: "$.device"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After you create it, you&#8217;ll have your serverless function ready to use and you can copy its URL for future use.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/openshift-service-ready.png" alt="Service overview">
+</div>
+<div class="title">Figure 2. Service overview</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ibm_cloud"><a class="anchor" href="#_ibm_cloud"></a>IBM Cloud</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_create_a_new_project"><a class="anchor" href="#_create_a_new_project"></a>Create a new project</h3>
+<div class="paragraph">
+<p>If you choose to use IBM Cloud instance, log in to your and navigate to the "Code Engine" module. On the right-hand side, open the "Projects"
+view.</p>
+</div>
+<div class="paragraph">
+<p>We will create a new project for this tutorial, so go ahead and press the <b class="button">Create</b> button.</p>
+</div>
+<div class="paragraph">
+<p>On the creation page, select the location, and use <code>drogue-iot</code> as the project name:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/ibm-create-project.png" alt="Create a new project">
+</div>
+<div class="title">Figure 3. Project creation</div>
+</div>
+<div class="paragraph">
+<p>Project creation can take a while. Once it is ready, navigate to the project overview page and click on the
+<b class="button">Create application</b> button:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/ibm-project-overview.png" alt="Project overview">
+</div>
+<div class="title">Figure 4. Project overview page</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_create_application"><a class="anchor" href="#_create_application"></a>Create application</h3>
+<div class="paragraph">
+<p>Creating a new application, we need to provide a name (use <code>pusher</code>) and choose "Container image" as code to run.
+The image to use is <code>ghcr.io/drogue-iot/postgresql-pusher:0.2.1</code>.</p>
+</div>
+<div class="paragraph">
+<p>The "listening port" is <code>8080</code> and the endpoint must be "Public".</p>
+</div>
+<div class="paragraph">
+<p>In the "Runtime settings" section, configure the smallest instance you can find (e.g. "0.125 vCPU / 0.25 GB"). We will
+be running a process written in the Rust language, which is highly efficient and will not run into any limits.</p>
+</div>
+<div class="paragraph">
+<p>An important part is the section "Environment variables", as it will contain our configuration. Here we need to add function configuration
+by clicking on the <b class="button">Add</b> button, using a "Literal value" entry.</p>
+</div>
+<div class="paragraph">
+<p>This should look something like this:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/ibm-create-app.png" alt="Section of the create application page">
+</div>
+<div class="title">Figure 5. Section of the create application page</div>
+</div>
+<div class="paragraph">
+<p>Finally, click on the <b class="button">Create</b> button on the right-hand side, which will start the deployment process of the
+application.</p>
+</div>
+<div class="paragraph">
+<p>Once it is deployed correctly, the overview should look like this:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/ibm-app-ready.png" alt="Application ready screen">
+</div>
+<div class="title">Figure 6. Application configuration screen</div>
+</div>
+<div class="paragraph">
+<p>Take a look at the "Endpoints" tab, and note down the "Public URL", which we will need later on.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_whats_next"><a class="anchor" href="#_whats_next"></a>What&#8217;s next?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We&#8217;ve set up the service which translates the device payload into SQL statements for TimescaleDB. However, currently
+no one is sending data to this endpoint. And as long as that is the case, the service will be scaled down to zero
+and not consume any resources, or cost any money.</p>
+</div>
+<div class="paragraph">
+<p>So, it is time to send some data to this endpoint.</p>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using a modified version of the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

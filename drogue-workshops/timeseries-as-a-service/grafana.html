@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Grafana :: Drogue IoT</title>
+    <meta name="generator" content="Antora 3.0.1">
+    <link rel="stylesheet" href="../../_/css/site.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4BRXRBJJ1"></script>
+    <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','G-Z4BRXRBJJ1')</script>
+    <script>var uiRootPath = '../../_'</script>
+    <link rel="icon" href="../../_/img/favicon.svg" type="image/svg+xml">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="../..">
+        <img class="navbar-brand-image" src="../../_/img/logo.png" alt="Drogue IoT"/>
+      </a>
+
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://blog.drogue.io" target="_blank">Blog</a>
+        <a class="navbar-item" href="https://matrix.to/#/#drogue-iot:matrix.org" target="_blank">Chat</a>
+        <a class="navbar-item" href="https://book.drogue.io">Documentation</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="drogue-workshops" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Drogue IoT Workshops</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Introduction</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../getting-started/index.html">Getting started</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../external/telemetry-e2e.html">Telemetry end-to-end</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../ttn-lorawan-quarkus/index.html">LoRaWAN end-to-end</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ttn-lorawan-quarkus/index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ttn-lorawan-quarkus/toolchain.html">Embedded toolchain</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ttn-lorawan-quarkus/account-setup.html">TTN account setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ttn-lorawan-quarkus/drogue-cloud.html">Drogue Cloud setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ttn-lorawan-quarkus/firmware.html">Device firmware</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ttn-lorawan-quarkus/quarkus-application.html">Quarkus application</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ttn-lorawan-quarkus/making-changes.html">Making changes</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../quarkus-mqtt-starter/index.html">Quarkus MQTT integration starter</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quarkus-mqtt-starter/index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quarkus-mqtt-starter/peeking.html">What to expect</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quarkus-mqtt-starter/local.html">Running it locally</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quarkus-mqtt-starter/internals.html">How does it work?</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quarkus-mqtt-starter/kubernetes.html">Deploying to Kubernetes</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quarkus-mqtt-starter/cloud.html">Moving to the cloud</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../wifi-websockets/index.html">From WiFi to Websocket</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../wifi-websockets/index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../wifi-websockets/toolchain.html">Embedded toolchain</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../wifi-websockets/drogue-cloud.html">Drogue Cloud setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../wifi-websockets/firmware.html">Device firmware</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../wifi-websockets/websocket.html">Websocket Application</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../wifi-websockets/db-and-grafana.html">TimescaleDB and Grafana</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../wifi-websockets/summary.html">Summary</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Time series database, as a service</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="architecture.html">Architecture</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="timescale.html">Timescale</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="knative.html">Knative</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="drogue.html">Drogue Cloud</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="grafana.html">Grafana</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="simulating-data.html">Simulating data</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="summary.html">Summary</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Drogue IoT Workshops</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <a class="title" href="../../drogue-cloud/dev/index.html">Drogue Cloud</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../drogue-cloud/dev/index.html">dev</a>
+        </li>
+        <li class="version">
+          <a href="../../drogue-cloud/0.9/index.html">0.9</a>
+        </li>
+        <li class="version">
+          <a href="../../drogue-cloud/0.8/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../drogue-cloud/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../drogue-cloud/0.6/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../drogue-cloud/0.5/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../drogue-cloud/0.4/index.html">0.4</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../drogue-device/dev/index.html">Drogue Device</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../drogue-device/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../drogue-book/index.html">Drogue IoT</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../drogue-book/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <a class="title" href="../index.html">Drogue IoT Workshops</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../embassy/dev/index.html">Embassy</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../embassy/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../drogue-book/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Drogue IoT Workshops</a></li>
+    <li><a href="index.html">Time series database, as a service</a></li>
+    <li><a href="grafana.html">Grafana</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-workshops/edit/main/modules/timeseries-as-a-service/pages/grafana.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Grafana</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://github.com/grafana/grafana">Grafana</a> is the tool we use to visualize the data we have in Timescale now. Setting it up will involve the following
+steps:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Create a new Grafana instance</p>
+</li>
+<li>
+<p>Add a datasource</p>
+</li>
+<li>
+<p>Create a new dashboard</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="title">Costs</div>
+<div class="paragraph">
+<p>Grafana offers a "free plan", which is sufficient for our workshop. If you already have a Grafana instance, you can
+of course re-use that instance too.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_create_instance"><a class="anchor" href="#_create_instance"></a>Create instance</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Log in to <a href="https://grafana.com/products/cloud/">Grafana Cloud</a>, and add a new stack using one of the <b class="button">Add stack</b> buttons. Select a region that matches
+the other services and an instance URL that works for you. Once the deployment is ready, just navigate your browser
+to the instance and sign in.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_adding_a_datasource"><a class="anchor" href="#_adding_a_datasource"></a>Adding a datasource</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>As a first step, we need to let Grafana know where to get data from. So navigate to <span class="menuseq"><b class="menu">Configuration</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Data sources</b></span>
+and click the <b class="button">Add data source</b> button. Select the "PostgreSQL" data source type, which should be installed by
+default to your instance.</p>
+</div>
+<div class="paragraph">
+<p>For filling out the form, you will need the following information from the previous steps:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>TimescaleDB hostname and port</p>
+</li>
+<li>
+<p>Credentials of the "dashboard" timescale user</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Fill out the form:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Field</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Drogue IoT</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A name for the datasource</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" colspan="3"><p class="tableblock"><strong>PostreSQL connection</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Host</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>host:1234</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The hostname and port number of your TimescaleDB instance</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Database</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>tsdb</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The database name, normally <code>tsdb</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">User</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>dashboard</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The username of the "dashboard" user</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Password</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong>*</strong></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The password of the "dashboard" user</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TLS/SSL Mode</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>require</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Require TLS validation</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" colspan="3"><p class="tableblock"><strong>PostreSQL details</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Version</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>12+</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The PostgreSQL version</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TimescaleDB</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Activate this, as we are connecting to a TimescaleDB instance</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Min time interval</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>1s</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lower to one second, to get more accurate data</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>All other fields can be left with their default values.</p>
+</div>
+<div class="paragraph">
+<p>Click on the <b class="button">Save &amp; Test</b> button, you should get a confirmation that the connection is ok.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_create_dashboard"><a class="anchor" href="#_create_dashboard"></a>Create dashboard</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The next step is to create a new dashboard, which makes use of the datasource we just added. Click on
+<span class="menuseq"><b class="menu">Create</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Dashboard</b></span> in the left sidebar menu and press the <b class="button">Add a new panel</b> button.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Grafana allows all kinds of customizations and tweaks. Creating beautiful dashboards can be fun. However, in this
+workshop we focus on the important point. But if you like, feel free to spend some time in polishing your dashboards.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="title">Save early, save often!</div>
+<div class="paragraph">
+<p>We don&#8217;t mention this explicitly in the following section, but be sure to safe your dashboard occasionally after making
+changes.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_a_first_panel"><a class="anchor" href="#_a_first_panel"></a>A first panel</h3>
+<div class="paragraph">
+<p>This will give you a new chart, with a dummy datasource. Update the datasource and query to show the temperatures
+value we added previously:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Setting</th>
+<th class="tableblock halign-left valign-top">Value</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Datasource</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Drogue IoT</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The datasource connecting to TimescaleDB</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>FROM</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>temperatures</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the table</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Time column</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>time</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the field containing the timestamp</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Metric column</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>device_id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the metric, in our case, this is the device id</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SELECT</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Column: <code>temperature</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The field of the actual value</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>WHERE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Macro: <code>$__timeFilter</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A macro, creating the <code>where</code> clause which matches the current dashboard time window</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Leave the other values to their defaults:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/grafana-create-panel.png" alt="Panel settings">
+</div>
+<div class="title">Figure 1. First panel settings</div>
+</div>
+<div class="paragraph">
+<p>Don&#8217;t forget to press the <b class="button">Apply</b> button, so commit the changes to the dashboard and exit the "Edit panel" mode.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_time_window_auto_reload"><a class="anchor" href="#_time_window_auto_reload"></a>Time window &amp; Auto-reload</h3>
+<div class="paragraph">
+<p>In order to better see when experimenting with data, let&#8217;s change the time window to 30 minutes. You can do this in
+the upper area of the screen:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/grafana-create-settings-1.png" alt="Select time window">
+</div>
+<div class="title">Figure 2. Select time window</div>
+</div>
+<div class="paragraph">
+<p>Also, by default the dashboard does not update data automatically. This can be changed by expanding the drop-down menu
+of the refresh menu and selecting a refresh period:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/grafana-create-settings-2.png" alt="Select auto-refresh">
+</div>
+<div class="title">Figure 3. Select auto-refresh</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_filtering_by_device"><a class="anchor" href="#_filtering_by_device"></a>Filtering by device</h3>
+<div class="paragraph">
+<p>Currently, this query shows all devices at the same time. With Grafana you can allow the user to select one or more
+devices, to focus more on specific data.</p>
+</div>
+<div class="paragraph">
+<p>Navigate to the dashboard settings (the cogwheel button in the top section of the screen). Then navigate to
+<span class="menuseq"><b class="menu">Settings</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Variables</b></span> and add a new variable using the <b class="button">Add variable</b> button.</p>
+</div>
+<div class="paragraph">
+<p>Enter the following information:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Setting</th>
+<th class="tableblock halign-left valign-top">Value</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top" colspan="3"><p class="tableblock"><strong>General</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>device_id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the variable</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Type</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Query</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Values are acquired by executing a query</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Label</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Device</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shows "Device" instead of "device_id" in the UI</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" colspan="3"><p class="tableblock"><strong>Query options</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Data source</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Drogue IoT</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The datasource used for the query</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Refresh</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">On time range change</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Refreshes whenever the dashboard is reloaded, so we also get newlyl added devices.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Query</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>select distinct device_id from temperatures</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SQL query to get all device IDs</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" colspan="3"><p class="tableblock"><strong>Selection options</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Multi-value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allow selecting one or more devices</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Include All option</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allow selecting "all" devices</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Leave the other fields with their defaults and commit the change using the <b class="button">Update</b> button.</p>
+</div>
+<div class="paragraph">
+<p>We will need to adapt the query, to add the variable as a filter in the where clause. Click on the title of the panel
+and select the <span class="menuseq"><b class="menu">Panel</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Edit</b></span> menu entry. This will bring you back to the query settings.</p>
+</div>
+<div class="paragraph">
+<p>Find the row that starts with the <code>WHERE</code> clause, and add a new element by pressing the <b class="button">+</b> button, choose to
+add an "Expression". The first part of the expression is the field, choose <code>device_id</code> by clicking on the section of
+the element. The second part is the value to test for.</p>
+</div>
+<div class="paragraph">
+<p>Now the value part is a bit trickier. It could be a single device ID, it could be multiple device IDs, or none at all.
+No worries, SQL has you covered, and you can use the following expression: <code>ANY(ARRAY[$device_id]::varchar[])</code>, which
+performs a check if the value of the field (<code>device_id</code>) is in the provided array. Which also is true if the array is
+empty.</p>
+</div>
+<div class="paragraph">
+<p>Apply the changes again. Then you can use the drop-down labeled <code>Device</code>, in the top of the dashboard:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/grafana-add-filter.png" alt="Drop-down menu for the `device_id` variable">
+</div>
+<div class="title">Figure 4. Drop-down menu for the <code>device_id</code> variable</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="title">Add more devices</div>
+<div class="paragraph">
+<p>Of course, as the screenshot might already have hinted, this is more fun when adding additional devices.</p>
+</div>
+<div class="paragraph">
+<p>Take a look at the previous sections. Adding more devices should only be a few clicks in the Drogue IoT console now.
+Also be sure to push some data using the HTTP or MQTT commands.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_whats_next"><a class="anchor" href="#_whats_next"></a>What&#8217;s next?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Congratulations. We have our basic setup complete. We have set up all the different components, using managed services
+in the process.</p>
+</div>
+<div class="paragraph">
+<p>Feel free to play around with this. We have a few ideas what you could try out in the summary of the workshop.</p>
+</div>
+<div class="paragraph">
+<p>However, if you are curious, stick around for the next section, where we dig a bit deeper into the features of
+TimescaleDB. Showing you what benefits you can get over a standard PostgreSQL database.</p>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using a modified version of the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
