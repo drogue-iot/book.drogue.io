@@ -383,7 +383,7 @@ http-password = "..."</pre>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>PROBE_RUN_CHIP=STM32L4S5VI cargo run --release --features b-l4s5i-iot01a</pre>
+<pre>PROBE_RUN_CHIP=STM32L4S5VI cargo run --release --features b-l4s5i-iot01a --no-default-features</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -391,7 +391,7 @@ http-password = "..."</pre>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>PROBE_RUN_CHIP=STM32L475VG cargo run --release --features b-l475e-iot01a</pre>
+<pre>PROBE_RUN_CHIP=STM32L475VG cargo run --release --features b-l475e-iot01a --no-default-features</pre>
 </div>
 </div>
 </div>
@@ -408,7 +408,7 @@ http-password = "..."</pre>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>PROBE_RUN_CHIP=STM32L4S5VI cargo run --release --features b-l4s5i-iot01a,tls</pre>
+<pre>DEFMT_LOG=info PROBE_RUN_CHIP=STM32L4S5VI cargo run --release --features b-l4s5i-iot01a,tls --no-default-features</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -416,7 +416,7 @@ http-password = "..."</pre>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>PROBE_RUN_CHIP=STM32L475VG cargo run --release --features b-l475e-iot01a,tls</pre>
+<pre>DEFMT_LOG=info PROBE_RUN_CHIP=STM32L475VG cargo run --release --features b-l475e-iot01a,tls --no-default-features</pre>
 </div>
 </div>
 </div>
