@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: Drogue IoT</title>
+    <title>Adafruit nRF52840 Feather Bluetooth Mesh example :: Drogue IoT</title>
     <meta name="generator" content="Antora 3.0.1">
     <link rel="stylesheet" href="../../../../../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4BRXRBJJ1"></script>
@@ -92,14 +92,11 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Ble</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../adafruit-feather-nrf52840/dfu/application/README.html">Adafruit Feather nRF52840 Bootloader DFU example</a>
-  </li>
   <li class="nav-item is-current-page" data-depth="3">
-    <a class="nav-link" href="README.html">BBC micro:bit v2 BLE temperature sensor</a>
+    <a class="nav-link" href="README.html">Adafruit Feather nRF52840 Bluetooth Mesh example</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../dfu/README.html">Microbit Bootloader + DFU over BLE</a>
+    <a class="nav-link" href="../../microbit/ble/README.html">Microbit BLE Sensor example with DFU</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../../nrf52840-dk/ble-mesh/README.html">nrf52840-dk BLE Mesh example</a>
@@ -111,10 +108,10 @@
     <span class="nav-text">Cloud</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../esp8266/http/README.html">BBC micro:bit v2 + ESP8266 WiFi adapter + HTTP</a>
+    <a class="nav-link" href="../../microbit/esp8266/http/README.html">BBC micro:bit v2 + ESP8266 WiFi adapter + HTTP</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../esp8266/mqtt/README.html">BBC micro:bit v2 + ESP8266 WiFi adapter + MQTT</a>
+    <a class="nav-link" href="../../microbit/esp8266/mqtt/README.html">BBC micro:bit v2 + ESP8266 WiFi adapter + MQTT</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../../../std/cloud/README.html">Example sending telemetry data from Drogue Device to Drogue Cloud</a>
@@ -132,13 +129,13 @@
     <span class="nav-text">Display</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../compass/README.html">BBC micro:bit v2 compass showing direction in led display</a>
+    <a class="nav-link" href="../../microbit/compass/README.html">BBC micro:bit v2 compass showing direction in led display</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jukebox/README.html">BBC micro:bit v2 disco jukebox and light show</a>
+    <a class="nav-link" href="../../microbit/jukebox/README.html">BBC micro:bit v2 disco jukebox and light show</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../uart/README.html">BBC micro:bit v2 uart and matrix display</a>
+    <a class="nav-link" href="../../microbit/uart/README.html">BBC micro:bit v2 uart and matrix display</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../../../stm32h7/nucleo-h743zi/epd/README.html">STM32 Nucleo-H743 7-color e-paper display</a>
@@ -168,7 +165,10 @@
     <span class="nav-text">Other</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="#examples/nrf52/adafruit-feather-nrf52840/dfu/bootloader/README.adoc">Bootloader for Adafruit nRF52840 chips</a>
+    <a class="nav-link" href="#examples/nrf52/adafruit-feather-nrf52840/bootloader/README.adoc">Bootloader for Adafruit nRF52840 chips</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#examples/nrf52/microbit/bootloader/README.adoc">Bootloader for BBC Micro:bit chips</a>
   </li>
 </ul>
   </li>
@@ -177,7 +177,7 @@
     <span class="nav-text">Uart</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../uart/README.html">BBC micro:bit v2 uart and matrix display</a>
+    <a class="nav-link" href="../../microbit/uart/README.html">BBC micro:bit v2 uart and matrix display</a>
   </li>
 </ul>
   </li>
@@ -186,10 +186,10 @@
     <span class="nav-text">Wifi</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../esp8266/http/README.html">BBC micro:bit v2 + ESP8266 WiFi adapter + HTTP</a>
+    <a class="nav-link" href="../../microbit/esp8266/http/README.html">BBC micro:bit v2 + ESP8266 WiFi adapter + HTTP</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../esp8266/mqtt/README.html">BBC micro:bit v2 + ESP8266 WiFi adapter + MQTT</a>
+    <a class="nav-link" href="../../microbit/esp8266/mqtt/README.html">BBC micro:bit v2 + ESP8266 WiFi adapter + MQTT</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../../../std/esp8266/README.html">Example using a USB-to-Serial adapter + ESP8266 adapter</a>
@@ -284,40 +284,46 @@
     <li><a href="../../../../index.html">Drogue Device</a></li>
     <li><a href="../../../../examples.html">Examples</a></li>
     <li>Ble</li>
-    <li><a href="README.html">BBC micro:bit v2 BLE temperature sensor</a></li>
+    <li><a href="README.html">Adafruit Feather nRF52840 Bluetooth Mesh example</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-device/edit/main/docs/modules/ROOT/pages/examples/nrf52/microbit/ble-temperature/README.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-device/edit/main/docs/modules/ROOT/pages/examples/nrf52/adafruit-feather-nrf52840/bt-mesh/README.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<div class="sect1">
-<h2 id="_bbb_microbit_ble_temperature"><a class="anchor" href="#_bbb_microbit_ble_temperature"></a>BBB Micro:bit BLE Temperature</h2>
+<h1 class="page">Adafruit nRF52840 Feather Bluetooth Mesh example</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>This example application runs out of the box on the BBC micro:bit v2.0. It starts a BLE (Bluetooth Low Energy) temperature
-service identical to the default application provided on the micro:bit, but based on <a href="https://github.com/embassy-rs/embassy">embassy</a>, <a href="https://github.com/embassy-rs/nrf-softdevice">nrf-softdevice</a>, and <a href="https://github.com/drogue-iot/drogue-device">drogue-device</a>.</p>
+<p>This example application runs out of the box on the Adafruit nRF52840 Feather. It starts as a Bluetooth Mesh
+sensor server(as defined by specification) reporting from the on board temperature sensor.</p>
 </div>
+<div class="paragraph">
+<p>The example assumes that the nRF softdevice is installed.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prerequisites"><a class="anchor" href="#_prerequisites"></a>Prerequisites</h2>
+<div class="sectionbody">
 <div class="sect2">
-<h3 id="_prerequisites"><a class="anchor" href="#_prerequisites"></a>Prerequisites</h3>
-<div class="sect3">
-<h4 id="_hardware"><a class="anchor" href="#_hardware"></a>Hardware</h4>
+<h3 id="_hardware"><a class="anchor" href="#_hardware"></a>Hardware</h3>
 <div class="ulist">
 <ul>
 <li>
-<p>BBC micro:bit v2.0</p>
-</li>
-<li>
-<p>Mobile Phone with BLE</p>
+<p>BBC Micro:bit</p>
 </li>
 </ul>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_software"><a class="anchor" href="#_software"></a>Software</h4>
+<div class="sect2">
+<h3 id="_software"><a class="anchor" href="#_software"></a>Software</h3>
+<div class="paragraph">
+<p>Make sure you have the latest versions (<code>cargo install &lt;tool&gt;</code>) of these tools:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
@@ -329,53 +335,65 @@ service identical to the default application provided on the micro:bit, but base
 <li>
 <p><a href="https://crates.io/crates/probe-run">probe-run</a> - To run the example.</p>
 </li>
+<li>
+<p><code>cargo-flash</code></p>
+</li>
+<li>
+<p><code>cargo-binutils</code></p>
+</li>
 </ul>
 </div>
-<div class="paragraph">
-<p>In practice you can use whatever tool you want to flash the device, but this guide will assume that <code>probe-rs-cli</code> is used to flash the BLE firmware, and <code>probe-run</code> to run the application.</p>
 </div>
-<div class="paragraph">
-<p>You can install both <code>probe-rs-cli</code> and <code>probe-run</code> using Cargo:</p>
 </div>
+</div>
+<div class="sect1">
+<h2 id="_usage"><a class="anchor" href="#_usage"></a>Usage</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_erase_current_settings"><a class="anchor" href="#_erase_current_settings"></a>Erase current settings</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">cargo install probe-rs-cli probe-run</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>On the phone, you need a BLE client. This example have been tested with the <a href="https://www.nordicsemi.com/Products/Development-tools/nrf-connect-for-mobile">nRF Connect</a> app, which supports both iPhone and Android.</p>
+<pre class="highlightjs highlight"><code class="language-none hljs">probe-rs-cli erase --chip nRF52840_xxAA</code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_flashing_the_ble_stack"><a class="anchor" href="#_flashing_the_ble_stack"></a>Flashing the BLE stack</h3>
-<div class="paragraph">
-<p>Download the <a href="https://www.nordicsemi.com/Products/Development-software/S113">Nordic nRF SoftDevice</a> firmware for the BLE protocol stack.</p>
-</div>
-<div class="paragraph">
-<p>Unzip the downloaded artifact and locate the file <code>s113_nrf52_7.3.0_softdevice.hex</code>, which is the firmware we&#8217;re going to flash.</p>
-</div>
-<div class="paragraph">
-<p>To flash the device (make sure it is connected) run:</p>
-</div>
+<h3 id="_flash_bootloader"><a class="anchor" href="#_flash_bootloader"></a>Flash bootloader</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">probe-rs-cli download s113_nrf52_7.3.0_softdevice.hex --chip nRF52833_xxAA --format Hex</code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">cargo flash --manifest-path ../bootloader/Cargo.toml --release --chip nRF52840_xxAA</code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_running_the_example"><a class="anchor" href="#_running_the_example"></a>Running the example</h3>
+<h3 id="_flash_nrf_softdevice"><a class="anchor" href="#_flash_nrf_softdevice"></a>Flash nRF Softdevice</h3>
 <div class="paragraph">
-<p>To run the example, first run the device:</p>
+<p>Download the softdevice version 7.3.0 <a href="https://www.nordicsemi.com/Products/Development-software/s140/download">here</a>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">cargo run --release</code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">probe-rs-cli download s140_nrf52_7.3.0_softdevice.hex --chip nRF52840_xxAA --format Hex</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_flash_application"><a class="anchor" href="#_flash_application"></a>Flash application</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">cargo flash --release --chip nRF52840_xxAA</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This will start the application, and you should quickly see the 'Drogue Low Energy' application in the nRF Connect application. You can now connect to it and read the temperature values from the 'Temperature' characteristic.</p>
+<p>When started, the device will blink blue LED.</p>
+</div>
+<div class="paragraph">
+<p>Once provisioned, the device will enable red LED.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_provisioning"><a class="anchor" href="#_provisioning"></a>Provisioning</h3>
+<div class="paragraph">
+<p>See the link:https://github.com/drogue-iot/drogue-device/blob/main/examples/nrf52/nrf52840-dk/ble-mesh/README.adoc[nRF52840-DK mesh example) for how to provision the device.</p>
 </div>
 </div>
 </div>
