@@ -324,23 +324,15 @@ hardware configuration!
 <h2 id="_update_the_device_configuration"><a class="anchor" href="#_update_the_device_configuration"></a>Update the device configuration</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Locate the Device EUI, Application EUI, and Application Key, you created earlier. Add the keys into the following files:</p>
+<p>Locate the Device EUI, Application EUI, and Application Key, you created earlier. Add the keys into the following lines
+in <code>$HOME/.drogue/config.toml</code>:</p>
 </div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1"><code>lora-discovery/config/app_eui.txt</code></dt>
-<dd>
-<p>The Application EUI</p>
-</dd>
-<dt class="hdlist1"><code>lora-discovery/config/dev_eui.txt</code></dt>
-<dd>
-<p>The Device EUI</p>
-</dd>
-<dt class="hdlist1"><code>lora-discovery/config/app_key.txt</code></dt>
-<dd>
-<p>The Application Key</p>
-</dd>
-</dl>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">app-qui = "&lt;The Application EUI&gt;"
+dev-eui = "&lt;The Device EUI&gt;"
+app-key = "&lt;The Application Key&gt;"</code></pre>
+</div>
 </div>
 </div>
 </div>
