@@ -2,11 +2,11 @@
 .PHONY: all
 all: clean build
 
-ANTORA_CLI ?= node_modules/.bin/antora
+ANTORA_CLI ?= npx antora
 
 .PHONY: clean
 clean:
-	rm -Rf build
+	${RM} -Rf build
 
 
 .PHONY: build
