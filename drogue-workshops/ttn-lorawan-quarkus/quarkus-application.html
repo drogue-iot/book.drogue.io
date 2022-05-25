@@ -312,7 +312,7 @@ here<sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footn
 </div>
 <div class="paragraph">
 <p>Getting a new API key currently requires to use a command line HTTP client, like HTTPie or curl. It is a simple
-operation though, and we will use <code>drg token</code> to acquire a fresh OAuth token for accessing the API.</p>
+operation though, and we will use <code>drg whoami --token</code> to acquire a fresh OAuth token for accessing the API.</p>
 </div>
 <div class="paragraph">
 <p>The following examples require you to replace <code>&lt;api-endpoint&gt;</code> with the actual API endpoint. You can get this from
@@ -343,7 +343,7 @@ use <code>jq</code>, you can also omit it as is it only used to improve readabil
 <h3 id="_create_a_new_api_key"><a class="anchor" href="#_create_a_new_api_key"></a>Create a new API key</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">curl -vs -H "Authorization: Bearer $(drg token)" -XPOST &lt;api-endpoint&gt;/api/keys/v1alpha1 | jq</code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">curl -vs -H "Authorization: Bearer $(drg whoami --token)" -XPOST &lt;api-endpoint&gt;/api/keys/v1alpha1 | jq</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -370,7 +370,7 @@ later on.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">curl -s -H "Authorization: Bearer $(drg token)" &lt;api-endpoint&gt;/api/keys/v1alpha1 | jq</code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">curl -s -H "Authorization: Bearer $(drg whoami --token)" &lt;api-endpoint&gt;/api/keys/v1alpha1 | jq</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -397,7 +397,7 @@ later on.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">curl -s -H "Authorization: Bearer $(drg token)" -XDELETE &lt;api-endpoint&gt;/api/keys/v1alpha1/drg_g0yAUq</code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">curl -s -H "Authorization: Bearer $(drg whoami --token)" -XDELETE &lt;api-endpoint&gt;/api/keys/v1alpha1/drg_g0yAUq</code></pre>
 </div>
 </div>
 </div>
