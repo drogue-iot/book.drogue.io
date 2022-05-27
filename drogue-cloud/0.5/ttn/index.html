@@ -15,9 +15,15 @@
 <header class="header">
   <nav class="navbar">
     <div class="navbar-brand">
+
       <a class="navbar-item" href="../../..">
         <img class="navbar-brand-image" src="../../../_/img/logo.png" alt="Drogue IoT"/>
       </a>
+        <div class="navbar-item search hide-for-print">
+          <div id="search-field" class="field">
+            <input id="search-input" type="text" placeholder="Search the docs">
+          </div>
+        </div>
 
       <button class="navbar-burger" data-target="topbar-nav">
         <span></span>
@@ -27,6 +33,7 @@
     </div>
     <div id="topbar-nav" class="navbar-menu">
       <div class="navbar-end">
+        <a class="navbar-item" href="https://www.drogue.io" target="_blank">Project</a>
         <a class="navbar-item" href="https://blog.drogue.io" target="_blank">Blog</a>
         <a class="navbar-item" href="https://matrix.to/#/#drogue-iot:matrix.org" target="_blank">Chat</a>
         <a class="navbar-item" href="https://book.drogue.io">Documentation</a>
@@ -329,5 +336,8 @@ should consider twice before actually trigger a delete.</p>
 </footer>
 <script src="../../../_/js/site.js"></script>
 <script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
   </body>
 </html>
