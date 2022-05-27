@@ -35,7 +35,7 @@ antora:
 
 ui:
   bundle:
-    url: https://github.com/drogue-iot/drogue-antora-ui/releases/download/v0.1.2/ui-bundle.zip
+    url: https://github.com/drogue-iot/drogue-antora-ui/releases/download/v0.2.0/ui-bundle.zip
     #url: ../drogue-antora-ui/build/ui-bundle.zip
     #snapshot: true
 
