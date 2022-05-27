@@ -23,6 +23,7 @@ content:
 
 antora:
   extensions:
+    - require: '@antora/lunr-extension'
     - require: ./extensions/openapi.js
       queries:
         - component: drogue-cloud
