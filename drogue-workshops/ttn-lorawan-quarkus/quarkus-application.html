@@ -310,15 +310,15 @@ you already may know about, for testing and debugging.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_creating_a_drogue_iot_cloud_api_key"><a class="anchor" href="#_creating_a_drogue_iot_cloud_api_key"></a>Creating a Drogue IoT cloud API key</h2>
+<h2 id="_creating_a_drogue_iot_cloud_api_token"><a class="anchor" href="#_creating_a_drogue_iot_cloud_api_token"></a>Creating a Drogue IoT cloud API token</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In order to get access to the application through the MQTT integration, we need an OAuth token or API key. As you need
-to periodically refresh an OAuth token, and most MQTT clients have no idea about that, we choose an API key
+<p>In order to get access to the application through the MQTT integration, we need an OAuth token or API token. As you need
+to periodically refresh an OAuth token, and most MQTT clients have no idea about that, we choose an API token
 here<sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup>.</p>
 </div>
 <div class="paragraph">
-<p>Getting a new API key currently requires to use a command line HTTP client, like HTTPie or curl. It is a simple
+<p>Getting a new API token currently requires to use a command line HTTP client, like HTTPie or curl. It is a simple
 operation though, and we will use <code>drg whoami --token</code> to acquire a fresh OAuth token for accessing the API.</p>
 </div>
 <div class="paragraph">
@@ -347,10 +347,10 @@ use <code>jq</code>, you can also omit it as is it only used to improve readabil
 </table>
 </div>
 <div class="sect2">
-<h3 id="_create_a_new_api_key"><a class="anchor" href="#_create_a_new_api_key"></a>Create a new API key</h3>
+<h3 id="_create_a_new_api_token"><a class="anchor" href="#_create_a_new_api_token"></a>Create a new API token</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">curl -vs -H "Authorization: Bearer $(drg whoami --token)" -XPOST &lt;api-endpoint&gt;/api/keys/v1alpha1 | jq</code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">curl -vs -H "Authorization: Bearer $(drg whoami --token)" -XPOST &lt;api-endpoint&gt;/api/tokens/v1alpha1 | jq</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -360,24 +360,24 @@ use <code>jq</code>, you can also omit it as is it only used to improve readabil
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
   "prefix": "drg_g0yAUq",
-  "key": "drg_g0yAUq_kwjRLA40hrt81bbKdGbcDOmlq2WASx6UyQi"
+  "token": "drg_g0yAUq_kwjRLA40hrt81bbKdGbcDOmlq2WASx6UyQi"
 }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The value of the field <code>key</code> is the actual API key. You will not be able to recover this key at a later time. So
-you need to note (copy) it somewhere. The "prefix" is used to identity the key, so that you can easily delete it
+<p>The value of the field <code>token</code> is the actual API token. You will not be able to recover this token at a later time. So
+you need to note (copy) it somewhere. The "prefix" is used to identity the token, so that you can easily delete it
 later on.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_list_api_keys"><a class="anchor" href="#_list_api_keys"></a>List API keys</h3>
+<h3 id="_list_api_tokens"><a class="anchor" href="#_list_api_tokens"></a>List API tokens</h3>
 <div class="paragraph">
-<p>You can also list your existing API keys using:</p>
+<p>You can also list your existing API tokens using:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">curl -s -H "Authorization: Bearer $(drg whoami --token)" &lt;api-endpoint&gt;/api/keys/v1alpha1 | jq</code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">curl -s -H "Authorization: Bearer $(drg whoami --token)" &lt;api-endpoint&gt;/api/tokens/v1alpha1 | jq</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -394,24 +394,24 @@ later on.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>As you can see, the actual <code>key</code> is no longer part of the result.</p>
+<p>As you can see, the actual <code>token</code> is no longer part of the result.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_deleting_api_keys"><a class="anchor" href="#_deleting_api_keys"></a>Deleting API keys</h3>
+<h3 id="_deleting_api_tokens"><a class="anchor" href="#_deleting_api_tokens"></a>Deleting API tokens</h3>
 <div class="paragraph">
-<p>If you need to delete a key, you can easily achieve this using the <code>DELETE</code> verb:</p>
+<p>If you need to delete a token, you can easily achieve this using the <code>DELETE</code> verb:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">curl -s -H "Authorization: Bearer $(drg whoami --token)" -XDELETE &lt;api-endpoint&gt;/api/keys/v1alpha1/drg_g0yAUq</code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">curl -s -H "Authorization: Bearer $(drg whoami --token)" -XDELETE &lt;api-endpoint&gt;/api/tokens/v1alpha1/drg_g0yAUq</code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_finding_your_username"><a class="anchor" href="#_finding_your_username"></a>Finding your username</h3>
 <div class="paragraph">
-<p>In addition to the API key, you will also need to know your username.</p>
+<p>In addition to the API token, you will also need to know your username.</p>
 </div>
 <div class="paragraph">
 <p>You can check your username using the Web Console. In the top right corner of the console, you will find the user menu,
@@ -480,7 +480,7 @@ drogue.integration.mqtt.port=443 <i class="conum" data-value="5"></i><b>(5)</b><
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Your Drogue IoT application key, as described in <a href="#_create_a_new_api_key">Create a new API key</a></td>
+<td>Your Drogue IoT application token, as described in <a href="#_create_a_new_api_token">Create a new API token</a></td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
@@ -692,7 +692,7 @@ here is the downlink API of The Things Network.</p>
 <div id="footnotes">
 <hr>
 <div class="footnote" id="_footnotedef_1">
-<a href="#_footnoteref_1">1</a>. API keys don&#8217;t expire, while OAuth access tokens do. Even when you can refresh an access token using a refresh token, you still need to do this.
+<a href="#_footnoteref_1">1</a>. API tokens don&#8217;t expire, while OAuth access tokens do. Even when you can refresh an access token using a refresh token, you still need to do this.
 </div>
 </div>
 </article>
