@@ -334,9 +334,9 @@ public class Receiver {
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>The receiver is a bean, which is annotated with the <code>@Startup</code> annotation, so that it does start to process events,
-even if no user has yet access the web frontend. This is required for this example, as events are already being generated
-and need to be processed by our logic, so that when a user connects to our application, which have some existing data
+<td>The receiver is a bean, which is annotated with the <code>@Startup</code> annotation, so that it starts processing events,
+even if no user has yet to access the web frontend. This is required for this example, as events are already being generated
+and need to be processed by our logic, so that when a user connects to our application, there will be some existing data
 to show.
 <div class="paragraph">
 <p>This pattern also works in cases where you don&#8217;t even have a web frontend, but an application which only processes
@@ -446,7 +446,7 @@ return device; <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
 </div>
 <div class="paragraph">
 <p>As the <code>process</code> method is annotated with both the <code>@Inbound</code> and <code>@Outbound</code> annotation, it will receive events but
-also forward events which are returned by the method. The event which returned, is sent on internally to the
+also forward events which are returned by the method. The event which is returned, is sent on internally to the
 event channel defined by <code>Channels.TELEMETRY</code>.</p>
 </div>
 </div>
@@ -640,7 +640,7 @@ public class EventsResource {
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
 <td>The map used to keep track of all connected clients. As the bean is annotated with <code>@ApplicationScoped</code> there will
-only be once instance of it, and we can track all sessions.</td>
+only be one instance of it, and we can track all sessions.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
