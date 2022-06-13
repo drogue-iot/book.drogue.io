@@ -213,8 +213,8 @@
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">use defmt_rtt as _; // global logger
-use panic_probe as _;</code></pre>
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">use defmt::*;
+use embassy::executor::Spawner;</code></pre>
 </div>
 </div>
 </div>
@@ -225,14 +225,15 @@ use panic_probe as _;</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">#[embassy::task]
-async fn blinker(mut led: Output&lt;'static, P0_13&gt;, interval: Duration) {
-    loop {
-        led.set_high();
-        Timer::after(interval).await;
-        led.set_low();
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">        led.set_low();
         Timer::after(interval).await;
     }
+}
+
+#[embassy::main]
+async fn main(spawner: Spawner, p: Peripherals) {
+    let led = Output::new(p.P0_13, Level::Low, OutputDrive::Standard);
+    unwrap!(spawner.spawn(blinker(led, Duration::from_millis(300))));
 }</code></pre>
 </div>
 </div>
@@ -262,11 +263,7 @@ Notice that there is no busy waiting going on in this task. It is using the Emba
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">#[embassy::main]
-async fn main(spawner: Spawner, p: Peripherals) {
-    let led = Output::new(p.P0_13, Level::Low, OutputDrive::Standard);
-    unwrap!(spawner.spawn(blinker(led, Duration::from_millis(300))));
-}</code></pre>
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust"></code></pre>
 </div>
 </div>
 <div class="paragraph">

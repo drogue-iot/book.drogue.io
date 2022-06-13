@@ -296,20 +296,19 @@
 <h2 id="_clone_the_git_repository"><a class="anchor" href="#_clone_the_git_repository"></a>Clone the Git repository</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Clone the git repository with the example and check out the <code>0.5.0</code> tag:</p>
+<p>Clone the git repository with the workshops:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">git clone https://github.com/drogue-iot/drogue-device
-git checkout 0.5.0</code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">git clone https://github.com/drogue-iot/drogue-workshops</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>For the next steps, you will need to change into the sub-directory <code>examples/stm32l4/iot01a-wifi</code>:</p>
+<p>For the next steps, you will need to change into the sub-directory <code>examples/wifi-websockets-workshop</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">cd examples/stm32l4/iot01a-wifi</code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">cd examples/wifi-websockets-workshop</code></pre>
 </div>
 </div>
 <div class="admonitionblock important">
@@ -335,10 +334,12 @@ hardware configuration!
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-toml hljs" data-lang="toml">wifi-ssid = "..."       # The WiFi network SSID
-wifi-password = "..."   # The WiFi network pre-shared key
-http-username = "..."   # The device username (I.e. `device1@wifi-workshop`)
-http-password = "..."   # The device password (I.e. `mysecretpassword`)</code></pre>
+<pre class="highlightjs highlight"><code class="language-toml hljs" data-lang="toml">host = "http.sandbox.drogue.cloud" # Replace with your own Drogue Cloud instance if you are not using the sandbox
+port = "443"
+wifi-ssid = "..."                  # The WiFi network SSID
+wifi-password = "..."              # The WiFi network pre-shared key
+http-username = "..."              # The device username (I.e. `device1@wifi-workshop`)
+http-password = "..."              # The device password (I.e. `mysecretpassword`)</code></pre>
 </div>
 </div>
 </div>
@@ -363,7 +364,7 @@ You need to have the developer board attached to your computer.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">DEFMT_LOG=info PROBE_RUN_CHIP=STM32L475VG cargo run --release --features b-l475e-iot01a,tls</code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">DEFMT_LOG=info PROBE_RUN_CHIP=STM32L475VG cargo run --release --features b-l475e-iot01a --no-default-features</code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -381,7 +382,7 @@ value for the <code>PROBE_RUN_CHIP</code> variable , like <code>PROBE_RUN_CHIP=S
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">DEFMT_LOG=info PROBE_RUN_CHIP=STM32L4S5VI cargo run --release --features b-l4s5i-iot01a,tls</code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">DEFMT_LOG=info PROBE_RUN_CHIP=STM32L4S5VI cargo run --release --features b-l4s5i-iot01a --no-default-features</code></pre>
 </div>
 </div>
 </div>
@@ -395,7 +396,7 @@ board. The output should look something like this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">     Running <code>probe-run target/thumbv7em-none-eabihf/release/iot01a-wifi</code>
+<pre class="highlightjs highlight"><code class="language-none hljs">     Running <code>probe-run target/thumbv7em-none-eabihf/release/wifi-websockets-workshop</code>
 (HOST) WARN  (BUG) location info is incomplete; it will be omitted from the output
 (HOST) INFO  flashing program (164.62 KiB)
 (HOST) INFO  success!
