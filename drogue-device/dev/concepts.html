@@ -306,7 +306,7 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>An <em>actor system</em> is a framework that allows for isolating state within narrow contexts, making it easier to reason about system. Within a actor system, the primary component is an <em>Actor</em>, which represents the boundary of state usage. Each actor has exclusive access to its own state and only communicates with other actors through message-passing.</p>
+<p>Drogue Actor is an actor framework for microcontrollers.  An <em>actor system</em> is a framework that allows for isolating state within narrow contexts, making it easier to reason about system. Within a actor system, the primary component is an <em>Actor</em>, which represents the boundary of state usage. Each actor has exclusive access to its own state and only communicates with other actors through message-passing.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -320,7 +320,7 @@
 <div class="sectionbody">
 <div class="imageblock">
 <div class="content">
-<img src="_images/drogue-device-actor-model.png" alt="Drogue Device Actor Model">
+<img src="_images/drogue-device-actor-model.png" alt="Actor Model">
 </div>
 </div>
 <div class="sect2">
@@ -372,6 +372,88 @@ There is an <em>async</em> <code>request(msg)</code> method on each address to s
 <div class="paragraph">
 <p>In some cases, it may be desirable to have two or more actors involve in a single semantic component or package. The <code>Package</code> trait may be implemented for any type.</p>
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_writing_an_actor"><a class="anchor" href="#_writing_an_actor"></a>Writing an Actor</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>An actor must implement the <code>Actor</code> trait, which will allow it to be spawned by the Embassy
+executor. An actor providing an atomic counter using the above driver is shown below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">#![feature(type_alias_impl_trait)]
+#![feature(generic_associated_types)]
+
+use drogue_device::*;
+
+pub struct AtomicCounter {
+    counter: MyCounter
+}
+
+pub enum CounterMessage {
+    Increment,
+    Add(u32),
+}
+
+#[actor]
+impl Actor for AtomicCounter {
+    type Message&lt;'m&gt; = CounterMessage;
+
+    async fn on_mount&lt;M&gt;(&amp;mut self, _: Address&lt;CounterMessage&gt;, mut inbox: M)
+    where
+        M: Inbox&lt;CounterMessage&gt;
+    {
+        loop {
+            if let Some(mut m) = inbox.next().await {
+                match *m.message() {
+                    CounterMessage::Increment =&gt; self.counter.increment().await,
+                    CounterMessage::Add(value) =&gt; self.counter.add(*value).await,
+                }
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Notice the <code>actor</code> attribute, which handles a lot of the boilerplate of writing actors. This actor expands the code to the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">impl Actor for AtomicCounter {
+    type Message&lt;'m&gt; = CounterMessage;
+
+    type OnMountFuture&lt;'m&gt; = impl Future&lt;Output = ()&gt; + 'm;
+    fn on_mount&lt;'m, M&gt;(
+        &amp;'m mut self,
+        _: Address&lt;CounterMessage&gt;,
+        inbox: &amp;'m mut M,
+    ) -&gt; Self::OnMountFuture&lt;'m, M&gt;
+    where
+        M: Inbox&lt;Self&gt; + 'm
+    {
+        async move {
+            loop {
+                if let Some(mut m) = inbox.next().await {
+                    match *m.message() {
+                        CounterMessage::Increment =&gt; self.counter.increment().await,
+                        CounterMessage::Add(value) =&gt; self.counter.add(*value).await,
+                    }
+                }
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Once Rust has native support for async traits, the attribute will no longer be necessary.</p>
+</div>
+<div class="paragraph">
+<p>Although a very complex way to implement an atomic counter, it gives you an idea of how actors provide exclusive access to a resource.</p>
 </div>
 </div>
 </div>

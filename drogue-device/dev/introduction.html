@@ -335,7 +335,7 @@ is about to change, as Rust allows you to use these techniques without the tradi
 <p>Actors make it convenient to write stateful concurrent systems using message passing. Actors only process one message at a time, and communicate with other actors by sending messages to their addresses. Actors compose easily due to their decoupled nature, making it easier to maintain an expanding code base.</p>
 </div>
 <div class="paragraph">
-<p>Actors in drogue-device are <strong>async</strong>, which means that they process messages using async-await support in Rust. This does not mean you have to write async code, but you will have the option to do so. The <a href="https://rust-lang.github.io/async-book/">async book</a> is a great way to learn more about async Rust.</p>
+<p>Actors in <code>drogue-actor</code> are <strong>async</strong>, which means that they process messages using async-await support in Rust. This does not mean you have to write async code, but you will have the option to do so. The <a href="https://rust-lang.github.io/async-book/">async book</a> is a great way to learn more about async Rust.</p>
 </div>
 <div class="paragraph">
 <p>Read more about actors <a href="concepts.html" class="xref page">here</a>.</p>
@@ -345,9 +345,6 @@ is about to change, as Rust allows you to use these techniques without the tradi
 <div class="sect1">
 <h2 id="_actors_vs_tasks"><a class="anchor" href="#_actors_vs_tasks"></a>Actors vs Tasks</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>Although Drogue Device is focused on Actors, you can also use standard <code>embassy</code> tasks, and combine them to get the best of both worlds.</p>
-</div>
 <div class="paragraph">
 <p>Tasks are a good fit if:</p>
 </div>

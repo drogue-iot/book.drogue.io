@@ -304,42 +304,21 @@
 <article class="doc">
 <h1 class="page">Drivers</h1>
 <div class="sect1">
-<h2 id="_writing_drogue_device_drivers"><a class="anchor" href="#_writing_drogue_device_drivers"></a>Writing drogue device drivers</h2>
+<h2 id="_writing_async_drivers"><a class="anchor" href="#_writing_async_drivers"></a>Writing async drivers</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Drogue-device contains device drivers for different boards and sensors.  Drivers follow a common set
-of patterns that makes it easier to write new drivers. Device drivers can be written in different
+<p>Async Drivers follow a common set of patterns that makes it easier to write new drivers. Device drivers can be written in different
 ways, but the common approach is to implement one or more of the following:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>A trait that defines the API that drivers implement. This may already exist, either in
-drogue-device or elsewhere. We encourage re-using existing traits where it makes sense. The traits
-are located in <code>device/src/traits</code>.</p>
+<p>Create a new Rust crate that implements the driver.</p>
 </li>
 <li>
-<p>A driver that implements an API, either using a HAL or hardware directly. Drivers are located in
-<code>device/src/drivers/</code>.</p>
-</li>
-<li>
-<p>An actor implementation for the driver. This is useful for peripherals that require shared access
-by multiple parts of the system, as the actor will ensure its only serving one user at a time.
-Actors are located in <code>device/src/actors</code>.</p>
+<p>Implement traits from <code>embedded-hal-async</code> if relevant.</p>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p>Which of the above you decide to implement depends on the driver. A Led may not need an Actor,
-because it is usually operated only by a single component, whereas it makes sense for a network
-stack/driver that is used by multiple components. The nice properties of actors is that they compose
-easily.</p>
-</div>
-<div class="paragraph">
-<p>Actors does carry with them some overhead of extra code to spawn the actor and holding incoming
-messages in a queue. Therefore, it sometimes makes sense using a layered approach for drivers: A
-driver that can be used for the cases where you don&#8217;t need the shared access, and an Actor using
-that driver where you need shared access.</p>
 </div>
 </div>
 </div>
@@ -347,9 +326,7 @@ that driver where you need shared access.</p>
 <h2 id="_writing_an_async_trait"><a class="anchor" href="#_writing_an_async_trait"></a>Writing an async trait</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Drogue-device supports both sync and async APIs, and both have their uses. Sync traits are covered
-by the Rust documentation.  Unfortunately, the support in Rust for writing async traits is limited,
-but it is possible using features from Rust nightly.</p>
+<p>Unfortunately, the support in Rust for writing async traits is limited, but it is possible using features from Rust nightly.</p>
 </div>
 <div class="paragraph">
 <p>An async trait can be specified by enabling a feature named generic associcated types (GAT):</p>
@@ -413,88 +390,6 @@ impl Counter for MyCounter {
 <div class="paragraph">
 <p>At the expense of needing to define the associated type and a somewhat awkward return value, the
 driver can write blocks of async code to implement the trait.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_writing_an_actor"><a class="anchor" href="#_writing_an_actor"></a>Writing an Actor</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>An actor must implement the <code>Actor</code> trait, which will allow it to be mounted into the drogue device
-runtime. An actor providing an atomic counter using the above driver is shown below:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">#![feature(type_alias_impl_trait)]
-#![feature(generic_associated_types)]
-
-use drogue_device::*;
-
-pub struct AtomicCounter {
-    counter: MyCounter
-}
-
-pub enum CounterMessage {
-    Increment,
-    Add(u32),
-}
-
-#[actor]
-impl Actor for AtomicCounter {
-    type Message&lt;'m&gt; = CounterMessage;
-
-    async fn on_mount&lt;M&gt;(&amp;mut self, _: Address&lt;CounterMessage&gt;, mut inbox: M)
-    where
-        M: Inbox&lt;CounterMessage&gt;
-    {
-        loop {
-            if let Some(mut m) = inbox.next().await {
-                match *m.message() {
-                    CounterMessage::Increment =&gt; self.counter.increment().await,
-                    CounterMessage::Add(value) =&gt; self.counter.add(*value).await,
-                }
-            }
-        }
-    }
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Notice the <code>actor</code> attribute, which handles a lot of the boilerplate of writing actors. This actor expands the code to the following:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">impl Actor for AtomicCounter {
-    type Message&lt;'m&gt; = CounterMessage;
-
-    type OnMountFuture&lt;'m&gt; = impl Future&lt;Output = ()&gt; + 'm;
-    fn on_mount&lt;'m, M&gt;(
-        &amp;'m mut self,
-        _: Address&lt;CounterMessage&gt;,
-        inbox: &amp;'m mut M,
-    ) -&gt; Self::OnMountFuture&lt;'m, M&gt;
-    where
-        M: Inbox&lt;Self&gt; + 'm
-    {
-        async move {
-            loop {
-                if let Some(mut m) = inbox.next().await {
-                    match *m.message() {
-                        CounterMessage::Increment =&gt; self.counter.increment().await,
-                        CounterMessage::Add(value) =&gt; self.counter.add(*value).await,
-                    }
-                }
-            }
-        }
-    }
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Once Rust has native support for async traits, the attribute will no longer be necessary.</p>
-</div>
-<div class="paragraph">
-<p>Although a very complex way to implement an atomic counter, it gives you an idea of how actors provide exclusive access to a resource.</p>
 </div>
 </div>
 </div>
