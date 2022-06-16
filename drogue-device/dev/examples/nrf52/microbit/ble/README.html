@@ -310,10 +310,10 @@
 <div class="paragraph">
 <p>This example application runs out of the box on the BBC micro:bit v2.0. It starts a BLE (Bluetooth
 Low Energy) environment sensing service (as defined by specification) as well as a firmware update
-service.</p>
+service if configured.</p>
 </div>
 <div class="paragraph">
-<p>The example assumes that the nRF softdevice is installed. With this example, you can use BLE  or UART to update your microbit.</p>
+<p>The example assumes that the nRF softdevice is installed. With this example, you can use BLE  or UART to update your microbit if you enable the <code>dfu</code> feature when compiling.</p>
 </div>
 </div>
 </div>
@@ -358,21 +358,13 @@ service.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_usage"><a class="anchor" href="#_usage"></a>Usage</h2>
+<h2 id="_running"><a class="anchor" href="#_running"></a>Running</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_erase_current_settings"><a class="anchor" href="#_erase_current_settings"></a>Erase current settings</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-none hljs">probe-rs-cli erase --chip nRF52833_xxAA</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_flash_bootloader"><a class="anchor" href="#_flash_bootloader"></a>Flash bootloader</h3>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">cargo flash --manifest-path ../bootloader/Cargo.toml --release --chip nRF52833_xxAA</code></pre>
 </div>
 </div>
 </div>
@@ -392,6 +384,41 @@ service.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-none hljs">cargo flash --release --chip nRF52833_xxAA</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When started, the device will blink the letter 'A' on the LED matrix.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_running_with_firmware_updates_enabled"><a class="anchor" href="#_running_with_firmware_updates_enabled"></a>Running with firmware updates enabled</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_flash_bootloader"><a class="anchor" href="#_flash_bootloader"></a>Flash bootloader</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">cargo flash --manifest-path ../bootloader/Cargo.toml --release --chip nRF52833_xxAA</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_flash_nrf_softdevice_2"><a class="anchor" href="#_flash_nrf_softdevice_2"></a>Flash nRF Softdevice</h3>
+<div class="paragraph">
+<p>Download the softdevice version 7.3.0 <a href="https://www.nordicsemi.com/Products/Development-software/s113/download">here</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">probe-rs-cli download s113_nrf52_7.3.0_softdevice.hex --chip nRF52833_xxAA --format Hex</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_flash_application_with_dfu_flag_enabled"><a class="anchor" href="#_flash_application_with_dfu_flag_enabled"></a>Flash application with <code>dfu</code> flag enabled</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">cargo flash --release --features dfu --chip nRF52833_xxAA</code></pre>
 </div>
 </div>
 <div class="paragraph">

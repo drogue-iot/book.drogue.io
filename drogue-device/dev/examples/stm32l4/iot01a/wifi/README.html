@@ -308,8 +308,10 @@
 <h2 id="_stm32_iot01a_example"><a class="anchor" href="#_stm32_iot01a_example"></a>STM32 IOT01A example</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This example application runs out of the box on the STM32 IOT01A development kits. It features a bootloader to provide firmware update capabilities.
-It uses the on board peripherals such as WiFi and the temperature sensor to send data to an HTTP endpoint such as Drogue Cloud, and to retrieve firmware updates.</p>
+<p>This example application runs out of the box on the STM32 IOT01A development kits. The example can also be compiled with a <code>dfu</code> flag to enable firmware update capabilities.</p>
+</div>
+<div class="paragraph">
+<p>It uses the on board peripherals such as WiFi and the temperature sensor to send data to an HTTP endpoint such as Drogue Cloud, and (if the <code>dfu</code> feature is enabled) retrieve firmware updates.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -356,25 +358,6 @@ There are multiple variants of this kit, so the example must be compiled and run
 </div>
 </div>
 <div class="sect2">
-<h3 id="_flashing_the_bootloader"><a class="anchor" href="#_flashing_the_bootloader"></a>Flashing the bootloader</h3>
-<div class="paragraph">
-<p>To flash the bootloader for a given chip:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>cargo flash --manifest-path ../bootloader/Cargo.toml --release --features b-l4s5i-iot01a --no-default-features --chip STM32L4S5VI</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>If you have the B-475E-IOT01A board, use the following parameters:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>cargo flash --manifest-path ../bootloader/Cargo.toml --release --features b-l475e-iot01a --no-default-features --chip STM32L475VG</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
 <h3 id="_configuring"><a class="anchor" href="#_configuring"></a>Configuring</h3>
 <div class="paragraph">
 <p>Credentials for your local WiFi network will come from these entries in <code>~/.drogue/config.toml</code>:</p>
@@ -397,6 +380,24 @@ http-password = "..."</pre>
 <div class="paragraph">
 <p>For Drogue Cloud, the username/password is stored in this form: <code>device_id@application</code>.</p>
 </div>
+<div class="paragraph">
+<p>If you have the B-L4S5I-IOT01A board, set the following environment variables:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>export CHIP=STM32L4S5VI
+export CHIP_FEATURE=b-l4s5i-iot01a</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you have the B-475E-IOT01A board, use the following settings instead:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>export CHIP=STM32L475VGTx
+export CHIP_FEATURE=b-l475e-iot01a</pre>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_running_with_plain_tcp"><a class="anchor" href="#_running_with_plain_tcp"></a>Running with plain TCP</h3>
@@ -413,15 +414,7 @@ http-password = "..."</pre>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>DEFMT_LOG=info PROBE_RUN_CHIP=STM32L4S5VI cargo run --release --features b-l4s5i-iot01a,debug --no-default-features</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>If you have the B-475E-IOT01A board, use the following parameters:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>DEFMT_LOG=info PROBE_RUN_CHIP=STM32L475VG cargo run --release --features b-l475e-iot01a,debug --no-default-features</pre>
+<pre>DEFMT_LOG=info PROBE_RUN_CHIP=${CHIP} --release --features ${CHIP_FEATURE},debug --no-default-features</pre>
 </div>
 </div>
 </div>
@@ -438,19 +431,44 @@ http-password = "..."</pre>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>DEFMT_LOG=info PROBE_RUN_CHIP=STM32L4S5VI cargo run --release --features b-l4s5i-iot01a,tls,debug --no-default-features</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>If you have the B-475E-IOT01A board, use the following parameters:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>DEFMT_LOG=info PROBE_RUN_CHIP=STM32L475VG cargo run --release --features b-l475e-iot01a,tls,debug --no-default-features</pre>
+<pre>DEFMT_LOG=info PROBE_RUN_CHIP=${CHIP} cargo run --release --features ${CHIP_FEATURE},tls,debug --no-default-features</pre>
 </div>
 </div>
 <div class="paragraph">
 <p>Once flashed, the device will reset and attempt to join the WiFi network. If successful, it will print a message to the RTT log. You can then press the blue/user button on the board to send a test message from the device.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_enabling_firmware_update_capabilities"><a class="anchor" href="#_enabling_firmware_update_capabilities"></a>Enabling firmware update capabilities</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>For this step, we need to flash a bootloader as well as the application. When the <code>dfu</code> flag is enabled, the example is configured to enable firmware updates using Drogue Cloud sandbox.</p>
+</div>
+<div class="sect2">
+<h3 id="_flashing_the_bootloader"><a class="anchor" href="#_flashing_the_bootloader"></a>Flashing the bootloader</h3>
+<div class="paragraph">
+<p>To flash the bootloader for a given chip:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>cargo flash --manifest-path ../bootloader/Cargo.toml --release --features ${CHIP_FEATURE} --no-default-features --chip ${CHIP}</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_running_the_application"><a class="anchor" href="#_running_the_application"></a>Running the application</h3>
+<div class="paragraph">
+<p>To run the application using a given chip:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>DEFMT_LOG=info PROBE_RUN_CHIP=${CHIP} cargo run --release --features ${CHIP_FEATURE},tls,dfu,debug --no-default-features</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Once flashed, the device will reset and attempt to join the WiFi network as before, in addition to polling the Drogue Cloud for firmware update commands.</p>
+</div>
 </div>
 </div>
 </div>
