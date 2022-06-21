@@ -90,8 +90,8 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../../../stm32h7/nucleo-h743zi/blinky/README.html">STM32 Nucleo-H743 blinky</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="3">
-    <a class="nav-link" href="README.html">STM32 IoT Discovery board blinky</a>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../../stm32u5/iot02a/blinky/README.html">STM32 IoT Discovery board blinky</a>
   </li>
 </ul>
   </li>
@@ -163,10 +163,10 @@
     <a class="nav-link" href="../../../stm32l1/rak811/README.html">RAK811 Tracker Node connecting to The Things Network</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../../stm32wl/nucleo-wl55/lorawan-dfu/README.html">STM32 Nucleo-WL55 LoRaWAN and firmware updates OTA</a>
+    <a class="nav-link" href="../lorawan-dfu/README.html">STM32 Nucleo-WL55 LoRaWAN and firmware updates OTA</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../../stm32wl/nucleo-wl55/lorawan/README.html">STM32 Nucleo-WL55 using LoRaWAN connecting to The Things Network</a>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="README.html">STM32 Nucleo-WL55 using LoRaWAN connecting to The Things Network</a>
   </li>
 </ul>
   </li>
@@ -299,11 +299,11 @@
   <ul>
     <li><a href="../../../../index.html">Drogue Device</a></li>
     <li><a href="../../../../examples.html">Examples</a></li>
-    <li>Basic</li>
-    <li><a href="README.html">STM32 IoT Discovery board blinky</a></li>
+    <li>Lorawan</li>
+    <li><a href="README.html">STM32 Nucleo-WL55 using LoRaWAN connecting to The Things Network</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-device/edit/main/docs/modules/ROOT/pages/examples/stm32u5/iot02a/blinky/README.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-device/edit/main/docs/modules/ROOT/pages/examples/stm32wl/nucleo-wl55/lorawan/README.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -311,10 +311,10 @@
 </aside>
 <article class="doc">
 <div class="sect1">
-<h2 id="_stm32u585ai_iot02a_blinky_drogue_device_example"><a class="anchor" href="#_stm32u585ai_iot02a_blinky_drogue_device_example"></a>stm32u585ai-iot02a-blinky drogue-device example</h2>
+<h2 id="_stm32_nucleo_wl55_example"><a class="anchor" href="#_stm32_nucleo_wl55_example"></a>STM32 Nucleo-WL55 example</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This example application runs out of the box on the STM32U585AI-IOT02A development kit.</p>
+<p>This example application runs out of the box on the STM32 Nucleo-WL55 Kit (NUCLEO-WL55JC2)</p>
 </div>
 <div class="sect2">
 <h3 id="_prerequisites"><a class="anchor" href="#_prerequisites"></a>Prerequisites</h3>
@@ -323,55 +323,115 @@
 <div class="ulist">
 <ul>
 <li>
-<p>STM32 U585AI-IOT02A development kit.</p>
-</li>
-<li>
-<p>A finger or other stick-like device to push a button.</p>
+<p><a href="https://www.st.com/en/evaluation-tools/nucleo-wl55jc.html">STM32 NUCLEO-WL55JC2</a></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_software"><a class="anchor" href="#_software"></a>Software</h4>
-<div class="ulist">
-<ul>
-<li>
-<p>To build the example, you need to have <a href="https://rustup.rs/">rustup</a>.</p>
-</li>
-<li>
-<p>To flash the example on the device, you need <code>probe-run</code> installed (<code>cargo install probe-run</code>).</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_running"><a class="anchor" href="#_running"></a>Running</h4>
 <div class="paragraph">
-<p>To run the firmware:</p>
+<p>To build and flash the example, you need to have <a href="https://rustup.rs/">rustup</a>. In practice you can use whatever tool you want to flash the device, but this guide will assume that <code>probe-run</code> is used (<code>cargo install probe-run</code>).</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configuring"><a class="anchor" href="#_configuring"></a>Configuring</h3>
+<div class="paragraph">
+<p><em>Over The Air Authentication</em> (OTAA) credentials will come from these entries in <code>~/.drogue/config.toml</code>:</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>cargo run --release</pre>
+<pre>"dev-eui" = "..."
+"app-eui" = "..."
+"app-key" = "..."</pre>
 </div>
 </div>
 </div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_troubleshooting"><a class="anchor" href="#_troubleshooting"></a>Troubleshooting</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_building"><a class="anchor" href="#_building"></a>Building</h3>
 <div class="paragraph">
-<p>If you’re experiencing problems, try setting the <code>VID:PID</code> values to that of your probe (you can find that from lsusb once your board is powered).</p>
+<p>To build the firmware:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>cargo build --release</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_running"><a class="anchor" href="#_running"></a>Running</h3>
+<div class="paragraph">
+<p>Flashing the firmware uses <code>probe-run</code> which auto-detects the probe connected to your device.
+The following command will build and flash the firmware and open the
+debugger console so you can see the console debug output.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>DEFMT_LOG=info cargo run --release</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_usage"><a class="anchor" href="#_usage"></a>Usage</h3>
+<div class="paragraph">
+<p>Once the device is flashed, it will connect to the local LoRaWAN network. Once the network is joined, you can press the B1 button on the development kit to send a test message <code>ping:&lt;num-clicks&gt;</code>, where <code>num-clicks</code> is the number of times you pressed the button since resetting the board.</p>
+</div>
+<div class="sect3">
+<h4 id="_leds"><a class="anchor" href="#_leds"></a>LEDs</h4>
+<div class="paragraph">
+<p>The board features 3 user controllable LEDs. The program will use 3 of them to show the internal status:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Blue</dt>
+<dd>
+<p>Will light up when starting and turn off once it joined the LoRa network.</p>
+</dd>
+<dt class="hdlist1">Green</dt>
+<dd>
+<p>Turns on while sending the uplink message.</p>
+</dd>
+<dt class="hdlist1">Red</dt>
+<dd>
+<p>Can be controlled through the downlink message: <code>led:on</code> or <code>led:off</code>.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_enabling_firmware_updates"><a class="anchor" href="#_enabling_firmware_updates"></a>Enabling firmware updates</h3>
+<div class="paragraph">
+<p>You can also use this example with <code>embassy-boot</code> to enable firmware updates over the air! To do
+that, you must flash the bootloader:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>cargo flash --manifest-path ../bootloader/Cargo.toml --release --no-default-features --chip STM32WLE5JCIx</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can then run the application with the <code>dfu</code> parameter:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>DEFMT_LOG=info cargo run --release --features dfu</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_troubleshooting"><a class="anchor" href="#_troubleshooting"></a>Troubleshooting</h3>
+<div class="paragraph">
+<p>If you’re experiencing problems, try setting the <code>VID:PID</code> values to
+that of your probe (you can find that from lsusb once your board is
+powered).</p>
 </div>
 <div class="literalblock">
 <div class="content">
 <pre>cargo run --release -- --probe &lt;VID&gt;:&lt;PID&gt;</pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Once flashed, the device will reset and look no different at first.
-Upon pressing the blue user button, the LEDS will cycle from green to blue to red and back again.</p>
 </div>
 </div>
 </div>
