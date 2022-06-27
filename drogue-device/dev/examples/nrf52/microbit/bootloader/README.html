@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: Drogue IoT</title>
+    <title>Bootloader for nRF with external flash capability :: Drogue IoT</title>
     <meta name="generator" content="Antora 3.0.1">
     <link rel="stylesheet" href="../../../../../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4BRXRBJJ1"></script>
@@ -135,8 +135,8 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Display</span>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="3">
-    <a class="nav-link" href="README.html">BBC micro:bit v2 compass showing direction in led display</a>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compass/README.html">BBC micro:bit v2 compass showing direction in led display</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../jukebox/README.html">BBC micro:bit v2 disco jukebox and light show</a>
@@ -177,8 +177,8 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../../adafruit-feather-nrf52840/bootloader/README.html">Bootloader for Adafruit nRF52840 chips</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../bootloader/README.html">Bootloader for BBC Micro:bit chips</a>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="README.html">Bootloader for BBC Micro:bit chips</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../../../stm32l4/iot01a/bootloader/README.html">Bootloader for STM32L4 iot01a boards</a>
@@ -299,80 +299,34 @@
   <ul>
     <li><a href="../../../../index.html">Drogue Device</a></li>
     <li><a href="../../../../examples.html">Examples</a></li>
-    <li>Display</li>
-    <li><a href="README.html">BBC micro:bit v2 compass showing direction in led display</a></li>
+    <li>Other</li>
+    <li><a href="README.html">Bootloader for BBC Micro:bit chips</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-device/edit/main/docs/modules/ROOT/pages/examples/nrf52/microbit/compass/README.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-device/edit/main/docs/modules/ROOT/pages/examples/nrf52/microbit/bootloader/README.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<div class="sect1">
-<h2 id="_microbit_compass_drogue_device_example"><a class="anchor" href="#_microbit_compass_drogue_device_example"></a>microbit-compass drogue-device example</h2>
+<h1 class="page">Bootloader for nRF with external flash capability</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>This example application runs out of the box on the BBC micro:bit v2.0. It uses the builtin magnetometer, accellerometer and LED matrix as a compass, where the LED matrix arrow points the direction.</p>
-</div>
-<div class="sect2">
-<h3 id="_prerequisites"><a class="anchor" href="#_prerequisites"></a>Prerequisites</h3>
-<div class="sect3">
-<h4 id="_hardware"><a class="anchor" href="#_hardware"></a>Hardware</h4>
-<div class="ulist">
-<ul>
-<li>
-<p>BBC micro:bit v2.0</p>
-</li>
-</ul>
+<p>The bootloader uses <code>embassy-boot</code> to interact with the flash.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_software"><a class="anchor" href="#_software"></a>Software</h4>
+</div>
+<div class="sect1">
+<h2 id="_usage"><a class="anchor" href="#_usage"></a>Usage</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>To build and flash the example, you need to have
-<a href="https://rustup.rs/">rustup</a>. In practice
-you can use whatever tool you want to flash the device, but this guide
-will assume that <code>probe-run</code> is used (<code>cargo install probe-run</code>).</p>
+<p>Flash the bootloader</p>
 </div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_building"><a class="anchor" href="#_building"></a>Building</h3>
-<div class="paragraph">
-<p>To build the firmware:</p>
-</div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>cargo build --release</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_running"><a class="anchor" href="#_running"></a>Running</h3>
-<div class="paragraph">
-<p>Flashing the firmware uses <code>probe-run</code> which auto-detects the probe connected to your device.
-The following command will build and flash the firmware and open the
-debugger console so you can see the console debug output.</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>cargo run --release</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>If you’re experiencing problems, try setting the <code>VID:PID</code> values to
-that of your probe (you can find that from lsusb once your board is
-powered).</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>cargo run --release -- --probe &lt;VID&gt;:&lt;PID&gt;</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Once running, calibrate the sensor by filling lighting up all the LEDs.</p>
+<pre>cargo flash --release --chip nRF52833_xxAA</pre>
 </div>
 </div>
 </div>
