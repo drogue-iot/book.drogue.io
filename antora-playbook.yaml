@@ -45,6 +45,9 @@ ui:
 
 output:
   clean: true
+
 runtime:
   fetch: true
+  log:
+    failure_level: error
 
