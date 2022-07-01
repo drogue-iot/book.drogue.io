@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>microbit-uart drogue-device example :: Drogue IoT</title>
+    <title>Microbit Bluetooth Mesh example :: Drogue IoT</title>
     <meta name="generator" content="Antora 3.0.1">
     <link rel="stylesheet" href="../../../../../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4BRXRBJJ1"></script>
@@ -105,6 +105,9 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../ble/README.html">Microbit BLE Sensor example with DFU</a>
   </li>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="README.html">Microbit Bluetooth Mesh example</a>
+  </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../../nrf52840-dk/ble-mesh/README.html">nrf52840-dk BLE Mesh example</a>
   </li>
@@ -140,9 +143,6 @@
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../jukebox/README.html">BBC micro:bit v2 disco jukebox and light show</a>
-  </li>
-  <li class="nav-item is-current-page" data-depth="3">
-    <a class="nav-link" href="README.html">BBC micro:bit v2 uart and matrix display</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../../../stm32h7/nucleo-h743zi/epd/README.html">STM32 Nucleo-H743 7-color e-paper display</a>
@@ -185,15 +185,6 @@
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../../../stm32wl/nucleo-wl55/bootloader/README.html">Bootloader for STM32L4 iot01a boards</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <span class="nav-text">Uart</span>
-<ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="3">
-    <a class="nav-link" href="README.html">BBC micro:bit v2 uart and matrix display</a>
   </li>
 </ul>
   </li>
@@ -299,25 +290,26 @@
   <ul>
     <li><a href="../../../../index.html">Drogue Device</a></li>
     <li><a href="../../../../examples.html">Examples</a></li>
-    <li>Display</li>
-    <li><a href="README.html">BBC micro:bit v2 uart and matrix display</a></li>
+    <li>Ble</li>
+    <li><a href="README.html">Microbit Bluetooth Mesh example</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-device/edit/main/docs/modules/ROOT/pages/examples/nrf52/microbit/uart/README.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-device/edit/main/docs/modules/ROOT/pages/examples/nrf52/microbit/bt-mesh/README.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">microbit-uart drogue-device example</h1>
+<h1 class="page">Microbit Bluetooth Mesh example</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>This example application runs out of the box on the BBC micro:bit v2.0.
-It provides a UART echo server that will echo characters you write to
-the micro:bit serial interface, and it will display ascii characters on
-the 5x5 LED display.</p>
+<p>This example application runs out of the box on the BBC micro:bit. It starts as a Bluetooth Mesh
+sensor server(as defined by specification) reporting from the on board temperature sensor.</p>
+</div>
+<div class="paragraph">
+<p>The example assumes that the nRF softdevice is installed.</p>
 </div>
 </div>
 </div>
@@ -329,113 +321,79 @@ the 5x5 LED display.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>BBC micro:bit v2.0</p>
-</li>
-<li>
-<p>USB to Serial cable</p>
-</li>
-<li>
-<p>(Optional) edge connector to access pins - this is just for
-simplifying connecting to the serial pins</p>
+<p>BBC Micro:bit v2</p>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p>Connect the TX to P15 and RX to P14 on the micro:bit.</p>
-</div>
-<div class="paragraph">
-<p>image::https://raw.githubusercontent.com/drogue-iot/drogue-device/main/examples/nrf52/microbit/uart/images/connector.jpg[microbit
-edge connector]</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_software"><a class="anchor" href="#_software"></a>Software</h3>
 <div class="paragraph">
-<p>To build and flash the example, you need to have
-<a href="https://rustup.rs/">rustup</a>. In practice
-you can use whatever tool you want to flash the device, but this guide
-will assume that <code>probe-run</code> is used (<code>cargo install probe-run</code>).</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_building"><a class="anchor" href="#_building"></a>Building</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>To build the firmware:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>cargo build --release</pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_flashing"><a class="anchor" href="#_flashing"></a>Flashing</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Flashing the firmware uses <code>probe-run</code> which auto-detects the probe connected to your device.
-The following command will build and flash the firmware and open the
-debugger console so you can see the console debug output.</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>cargo run --release</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>If you’re experiencing problems, try setting the <code>VID:PID</code> values to
-that of your probe (you can find that from lsusb once your board is
-powered).</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>cargo run --release -- --probe &lt;VID&gt;:&lt;PID&gt;</pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_using_minicom_program_to_talk_to_echo_server"><a class="anchor" href="#_using_minicom_program_to_talk_to_echo_server"></a>Using minicom program to talk to echo server</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Once the firmware is running, you can connect the serial console. I’m
-using minicom for this, but there are lots of options. The most
-important thing is to use the following settings:</p>
+<p>Make sure you have the latest versions (<code>cargo install &lt;tool&gt;</code>) of these tools:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>115200 Baudrate</p>
+<p><a href="https://rustup.rs/">rustup</a> - To compile the example with the correct toolchain.</p>
 </li>
 <li>
-<p>8N1 (8 data bits, 1 stop bit)</p>
+<p><a href="https://crates.io/crates/probe-rs-cli">probe-rs-cli</a> - To flash the BLE protocol stack from Nordic Semiconductor.</p>
 </li>
 <li>
-<p>No hardware flow control (default is ON for minicom, so remember to
-turn this off)</p>
+<p><a href="https://crates.io/crates/probe-run">probe-run</a> - To run the example.</p>
+</li>
+<li>
+<p><code>cargo-flash</code></p>
+</li>
+<li>
+<p><code>cargo-binutils</code></p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>The command:</p>
 </div>
-<div class="literalblock">
+</div>
+</div>
+<div class="sect1">
+<h2 id="_usage"><a class="anchor" href="#_usage"></a>Usage</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_erase_current_settings"><a class="anchor" href="#_erase_current_settings"></a>Erase current settings</h3>
+<div class="listingblock">
 <div class="content">
-<pre>minicom -D /dev/ttyUSB0</pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">probe-rs-cli erase --chip nRF52833_xxAA</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_flash_nrf_softdevice"><a class="anchor" href="#_flash_nrf_softdevice"></a>Flash nRF Softdevice</h3>
+<div class="paragraph">
+<p>Download the softdevice version 7.3.0 <a href="https://www.nordicsemi.com/Products/Development-software/s140/download">here</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">probe-rs-cli download s140_nrf52_7.3.0_softdevice.hex --chip nRF52833_xxAA --format Hex</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_flash_application"><a class="anchor" href="#_flash_application"></a>Flash application</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">cargo flash --release --chip nRF52833_xxAA</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Once connected, press the `A' button on the micro:bit to start the echo
-server, and you can start typing characters into the minicom terminal.</p>
+<p>When started, the device will blink an 'X' every 5 seconds.</p>
 </div>
 <div class="paragraph">
-<p>Watch the video for a demonstration:</p>
+<p>When started, the device will blink a check mark every 5 seconds.</p>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_provisioning"><a class="anchor" href="#_provisioning"></a>Provisioning</h3>
 <div class="paragraph">
-<p><a href="https://www.youtube.com/watch?v=wtBmccLh4lw"><span class="image"><img src="https://img.youtube.com/vi/wtBmccLh4lw/maxresdefault.jpg" alt="Watch the video"></span></a></p>
+<p>See the link:https://github.com/drogue-iot/drogue-device/blob/main/examples/nrf52/nrf52840-dk/ble-mesh/README.adoc[nRF52840-DK mesh example) for how to provision the device.</p>
+</div>
 </div>
 </div>
 </div>
