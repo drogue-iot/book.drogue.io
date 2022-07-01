@@ -445,6 +445,52 @@ board. The output should look something like this:</p>
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_troubleshooting"><a class="anchor" href="#_troubleshooting"></a>Troubleshooting</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you’re experiencing problems, try setting the <code>VID:PID</code> values to that of your probe (you can find that from lsusb once your board is powered).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">&lt;ENV&gt; cargo run &lt;ARGS&gt; -- --probe &lt;VID&gt;:&lt;PID&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Additionally, the B-L4S5I-IOT01A board can have issues with running <code>cargo run</code> multiple times, leading to errors like</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">Error: An error with the usage of the probe occured
+
+Caused by:
+    Operation timed out</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you experience that, the best way to restore the board is to reconnect it and use <code>st-flash</code> utility to write any binary to it, like</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">st-flash write ../target/thumbv7em-none-eabihf/release/wifi-websockets-workshop.d 0x8000000</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After reconnecting the board again, you should be able to use <code>cargo run</code> again.</p>
+</div>
+<div class="paragraph">
+<p>If your application starts but reports errors like</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">ERROR Error sending measurement</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>you can run it by using <code>DEFMT_LOG=trace</code> to get more information about the error.</p>
+</div>
+</div>
+</div>
 </article>
   </div>
 </main>

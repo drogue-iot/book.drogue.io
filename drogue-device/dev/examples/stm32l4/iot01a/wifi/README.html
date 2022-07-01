@@ -387,21 +387,35 @@ http-password = "..."</pre>
 <p>For Drogue Cloud, the username/password is stored in this form: <code>device_id@application</code>.</p>
 </div>
 <div class="paragraph">
+<p>The example <code>config.toml</code> file for connecting to public Drogue cloud sandbox application could look like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-toml hljs" data-lang="toml">hostname = "http.sandbox.drogue.cloud" # Replace with your own Drogue Cloud instance if you are not using the sandbox
+port = "443"
+wifi-ssid = "..."                      # The WiFi network SSID
+wifi-password = "..."                  # The WiFi network pre-shared key
+http-username = "device1@wifi-workshop"
+http-password = "mysecretpassword"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Just enter your wifi details and you should be ready to go.</p>
+</div>
+<div class="paragraph">
 <p>If you have the B-L4S5I-IOT01A board, set the following environment variables:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>export CHIP=STM32L4S5VI
-export CHIP_FEATURE=b-l4s5i-iot01a</pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">export CHIP=STM32L4S5VI CHIP_FEATURE=b-l4s5i-iot01a</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>If you have the B-475E-IOT01A board, use the following settings instead:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>export CHIP=STM32L475VGTx
-export CHIP_FEATURE=b-l475e-iot01a</pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">export CHIP=STM32L475VGTx CHIP_FEATURE=b-l475e-iot01a</code></pre>
 </div>
 </div>
 </div>
@@ -420,7 +434,7 @@ export CHIP_FEATURE=b-l475e-iot01a</pre>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>DEFMT_LOG=info PROBE_RUN_CHIP=${CHIP} --release --features ${CHIP_FEATURE},debug --no-default-features</pre>
+<pre>DEFMT_LOG=info PROBE_RUN_CHIP=${CHIP} cargo run --release --features ${CHIP_FEATURE},debug --no-default-features</pre>
 </div>
 </div>
 </div>
@@ -488,6 +502,28 @@ export CHIP_FEATURE=b-l475e-iot01a</pre>
 <div class="content">
 <pre>&lt;ENV&gt; cargo run &lt;ARGS&gt; -- --probe &lt;VID&gt;:&lt;PID&gt;</pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Additionally, the B-L4S5I-IOT01A board can have issues with running probe multiple times, leading to errors like</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">Error: An error with the usage of the probe occured
+
+Caused by:
+    Operation timed out</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you experience that, the best way to restore the board is to reconnect it and use <code>st-flash</code> utility to write any binary to it, like</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">st-flash write ../target/thumbv7em-none-eabihf/release/iot01a-wifi.d 0x8000000</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After reconnecting the board again, you should be able to use <code>cargo run</code> again.</p>
 </div>
 </div>
 </div>
