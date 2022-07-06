@@ -401,7 +401,7 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>The data stored in Apache Kafka is consumed by a fault detection model as well as a digital twin system. Digital Twin capability makes it easy to view the current state of devices. Software updates for devices are continously built and deployed to the fleet.</p>
+<p>The data stored in Apache Kafka is consumed by a fault detection model as well as a digital twin system. Digital Twin capability makes it easy to view the current state of devices. Software updates for devices are continuously built and deployed to the fleet.</p>
 </div>
 </div>
 </div>
@@ -409,7 +409,7 @@
 <h2 id="_example_architecture"><a class="anchor" href="#_example_architecture"></a>Example architecture</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>All data related to devices are colocated and controlled by "the company". It is desireable that a digital representation of each device is kept up to date for humans to inspect and decide actions.</p>
+<p>All data related to devices are co-located and controlled by "the company". It is desirable that a digital representation of each device is kept up to date for humans to inspect and decide actions.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -450,7 +450,8 @@ well as result from prediction models, so that all state related to the device c
 <p>In order to isolate the firmware management from the regular telemetry traffic, a separate cluster is running the firmware services.</p>
 </div>
 <div class="paragraph">
-<p>Drogue Ajour and Eclipse Hawkbit is used to build and roll out firmware updates to devices. When software developers create a fix that is merged to a release branch, an immutable artifact with the firmware is published to an internal registry.</p>
+<p>Tekton is used to build firmware, while Drogue Ajour and Eclipse Hawkbit are used to deploy firmware updates to devices. When software developers create a fix, this fix is first merged to the main branch and built by Tekton. On a release, a reference to the artifact with the firmware is updated
+on the Drogue application or device.</p>
 </div>
 <div class="paragraph">
 <p>When a release is created, the devices will automatically receive the update when they are reporting their current firmware revisions. Devices receive updates at their own pace, and the update status of all devices are tracked in Drogue Cloud.</p>
