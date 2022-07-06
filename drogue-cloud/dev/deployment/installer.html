@@ -132,7 +132,7 @@
     <a class="nav-link" href="../user-guide/management.html">Management</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../user-guide/management.html#_applications">Applications</a>
+    <a class="nav-link" href="../user-guide/management.html#applications">Applications</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../user-guide/management.html#devices">Devices</a>
@@ -360,12 +360,33 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Most of the deployment of Drogue Cloud uses <code>Helm</code> in combination with <code>kubectl</code> for installing dependencies. However, we do require a few steps
-before and after the deployment. Installing dependencies on the cluster and setting URLs afterwards.</p>
+<p>Most of the deployment of Drogue Cloud uses <code>Helm</code> in combination with <code>kubectl</code> for installing dependencies. However,
+we do require a few steps before and after the deployment. Installing dependencies on the cluster and setting URLs
+afterwards.</p>
 </div>
 <div class="paragraph">
 <p>For this we have a <em>magic</em> installer script, that does everything for you. It is suited for an easy start on a
 local test cluster.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="title">Pure Helm based installation</div>
+<div class="paragraph">
+<p>While we describe the installation of Drogue Cloud using our installer script, it is also possible to install it using
+just Helm charts. In fact, the installer uses an opinionated value set for the Helm charts, and you can simply create
+your own wrapper chart, tweaking the values as needed.</p>
+</div>
+<div class="paragraph">
+<p>This is what we do for our public sandbox too. The installer script is just there to get you started quickly.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
