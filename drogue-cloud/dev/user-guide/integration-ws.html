@@ -148,6 +148,21 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="common-concepts.html">Common topics</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="common-concepts.html">Concepts</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="common-configuration.html">Configuration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="common-mqtt-websocket.html">MQTT over websocket</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="management.html">Management</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
@@ -155,6 +170,9 @@
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="management.html#devices">Devices</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="management-app-members.html">Application sharing</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="management-rules.html">Event pre-processing</a>
@@ -200,18 +218,6 @@
   </li>
   <li class="nav-item is-current-page" data-depth="3">
     <a class="nav-link" href="integration-ws.html">WebSocket Integration</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="common.html">Common topics</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="common.html">Configuration</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="common-mqtt-websocket.html">MQTT over websocket</a>
   </li>
 </ul>
   </li>
@@ -429,6 +435,24 @@ possible to provide the same information using HTTP query parameters:</p>
 </tr>
 </tbody>
 </table>
+<div class="sect2">
+<h3 id="_refreshing_the_oauth2_token"><a class="anchor" href="#_refreshing_the_oauth2_token"></a>Refreshing the Oauth2 token</h3>
+<div class="paragraph">
+<p>Oauth bearer tokens usually have a short lifespan. When the token is expired, the Websocket endpoint will close the connexion.
+To keep the connexion alive, you can refresh the token by sending a json payload through the web socket containing a refreshed token.
+The bearer token must be passed with a key named <code>RefreshAccessToken</code>.</p>
+</div>
+<div class="paragraph">
+<p>Here is an example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+   "RefreshAccessToken":"eyJhbGciO[...]sRqg7xt_jzb_tg"
+}</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">

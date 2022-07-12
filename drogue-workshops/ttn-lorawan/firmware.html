@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>LoRaWAN end-to-end :: Drogue IoT</title>
+    <title>Device firmware :: Drogue IoT</title>
     <meta name="generator" content="Antora 3.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4BRXRBJJ1"></script>
@@ -72,11 +72,11 @@
   </li>
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="index.html">LoRaWAN end-to-end</a>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="index.html">Overview</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -88,11 +88,14 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="drogue-cloud.html">Drogue Cloud setup</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="firmware.html">Device firmware</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="quarkus-application.html">Quarkus application</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="nodejs-application.html">Node.js application</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="making-changes.html">Making changes</a>
@@ -277,97 +280,204 @@
   <ul>
     <li><a href="../index.html">Drogue IoT Workshops</a></li>
     <li><a href="index.html">LoRaWAN end-to-end</a></li>
+    <li><a href="firmware.html">Device firmware</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-workshops/edit/main/modules/ttn-lorawan-quarkus/pages/index.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-workshops/edit/main/modules/ttn-lorawan/pages/firmware.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">LoRaWAN end-to-end</h1>
+<h1 class="page">Device firmware</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>This workshop focuses on the use case of reporting data from an embedded device, to the cloud, and receive commands
-back.</p>
-</div>
-<div class="paragraph">
-<p>The idea is that you have some embedded device, with a LoRa modem, periodically reporting data to the cloud, and
-occasionally receiving back commands to control the device.</p>
-</div>
-<div class="paragraph">
-<p>Instead of implementing all the LoRa infrastructure ourselves, we re-use the infrastructure of
-<a href="https://www.thethingsnetwork.org/">The Things Network</a> (TTN). However, we will want to process the data as part of our
-Drogue Cloud setup.</p>
+<p>The next step is to compile and flash the device&#8217;s firmware.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_pre_requisites"><a class="anchor" href="#_pre_requisites"></a>Pre-requisites</h2>
+<h2 id="_clone_the_git_repository"><a class="anchor" href="#_clone_the_git_repository"></a>Clone the Git repository</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This workshop requires additional hardware, as we need an embedded device with a LoRa modem.</p>
+<p>Clone the git repository with the example and check out the <code>0.3.0</code> tag:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">git clone https://github.com/drogue-iot/drogue-device
+git checkout 0.3.0</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>Additionally to the common pre-requisites, you will need:</p>
+<p>For the next steps, you will need to change into the sub-directory <code>examples/stm32l0xx/lora-discovery/</code>:</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>A Drogue Device supported development board and LoRa modem</p>
-</li>
-<li>
-<p>Coverage for "The Things Network"</p>
-</li>
-<li>
-<p>A "The Things Network" v3 account</p>
-</li>
-<li>
-<p>A publicly accessible Drogue IoT Cloud instance running version 0.5+</p>
-</li>
-<li>
-<p>Standard Java development tools: Java, Maven, Git</p>
-</li>
-</ul>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">cd examples/stm32l0xx/lora-discovery/</code></pre>
 </div>
-<div class="sect2">
-<h3 id="_supported_embedded_device_lora_modem"><a class="anchor" href="#_supported_embedded_device_lora_modem"></a>Supported embedded device &amp; LoRa modem</h3>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+If you don&#8217;t use the "B-L072Z-LRWAN1" board, you will need to adapt the firmware to match your device and
+hardware configuration!
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_update_the_device_configuration"><a class="anchor" href="#_update_the_device_configuration"></a>Update the device configuration</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>Ideally, you have the <a href="https://www.st.com/en/evaluation-tools/b-l072z-lrwan1.html">STM32L0 discovery kit for LoRa</a>
-(B-L072Z-LRWAN1). This kit has a Drogue Device supported STM32 board, and also has an SX1276 modem, for which
-Drogue Device has a LoRa driver.</p>
+<p>Locate the Device EUI, Application EUI, and Application Key, you created earlier. Add the keys into the following lines
+in <code>$HOME/.drogue/config.toml</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">app-qui = "&lt;The Application EUI&gt;"
+dev-eui = "&lt;The Device EUI&gt;"
+app-key = "&lt;The Application Key&gt;"</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_compile_and_flash"><a class="anchor" href="#_compile_and_flash"></a>Compile and flash</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can now compile and flash the firmware. Execute the following command:</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+You need to have the developer board attached to your computer.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">cargo run --release</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>You may also use a different Drogue Device supported board, adding the SX1276 using SPI. However, this means
-that you need to adapt the provided example firmware yourself.</p>
+<p>It may happen that the operation fails, especially when you try to flash the board for the first time. If that&#8217;s the case,
+you can try running the following.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">cargo build --release
+probe-run target/thumbv6m-none-eabi/release/lora-discovery --connect-under-reset --chip STM32L072CZ</code></pre>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_the_things_network_coverage"><a class="anchor" href="#_the_things_network_coverage"></a>The Things Network coverage</h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_checking_the_result"><a class="anchor" href="#_checking_the_result"></a>Checking the result</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>You can think of TTN as your LoRa network provider. When your device wants to send over the TTN LoRa network, you
-need to ensure that you have network coverage. So you can check if your region is already covered. The good thing with
-TTN is, if your region is not covered, you can take care of this yourself.</p>
+<p>Once you flashed and started the program, <code>cargo run</code> will keep attached to the application running on the development
+board. The output should look something like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">    Finished release [optimized + debuginfo] target(s) in 1.66s
+     Running <code>probe-run --chip STM32L072CZ target/thumbv6m-none-eabi/release/lora-discovery</code>
+  (HOST) INFO  flashing program (73.77 KiB)
+  (HOST) INFO  success!
+────────────────────────────────────────────────────────────────────────────────
+INFO - Configuring with config LoraConfig { region: Some(EU868), lora_mode: Some(WAN), device_address: None, device_eui: Some(EUI([0, 54, 39, 147, 252, 241, 128, 45])), app_eui: Some(EUI([112, 179, 213, 126, 208, 2, 3, 105])), app_key: Some(AppKey([241, 86, 188, 53, 248, 3, 201, 238, 172, 50, 168, 119, 74, 114, 29, 198])) }
+INFO - LoRa driver configured
+TRACE - New Session Request
+TRACE - Event handled
+TRACE - Join Request Sending
+TRACE - Phy event
+TRACE - Event handled
+TRACE - TimeoutRequest: 4500
+TRACE - Event handled
+TRACE - TimeoutRequest: 5300
+TRACE - Phy event
+TRACE - Event handled
+<strong>INFO - Network joined</strong> <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Successfully joined the network</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
-<p>For this you will need to buy (or lend) a LoRa gateway. The LoRa gateway will open a local LoRa network cell, and
-connect via TCP/IP to the TTN LoRa network backend.</p>
+<p>Pay attention to the line indicating that the LoRa network was successfully joined.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_pressing_buttons"><a class="anchor" href="#_pressing_buttons"></a>Pressing buttons</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can already give it a try, and press the blue button on the board.</p>
 </div>
 <div class="paragraph">
-<p>LoRa gateways come in various flavors. You can build one yourself with a Raspberry Pi, you can go all-in and buy an
-industrial, rugged version, mounting this to your roof and cover some km² with LoRa. Or, you can go on the cheap side
-and simply buy the
-<a href="https://www.thethingsnetwork.org/docs/gateways/thethingsindoor/index.html">The Things Indoor Gateway (TTIG)</a>.</p>
+<p>But before you do, open up the web console, navigate to the "Spy", and start it, using the Drogue application
+name you have assigned earlier.</p>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_publicly_accessible_drogue_cloud_version"><a class="anchor" href="#_publicly_accessible_drogue_cloud_version"></a>Publicly accessible Drogue Cloud version</h3>
 <div class="paragraph">
-<p>This time, you cannot run Drogue Cloud on your local machine. The Things Network will need to reach out to your machine,
-in order to deliver events to Drouge Cloud. For this you need a publicly available instance.</p>
+<p>Now you can press the button! This will trigger the device to send some
+information to the LoRa network. There is no one there to receive yet, it should still work.</p>
 </div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">INFO - Ticked: 1
+<strong>INFO - Sending message...</strong> <i class="conum" data-value="1"></i><b>(1)</b>
+INFO - Message: ping:1
+TRACE - Uplink with FCnt 0
+TRACE - Phy event
+TRACE - Event handled
+TRACE - TimeoutRequest: 4500
+TRACE - Event handled
+TRACE - TimeoutRequest: 5300
+TRACE - Phy event
+TRACE - Event handled
+TRACE - Downlink received               (FcntDown=0)
+TRACE - Ack received!
+<strong>INFO - Message sent!</strong> <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Starting to send the message</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Message acknowledged by TTN</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Be aware that the time from sending to receiving the acknowledgment may be around 5 seconds.</p>
+</div>
+<div class="paragraph">
+<p>On the web console, you should see the event, as received by Drogue Cloud.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/spy-event.png" alt="Screenshot of event spy"></span></p>
 </div>
 </div>
 </div>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Toolchain setup :: Drogue IoT</title>
+    <title>Making changes :: Drogue IoT</title>
     <meta name="generator" content="Antora 3.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4BRXRBJJ1"></script>
@@ -79,7 +79,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="index.html">Overview</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="toolchain.html">Embedded toolchain</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -95,6 +95,9 @@
     <a class="nav-link" href="quarkus-application.html">Quarkus application</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="nodejs-application.html">Node.js application</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="making-changes.html">Making changes</a>
   </li>
 </ul>
@@ -277,81 +280,273 @@
   <ul>
     <li><a href="../index.html">Drogue IoT Workshops</a></li>
     <li><a href="index.html">LoRaWAN end-to-end</a></li>
-    <li><a href="toolchain.html">Embedded toolchain</a></li>
+    <li><a href="making-changes.html">Making changes</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-workshops/edit/main/modules/ttn-lorawan-quarkus/pages/toolchain.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-workshops/edit/main/modules/ttn-lorawan/pages/making-changes.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Toolchain setup</h1>
+<h1 class="page">Making changes</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>In order to create a device firmware, you will need to set up an embedded toolchain for Rust.</p>
+<p>Now that we have a LoRaWAN based end-to-end example, we are ready to make some changes.</p>
+</div>
+<div class="paragraph">
+<p>As mentioned earlier, it may happen that the device misses its downlink message from the cloud. However, it wouldn&#8217;t
+be a problem if the device would <em>phone home</em> on a regular basis<sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup>.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_install_rustup"><a class="anchor" href="#_install_rustup"></a>Install <code>rustup</code></h2>
+<h2 id="_making_plans"><a class="anchor" href="#_making_plans"></a>Making plans</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In order to install Rust and Rust components, you will need <a href="https://rustup.rs/">rustup</a>:</p>
+<p>Instead of publishing once when the user presses a button, let&#8217;s change the logic of the device in way that it
+periodically sends some data. This might be a more realistic scenario anyway, periodically sending gathered telemetry
+data, instead of waiting for a user to press a button.</p>
 </div>
 <div class="paragraph">
-<p>On Unix-like environment, the following command should work just fine:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh</code></pre>
-</div>
+<p>However, we need to be careful: LoRaWAN isn&#8217;t intended to constantly send data. First of all, the usage policy restricts
+you from doing so. Second, this is bad for power consumption and thus for the battery.</p>
 </div>
 <div class="paragraph">
-<p>There are other ways to install <code>rustup</code>. Check its homepage to learn more.</p>
+<p>The Things Network limits downlink messages to a few per day. So we also cannot always send a downlink message, like
+we currently do it, when the button is pressed.</p>
 </div>
 <div class="paragraph">
-<p>Also see:</p>
+<p>Here is what we need to change:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://rustup.rs/">rustup homepage</a></p>
+<p>The device needs to report the state of the LED to the cloud too.</p>
+</li>
+<li>
+<p>The device needs to periodically <em>phone home</em></p>
+</li>
+<li>
+<p>The cloud side application needs to evaluate if the state of the device&#8217;s LED is in the desired state.</p>
+</li>
+<li>
+<p>If not, it needs to send out a command to the device to alter its state, but only in this case.</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_install_an_embedded_toolchain"><a class="anchor" href="#_install_an_embedded_toolchain"></a>Install an embedded toolchain</h2>
+<h2 id="_changing_the_cloud_side"><a class="anchor" href="#_changing_the_cloud_side"></a>Changing the cloud side</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>By default, <code>rustup</code> will install a toolchain (compiler, …) for your current host architecture and operating system.</p>
+<p>Let prepare the cloud side first.</p>
 </div>
 <div class="paragraph">
-<p>When compiling a device firmware, we need to have a compiler for a different architecture (CPU). The examples used in this workshop contain a rust-toolchain file which will tell rustup to automatically download the toolchain required for your board.</p>
+<p>All that we need to do is to change the <code>Processor</code> class:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">// first we split the payload
+var parts = event.getPayload().split(",");
+
+// then we check if the payload is, what we expect...
+if (parts.length != 2 || !parts[0].startsWith("ping:") || !parts[1].startsWith("led:")) {
+    // .. if not, return with no command
+    return null;
+}
+
+// check if the configured response is about the LED, and if it matches ...
+if (!this.response.startsWith("led:") || parts[1].equals(this.response)) {
+    // ... it is not, or it matches, so we return with no command
+    return null;
+}
+
+// if we end up here, we need to update the device
+LOG.info("Need to update device state");</code></pre>
+</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_additional_tools"><a class="anchor" href="#_additional_tools"></a>Additional tools</h2>
+<h2 id="_changing_the_device"><a class="anchor" href="#_changing_the_device"></a>Changing the device</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In addition to the actual toolchain, you will need tools to flash the firmware to your device, and to monitor what is going on.</p>
-</div>
-<div class="paragraph">
-<p>There are a few tools for Rust which can help here. However, we will focus on the <a href="https://github.com/knurling-rs/probe-run">probe-run</a>.</p>
-</div>
-<div class="paragraph">
-<p>You can install <code>probe-run</code> be executing the following command:</p>
+<p>On the device side, we need to add a <em>ticker</em>. Take a look at the file <code>main.rs</code>, and make the following changes:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">cargo install probe-run</code></pre>
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">use drogue_device::{
+    actors::button::*,
+    <strong>actors::ticker::</strong>*, <i class="conum" data-value="1"></i><b>(1)</b>
+    drivers::led::*,
+    drivers::lora::sx127x::*,
+…
+}
+<strong>use embassy::time::Duration;</strong> <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
 </div>
 </div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Import the ticker actor.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Import the <code>Duration</code> struct.</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">#[derive(Device)]
+pub struct MyDevice {
+    lora: ActorContext&lt;'static, LoraActor&lt;Sx127x&lt;'static&gt;&gt;&gt;,
+    button: ActorContext&lt;'static, Button&lt;'static, ExtiPin&lt;PB2&lt;Input&lt;PullUp&gt;&gt;&gt;, MyApp&gt;&gt;,
+    app: ActorContext&lt;'static, MyApp&gt;,
+    <strong>ticker: ActorContext&lt;'static, Ticker&lt;'static, MyApp&gt;&gt;,</strong> <i class="conum" data-value="1"></i><b>(1)</b>
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Add an actor context for the ticker</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Next, initialize the ticker for the device:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">context.configure(MyDevice {
+    app: ActorContext::new(App::new(AppInitConfig {
+        tx_led: led2,
+        green_led: led1,
+        init_led: led4,
+        user_led: led3,
+        lora: Some(config),
+    })),
+    lora: ActorContext::new(LoraActor::new(lora)),
+    button: ActorContext::new(Button::new(pin)),
+    <strong>ticker: ActorContext::new(Ticker::new(Duration::from_secs(60), Command::Send)),</strong> <i class="conum" data-value="1"></i><b>(1)</b>
+});</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Add the ticker, and configure it so send the <code>Command::Send</code> event every 60 seconds.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Now that the ticker takes care of sending the uplink message, we need to decouple this from the button push event. In
+the file <code>app.rs</code>, make the following changes:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">fn from(event: ButtonEvent) -&gt; Option&lt;Command&gt; {
+    match event {
+        ButtonEvent::Pressed =&gt; None,
+        <strong>ButtonEvent::Released =&gt; Some(Command::Tick),</strong> <i class="conum" data-value="1"></i><b>(1)</b>
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>When the button is released, send <code>Command::Tick</code> only.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Next, we change the context which is sent to the cloud. We simply append the LED state at the end of the current
+message:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">let mut tx = String::&lt;heapless::consts::U32&gt;::new();
+<strong>let led = match self.config.user_led.state().unwrap_or_default() {
+    true =&gt; "on",
+    false =&gt; "off",
+};</strong> <i class="conum" data-value="1"></i><b>(1)</b>
+write!(&amp;mut tx, <strong>"ping:{},led:{}</strong>", self.counter, led).ok(); <i class="conum" data-value="2"></i><b>(2)</b>
+log::info!("Message: {}", &amp;tx);
+let tx = tx.into_bytes();</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Generate the current state as a string.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Append the string to uplink message, using the prefix <code>led:</code>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>After making those changes, you should be able to compile and flash the firmware again using:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">cargo run --release</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_making_tests"><a class="anchor" href="#_making_tests"></a>Making tests</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Pretty easy, wasn&#8217;t it? Noticed the bit of string handling on device side. And still, we are 100% sure we didn&#8217;t create
+any memory leaks or invalid pointer access in the process thanks to Rust.</p>
+</div>
+<div class="paragraph">
+<p>So after the device is flashed, let&#8217;s sit back and watch the device <em>phone home</em>. Make some change to the LED state,
+and watch the logs. The LED should change. But, you only see the message <code>Need to update device state</code> in the logs,
+when there was a mismatch between the actual and the desired state of the LED.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_more_ideas"><a class="anchor" href="#_more_ideas"></a>More ideas</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Now it is time to come up with your own ideas. You could:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Switch from sending string to some binary format, to make your LoRa messages more efficient.</p>
+</li>
+<li>
+<p>You could come up with some more elaborate processing on the cloud side. Maybe tie in some external service for
+evaluating the <em>desired</em> state of the LED.</p>
+</li>
+<li>
+<p>Attach a sensor to the device, and send some real data.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<hr>
+<div class="footnote" id="_footnotedef_1">
+<a href="#_footnoteref_1">1</a>. True, there are other ways to deal with this as well
 </div>
 </div>
 </article>

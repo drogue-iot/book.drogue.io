@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Node.js application :: Drogue IoT</title>
+    <meta name="generator" content="Antora 3.0.1">
+    <link rel="stylesheet" href="../../_/css/site.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4BRXRBJJ1"></script>
+    <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','G-Z4BRXRBJJ1')</script>
+    <script>var uiRootPath = '../../_'</script>
+    <link rel="icon" href="../../_/img/favicon.svg" type="image/svg+xml">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+
+      <a class="navbar-item" href="../..">
+        <img class="navbar-brand-image" src="../../_/img/logo.png" alt="Drogue IoT"/>
+      </a>
+        <div class="navbar-item search hide-for-print">
+          <div id="search-field" class="field">
+            <input id="search-input" type="text" placeholder="Search the docs">
+          </div>
+        </div>
+
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://www.drogue.io" target="_blank">Project</a>
+        <a class="navbar-item" href="https://blog.drogue.io" target="_blank">Blog</a>
+        <a class="navbar-item" href="https://matrix.to/#/#drogue-iot:matrix.org" target="_blank">Chat</a>
+        <a class="navbar-item" href="https://book.drogue.io">Documentation</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="drogue-workshops" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Drogue IoT Workshops</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Introduction</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../getting-started/index.html">Getting started</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../external/telemetry-e2e.html">Telemetry end-to-end</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">LoRaWAN end-to-end</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="toolchain.html">Embedded toolchain</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="account-setup.html">TTN account setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="drogue-cloud.html">Drogue Cloud setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="firmware.html">Device firmware</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="quarkus-application.html">Quarkus application</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="nodejs-application.html">Node.js application</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="making-changes.html">Making changes</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../quarkus-mqtt-starter/index.html">Quarkus MQTT integration starter</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quarkus-mqtt-starter/index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quarkus-mqtt-starter/peeking.html">What to expect</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quarkus-mqtt-starter/local.html">Running it locally</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quarkus-mqtt-starter/internals.html">How does it work?</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quarkus-mqtt-starter/kubernetes.html">Deploying to Kubernetes</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quarkus-mqtt-starter/cloud.html">Moving to the cloud</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../wifi-websockets/index.html">From WiFi to Websocket</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../wifi-websockets/index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../wifi-websockets/toolchain.html">Embedded toolchain</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../wifi-websockets/drogue-cloud.html">Drogue Cloud setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../wifi-websockets/firmware.html">Device firmware</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../wifi-websockets/websocket.html">Websocket Application</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../wifi-websockets/db-and-grafana.html">TimescaleDB and Grafana</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../wifi-websockets/summary.html">Summary</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../timeseries-as-a-service/index.html">Time series data, using managed services</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../timeseries-as-a-service/index.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../timeseries-as-a-service/architecture.html">Architecture</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../timeseries-as-a-service/timescale.html">Timescale</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../timeseries-as-a-service/knative.html">Knative</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../timeseries-as-a-service/drogue.html">Drogue Cloud</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../timeseries-as-a-service/grafana.html">Grafana</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../timeseries-as-a-service/simulating-data.html">Simulating data</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../timeseries-as-a-service/summary.html">Summary</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Drogue IoT Workshops</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <a class="title" href="../../drogue-cloud/dev/index.html">Drogue Cloud</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../drogue-cloud/dev/index.html">dev</a>
+        </li>
+        <li class="version">
+          <a href="../../drogue-cloud/0.9/index.html">0.9</a>
+        </li>
+        <li class="version">
+          <a href="../../drogue-cloud/0.8/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../drogue-cloud/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../drogue-cloud/0.6/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../drogue-cloud/0.5/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../drogue-cloud/0.4/index.html">0.4</a>
+        </li>
+        <li class="version">
+          <a href="../../drogue-cloud/0.1/index.html">0.1</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../drogue-device/dev/index.html">Drogue Device</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../drogue-device/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../drogue-book/index.html">Drogue IoT</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../drogue-book/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <a class="title" href="../index.html">Drogue IoT Workshops</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../embassy/dev/index.html">Embassy</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../embassy/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../drogue-book/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Drogue IoT Workshops</a></li>
+    <li><a href="index.html">LoRaWAN end-to-end</a></li>
+    <li><a href="nodejs-application.html">Node.js application</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-workshops/edit/main/modules/ttn-lorawan/pages/nodejs-application.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Node.js application</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>The last piece of the puzzle is a customer provided application. The application
+ that wants to talk to the device, in order to provide some value-add.</p>
+</div>
+<div class="paragraph">
+<p>For this implementing we choose Node.js. There are plenty of tutorials on
+Node.js how to build and interface Node.js application. So in this workshop, we
+will focus on bridging the gap between enterprise and IoT.</p>
+</div>
+<div class="paragraph">
+<p>The core idea here is that you use Drogue IoT Cloud as a service. That means, we
+don&#8217;t plan on deploying our application inside the same cluster, but on a
+separate machine or cluster. Technically you can still do that! We just try to
+follow a more "as-a-service" approach, and you might see in a minute, that this
+also makes things easier, as you can run the application on your local machine,
+or use our sandbox, and still be connected to the public TTN network.</p>
+</div>
+<div class="paragraph">
+<p>We will be using the MQTT integration of Drogue IoT. This makes things easy, as
+we don&#8217;t need to bridge two Kafka clusters, and still can have multiple
+consumers. Also, it is possible to just re-use all your tools around MQTT that
+you already may know about, for testing and debugging.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_creating_a_drogue_iot_cloud_api_token"><a class="anchor" href="#_creating_a_drogue_iot_cloud_api_token"></a>Creating a Drogue IoT cloud API token</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In order to get access to the application through the MQTT integration, we need
+an OAuth token or API token. As you need to periodically refresh an OAuth token,
+and most MQTT clients have no idea about that, we choose an API token
+here<sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup>.</p>
+</div>
+<div class="paragraph">
+<p>Getting a new API token currently requires to use a command line HTTP client,
+like HTTPie or curl. It is a simple operation though, and we will use
+<code>drg whoami --token</code> to acquire a fresh OAuth token for accessing the API.</p>
+</div>
+<div class="paragraph">
+<p>The following examples require you to replace <code>&lt;api-endpoint&gt;</code> with the actual
+API endpoint. You can get this from the web console, from the page named "Home":</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/api-endpoint.png" alt="Screenshot home page showing the API endpoint information">
+</div>
+</div>
+<div class="paragraph">
+<p>The API endpoint URL is located in the box "API" in the "Services" column.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The following examples will use the command <code>jq</code> to pretty-format that the JSON result of the commands. If can&#8217;t
+use <code>jq</code>, you can also omit it as is it only used to improve readability of the result.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_create_a_new_api_token"><a class="anchor" href="#_create_a_new_api_token"></a>Create a new API token</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">curl -vs -H "Authorization: Bearer $(drg whoami --token)" -XPOST &lt;api-endpoint&gt;/api/tokens/v1alpha1 | jq</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The output should look something like:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "prefix": "drg_g0yAUq",
+  "token": "drg_g0yAUq_kwjRLA40hrt81bbKdGbcDOmlq2WASx6UyQi"
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The value of the field <code>token</code> is the actual API token. You will not be able to
+recover this token at a later time. So you need to note (copy) it somewhere. The
+"prefix" is used to identity the token, so that you can easily delete it
+later on.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_list_api_tokens"><a class="anchor" href="#_list_api_tokens"></a>List API tokens</h3>
+<div class="paragraph">
+<p>You can also list your existing API tokens using:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">curl -s -H "Authorization: Bearer $(drg whoami --token)" &lt;api-endpoint&gt;/api/tokens/v1alpha1 | jq</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Which should provide you can output like:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">[
+  {
+    "prefix": "drg_g0yAUq",
+    "created": "2021-04-28T08:42:59.336402353Z"
+  }
+]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As you can see, the actual <code>token</code> is no longer part of the result.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_deleting_api_tokens"><a class="anchor" href="#_deleting_api_tokens"></a>Deleting API tokens</h3>
+<div class="paragraph">
+<p>If you need to delete a token, you can easily achieve this using the <code>DELETE</code> verb:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">curl -s -H "Authorization: Bearer $(drg whoami --token)" -XDELETE &lt;api-endpoint&gt;/api/tokens/v1alpha1/drg_g0yAUq</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_finding_your_username"><a class="anchor" href="#_finding_your_username"></a>Finding your username</h3>
+<div class="paragraph">
+<p>In addition to the API token, you will also need to know your username.</p>
+</div>
+<div class="paragraph">
+<p>You can check your username using the Web Console. In the top right corner of
+the console, you will find the user menu, which shows you your username:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/profile-menu-2.png" alt="Screenshot of profile menu">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_preparing_the_application"><a class="anchor" href="#_preparing_the_application"></a>Preparing the application</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>While we provide a ready to run container of this application, this workshop
+plans to make changes to the source code.</p>
+</div>
+<div class="paragraph">
+<p>We will start directly by cloning the source code of this example, and run it
+locally:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">git clone https://github.com/drogue-iot/nodejs-mqtt-integration-example</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Next, we need to insert the parameters for connecting the application to the
+MQTT integration:</p>
+</div>
+<div class="paragraph">
+<p>Copy the file <code>config_sample.json</code> into a file named <code>config.json</code> and change
+the following field:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "drogue.application.name": "&lt;drogue_cloud_app_name&gt;", <i class="conum" data-value="1"></i><b>(1)</b>
+  "drogue.api.user": "&lt;drogue_cloud_username&gt;", <i class="conum" data-value="2"></i><b>(2)</b>
+  "drogue.api.token": "&lt;drogue_cloud_api_token&gt;", <i class="conum" data-value="3"></i><b>(3)</b>
+  "drogue.integration.mqtt.host": "mqtts://mqtt-integration.sandbox.drogue.cloud",<i class="conum" data-value="4"></i><b>(4)</b>
+  "drogue.integration.mqtt.port": 443 <i class="conum" data-value="5"></i><b>(5)</b>
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The Drogue IoT application name</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Your Drogue IoT username, as described in <a href="#_finding_your_username">Finding your username</a></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Your Drogue IoT application token, as described in <a href="#_create_a_new_api_token">Create a new API token</a></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>The hostname of the MQTT integration.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>The port number of the MQTT integration.
+<div class="paragraph">
+<p>While <code>443</code> might look strange here for MQTT, it will still work in the
+case of OpenShift, as <em>OpenShift routes</em> patch through TLS based TCP connections directly through to the endpoint.</p>
+</div></td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_testing_the_setup"><a class="anchor" href="#_testing_the_setup"></a>Testing the setup</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Install the application:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">nvm install</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Start the application:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ npm start
+
+&gt; nodejs-mqtt-integration-example@1.0.0 start
+&gt; node --no-warnings index.js
+
+Server listening on <a href="http://0.0.0.0:8080" class="bare">http://0.0.0.0:8080</a> <i class="conum" data-value="1"></i><b>(1)</b>
+Connected to mqtts://mqtt-integration.sandbox.drogue.cloud <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The URL to the web user interface for this example</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Note the line "Connected to" showing that the example as connected to Drogue IoT Cloud</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The application will keep running until you terminate it, by pressing <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>C</kbd></span>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_testing_it_out"><a class="anchor" href="#_testing_it_out"></a>Testing it out</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Navigate your browser to the web console, as shows in the previous step&#8217;s log
+output. It should look something like:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/nodejs-demo-app-1.png" alt="Screenshot of Node.js application">
+</div>
+</div>
+<div class="paragraph">
+<p>Once you press the blue button on the board, you should see an incoming message,
+and with that, an outgoing message too.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/nodejs-demo-app-2.png" alt="Screenshot of Node.js application">
+</div>
+</div>
+<div class="paragraph">
+<p>Try changing the response to <code>led:on</code>, and press the blue button again. The blue
+LED on the board should turn on, once the green send indicator LED turns off
+again.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>It may be that the blue LED doesn&#8217;t turn on. Give it a second try, by pressing
+the blue button again.</p>
+</div>
+<div class="paragraph">
+<p>Why is that needed? A short period after the uplink (device-to-cloud) message,
+the LoRa device switches into receive mode, awaiting an optional downlink
+ (cloud-to-device) message. If that time window is missed, then the device will
+not receive the downlink message, and go back to sleep. We will deal with this
+later, so read on.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_understanding_the_code"><a class="anchor" href="#_understanding_the_code"></a>Understanding the code</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Let&#8217;s take a quick tour through the code.</p>
+</div>
+<div class="paragraph">
+<p>The entry point of the application is <code>index.js</code> which configures and starts
+a HTTP server, and a MQTT client.</p>
+</div>
+<div class="sect2">
+<h3 id="_processing"><a class="anchor" href="#_processing"></a>Processing</h3>
+<div class="paragraph">
+<p>The http server serves content from the <code>static</code> directory which contains
+an <code>index.html</code> file which is shown rendered in the above screenshots. This
+file contains a <code>script</code> element which uses Server Sent Events (SSE) to allow
+the server to send updates to it. In addition to serving the static content the
+httpserver is also written to handle the sending of events (SSE). The server is
+built using <a href="https://www.fastify.io">Fastify</a> and the SSE handling is provided
+using <a href="https://www.npmjs.com/package/fastify-sse">fastify-sse</a>.</p>
+</div>
+<div class="paragraph">
+<p>The MQTT client is used to subscribe to device uplink events, and is also used
+to publish downlink events.</p>
+</div>
+<div class="paragraph">
+<p>In <code>lib/mqtt-client.js</code> we have the following function:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">  client.on('message', (receiveTopic, message) =&gt; { <i class="conum" data-value="1"></i><b>(1)</b>
+    const json = JSON.parse(message);
+    const framePayload = Buffer.from(json.data.uplink_message.frm_payload, 'base64');
+
+    const event = {
+      deviceId: json.device,
+      timestamp: json.time,
+      payload: framePayload.toString('utf8')
+    };
+    sse.sendMessageEvent(event); <i class="conum" data-value="2"></i><b>(2)</b>
+
+    if (event.payload.startsWith('ping')) {
+      const command = {
+        deviceId: event.deviceId,
+        payload: getPayload(event, sse)
+      };
+      sse.updateResponse(sse.lastResponse); <i class="conum" data-value="3"></i><b>(3)</b>
+      sse.sendCommandEvent(command); <i class="conum" data-value="4"></i><b>(4)</b>
+
+      const sendTopic = `command/${appName}/${command.deviceId}/port:1`;
+      const responsePayload = Buffer.from(command.payload, 'utf8');
+      client.publish(sendTopic, responsePayload, {qos: QOS_AT_LEAST_ONCE}); <i class="conum" data-value="5"></i><b>(5)</b>
+    }
+  });</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Function for handling messages from the subscribed Drogue IoT Cloud app topic.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Send SSE event for <code>Last Message</code> part of the UI (left section of the UI).</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Send SSE event for <code>Response</code> part of the UI (middle section of the UI).</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Send SSE event for <code>Latest Command</code> part of the UI (right section of the UI).</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Publishes/sends a downlink command to the Drogue IoT Cloud to Device topic.</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<hr>
+<div class="footnote" id="_footnotedef_1">
+<a href="#_footnoteref_1">1</a>. API tokens don&#8217;t expire, while OAuth access tokens do. Even when you can refresh an access token using a refresh token, you still need to do this.
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using a modified version of the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+<script src="../../_/js/vendor/lunr.js"></script>
+<script src="../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../.." data-snippet-length="100" data-stylesheet="../../_/css/search.css"></script>
+<script async src="../../search-index.js"></script>
+  </body>
+</html>

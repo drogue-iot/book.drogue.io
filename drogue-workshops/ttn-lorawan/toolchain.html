@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>TTN account setup :: Drogue IoT</title>
+    <title>Toolchain setup :: Drogue IoT</title>
     <meta name="generator" content="Antora 3.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4BRXRBJJ1"></script>
@@ -79,10 +79,10 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="index.html">Overview</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="toolchain.html">Embedded toolchain</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="account-setup.html">TTN account setup</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -93,6 +93,9 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="quarkus-application.html">Quarkus application</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="nodejs-application.html">Node.js application</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="making-changes.html">Making changes</a>
@@ -277,159 +280,80 @@
   <ul>
     <li><a href="../index.html">Drogue IoT Workshops</a></li>
     <li><a href="index.html">LoRaWAN end-to-end</a></li>
-    <li><a href="account-setup.html">TTN account setup</a></li>
+    <li><a href="toolchain.html">Embedded toolchain</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-workshops/edit/main/modules/ttn-lorawan-quarkus/pages/account-setup.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-workshops/edit/main/modules/ttn-lorawan/pages/toolchain.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">TTN account setup</h1>
+<h1 class="page">Toolchain setup</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>The step will guide you through the setup of your TTN (v3) account.</p>
-</div>
-<div class="paragraph">
-<p>If you already have an account, you can of course re-use that. However, we will still need to create an API key. Of
-course, you can also re-use an existing one.</p>
+<p>In order to create a device firmware, you will need to set up an embedded toolchain for Rust.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_choose_a_location"><a class="anchor" href="#_choose_a_location"></a>Choose a location</h2>
+<h2 id="_install_rustup"><a class="anchor" href="#_install_rustup"></a>Install <code>rustup</code></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Start by navigating to the "cluster picker": <a href="https://console.cloud.thethings.network/" class="bare">https://console.cloud.thethings.network/</a></p>
+<p>In order to install Rust and Rust components, you will need <a href="https://rustup.rs/">rustup</a>:</p>
 </div>
-<div class="imageblock">
+<div class="paragraph">
+<p>On Unix-like environment, the following command should work just fine:</p>
+</div>
+<div class="listingblock">
 <div class="content">
-<img src="_images/cluster-picker.png" alt="Screenshot of cluster picker">
+<pre class="highlightjs highlight"><code class="language-none hljs">curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Pick the location that is best for you and proceed.</p>
+<p>There are other ways to install <code>rustup</code>. Check its homepage to learn more.</p>
+</div>
+<div class="paragraph">
+<p>Also see:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://rustup.rs/">rustup homepage</a></p>
+</li>
+</ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_create_the_account"><a class="anchor" href="#_create_the_account"></a>Create the account</h2>
+<h2 id="_install_an_embedded_toolchain"><a class="anchor" href="#_install_an_embedded_toolchain"></a>Install an embedded toolchain</h2>
 <div class="sectionbody">
-<div class="imageblock">
-<div class="content">
-<img src="_images/login.png" alt="Login screen">
-</div>
+<div class="paragraph">
+<p>By default, <code>rustup</code> will install a toolchain (compiler, …) for your current host architecture and operating system.</p>
 </div>
 <div class="paragraph">
-<p>On the login screen, choose "Login with The Things ID".</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/login-2.png" alt="Login screen">
-</div>
-</div>
-<div class="paragraph">
-<p>Then, continue through the registration process by clicking on "Register".</p>
+<p>When compiling a device firmware, we need to have a compiler for a different architecture (CPU). The examples used in this workshop contain a rust-toolchain file which will tell rustup to automatically download the toolchain required for your board.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_create_an_api_key"><a class="anchor" href="#_create_an_api_key"></a>Create an API key</h2>
+<h2 id="_additional_tools"><a class="anchor" href="#_additional_tools"></a>Additional tools</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Once you are done, you can create a new API key.</p>
+<p>In addition to the actual toolchain, you will need tools to flash the firmware to your device, and to monitor what is going on.</p>
 </div>
 <div class="paragraph">
-<p>Click on the "Personal API keys" menu entry, in the top right corner of the screen:</p>
+<p>There are a few tools for Rust which can help here. However, we will focus on the <a href="https://github.com/knurling-rs/probe-run">probe-run</a>.</p>
 </div>
-<div class="imageblock">
+<div class="paragraph">
+<p>You can install <code>probe-run</code> be executing the following command:</p>
+</div>
+<div class="listingblock">
 <div class="content">
-<img src="_images/profile-menu.png" alt="Screenshot of profile menu">
+<pre class="highlightjs highlight"><code class="language-none hljs">cargo install probe-run</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>The click on the button labeled "+ Add API Key":</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/add-new-key.png" alt="Screenshot of add button">
-</div>
-</div>
-<div class="paragraph">
-<p>This will take you the screen for customizing the new API key. Enter a reasonable name, and select the option
-"Grant all current and future rights". Confirm by pressing button "Create API key" on the bottom of the page.</p>
-</div>
-<div class="paragraph">
-<p>Next, you will see a dialog page, showing the giving you access to the API key:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/api-key.png" alt="API key dialog">
-</div>
-</div>
-<div class="paragraph">
-<p>This is the only time you will have access to the API key, unless you copy it now. Of course, you can delete the API
-key in the TTN console and set up a new one.</p>
-</div>
-<div class="paragraph">
-<p>Copy the API key, and store it somewhere safe! You will need it later on, but it will also give full access to your TTN
-account.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The API key is longer than the text entry field in the dialog. Either use the copy button, or ensure that you
-really copied all characters in this field.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-The API key will give full access to your TTN account. Be sure not to leak it. Don&#8217;t make it public. If you
-did, e.g. by accidentally pushing it to GitHub, you can (and should) delete it right away.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Close the dialog by pressing the button "I have copied the key".</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_gather_all_important_information"><a class="anchor" href="#_gather_all_important_information"></a>Gather all important information</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>From this step, you should have noted the following pieces of information:</p>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">Cluster location</dt>
-<dd>
-<p>The cluster location, e.g. <code>eu1</code></p>
-</dd>
-<dt class="hdlist1">Account name</dt>
-<dd>
-<p>The name of your TTN account, e.g. <code>my-ttn-user</code></p>
-</dd>
-<dt class="hdlist1">API key</dt>
-<dd>
-<p>The API key, e.g. <code>0123456789ABCDEF.0123456789ABCDEF</code> (your actual API key will look different)</p>
-</dd>
-</dl>
 </div>
 </div>
 </div>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Common topics :: Drogue IoT</title>
+    <title>Common concepts :: Drogue IoT</title>
     <meta name="generator" content="Antora 3.0.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4BRXRBJJ1"></script>
@@ -146,6 +146,21 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="index.html">Overview</a>
   </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="common-concepts.html">Common topics</a>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="common-concepts.html">Concepts</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="common-configuration.html">Configuration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="common-mqtt-websocket.html">MQTT over websocket</a>
+  </li>
+</ul>
+  </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="management.html">Management</a>
@@ -155,6 +170,9 @@
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="management.html#devices">Devices</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="management-app-members.html">Application sharing</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="management-rules.html">Event pre-processing</a>
@@ -200,18 +218,6 @@
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="integration-ws.html">WebSocket Integration</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item is-current-page" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="common.html">Common topics</a>
-<ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="3">
-    <a class="nav-link" href="common.html">Configuration</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="common-mqtt-websocket.html">MQTT over websocket</a>
   </li>
 </ul>
   </li>
@@ -359,188 +365,80 @@
   <ul>
     <li><a href="../index.html">Drogue Cloud</a></li>
     <li><a href="index.html">User Guide</a></li>
-    <li><a href="common.html">Common topics</a></li>
+    <li><a href="common-concepts.html">Common topics</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">dev</button>
   <div class="version-menu">
-    <a class="version is-current" href="common.html">dev</a>
-    <a class="version" href="../../0.9/user-guide/common.html">0.9</a>
+    <a class="version is-current" href="common-concepts.html">dev</a>
+    <a class="version is-missing" href="../../0.9/index.html">0.9</a>
     <a class="version is-missing" href="../../0.8/index.html">0.8</a>
     <a class="version is-missing" href="../../0.7/index.html">0.7</a>
     <a class="version is-missing" href="../../0.6/index.html">0.6</a>
     <a class="version is-missing" href="../../0.5/index.html">0.5</a>
     <a class="version is-missing" href="../../0.4/index.html">0.4</a>
-    <a class="version" href="../../0.1/user-guide/common.html">0.1</a>
+    <a class="version is-missing" href="../../0.1/index.html">0.1</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-cloud/edit/main/docs/modules/user-guide/pages/common.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-cloud/edit/main/docs/modules/user-guide/pages/common-concepts.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Common topics</h1>
+<h1 class="page">Common concepts</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>This section describes a few topics that are common to various areas of Drogue Cloud.</p>
+<p>The following subsections describe concepts used throughout Drogue Cloud.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="defining_durations"><a class="anchor" href="#defining_durations"></a>Defining durations</h2>
+<h2 id="_resources"><a class="anchor" href="#_resources"></a>Resources</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Durations are defined using the "humantime" syntax. For example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">durationOneSecond: 1s <i class="conum" data-value="1"></i><b>(1)</b>
-durationOneMinute: 1m <i class="conum" data-value="2"></i><b>(2)</b>
-durationOneHourAndTwoMinutes: 1hour 30min <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Timeout of one second</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Timeout of one minute</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Duration of 1.5 hours</td>
-</tr>
-</table>
+<p>Drogue Cloud stores configuration in resources similar to Kubernetes resources. And while they look similar to
+Kubernetes resource, and may also share some functionality, they are in fact not Kubernetes resources.</p>
 </div>
 <div class="paragraph">
-<p>Also see: <a href="https://docs.rs/humantime/latest/humantime/fn.parse_duration.html" class="bare">https://docs.rs/humantime/latest/humantime/fn.parse_duration.html</a></p>
+<p>Resources currently are:</p>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>Applications</p>
+</li>
+<li>
+<p>Devices</p>
+</li>
+</ul>
 </div>
-</div>
-<div class="sect1">
-<h2 id="defining_external_endpoints"><a class="anchor" href="#defining_external_endpoints"></a>Defining external endpoints</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_scoped_vs_non_scoped"><a class="anchor" href="#_scoped_vs_non_scoped"></a>Scoped vs non-scoped</h3>
 <div class="paragraph">
-<p>Some components of Drogue Cloud allow you to configure an external endpoint, to which Drogue Cloud will reach out to,
-when necessary. This can be configured using the structure <code>ExternalEndpoint</code>. This is normally embedded in some
-other structure. The following examples will assume that there is a field named <code>endpoint</code>, which should define
-the external endpoint.</p>
+<p>Resources can be scoped by application. An application can be compared to the concept of a Kubernetes namespace. Device
+are scoped by application.</p>
 </div>
 <div class="paragraph">
-<p>The role of the endpoint is specific to the actual location of the configuration. This section simply describes the
-common configuration options.</p>
-</div>
-<div class="paragraph">
-<p>The most simple configuration is:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">endpoint:
-  url: https://my-external/endpoint</code></pre>
+<p>Deleting an application will automatically also delete all scoped resources belonging to the application.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_http_method_override"><a class="anchor" href="#_http_method_override"></a>HTTP method override</h3>
+<h3 id="_deletion"><a class="anchor" href="#_deletion"></a>Deletion</h3>
 <div class="paragraph">
-<p>By default, the functionality using an external endpoint will use a reasonable HTTP method for making the request.</p>
-</div>
-<div class="paragraph">
-<p>However, you can override the method using the following field:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">endpoint:
-  url: https://my-external/endpoint
-  method: GET <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Must be a valid HTTP method, using uppercase only.</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_authentication"><a class="anchor" href="#_authentication"></a>Authentication</h3>
-<div class="paragraph">
-<p>If the remote endpoint requires authentication, you can configure HTTP "basic auth" like this:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">endpoint:
-  url: https://my-external/endpoint
-  auth:
-    basic:
-      username: my-username
-      password: my-password</code></pre>
-</div>
+<p>Deleting a resource will primarily mark it as deleted (soft-deleted), and then perform necessary cleanups. After the cleanups have
+been performed, the resource will actually be deleted.</p>
 </div>
 <div class="paragraph">
-<p>Or a "bearer token" using:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">endpoint:
-  url: https://my-external/endpoint
-  auth:
-    bearer:
-      token: my-token</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_additional_http_headers"><a class="anchor" href="#_additional_http_headers"></a>Additional HTTP headers</h3>
-<div class="paragraph">
-<p>It is also possible to add additional HTTP header like so:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">endpoint:
-  url: https://my-external/endpoint
-  headers:
-    - my-foo-header: my-foo-value</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_timeout"><a class="anchor" href="#_timeout"></a>Timeout</h3>
-<div class="paragraph">
-<p>By default, the functionality using an external endpoint will use a reasonable default timeout for making the request.</p>
+<p>Cleanups can be the deletion of scoped resources (in the case of deleting an application), or the processing of
+finalizers.</p>
 </div>
 <div class="paragraph">
-<p>However, you can override the timeout using the following field:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">endpoint:
-  url: https://my-external/endpoint
-  timeout: 1s <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Timeout duration in a format described in <a href="#defining_durations">Defining durations</a></td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_tls"><a class="anchor" href="#_tls"></a>TLS</h3>
-<div class="paragraph">
-<p>By default, system default TLS settings will be used. TLS validation is enabled. However, you can override and tweak
-the TLS settings using the following fields:</p>
+<p>A resource will be marked as deleted by setting the <code>.metadata.deletionTimestamp</code> to the time the deletion was
+requested.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -549,62 +447,251 @@ the TLS settings using the following fields:</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-These settings don&#8217;t "enable" TLS. This is done by selecting a protocol using TLS using the <code>url</code>, like <code>https://</code>.
+If there are no cleanups, then the resource will be deleted right away, skipping the step of soft-deletion.
 </td>
 </tr>
 </table>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">endpoint:
-  url: https://my-external/endpoint
-  tls:
-    insecure: true <i class="conum" data-value="1"></i><b>(1)</b>
-    certificate: | <i class="conum" data-value="2"></i><b>(2)</b>
-      -----BEGIN CERTIFICATE-----
-      MIIFYDCCBEigAwIBAgIQQAF3ITfU6UK47naqPGQKtzANBgkqhkiG9w0BAQsFADA/
-      MSQwIgYDVQQKExtEaWdpdGFsIFNpZ25hdHVyZSBUcnVzdCBDby4xFzAVBgNVBAMT
-      DkRTVCBSb290IENBIFgzMB4XDTIxMDEyMDE5MTQwM1oXDTI0MDkzMDE4MTQwM1ow
-      TzELMAkGA1UEBhMCVVMxKTAnBgNVBAoTIEludGVybmV0IFNlY3VyaXR5IFJlc2Vh
-      cmNoIEdyb3VwMRUwEwYDVQQDEwxJU1JHIFJvb3QgWDEwggIiMA0GCSqGSIb3DQEB
-      AQUAA4ICDwAwggIKAoICAQCt6CRz9BQ385ueK1coHIe+3LffOJCMbjzmV6B493XC
-      ov71am72AE8o295ohmxEk7axY/0UEmu/H9LqMZshftEzPLpI9d1537O4/xLxIZpL
-      wYqGcWlKZmZsj348cL+tKSIG8+TA5oCu4kuPt5l+lAOf00eXfJlII1PoOK5PCm+D
-      LtFJV4yAdLbaL9A4jXsDcCEbdfIwPPqPrt3aY6vrFk/CjhFLfs8L6P+1dy70sntK
-      4EwSJQxwjQMpoOFTJOwT2e4ZvxCzSow/iaNhUd6shweU9GNx7C7ib1uYgeGJXDR5
-      bHbvO5BieebbpJovJsXQEOEO3tkQjhb7t/eo98flAgeYjzYIlefiN5YNNnWe+w5y
-      sR2bvAP5SQXYgd0FtCrWQemsAXaVCg/Y39W9Eh81LygXbNKYwagJZHduRze6zqxZ
-      Xmidf3LWicUGQSk+WT7dJvUkyRGnWqNMQB9GoZm1pzpRboY7nn1ypxIFeFntPlF4
-      FQsDj43QLwWyPntKHEtzBRL8xurgUBN8Q5N0s8p0544fAQjQMNRbcTa0B7rBMDBc
-      SLeCO5imfWCKoqMpgsy6vYMEG6KDA0Gh1gXxG8K28Kh8hjtGqEgqiNx2mna/H2ql
-      PRmP6zjzZN7IKw0KKP/32+IVQtQi0Cdd4Xn+GOdwiK1O5tmLOsbdJ1Fu/7xk9TND
-      TwIDAQABo4IBRjCCAUIwDwYDVR0TAQH/BAUwAwEB/zAOBgNVHQ8BAf8EBAMCAQYw
-      SwYIKwYBBQUHAQEEPzA9MDsGCCsGAQUFBzAChi9odHRwOi8vYXBwcy5pZGVudHJ1
-      c3QuY29tL3Jvb3RzL2RzdHJvb3RjYXgzLnA3YzAfBgNVHSMEGDAWgBTEp7Gkeyxx
-      +tvhS5B1/8QVYIWJEDBUBgNVHSAETTBLMAgGBmeBDAECATA/BgsrBgEEAYLfEwEB
-      ATAwMC4GCCsGAQUFBwIBFiJodHRwOi8vY3BzLnJvb3QteDEubGV0c2VuY3J5cHQu
-      b3JnMDwGA1UdHwQ1MDMwMaAvoC2GK2h0dHA6Ly9jcmwuaWRlbnRydXN0LmNvbS9E
-      U1RST09UQ0FYM0NSTC5jcmwwHQYDVR0OBBYEFHm0WeZ7tuXkAXOACIjIGlj26Ztu
-      MA0GCSqGSIb3DQEBCwUAA4IBAQAKcwBslm7/DlLQrt2M51oGrS+o44+/yQoDFVDC
-      5WxCu2+b9LRPwkSICHXM6webFGJueN7sJ7o5XPWioW5WlHAQU7G75K/QosMrAdSW
-      9MUgNTP52GE24HGNtLi1qoJFlcDyqSMo59ahy2cI2qBDLKobkx/J3vWraV0T9VuG
-      WCLKTVXkcGdtwlfFRjlBz4pYg1htmf5X6DYO8A4jqv2Il9DjXA6USbW1FzXSLr9O
-      he8Y4IWS6wY7bCkjCWDcRQJMEhg76fsO3txE+FiYruq9RUWhiF1myv4Q6W+CyBFC
-      Dfvp7OOGAN6dEOM4+qR9sdjoSYKEBpsr6GtPAQw4dy753ec5
-      -----END CERTIFICATE-----</code></pre>
 </div>
+<div class="sect2">
+<h3 id="_naming"><a class="anchor" href="#_naming"></a>Naming</h3>
+<div class="paragraph">
+<p>Resources are identified by their name. However, deleting and re-creating might point you to a different resource.
+Therefore, resources also have a "unique ID" (UID), which will be different between resource re-creation.</p>
 </div>
-<div class="colist arabic">
+<div class="paragraph">
+<p>Assume you are creating an application <code>foo</code>, delete it, and create another application named <code>foo</code>. This will result
+in a new application, but having the same name. The UID of the second instance will however be different to the first
+instance.</p>
+</div>
+<div class="admonitionblock tip">
 <table>
 <tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Disable TLS validation. <strong>This is insecure</strong> and should be used with caution!</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Explicit trust anchor, overriding all system trust anchors.</td>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Depending on your use-case, you can choose to interpret either the UID of the name of a resource.
+</td>
 </tr>
 </table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_devices"><a class="anchor" href="#_devices"></a>Devices</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A device is something which connects to the protocol endpoints of Drogue Cloud.</p>
+</div>
+<div class="sect2">
+<h3 id="different_types_of_devices"><a class="anchor" href="#different_types_of_devices"></a>Different types of devices</h3>
+<div class="paragraph">
+<p>In most cases a "device" would be an actual  device, however it can also be a simulator or just another application or
+service.</p>
+</div>
+<div class="paragraph">
+<p>For example the "The Things Network" (TTN) integration is using this concept. The actual devices are connected to TTN,
+while the TTN backend provides an aggregated link to Drogue Cloud. TTN isn&#8217;t an actual device, but a remote service.
+However, in Drogue Cloud, it is treated as a "gateway device".</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_device_identities"><a class="anchor" href="#_device_identities"></a>Device identities</h3>
+<div class="paragraph">
+<p>Devices are manages as resources in Drogue Cloud, and therefore are identified by their name using the management API.</p>
+</div>
+<div class="paragraph">
+<p>However, devices do have their own device identity, which will be used when connecting via the protocol endpoints.</p>
+</div>
+<div class="paragraph">
+<p>Drogue Cloud has reasonable defaults in place, so that the device name of the resource will be used unless something
+different is being configured.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Having a dedicated device identity supports use cases where it is possible to replace a physical device with a new one,
+mapping it to the same logical device in the system.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_actual_device_vs_sendingtransmitting_device"><a class="anchor" href="#_actual_device_vs_sendingtransmitting_device"></a>Actual device vs sending/transmitting device</h3>
+<div class="paragraph">
+<p>Drogue Cloud can differentiate between devices which are directly connected to Drogue Cloud, and devices which connect
+through an intermediate (proxy, gateway) device.</p>
+</div>
+<div class="paragraph">
+<p>This can be necessary for network reasons, or just because some devices are not using a TCP/IP based network.</p>
+</div>
+<div class="paragraph">
+<p>In Drogue Cloud a device can list devices it trusts as a gateway device. This enables those gateways to act on behalf
+of these devices, sending events and receiving their commands.</p>
+</div>
+<div class="paragraph">
+<p>A proxied device does not require any credentials, as it does not direct connect to Drogue Cloud, and so does not
+go through the connection process. This also means, that proxies devices will not emit any connection state events.</p>
+</div>
+<div class="paragraph">
+<p>Gateway devices are regular devices, which have connection credentials configured. The only different between a regular
+device and a gateway device is, that some other devices list this device as their gateway.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Gateway "devices" can actually also be external services, which already provide an aggregated communication link.
+Also see: <a href="#different_types_of_devices">Different types of devices</a>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Events in Drogue Cloud will contain the information what the actual device was, and what the transmitting/sending device
+was. Same for commands, these will be sent to the actual (target) device, but will be sent through the configured
+gateways, if any.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_data"><a class="anchor" href="#_data"></a>Data</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The core idea of the connectivity layer of Drogue Cloud is to simply pass along data in a normalized way. Trying not
+to alter or change data in the process, as long as this is possible.</p>
+</div>
+<div class="paragraph">
+<p>Events (incoming and outgoing) are normalized on Cloud Events. For their specific mapping see: <a href="integration.html#incoming_events" class="xref page">Incoming events</a> and <a href="integration.html#commands" class="xref page">Commands</a>.</p>
+</div>
+<div class="sect2">
+<h3 id="incoming_events"><a class="anchor" href="#incoming_events"></a>Incoming events</h3>
+<div class="paragraph">
+<p>Incoming events are initiated by a device, and carry the following information:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Originating device</p>
+</li>
+<li>
+<p>Sending device</p>
+</li>
+<li>
+<p>Channel</p>
+</li>
+<li>
+<p>Content type</p>
+</li>
+<li>
+<p>Payload</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Events are buffered by Drogue Cloud, so that consumer can fail gracefully, not loosing any data. Once consumers reconnect,
+it is possible to catch up and consume the missed data. Events will be ordered sequentially by the time they arrive, but
+only on a per-device level.</p>
+</div>
+<div class="paragraph">
+<p>The payload can be empty, and will be forwarded as-is. There is only one limitation: if the content type indicates JSON
+as data format, then the payload must be valid JSON. Otherwise, the event is rejected.</p>
+</div>
+<div class="paragraph">
+<p>While incoming events are buffered, this is not intended as a persistent store. Data will be removed eventually. The
+actual retention time is defined at the level of the Kafka topics backing the system. By default the Kafka retention
+time is 7 days.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="outgoing_commands"><a class="anchor" href="#outgoing_commands"></a>Outgoing commands</h3>
+<div class="paragraph">
+<p>Commands are initiated by applications, and carry the following information:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Target device</p>
+</li>
+<li>
+<p>Channel</p>
+</li>
+<li>
+<p>Payload</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Commands are short-lived, and are not buffered. If they cannot be delivered they will fail silently.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="title">Command feedback channel</div>
+<div class="paragraph">
+<p>Commands can fail on many levels before they can be executed. Most likely, a command sent to a device, will need to go
+through one or more hops, before they reach their actual target. And even then, executing a command might not turn into
+the expected result.</p>
+</div>
+<div class="paragraph">
+<p>Therefore, it is important to have some kind of feedback signal from the final device, which can indicate if the
+execution of a command was successful, or not. Even if this is just mirroring the received information.</p>
+</div>
+<div class="paragraph">
+<p>With this information of "desired state" (as evaluated by the application) and the "reported state" (as reported by the
+device), the application can act accordingly. For example, by implementing a reconciliation logic, which will
+periodically re-send the command, if that is appropriate for the use case.</p>
+</div>
+<div class="paragraph">
+<p>Drogue Cloud (currently) does not provide such a reconciliation logic. Simply because there are different use cases. In
+same cases it doesn&#8217;t make sense, or would even be wrong, to deliver a command that was issues a while back. And while
+we currently rely on the application to implement this logic, this might change in the future, where we could provide an
+optional (opt-in) reconciliation process.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The payload is normally sent to the device unaltered. It can even be empty.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Some system cannot accept arbitrary data. LoRaWAN for example as a very limited packet size, and commands must
+adhere to such limitations. Otherwise, commands will fail.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="synthetic_data"><a class="anchor" href="#synthetic_data"></a>Synthetic data</h3>
+<div class="paragraph">
+<p>Some events are not directly from devices, but are created by Drogue Cloud, but might still flow through the regular
+channels.</p>
+</div>
+<div class="paragraph">
+<p>This is for example the connection events, which are initiated based on the fact that a device connects/disconnects.</p>
 </div>
 </div>
 </div>

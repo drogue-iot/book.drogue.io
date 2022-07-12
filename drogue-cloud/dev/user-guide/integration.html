@@ -148,6 +148,21 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="common-concepts.html">Common topics</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="common-concepts.html">Concepts</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="common-configuration.html">Configuration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="common-mqtt-websocket.html">MQTT over websocket</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="management.html">Management</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
@@ -155,6 +170,9 @@
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="management.html#devices">Devices</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="management-app-members.html">Application sharing</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="management-rules.html">Event pre-processing</a>
@@ -200,18 +218,6 @@
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="integration-ws.html">WebSocket Integration</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="common.html">Common topics</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="common.html">Configuration</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="common-mqtt-websocket.html">MQTT over websocket</a>
   </li>
 </ul>
   </li>
@@ -392,11 +398,11 @@ from devices and schedule commands to devices.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_incoming_data"><a class="anchor" href="#_incoming_data"></a>Incoming data</h2>
+<h2 id="incoming_events"><a class="anchor" href="#incoming_events"></a>Incoming events</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Incoming data is streamed to applications in the form of Cloud Events. The message stream may contain telemetry events,
-as well as some infrastructure events.</p>
+<p>Incoming events are streamed to applications in the form of Cloud Events. The message stream may contain telemetry
+events, as well as some infrastructure events.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -410,6 +416,16 @@ should not be relied upon.
 </td>
 </tr>
 </table>
+</div>
+<div class="paragraph">
+<p>Also see:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Common concepts - <a href="common-concepts.html#incoming_events" class="xref page">Incoming events</a></p>
+</li>
+</ul>
 </div>
 <div class="sect2">
 <h3 id="_device_events"><a class="anchor" href="#_device_events"></a>Device events</h3>
@@ -560,40 +576,6 @@ should not be relied upon.
 </tr>
 </tbody>
 </table>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="title">UID fields</div>
-<div class="paragraph">
-<p>The <code>uid</code> variants of the attributes are using unique values, instead of names. Assume a device gets deleted
-and re-created with the same name. In this case, the name would be the same, but the UID in the event would be
-different.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="title">Sender vs Device</div>
-<div class="paragraph">
-<p>The sender is a device which connected to Drogue Cloud. The "device" is the device the event originated from. If the
-originating device is also the connected device, both fields will have the same value. Drogue Cloud will also enforce
-that a device must be listed as gateway, in order to act on its behalf.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
 </div>
 <div class="sect3">
 <h4 id="_payload"><a class="anchor" href="#_payload"></a>Payload</h4>
@@ -788,6 +770,10 @@ required:
 <div class="paragraph">
 <p>Whenever a change is made to a device in the registry, a "device change event" is sent out.</p>
 </div>
+<div class="paragraph">
+<p>Also see:
+* <a href="common-concepts.html#synthetic_data" class="xref page">Synthetic data</a></p>
+</div>
 <div class="sect3">
 <h4 id="_attributes_3"><a class="anchor" href="#_attributes_3"></a>Attributes</h4>
 <table class="tableblock frame-all grid-all stretch">
@@ -925,10 +911,25 @@ required:
 </div>
 </div>
 <div class="sect1">
-<h2 id="_commands"><a class="anchor" href="#_commands"></a>Commands</h2>
+<h2 id="commands"><a class="anchor" href="#commands"></a>Commands</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To be written …</p>
+<p>Commands are similar to evens coming from a device, just they are the other way round. Internally commands are also
+represented as Cloud Events.</p>
+</div>
+<div class="paragraph">
+<p>But although internally commands are CloudEvents, current integrations only offer more opinionated APIs for commands.
+This can be changed in the future, if that is required. So there is current no common representation exposed to the user.</p>
+</div>
+<div class="paragraph">
+<p>Also see:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Common concepts - <a href="common-concepts.html#outgoing_commands" class="xref page">Outgoing commands</a></p>
+</li>
+</ul>
 </div>
 </div>
 </div>

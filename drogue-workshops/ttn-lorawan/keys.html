@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Device firmware :: Drogue IoT</title>
+    <title>Generating keys :: Drogue IoT</title>
     <meta name="generator" content="Antora 3.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4BRXRBJJ1"></script>
@@ -88,11 +88,14 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="drogue-cloud.html">Drogue Cloud setup</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="firmware.html">Device firmware</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="quarkus-application.html">Quarkus application</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="nodejs-application.html">Node.js application</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="making-changes.html">Making changes</a>
@@ -276,205 +279,124 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Drogue IoT Workshops</a></li>
-    <li><a href="index.html">LoRaWAN end-to-end</a></li>
-    <li><a href="firmware.html">Device firmware</a></li>
+    <li><a href="keys.html">Generating keys</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-workshops/edit/main/modules/ttn-lorawan-quarkus/pages/firmware.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-workshops/edit/main/modules/ttn-lorawan/pages/keys.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Device firmware</h1>
+<h1 class="page">Generating keys</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>The next step is to compile and flash the device&#8217;s firmware.</p>
+<p>As we are using over-the-air activation, the LoRa device will need the following information:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Device EUI (8 bytes)</p>
+</li>
+<li>
+<p>Application EUI (8 bytes)</p>
+</li>
+<li>
+<p>Application key (16 bytes, not the API key)</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_clone_the_git_repository"><a class="anchor" href="#_clone_the_git_repository"></a>Clone the Git repository</h2>
+<h2 id="_create_from_the_command_line"><a class="anchor" href="#_create_from_the_command_line"></a>Create from the command line</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Clone the git repository with the example and check out the <code>0.3.0</code> tag:</p>
+<p>You can generate random numbers using the following shell script:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">git clone https://github.com/drogue-iot/drogue-device
-git checkout 0.3.0</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>For the next steps, you will need to change into the sub-directory <code>examples/stm32l0xx/lora-discovery/</code>:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">cd examples/stm32l0xx/lora-discovery/</code></pre>
-</div>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-If you don&#8217;t use the "B-L072Z-LRWAN1" board, you will need to adapt the firmware to match your device and
-hardware configuration!
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_update_the_device_configuration"><a class="anchor" href="#_update_the_device_configuration"></a>Update the device configuration</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Locate the Device EUI, Application EUI, and Application Key, you created earlier. Add the keys into the following lines
-in <code>$HOME/.drogue/config.toml</code>:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">app-qui = "&lt;The Application EUI&gt;"
-dev-eui = "&lt;The Device EUI&gt;"
-app-key = "&lt;The Application Key&gt;"</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_compile_and_flash"><a class="anchor" href="#_compile_and_flash"></a>Compile and flash</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>You can now compile and flash the firmware. Execute the following command:</p>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-You need to have the developer board attached to your computer.
-</td>
-</tr>
-</table>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">cargo run --release</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>It may happen that the operation fails, especially when you try to flash the board for the first time. If that&#8217;s the case,
-you can try running the following.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">cargo build --release
-probe-run target/thumbv6m-none-eabi/release/lora-discovery --connect-under-reset --chip STM32L072CZ</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_checking_the_result"><a class="anchor" href="#_checking_the_result"></a>Checking the result</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Once you flashed and started the program, <code>cargo run</code> will keep attached to the application running on the development
-board. The output should look something like this:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">    Finished release [optimized + debuginfo] target(s) in 1.66s
-     Running <code>probe-run --chip STM32L072CZ target/thumbv6m-none-eabi/release/lora-discovery</code>
-  (HOST) INFO  flashing program (73.77 KiB)
-  (HOST) INFO  success!
-────────────────────────────────────────────────────────────────────────────────
-INFO - Configuring with config LoraConfig { region: Some(EU868), lora_mode: Some(WAN), device_address: None, device_eui: Some(EUI([0, 54, 39, 147, 252, 241, 128, 45])), app_eui: Some(EUI([112, 179, 213, 126, 208, 2, 3, 105])), app_key: Some(AppKey([241, 86, 188, 53, 248, 3, 201, 238, 172, 50, 168, 119, 74, 114, 29, 198])) }
-INFO - LoRa driver configured
-TRACE - New Session Request
-TRACE - Event handled
-TRACE - Join Request Sending
-TRACE - Phy event
-TRACE - Event handled
-TRACE - TimeoutRequest: 4500
-TRACE - Event handled
-TRACE - TimeoutRequest: 5300
-TRACE - Phy event
-TRACE - Event handled
-<strong>INFO - Network joined</strong> <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">head -c 8 /dev/urandom | od -An -tx8 | tr a-z A-Z <i class="conum" data-value="1"></i><b>(1)</b>
+head -c 8 /dev/urandom | od -An -tx8 | tr a-z A-Z <i class="conum" data-value="2"></i><b>(2)</b>
+head -c 16 /dev/urandom | od -An -tx16 | tr a-z A-Z <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Successfully joined the network</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Pay attention to the line indicating that the LoRa network was successfully joined.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_pressing_buttons"><a class="anchor" href="#_pressing_buttons"></a>Pressing buttons</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>You can already give it a try, and press the blue button on the board.</p>
-</div>
-<div class="paragraph">
-<p>But before you do, open up the web console, navigate to the "Spy", and start it, using the Drogue application
-name you have assigned earlier.</p>
-</div>
-<div class="paragraph">
-<p>Now you can press the button! This will trigger the device to send some
-information to the LoRa network. There is no one there to receive yet, it should still work.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">INFO - Ticked: 1
-<strong>INFO - Sending message...</strong> <i class="conum" data-value="1"></i><b>(1)</b>
-INFO - Message: ping:1
-TRACE - Uplink with FCnt 0
-TRACE - Phy event
-TRACE - Event handled
-TRACE - TimeoutRequest: 4500
-TRACE - Event handled
-TRACE - TimeoutRequest: 5300
-TRACE - Phy event
-TRACE - Event handled
-TRACE - Downlink received               (FcntDown=0)
-TRACE - Ack received!
-<strong>INFO - Message sent!</strong> <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Starting to send the message</td>
+<td>For generating the Application EUI</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Message acknowledged by TTN</td>
+<td>For generating the Device EUI</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>For generating the Application Key</td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Be aware that the time from sending to receiving the acknowledgment may be around 5 seconds.</p>
+<p>For example:</p>
 </div>
-<div class="paragraph">
-<p>On the web console, you should see the event, as received by Drogue Cloud.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ head -c 8 /dev/urandom | od -An -tx8 | tr a-z A-Z
+ CDAE10B2F5D4B87C <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 </div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>They value to copy, without the leading whitespace.</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_other_ways"><a class="anchor" href="#_other_ways"></a>Other ways</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p><span class="image"><img src="_images/spy-event.png" alt="Screenshot of event spy"></span></p>
+<p>You can also manually choose the values of the keys.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The values must be unique throughout the LoRa system you are using. So you cannot just re-use them for other
+devices and setups.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_gather_all_important_information"><a class="anchor" href="#_gather_all_important_information"></a>Gather all important information</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>From this step, you should have noted the following pieces of information:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Device EUI</p>
+</li>
+<li>
+<p>Application EUI</p>
+</li>
+<li>
+<p>Application Key</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
