@@ -217,7 +217,7 @@
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">use defmt::*;
-use embassy::executor::Spawner;</code></pre>
+use embassy_executor::executor::Spawner;</code></pre>
 </div>
 </div>
 </div>
@@ -233,7 +233,7 @@ use embassy::executor::Spawner;</code></pre>
     }
 }
 
-#[embassy::main]
+#[embassy_executor::main]
 async fn main(spawner: Spawner, p: Peripherals) {
     let led = Output::new(p.P0_13, Level::Low, OutputDrive::Standard);
     unwrap!(spawner.spawn(blinker(led, Duration::from_millis(300))));
@@ -317,7 +317,7 @@ async fn main(_spawner: embassy::executor::Spawner, p: embassy_nrf::Peripherals)
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-toml hljs" data-lang="toml">embassy = { version = "0.1.0", path = "../../../../../embassy", features = ["defmt", "nightly"] }
+<pre class="highlightjs highlight"><code class="language-toml hljs" data-lang="toml">embassy-executor = { version = "0.1.0", path = "../../../../../embassy-executor", features = ["defmt", "nightly"] }
 embassy-nrf = { version = "0.1.0", path = "../../../../../embassy-nrf", features = ["defmt", "nrf52840", "time-driver-rtc1", "gpiote", "nightly"] }</code></pre>
 </div>
 </div>
