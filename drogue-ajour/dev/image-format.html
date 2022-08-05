@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Architecture :: Drogue IoT</title>
+    <title>Container image format :: Drogue IoT</title>
     <meta name="generator" content="Antora 3.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4BRXRBJJ1"></script>
@@ -51,14 +51,17 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="1">
-    <a class="nav-link" href="architecture.html">Architecture</a>
-  </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="installation.html">Installation</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="using.html">Using</a>
+    <a class="nav-link" href="using.html">User Guide</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="protocol.html">Update Protocol</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="image-format.html">Image Format</a>
   </li>
 </ul>
   </li>
@@ -152,53 +155,17 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Drogue Ajour</a></li>
-    <li><a href="architecture.html">Architecture</a></li>
+    <li><a href="image-format.html">Image Format</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-ajour/edit/main/docs/modules/ROOT/pages/architecture.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-ajour/edit/main/docs/modules/ROOT/pages/image-format.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Architecture</h1>
-<div id="preamble">
-<div class="sectionbody">
-<div class="paragraph">
-<p>Drogue Ajour is composed of 2 main components serving different functions:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><em>Firmware Delivery</em> - Transporting firmware updates to devices.</p>
-</li>
-<li>
-<p><em>Firmware Build</em> - Building and storing firmware artifacts.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Of these, only the firmware delivery component is mandatory. However, deploying both of these components provide you with an end to end Continuous Delivery (CD) pipeline for your devices.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/ajour_architecture.png" alt="Drogue Ajour Architecture">
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_firmware_delivery"><a class="anchor" href="#_firmware_delivery"></a>Firmware delivery</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Firmware delivery is the main functionality of Drogue Ajour. This involves transporting the firmware to devices using a CBOR-based protocol. The transport protocol is designed for minimal overhead, and to allow devices to consume updates at their own pace.</p>
-</div>
-<div class="paragraph">
-<p>The firmware itself can be fetched from disk, Eclipse Hawkbit or a Docker/Container registry.</p>
-</div>
-<div class="sect2">
-<h3 id="_container_format"><a class="anchor" href="#_container_format"></a>Container format</h3>
+<h1 class="page">Container image format</h1>
 <div class="paragraph">
 <p>When using a container registry, the container image must contain the following two files in the root of the image:</p>
 </div>
@@ -226,20 +193,6 @@
 </div>
 <div class="paragraph">
 <p>As long as these two files are present, Drogue Ajour will be able to deliver the firmware to devices.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_firmware_build"><a class="anchor" href="#_firmware_build"></a>Firmware build</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>This is an optional component that allow you to build your firmware from source and make it available to the delivery component for rolling out to your devices.</p>
-</div>
-<div class="paragraph">
-<p>Drogue Ajour provides Tekton pipeline definitions that can build container images in the expected format and push them to container registries.</p>
-</div>
-</div>
 </div>
 </article>
   </div>

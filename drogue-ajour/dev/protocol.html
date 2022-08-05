@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Drogue Ajour :: Drogue IoT</title>
+    <title>Update Protocol :: Drogue IoT</title>
     <meta name="generator" content="Antora 3.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4BRXRBJJ1"></script>
@@ -57,7 +57,7 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="using.html">User Guide</a>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="protocol.html">Update Protocol</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -155,107 +155,152 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Drogue Ajour</a></li>
+    <li><a href="protocol.html">Update Protocol</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-ajour/edit/main/docs/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-ajour/edit/main/docs/modules/ROOT/pages/protocol.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Drogue Ajour</h1>
-<div id="preamble">
-<div class="sectionbody">
+<h1 class="page">Update Protocol</h1>
 <div class="paragraph">
-<p>Drogue Ajour is a firmware update and build service for tiny devices conneted to Drogue IoT Cloud. It supports a wide range of IoT protocols and uses a low footprint update protocol.</p>
+<p>Drogue Ajour uses a custom application level protocol sent on a special 'dfu' channel in Drogue Cloud to communicate with a device or gateway. The protocol is stateless, meaning that Drogue Ajour will track only send out firmware updates to devices that are reporting their status.</p>
 </div>
 <div class="paragraph">
-<p>It offers:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Delivery - delivering firmware updates to connected devices.</p>
-</li>
-<li>
-<p>Build (source-to-firmware) - building firmware and storing it in a firmware repository.</p>
-</li>
-<li>
-<p>External firmware storage - Distribute firmware stored in container registries, Eclipse Hawkbit or on disk.</p>
-</li>
-<li>
-<p>RESTful API for inspecting and triggering builds.</p>
-</li>
-<li>
-<p>Management console to inspect rollout status and builds.</p>
-</li>
-<li>
-<p>Protocol support: any protocol supported by Drogue Cloud (HTTP, MQTT, CoAP, LoRaWAN)</p>
-</li>
-</ul>
+<p>The protocol is designed so that devices do not have to be online continuously during the update, but can receive firmware at their own pace.</p>
 </div>
 <div class="paragraph">
-<p>It is built on top of:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><em>Drogue Cloud</em> - For authentication and transport firmware updates to devices.</p>
-</li>
-<li>
-<p><em>Tekton</em> - For defining a CI/CD pipeline for firmware builds and storing.</p>
-</li>
-</ul>
+<p>The protocol uses Consise Binary Object Representation (CBOR), to ensure a small message size that works well with embedded devices. For descriptive purposes, the examples here are provided in JSON.</p>
 </div>
 <div class="paragraph">
-<p>You can run Drogue Ajour locally or on a Kubernetes cluster. With it, you can build a firmware delivery pipeline for your devices.</p>
+<p>A typical firmware update cycle runs as follows:</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_overview"><a class="anchor" href="#_overview"></a>Overview</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Drogue Ajour is composed of 2 main components serving different functions:</p>
-</div>
-<div class="ulist">
-<ul>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
-<p><em>Firmware Delivery</em> - Transporting firmware updates to devices.</p>
-</li>
-<li>
-<p><em>Firmware Build</em> - Building and storing firmware artifacts.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Of these, only the firmware delivery component is mandatory. However, deploying both of these components provide you with an end to end Continuous Delivery (CD) pipeline for your devices.</p>
-</div>
-<div class="imageblock">
+<p>At any given time, a device publishes message to the 'dfu' channel with the following payload</p>
+<div class="listingblock">
 <div class="content">
-<img src="_images/ajour_architecture.png" alt="Drogue Ajour Architecture">
+<pre>{
+   "version": "0.1.0",
+   "correlation_id": 1 // Optional: Opaque request identifier, for devices that aggregate multiple updates
+   "mtu": 512, // Optional: The desired block size to use for firmware blobs
+}</pre>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_firmware_delivery"><a class="anchor" href="#_firmware_delivery"></a>Firmware delivery</h3>
-<div class="paragraph">
-<p>Firmware delivery is the main functionality of Drogue Ajour. This involves transporting the firmware to devices using a CBOR-based protocol. The transport protocol is designed for minimal overhead, and to allow devices to consume updates at their own pace.</p>
-</div>
-<div class="paragraph">
-<p>The firmware itself can be fetched from disk, Eclipse Hawkbit or a Docker/Container registry.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_firmware_build"><a class="anchor" href="#_firmware_build"></a>Firmware build</h3>
-<div class="paragraph">
-<p>This is an optional component that allow you to build your firmware from source and make it available to the delivery component for rolling out to your devices.</p>
 </div>
 <div class="paragraph">
-<p>Drogue Ajour provides Tekton pipeline definitions that can build container images in the expected format and push them to container registries.</p>
+<p>This allows the Drogue Ajour to check if an update is necessary at all.</p>
+</div>
+</li>
+<li>
+<p>Drogue Ajour checks the desired firmware for that particular device and will attempt to locate it in the firmware registry.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>If the device is already updated, a 'dfu' command is sent to the device with the following payload:</p>
+<div class="listingblock">
+<div class="content">
+<pre>{
+  "sync": {
+    "version": "0.1.0", // Desired firmware version
+    "correlation_id": 1 // Optional: Should be set to the id from the device status
+    "poll": 300, // The amount of time to wait before checking in again
+  }
+}</pre>
 </div>
 </div>
+</li>
+<li>
+<p>If a device needs to be updated, a 'dfu' command is sent to the device with the following payload</p>
+<div class="listingblock">
+<div class="content">
+<pre>{
+  "write": {
+    "version": "0.1.1", // Version of blob
+    "offset": 0, // Offset this blob should be written to
+    "data": aGVsbG8= // Base64-encoded firmware block (Binary in CBOR)
+  }
+}</pre>
 </div>
+</div>
+</li>
+<li>
+<p>If there is no new information about firmware, and server needs the client to wait before asking again, a 'wait' command is sent.</p>
+<div class="listingblock">
+<div class="content">
+<pre>{
+  "write": {
+    "poll": 300, // The amount of time to wait before checking in again
+  }
+}</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Device receives command</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>When a device is seeing the "sync" operation, it should make sure it&#8217;s current firmware version is marked as 'good' if it have not already done so. The 'poll' field can be used as a heuristic of how long the device should wait before checking in again.</p>
+</li>
+<li>
+<p>When a device is seeing the "write" operation, it should write the provided data to it&#8217;s storage. Once persisted, it should report back the next expected offset and last received version:</p>
+<div class="listingblock">
+<div class="content">
+<pre>{
+   "version": "0.1.0",
+   "mtu": 512, // The desired block size to use for the next firmware block
+   "status": {
+      "version": "0.1.1", // Version of the last block the device received from the server. To safeguard against new versions arriving
+      "offset": 512, // Current write offset after applying the last firmware block.
+   }
+}</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Server receives status event</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>If device is in sync, optionally reply with a sync command indicating the delay before polling again.</p>
+</li>
+<li>
+<p>When the server receives the next event from the device, it repeats the previous write step until the complete firmware have been sent. When the final block is confirmed written, and it is desired to deploy the new firmware, the fleet-manager will send the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre>{
+  "swap": {
+    "version": "0.1.1",
+    "checksum": "097d501382f5817eb2c5f741d37845158c76dd6a8af899001b36b5a75188aeeb"
+  }
+}</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Device receives command</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>When the device receives the 'swap' command, it should initiate the firmware update and report back with the updated version as soon as it&#8217;s back online.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
 </div>
 </article>
   </div>
