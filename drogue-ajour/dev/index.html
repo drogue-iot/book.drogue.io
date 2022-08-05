@@ -52,10 +52,10 @@
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="installation.html">Installation</a>
+    <a class="nav-link" href="using.html">User Guide</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="using.html">User Guide</a>
+    <a class="nav-link" href="installation.html">Admin Guide</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="protocol.html">Update Protocol</a>
@@ -196,21 +196,22 @@
 <ul>
 <li>
 <p>Delivery - delivering firmware updates to connected devices.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Protocol support: any protocol supported by Drogue Cloud (HTTP, MQTT, CoAP, LoRaWAN)</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
-<p>Build (source-to-firmware) - building firmware and storing it in a firmware repository.</p>
-</li>
-<li>
-<p>External firmware storage - Distribute firmware stored in container registries, Eclipse Hawkbit or on disk.</p>
+<p>Build - building firmware and storing it in a firmware repository.</p>
 </li>
 <li>
 <p>RESTful API for inspecting and triggering builds.</p>
 </li>
 <li>
 <p>Management console to inspect rollout status and builds.</p>
-</li>
-<li>
-<p>Protocol support: any protocol supported by Drogue Cloud (HTTP, MQTT, CoAP, LoRaWAN)</p>
 </li>
 </ul>
 </div>
@@ -220,15 +221,15 @@
 <div class="ulist">
 <ul>
 <li>
-<p><em>Drogue Cloud</em> - For authentication and transport firmware updates to devices.</p>
+<p><a href="https://drogue.io"><em>Drogue Cloud</em></a> - For authentication and transport firmware updates to devices.</p>
 </li>
 <li>
-<p><em>Tekton</em> - For defining a CI/CD pipeline for firmware builds and storing.</p>
+<p><a href="https://tekton.dev"><em>Tekton</em></a> - For defining a CI/CD pipeline for firmware builds and storing.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>You can run Drogue Ajour locally or on a Kubernetes cluster. With it, you can build a firmware delivery pipeline for your devices.</p>
+<p>You can run Drogue Ajour locally or on a <a href="https://kubernetes.io">Kubernetes</a> cluster. With it, you can build a firmware delivery pipeline for your devices.</p>
 </div>
 </div>
 </div>

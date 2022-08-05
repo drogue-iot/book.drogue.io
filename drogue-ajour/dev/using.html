@@ -51,11 +51,11 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="installation.html">Installation</a>
-  </li>
   <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="using.html">User Guide</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="installation.html">Admin Guide</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="protocol.html">Update Protocol</a>
@@ -188,7 +188,10 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Drogue Ajour makes use of the <code>Application</code> and <code>Device</code> types from Drogue Cloud.</p>
+<p>If you are using an existing installation of Drogue Cloud, such as the <a href="https://sandbox.drogue.cloud">Drogue Cloud Sandbox</a>, it might already have Drogue Ajour enabled.</p>
+</div>
+<div class="paragraph">
+<p>If not, have a look at the <a href="#installation">Admin Guide</a>.</p>
 </div>
 </div>
 </div>
@@ -210,6 +213,9 @@
 <div class="sect1">
 <h2 id="_enabling_firmware_delivery"><a class="anchor" href="#_enabling_firmware_delivery"></a>Enabling firmware delivery</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>Drogue Ajour makes use of the <code>Application</code> and <code>Device</code> types from Drogue Cloud.</p>
+</div>
 <div class="paragraph">
 <p>To enable firmware delivery for a given application or device, you must modify the <code>spec</code> section of the resource. You can have firmware delivered from a container registry, Eclipse Hawkbit or a file locally available to the Drogue Ajour server.</p>
 </div>
