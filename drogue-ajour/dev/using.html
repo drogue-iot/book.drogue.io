@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Installation :: Drogue IoT</title>
+    <title>Using :: Drogue IoT</title>
     <meta name="generator" content="Antora 3.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4BRXRBJJ1"></script>
@@ -54,10 +54,10 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="architecture.html">Architecture</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="installation.html">Installation</a>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="using.html">Using</a>
   </li>
 </ul>
@@ -152,21 +152,21 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Drogue Ajour</a></li>
-    <li><a href="installation.html">Installation</a></li>
+    <li><a href="using.html">Using</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-ajour/edit/main/docs/modules/ROOT/pages/installation.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-ajour/edit/main/docs/modules/ROOT/pages/using.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Installation</h1>
+<h1 class="page">Using</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can install Drogue Ajour either by compiling and running the components yourself, running the provided container images in your favorite container runtime, or deploy it all to Kubernetes. This guide will cover installation on a Kubernetes cluster using a container registry as the source for firmware.</p>
+<p>Drogue Ajour makes use of the <code>Application</code> and <code>Device</code> types from Drogue Cloud.</p>
 </div>
 </div>
 </div>
@@ -176,106 +176,161 @@
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://kubernetes.io">Kubernetes</a></p>
-</li>
-<li>
-<p><a href="https://drogue.io">Drogue Cloud</a></p>
-</li>
-<li>
 <p><a href="https://github.com/drogue-iot/drg">drg</a></p>
 </li>
-<li>
-<p>(Optional) Container Registry - For storing firmware in container images.</p>
-</li>
-<li>
-<p>(Optional) <a href="https://tekton.dev">Tekton</a> - For the firmware build pipeline.</p>
-</li>
 </ul>
 </div>
 <div class="paragraph">
-<p>For storing firmware, you can use either an external Eclipse Hawkbit instance or a Container Registry, this guide will assume a container registry being used.</p>
+<p>The following examples require that your a logged in to your Drogue Cloud cluster with <code>drg</code>.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_download_install_files"><a class="anchor" href="#_download_install_files"></a>Download install files</h2>
+<h2 id="_enabling_firmware_delivery"><a class="anchor" href="#_enabling_firmware_delivery"></a>Enabling firmware delivery</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The installation manifests can be found on the <a href="https://github.com/drogue-iot/drogue-ajour/releases">GitHub releases</a> page, or by cloning the git repository.</p>
+<p>To enable firmware delivery for a given application or device, you must modify the <code>spec</code> section of the resource. You can have firmware delivered from a container registry, Eclipse Hawkbit or a file locally available to the Drogue Ajour server.</p>
 </div>
+<div class="sect2">
+<h3 id="_from_container_registry"><a class="anchor" href="#_from_container_registry"></a>From container registry</h3>
 <div class="paragraph">
-<p>Extract the zip file and enter the extracted folder before proceeding with the installation commands.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_firmware_delivery"><a class="anchor" href="#_firmware_delivery"></a>Firmware delivery</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>To install the firmware delivery components, you need to create an access token for the server. You can do this from the drogue console or using the <a href="https://github.com/drogue-iot/drg"><code>drg</code></a> command line tool</p>
+<p>Edit a device:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre># Note down the access token generated
-drg create token
-
-# You can get these values from your Drogue Cloud console
-kubectl create secret generic drogue-config --from-literal=token=&lt;access token&gt; --from-literal=user=&lt;drogue cloud user&gt; --from-literal=registry-url=&lt;drogue API url&gt; --from-literal=mqtt-integration=&lt;drogue MQTT integration URL&gt;
-
-# These values depend on if you're using a builtin container registry or an external one. Using docker.io as example
-kubectl create secret generic container-registry --from-literal=prefix=quay.io/myorg/ --from-literal=token=&lt;registry access token&gt;
-
-# Deploy the server
-kubectl apply -f deploy/server</pre>
+<pre>drg edit device --app my-app my-device-1</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Make sure the device definition contains the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>spec:
+    firmware:
+        oci:
+            image: my-firmware:latest</pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Firmware images can only be retrieved from the container registry Drogue Ajour was configured for, and the image reference is therefore relative to the configured registry. See <a href="architecture.html" class="xref page">expected container format</a> for what the image must look like.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Save the new definition. When the device connects to the update service, the update service will make sure the device is updated from the firmware contained within the container image.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_from_eclipse_hawkbit"><a class="anchor" href="#_from_eclipse_hawkbit"></a>From Eclipse Hawkbit</h3>
+<div class="paragraph">
+<p>Edit a device:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>drg edit device --app my-app my-device-1</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Make sure the device definition contains the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>spec:
+    firmware:
+        hawkbit:
+            controller: controllername</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Controller name is a concept from Eclise Hawkbit. The controller must be created in Eclipse Hawkbit before Drogue Ajour can use it to retrieve firmware.</p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_firmware_build"><a class="anchor" href="#_firmware_build"></a>Firmware build</h2>
+<h2 id="_enabling_firmware_build"><a class="anchor" href="#_enabling_firmware_build"></a>Enabling firmware build</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To install the firmware build components:</p>
+<p>Firmware builds are only enabled for container registry firmwares for the time being. This also requires that the firmware build components are installed for Drogue Ajour.</p>
+</div>
+<div class="paragraph">
+<p>Edit a device:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre># Deploy the API
-kubectl apply -f deploy/api
+<pre>drg edit device --app my-app my-device-1</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Make sure the device definition contains the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>spec:
+    firmware:
+        oci:
+            image: my-firmware:latest
+            build:
+                # An image reference to a container image used to build your project
+                image: docker.io/myorg/firmware-builder-image:latest
+                source:
+                    git:
+                        # Git repository URI
+                        uri: https://github.com/myorg/example-project
+                        # Project folder within repository
+                        project: repo/sub/folder
+                        # Git revision to use
+                        rev: main
+                # Arguments passed to the builder image
+                args:
+                - flag1
+                - flag2
+                artifact:
+                    # Path to artifact generated by builder image
+                    path: myartifact.bin</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When the firmware is built, these parameters will be passed to the tekton pipeline, and the image will be pushed to the configured registry.</p>
+</div>
+<div class="sect2">
+<h3 id="_triggering_a_build"><a class="anchor" href="#_triggering_a_build"></a>Triggering a build</h3>
+<div class="paragraph">
+<p>You can trigger a build from the Drogue Ajour console, or the command line as follows if you&#8217;re logged in:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre># Retrieving an auth token
+TOKEN=$(drg whoami -t)
+# URL is the Drogue Ajour API server
+curl -X POST -H "Authorization: Bearer ${TOKEN}" https://build-api/api/build/v1alpha1/apps/my-app/devices/my-device-1/trigger</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will trigger the Tekton pipeline and publish the new firmware to the configured container registry.</p>
+</div>
+<div class="paragraph">
+<p>To retrieve the current status of a firmware build, you can query the same API:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre># Retrieving an auth token
+TOKEN=$(drg whoami -t)
 
-# Deploy Tekton pipelines - This might contain references to Tasks that are not available out of the box
-kubectl apply -f deploy/pipeline</pre>
+# URL is the Drogue Ajour API server
+curl -X GET -H "Authorization: Bearer ${TOKEN}" https://build-api/api/build/v1alpha1/apps/my-app/devices/my-device-1</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This will also create an externally accessible ingress for the API. You can create your own ingress or edit it in order to change hostname and settings.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_console"><a class="anchor" href="#_console"></a>Console</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>For this step, you must note down the hostname generated/set for your API ingress above. To deploy the console, we also need a few additional settings in order to enable OIDC authentication. The fields to add are:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>issuer-url</code> - the URL of the same OIDC service used by Drogue Cloud.</p>
-</li>
-<li>
-<p><code>client-id</code> - OIDC client id, usually <code>drogue</code>.</p>
-</li>
-<li>
-<p><code>ajour-api-url</code> - The URL to the external API ingress created earlier.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>To deploy the console:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>kubectl apply -f deploy/console</pre>
+<p>You can also use the Drogue Ajour console to check the status of your firmware builds.</p>
 </div>
 </div>
 </div>
