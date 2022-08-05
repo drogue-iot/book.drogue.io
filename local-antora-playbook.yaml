@@ -16,6 +16,9 @@ content:
     - url: ../drogue-cloud
       branches: HEAD
       start_path: docs
+    - url: ../drogue-ajour
+      branches: HEAD
+      start_path: docs
     - url: ../drogue-device
       branches: HEAD
       start_path: docs
