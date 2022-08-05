@@ -35,6 +35,8 @@ antora:
       queries:
         - component: drogue-cloud
           module: api
+        - component: drogue-ajour
+          module: api
 
 ui:
   bundle:
