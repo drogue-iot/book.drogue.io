@@ -2,4 +2,3 @@
 * xref:drogue-ajour::index.adoc[Drogue Ajour]
 * xref:drogue-device::index.adoc[Drogue Device]
 * xref:drogue-workshops::index.adoc[Workshops]
-* xref:embassy::index.adoc[Embassy]

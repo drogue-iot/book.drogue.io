@@ -22,9 +22,9 @@ content:
     - url: ../drogue-device
       branches: HEAD
       start_path: docs
-    - url: ../../embassy
-      branches: HEAD
-      start_path: docs
+        #    - url: ../../embassy
+        #      branches: HEAD
+        #      start_path: docs
     - url: ../drogue-workshops
       branches: HEAD
 
