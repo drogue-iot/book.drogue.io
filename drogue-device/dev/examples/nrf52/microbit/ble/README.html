@@ -69,9 +69,6 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../../../../bsp.html">Board Support Packages</a>
   </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../../../../../../embassy/dev/index.html">Embassy</a>
-  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="0">
@@ -109,7 +106,7 @@
     <a class="nav-link" href="../bt-mesh/README.html">Microbit Bluetooth Mesh example</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../nrf52840-dk/ble-mesh/README.html">nrf52840-dk BLE Mesh example</a>
+    <a class="nav-link" href="../../nrf52840-dk/bt-mesh/README.html">nrf52840-dk BLE Mesh example</a>
   </li>
 </ul>
   </li>
@@ -118,10 +115,7 @@
     <span class="nav-text">Cloud</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../esp8266/http/README.html">BBC micro:bit v2 + ESP8266 WiFi adapter + HTTP</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../esp8266/mqtt/README.html">BBC micro:bit v2 + ESP8266 WiFi adapter + MQTT</a>
+    <a class="nav-link" href="../esp8266/README.html">BBC micro:bit v2 + ESP8266 WiFi adapter + MQTT</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../../../std/cloud/README.html">Example sending telemetry data from Drogue Device to Drogue Cloud</a>
@@ -138,12 +132,6 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Display</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../compass/README.html">BBC micro:bit v2 compass showing direction in led display</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jukebox/README.html">BBC micro:bit v2 disco jukebox and light show</a>
-  </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../../../stm32h7/nucleo-h743zi/epd/README.html">STM32 Nucleo-H743 7-color e-paper display</a>
   </li>
@@ -193,10 +181,7 @@
     <span class="nav-text">Wifi</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../esp8266/http/README.html">BBC micro:bit v2 + ESP8266 WiFi adapter + HTTP</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../esp8266/mqtt/README.html">BBC micro:bit v2 + ESP8266 WiFi adapter + MQTT</a>
+    <a class="nav-link" href="../esp8266/README.html">BBC micro:bit v2 + ESP8266 WiFi adapter + MQTT</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../../../std/esp8266/README.html">Example using a USB-to-Serial adapter + ESP8266 adapter</a>
@@ -280,14 +265,6 @@
         </li>
       </ul>
     </li>
-    <li class="component">
-      <a class="title" href="../../../../../../embassy/dev/index.html">Embassy</a>
-      <ul class="versions">
-        <li class="version is-latest">
-          <a href="../../../../../../embassy/dev/index.html">dev</a>
-        </li>
-      </ul>
-    </li>
   </ul>
 </div>
     </div>
@@ -316,12 +293,10 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>This example application runs out of the box on the BBC micro:bit v2.0. It starts a BLE (Bluetooth
-Low Energy) environment sensing service (as defined by specification) as well as a firmware update
-service if configured.</p>
+<p>This example application runs out of the box on the BBC micro:bit v2.0. It starts a BLE (Bluetooth Low Energy) environment sensing service (as defined by specification) as well as a firmware update service if configured.</p>
 </div>
 <div class="paragraph">
-<p>The example assumes that the nRF softdevice is installed. With this example, you can use BLE  to update your microbit if you enable the <code>dfu</code> feature when compiling.</p>
+<p>The example assumes that the nRF softdevice is installed. With this example, you can use BLE  to update your microbit.</p>
 </div>
 </div>
 </div>
@@ -388,22 +363,6 @@ service if configured.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_flash_application"><a class="anchor" href="#_flash_application"></a>Flash application</h3>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">cargo flash --release --chip nRF52833_xxAA</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>When started, the device will blink the letter 'A' on the LED matrix.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_running_with_firmware_updates_enabled"><a class="anchor" href="#_running_with_firmware_updates_enabled"></a>Running with firmware updates enabled</h2>
-<div class="sectionbody">
-<div class="sect2">
 <h3 id="_flash_bootloader"><a class="anchor" href="#_flash_bootloader"></a>Flash bootloader</h3>
 <div class="listingblock">
 <div class="content">
@@ -412,21 +371,10 @@ service if configured.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_flash_nrf_softdevice_2"><a class="anchor" href="#_flash_nrf_softdevice_2"></a>Flash nRF Softdevice</h3>
-<div class="paragraph">
-<p>Download the softdevice version 7.3.0 <a href="https://www.nordicsemi.com/Products/Development-software/s113/download">here</a>.</p>
-</div>
+<h3 id="_flash_application"><a class="anchor" href="#_flash_application"></a>Flash application</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">probe-rs-cli download s113_nrf52_7.3.0_softdevice.hex --chip nRF52833_xxAA --format Hex</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_flash_application_with_dfu_flag_enabled"><a class="anchor" href="#_flash_application_with_dfu_flag_enabled"></a>Flash application with <code>dfu</code> flag enabled</h3>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">cargo flash --release --features dfu --chip nRF52833_xxAA</code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">cargo flash --release --chip nRF52833_xxAA</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -440,7 +388,7 @@ service if configured.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">REVISION=myupdate cargo objcopy --features dfu --release -- -O binary update.bin</code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">REVISION=myupdate cargo objcopy --release -- -O binary update.bin</code></pre>
 </div>
 </div>
 <div class="paragraph">

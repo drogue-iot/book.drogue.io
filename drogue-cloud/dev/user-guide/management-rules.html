@@ -352,14 +352,6 @@
         </li>
       </ul>
     </li>
-    <li class="component">
-      <a class="title" href="../../../embassy/dev/index.html">Embassy</a>
-      <ul class="versions">
-        <li class="version is-latest">
-          <a href="../../../embassy/dev/index.html">dev</a>
-        </li>
-      </ul>
-    </li>
   </ul>
 </div>
     </div>
@@ -599,7 +591,7 @@ an operation may influence the processing of the next. If the array is empty, th
 </div>
 </div>
 <div class="paragraph">
-<p>Or accept the event directly, and stop processing following operations and rules:</p>
+<p>Or accept the event directly, and stop processing the following operations and rules:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -722,11 +714,11 @@ and can be set similar to the <code>setExtension</code> operation:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">then:
-  validate:
-    endpoint: {} <i class="conum" data-value="1"></i><b>(1)</b>
-    request: <i class="conum" data-value="2"></i><b>(2)</b>
-      type: cloudEvent <i class="conum" data-value="3"></i><b>(3)</b>
-      mode: binary # or structured <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+  - validate:
+      endpoint: {} <i class="conum" data-value="1"></i><b>(1)</b>
+      request: <i class="conum" data-value="2"></i><b>(2)</b>
+        type: cloudEvent <i class="conum" data-value="3"></i><b>(3)</b>
+        mode: binary # or structured <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -761,13 +753,13 @@ will be used as the metadata and payload of the new event.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">then:
-  enrich:
-    endpoint: {} <i class="conum" data-value="1"></i><b>(1)</b>
-    request: <i class="conum" data-value="2"></i><b>(2)</b>
-      type: cloudEvent <i class="conum" data-value="3"></i><b>(3)</b>
-      mode: binary # or structured <i class="conum" data-value="4"></i><b>(4)</b>
-    response: <i class="conum" data-value="5"></i><b>(5)</b>
-      type: cloudEvent <i class="conum" data-value="6"></i><b>(6)</b></code></pre>
+  - enrich:
+      endpoint: {} <i class="conum" data-value="1"></i><b>(1)</b>
+      request: <i class="conum" data-value="2"></i><b>(2)</b>
+        type: cloudEvent <i class="conum" data-value="3"></i><b>(3)</b>
+        mode: binary # or structured <i class="conum" data-value="4"></i><b>(4)</b>
+      response: <i class="conum" data-value="5"></i><b>(5)</b>
+        type: cloudEvent <i class="conum" data-value="6"></i><b>(6)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">

@@ -69,9 +69,6 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../../../../bsp.html">Board Support Packages</a>
   </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../../../../../../embassy/dev/index.html">Embassy</a>
-  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="0">
@@ -109,7 +106,7 @@
     <a class="nav-link" href="../bt-mesh/README.html">Microbit Bluetooth Mesh example</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../nrf52840-dk/ble-mesh/README.html">nrf52840-dk BLE Mesh example</a>
+    <a class="nav-link" href="../../nrf52840-dk/bt-mesh/README.html">nrf52840-dk BLE Mesh example</a>
   </li>
 </ul>
   </li>
@@ -117,11 +114,8 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Cloud</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../esp8266/http/README.html">BBC micro:bit v2 + ESP8266 WiFi adapter + HTTP</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../esp8266/mqtt/README.html">BBC micro:bit v2 + ESP8266 WiFi adapter + MQTT</a>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="README.html">BBC micro:bit v2 + ESP8266 WiFi adapter + MQTT</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../../../std/cloud/README.html">Example sending telemetry data from Drogue Device to Drogue Cloud</a>
@@ -138,12 +132,6 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Display</span>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="3">
-    <a class="nav-link" href="README.html">BBC micro:bit v2 compass showing direction in led display</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jukebox/README.html">BBC micro:bit v2 disco jukebox and light show</a>
-  </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../../../stm32h7/nucleo-h743zi/epd/README.html">STM32 Nucleo-H743 7-color e-paper display</a>
   </li>
@@ -192,11 +180,8 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Wifi</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../esp8266/http/README.html">BBC micro:bit v2 + ESP8266 WiFi adapter + HTTP</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../esp8266/mqtt/README.html">BBC micro:bit v2 + ESP8266 WiFi adapter + MQTT</a>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="README.html">BBC micro:bit v2 + ESP8266 WiFi adapter + MQTT</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../../../std/esp8266/README.html">Example using a USB-to-Serial adapter + ESP8266 adapter</a>
@@ -280,14 +265,6 @@
         </li>
       </ul>
     </li>
-    <li class="component">
-      <a class="title" href="../../../../../../embassy/dev/index.html">Embassy</a>
-      <ul class="versions">
-        <li class="version is-latest">
-          <a href="../../../../../../embassy/dev/index.html">dev</a>
-        </li>
-      </ul>
-    </li>
   </ul>
 </div>
     </div>
@@ -301,11 +278,11 @@
   <ul>
     <li><a href="../../../../index.html">Drogue Device</a></li>
     <li><a href="../../../../examples.html">Examples</a></li>
-    <li>Display</li>
-    <li><a href="README.html">BBC micro:bit v2 compass showing direction in led display</a></li>
+    <li>Cloud</li>
+    <li><a href="README.html">BBC micro:bit v2 + ESP8266 WiFi adapter + MQTT</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-device/edit/main/docs/modules/ROOT/pages/examples/nrf52/microbit/compass/README.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-device/edit/main/docs/modules/ROOT/pages/examples/nrf52/microbit/esp8266/README.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -313,10 +290,15 @@
 </aside>
 <article class="doc">
 <div class="sect1">
-<h2 id="_microbit_compass_drogue_device_example"><a class="anchor" href="#_microbit_compass_drogue_device_example"></a>microbit-compass drogue-device example</h2>
+<h2 id="_microbit_esp8266_drogue_device_example"><a class="anchor" href="#_microbit_esp8266_drogue_device_example"></a>microbit-esp8266 drogue-device example</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This example application runs out of the box on the BBC micro:bit v2.0. It uses the builtin magnetometer, accellerometer and LED matrix as a compass, where the LED matrix arrow points the direction.</p>
+<p>This example application runs out of the box on the BBC micro:bit v2.0.
+It relies on a ESP8266 breakout module flashed with AT firmware. The micro:bit communicates with the
+ESP8266 using UART.</p>
+</div>
+<div class="paragraph">
+<p>The examples uses MQTT to publish and subscribe to an Drogue cloud sandbox.</p>
 </div>
 <div class="sect2">
 <h3 id="_prerequisites"><a class="anchor" href="#_prerequisites"></a>Prerequisites</h3>
@@ -327,46 +309,130 @@
 <li>
 <p>BBC micro:bit v2.0</p>
 </li>
+<li>
+<p>ESP8266 module with AT-command firmware version 1.7.x or newer.</p>
+</li>
 </ul>
+</div>
+<div class="sect4">
+<h5 id="_pin_configuration"><a class="anchor" href="#_pin_configuration"></a>Pin configuration</h5>
+<div class="paragraph">
+<p>Wire the ESP8266 module to the micro:bit as follows:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Microbit</th>
+<th class="tableblock halign-left valign-top">ESP8266</th>
+<th class="tableblock halign-left valign-top">Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">P1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GPIO15</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Flow control</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">P2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GPIO13</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Flow control</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">P8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EN</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enable</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">P9</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">RST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reset</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">P14</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">RX</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UART RX</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">P15</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TX</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UART TX</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">V</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">V+</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">POWER</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">G</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GND</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GROUND</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_software"><a class="anchor" href="#_software"></a>Software</h4>
-<div class="paragraph">
-<p>To build and flash the example, you need to have
-<a href="https://rustup.rs/">rustup</a>. In practice
-you can use whatever tool you want to flash the device, but this guide
-will assume that <code>probe-run</code> is used (<code>cargo install probe-run</code>).</p>
+<div class="ulist">
+<ul>
+<li>
+<p>To build the example, you need to have <a href="https://rustup.rs/">rustup</a>.</p>
+</li>
+<li>
+<p>To flash the example on the device, you need <code>probe-run</code> installed (<code>cargo install probe-run</code>).</p>
+</li>
+<li>
+<p>Drogue IoT Cloud. See <a href="https://github.com/drogue-iot/drogue-cloud/">drogue-cloud</a> for how to run that, or use the <a href="https://sandbox.drogue.cloud/">sandbox</a>. Example requires enabled TLS on the cloud side.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_building"><a class="anchor" href="#_building"></a>Building</h3>
+<h3 id="_configuring"><a class="anchor" href="#_configuring"></a>Configuring</h3>
 <div class="paragraph">
-<p>To build the firmware:</p>
+<p>Credentials for your local WiFi network will come from these entries in <code>~/.drogue/config.toml</code>:</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>cargo build --release</pre>
+<pre>wifi-ssid = "..."
+wifi-password = "..."</pre>
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_running"><a class="anchor" href="#_running"></a>Running</h3>
 <div class="paragraph">
-<p>Flashing the firmware uses <code>probe-run</code> which auto-detects the probe connected to your device.
-The following command will build and flash the firmware and open the
-debugger console so you can see the console debug output.</p>
+<p>The example is expected to be run against Drogue cloud sandbox. There is script <code>echo.sh</code> that will create echo from the cloud side (listening on device mqtt integration and sending same message to command endpoint).
+The script is expected to be run like this:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>./src/echo.sh your-application-in-cloud</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To run the firmware:</p>
 </div>
 <div class="literalblock">
 <div class="content">
 <pre>cargo run --release</pre>
 </div>
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_troubleshooting"><a class="anchor" href="#_troubleshooting"></a>Troubleshooting</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>If you’re experiencing problems, try setting the <code>VID:PID</code> values to
-that of your probe (you can find that from lsusb once your board is
-powered).</p>
+<p>If you’re experiencing problems, try setting the <code>VID:PID</code> values to that of your probe (you can find that from lsusb once your board is powered).</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -374,8 +440,7 @@ powered).</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Once running, calibrate the sensor by filling lighting up all the LEDs.</p>
-</div>
+<p>Once flashed, the device will reset and attempt to join the WiFi network. If successful, it will print a message to the RTT log. You can then press the 'A' button on the micro:bit board to send a test message from the device.</p>
 </div>
 </div>
 </div>
