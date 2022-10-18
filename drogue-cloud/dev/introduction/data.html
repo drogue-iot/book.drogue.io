@@ -97,7 +97,7 @@
     <a class="nav-link" href="addons.html">Additional components</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="services.html">Noteworthy services</a>
+    <a class="nav-link" href="services.html">Public facing services</a>
   </li>
 </ul>
   </li>
@@ -107,31 +107,37 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../deployment/index.html">Deployment</a>
+    <a class="nav-link" href="../admin-guide/index.html">Admin Guide</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../deployment/index.html">Overview</a>
+    <a class="nav-link" href="../admin-guide/index.html">Overview</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../deployment/pre-reqs.html">Pre-Requisites</a>
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../admin-guide/deploying.html">Deploying</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../admin-guide/pre-reqs.html">Pre-Requisites</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../admin-guide/cluster.html">Prepare the cluster</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../admin-guide/installer.html">Run the installer</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../deployment/cluster.html">Prepare the cluster</a>
+    <a class="nav-link" href="../admin-guide/development.html">Deploying from git</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../deployment/installer.html">Run the installer</a>
+    <a class="nav-link" href="../admin-guide/bare-metal.html">Deploying on bare metal</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../deployment/development.html">Deploy from the repository</a>
+    <a class="nav-link" href="../admin-guide/monitoring.html">Monitoring</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../deployment/bare-metal.html">Deploying on bare metal</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../deployment/monitoring.html">Monitoring a deployment</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../deployment/tracing.html">Tracing</a>
+    <a class="nav-link" href="../admin-guide/tracing.html">Tracing</a>
   </li>
 </ul>
   </li>
@@ -407,10 +413,7 @@ again MQTT, or a simple Web socket connection. Drogue Cloud tries to be integrat
 you into a specific API.</p>
 </div>
 <div class="paragraph">
-<p>Drogue Cloud is based on Knative, and internally uses the Cloud Events specification to forward messages.
-Cloud events on the other side have different mappings to transport channels, such as MQTT, Kafka, HTTP, etc.. And while
-Cloud Events can also be used on the external interfaces of Drogue Cloud, it isn&#8217;t a requirement, and you can use your
-custom protocols as you need.</p>
+<p>Drogue Cloud uses the Cloud Events specification to forward messages internally. Cloud events have different mappings to transport channels, such as MQTT, Kafka, HTTP, etc.. And while Cloud Events can also be used on the external interfaces of Drogue Cloud, it isn&#8217;t a requirement, and you can use your custom protocols as you need.</p>
 </div>
 <div class="paragraph">
 <p><span class="image"><img src="_images/data-plane.svg" alt="Data plane overview"></span></p>
@@ -425,11 +428,8 @@ X.509 client certificates and ensure that the devices are enabled in the system.
 </div>
 <div class="paragraph">
 <p>Once the device is granted access to publish (or receive) data, the protocol endpoint will hook up the device
-to the internal message flow. It subscribes to commands targeted towards the device, and forwards messages
-from the device to an internal Knative eventing endpoint which takes care of processing and delivering the messages.</p>
-</div>
-<div class="paragraph">
-<p>The actual payload of the messages is not processed, and just passed on the Knative eventing destination.</p>
+to the internal message flow. It forwards messages from the device to an internal Kafka cluster, which takes
+care of storing the messages.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -459,19 +459,7 @@ of TTN, you can configure if you want to have the full request payload, or just 
 <h2 id="_message_persistence"><a class="anchor" href="#_message_persistence"></a>Message persistence</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>When a protocol endpoint drops off an incoming message to the Knative eventing service, this service is
-backed by a Kafka topic<sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup>.</p>
-</div>
-<div class="paragraph">
-<p>The responsibility of Kafka is to deliver messages to the target consumer. Persisting messages if needed, and
-handling shared consumer groups if requested. This allows Drogue Cloud to buffer messages when the consumer is
-unavailable or if there is a peak of messages that the consumer currently cannot handle. Also, this allows to
-drive a shared consumer model, where in a group of consumers only one receives a messages. This concept is used
-to share the load for messages to multiple instances of a consumer.</p>
-</div>
-<div class="paragraph">
-<p>As mentioned before, Drogue Cloud relies on a Knative eventing destination which provides these guarantees, and
-uses Kafka to implement this. However, it is possible to replace the Kafka implementation with a different implementation.</p>
+<p>The responsibility of Kafka is to store the message until it can be fetched by a consumer. This allows Drogue Cloud to store messages when the consumer is unavailable or if there is a peak of messages that consumers currently cannot handle. Using Kafka allows for a wide range of consumption patterns.</p>
 </div>
 </div>
 </div>
@@ -548,30 +536,64 @@ implement common use-cases out of the box.
 <h2 id="_authentication_authorization"><a class="anchor" href="#_authentication_authorization"></a>Authentication &amp; authorization</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Authentication (authn) and authorization (authz) happens in two different realms<sup class="footnote">[<a id="_footnoteref_2" class="footnote" href="#_footnotedef_2" title="View footnote.">2</a>]</sup> of the system. On the device facing side and on the user/application facing side.
+<p>Authentication (authn) and authorization (authz) happens in two different realms<sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup> of the system. On the device facing side and on the user/application facing side.
 And while it may be technically incorrect, in the next few paragraphs "authentication" implies authentication and
 authorization, unless noted otherwise.</p>
 </div>
 <div class="paragraph">
 <p>The device facing authentication is backed by the device registry, which is the central storage for device
-information and configuration. It also stores credentials of devices, like passwords or X.509 trust anchors.</p>
+information and configuration. It also stores credentials of devices, like passwords, pre-shared keys or X.509 trust anchors.</p>
+</div>
+<div class="sect2">
+<h3 id="_devices"><a class="anchor" href="#_devices"></a>Devices</h3>
+<div class="paragraph">
+<p>As mentioned above, the devices are authenticated at the protocol endpoints. There are three different ways devices can authenticate, supported by all protocol endpoints:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Username/password - Devices pass credentials using the mechanism appropriate for the particular protocol.</p>
+</li>
+<li>
+<p>X.509 Client certificates - Devices present their certificates during the DTLS/TLS handshake.</p>
+</li>
+<li>
+<p>Pre-shared key - Device use pre-shared keys during the DTLS/TLS handshake.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>The user facing authentication is backed by an Open ID connect, single sign-on system. By default, we use Keycloak,
-however it should be possible to use any other Open ID connect compatible solution.</p>
+<p>Which authentication scheme you should use depends on what types of devices you are going to use with Drogue Cloud, taking into account bandwidth, security requirements and existing infrastructure.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_applications"><a class="anchor" href="#_applications"></a>Applications</h3>
+<div class="paragraph">
+<p>The user facing authentication is backed by an Open ID Connect (OIDC), single sign-on system. By default, we use Keycloak,
+however it should be possible to use any other OIDC compatible solution.</p>
 </div>
 <div class="paragraph">
-<p>Services internally also use the same SSO solution as external users.</p>
+<p>Applications may use OIDC to authenticate, or access tokens created using the management API.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Services internally also use the same SSO solution as external users.
+</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 </div>
 <div id="footnotes">
 <hr>
 <div class="footnote" id="_footnotedef_1">
-<a href="#_footnoteref_1">1</a>. Technically it is a Knative eventing service, which could be implemented by different technologies. The default implementation for Drogue Cloud though is Kafka.
-</div>
-<div class="footnote" id="_footnotedef_2">
-<a href="#_footnoteref_2">2</a>. The term "realm" doesn&#8217;t refer to an HTTP or Keycloak "realm" here
+<a href="#_footnoteref_1">1</a>. The term "realm" doesn&#8217;t refer to an HTTP or Keycloak "realm" here
 </div>
 </div>
 </article>

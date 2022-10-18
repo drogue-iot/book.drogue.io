@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Deployment :: Drogue IoT</title>
+    <title>Deploying from git :: Drogue IoT</title>
     <meta name="generator" content="Antora 3.0.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4BRXRBJJ1"></script>
@@ -97,7 +97,7 @@
     <a class="nav-link" href="../introduction/addons.html">Additional components</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../introduction/services.html">Noteworthy services</a>
+    <a class="nav-link" href="../introduction/services.html">Public facing services</a>
   </li>
 </ul>
   </li>
@@ -105,30 +105,36 @@
   </li>
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Deployment</a>
+    <a class="nav-link" href="index.html">Admin Guide</a>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="index.html">Overview</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="deploying.html">Deploying</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="pre-reqs.html">Pre-Requisites</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="cluster.html">Prepare the cluster</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="installer.html">Run the installer</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="development.html">Deploy from the repository</a>
+</ul>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="development.html">Deploying from git</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="bare-metal.html">Deploying on bare metal</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="monitoring.html">Monitoring a deployment</a>
+    <a class="nav-link" href="monitoring.html">Monitoring</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="tracing.html">Tracing</a>
@@ -364,37 +370,129 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Drogue Cloud</a></li>
-    <li><a href="index.html">Deployment</a></li>
+    <li><a href="index.html">Admin Guide</a></li>
+    <li><a href="development.html">Deploying from git</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">dev</button>
   <div class="version-menu">
-    <a class="version is-current" href="index.html">dev</a>
-    <a class="version" href="../../0.9/deployment/index.html">0.9</a>
-    <a class="version" href="../../0.8/deployment/index.html">0.8</a>
-    <a class="version" href="../../0.7/deployment/index.html">0.7</a>
-    <a class="version" href="../../0.6/deployment/index.html">0.6</a>
-    <a class="version" href="../../0.5/deployment/index.html">0.5</a>
-    <a class="version" href="../../0.4/deployment/index.html">0.4</a>
-    <a class="version" href="../../0.1/deployment/index.html">0.1</a>
+    <a class="version is-current" href="development.html">dev</a>
+    <a class="version is-missing" href="../../0.9/index.html">0.9</a>
+    <a class="version is-missing" href="../../0.8/index.html">0.8</a>
+    <a class="version is-missing" href="../../0.7/index.html">0.7</a>
+    <a class="version is-missing" href="../../0.6/index.html">0.6</a>
+    <a class="version is-missing" href="../../0.5/index.html">0.5</a>
+    <a class="version is-missing" href="../../0.4/index.html">0.4</a>
+    <a class="version is-missing" href="../../0.1/index.html">0.1</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-cloud/edit/main/docs/modules/deployment/pages/index.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-cloud/edit/main/docs/modules/admin-guide/pages/development.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Deployment</h1>
+<h1 class="page">Deploying from git</h1>
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
-<p>Deploying a complex solution like this can be tricky. We tried make it as simple as possible for a local test
-installation.</p>
+<p>Instead of running the installer, which installs a released version of Drogue Cloud, you can also directly from the
+repository, using <code>:latest</code> images instead. The same way, you can also deploy your custom-built images. This is useful if you have made changes to the Drogue Cloud source code and want to test them out, or if you want to use some feature that has not yet been released.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="title"><code>main</code> and tagged versions</div>
+<div class="paragraph">
+<p>Deploying from the repository implies that you install <code>latest</code> or <code>main</code>. Even when you check out a tag or branch from
+the repository, this will always install <code>latest</code>. If you want to install a tagged version, use the installer.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_additional_pre_requisites"><a class="anchor" href="#_additional_pre_requisites"></a>Additional pre-requisites</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Additionally, you will need to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>git</code></p>
+</li>
+<li>
+<p>Clone the <code>drogue-cloud</code> repository</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deploy_standard_images"><a class="anchor" href="#_deploy_standard_images"></a>Deploy standard images</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Installing Drogue Cloud, using the standard images, can be done by calling the makefile target <code>deploy</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">make deploy</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deploy_custom_images"><a class="anchor" href="#_deploy_custom_images"></a>Deploy custom images</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you built custom images, and pushed them to a container repository, you can deploy them using the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">make CONTAINER_REGISTRY=quay.io/my-repo build images</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>The following sections will walk you through the steps, required to install Drogue Cloud. It will also try to show
-options to customize this process.</p>
+<p>You can install them using:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">make CONTAINER_REGISTRY=quay.io/my-repo deploy</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_using_the_installer_script_for_development"><a class="anchor" href="#_using_the_installer_script_for_development"></a>Using the installer script for development</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The makefile actually uses the installer script <code>scripts/drgadm</code> internally. It only passes in the right arguments,
+so that the installer will install images from a different registry, or use a different tag.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+By default, the installer scripts, even on the main branch, will install a tagged version. Sometimes tagged
+versions are not yet available on the container registry, and thus, the installation may fail. It is therefore
+recommended to install "latest" images using the <code>make deploy</code> command.
+</td>
+</tr>
+</table>
+</div>
+</div>
 </div>
 </article>
   </div>

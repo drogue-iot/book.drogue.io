@@ -97,7 +97,7 @@
     <a class="nav-link" href="addons.html">Additional components</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="services.html">Noteworthy services</a>
+    <a class="nav-link" href="services.html">Public facing services</a>
   </li>
 </ul>
   </li>
@@ -107,31 +107,37 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../deployment/index.html">Deployment</a>
+    <a class="nav-link" href="../admin-guide/index.html">Admin Guide</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../deployment/index.html">Overview</a>
+    <a class="nav-link" href="../admin-guide/index.html">Overview</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../deployment/pre-reqs.html">Pre-Requisites</a>
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../admin-guide/deploying.html">Deploying</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../admin-guide/pre-reqs.html">Pre-Requisites</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../admin-guide/cluster.html">Prepare the cluster</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../admin-guide/installer.html">Run the installer</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../deployment/cluster.html">Prepare the cluster</a>
+    <a class="nav-link" href="../admin-guide/development.html">Deploying from git</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../deployment/installer.html">Run the installer</a>
+    <a class="nav-link" href="../admin-guide/bare-metal.html">Deploying on bare metal</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../deployment/development.html">Deploy from the repository</a>
+    <a class="nav-link" href="../admin-guide/monitoring.html">Monitoring</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../deployment/bare-metal.html">Deploying on bare metal</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../deployment/monitoring.html">Monitoring a deployment</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../deployment/tracing.html">Tracing</a>
+    <a class="nav-link" href="../admin-guide/tracing.html">Tracing</a>
   </li>
 </ul>
   </li>
@@ -426,6 +432,44 @@ currently Eclipse Ditto is not part of the core Drogue Cloud infrastructure.</p>
 </div>
 <div class="paragraph">
 <p>The integration of Ditto is a future goal, but as of now still a work in progress.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_drogue_ajour"><a class="anchor" href="#_drogue_ajour"></a>Drogue Ajour</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Drogue Ajour is a firmware update and build service for tiny devices connected to Drogue IoT Cloud. It supports a wide range of IoT protocols and uses a low footprint update protocol.</p>
+</div>
+<div class="paragraph">
+<p>It offers:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Delivery - delivering firmware updates to connected devices.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Protocol support: any protocol supported by Drogue Cloud (HTTP, MQTT, CoAP, LoRaWAN)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Build - building firmware and storing it in a firmware repository.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>RESTful API for inspecting and triggering builds.</p>
+</li>
+<li>
+<p>Management console to inspect rollout status and builds.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
 </div>
 </div>
 </div>

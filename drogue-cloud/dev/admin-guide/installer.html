@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Monitoring the deployment :: Drogue IoT</title>
+    <title>Installer script :: Drogue IoT</title>
     <meta name="generator" content="Antora 3.0.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4BRXRBJJ1"></script>
@@ -97,7 +97,7 @@
     <a class="nav-link" href="../introduction/addons.html">Additional components</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../introduction/services.html">Noteworthy services</a>
+    <a class="nav-link" href="../introduction/services.html">Public facing services</a>
   </li>
 </ul>
   </li>
@@ -107,28 +107,34 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Deployment</a>
+    <a class="nav-link" href="index.html">Admin Guide</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="index.html">Overview</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="deploying.html">Deploying</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="pre-reqs.html">Pre-Requisites</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="cluster.html">Prepare the cluster</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="3">
     <a class="nav-link" href="installer.html">Run the installer</a>
   </li>
+</ul>
+  </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="development.html">Deploy from the repository</a>
+    <a class="nav-link" href="development.html">Deploying from git</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="bare-metal.html">Deploying on bare metal</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="monitoring.html">Monitoring a deployment</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="monitoring.html">Monitoring</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="tracing.html">Tracing</a>
@@ -364,96 +370,350 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Drogue Cloud</a></li>
-    <li><a href="index.html">Deployment</a></li>
-    <li><a href="monitoring.html">Monitoring a deployment</a></li>
+    <li><a href="index.html">Admin Guide</a></li>
+    <li><a href="deploying.html">Deploying</a></li>
+    <li><a href="installer.html">Run the installer</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">dev</button>
   <div class="version-menu">
-    <a class="version is-current" href="monitoring.html">dev</a>
-    <a class="version" href="../../0.9/deployment/monitoring.html">0.9</a>
+    <a class="version is-current" href="installer.html">dev</a>
+    <a class="version is-missing" href="../../0.9/index.html">0.9</a>
     <a class="version is-missing" href="../../0.8/index.html">0.8</a>
     <a class="version is-missing" href="../../0.7/index.html">0.7</a>
     <a class="version is-missing" href="../../0.6/index.html">0.6</a>
     <a class="version is-missing" href="../../0.5/index.html">0.5</a>
     <a class="version is-missing" href="../../0.4/index.html">0.4</a>
-    <a class="version" href="../../0.1/deployment/monitoring.html">0.1</a>
+    <a class="version is-missing" href="../../0.1/index.html">0.1</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-cloud/edit/main/docs/modules/deployment/pages/monitoring.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-cloud/edit/main/docs/modules/admin-guide/pages/installer.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Monitoring the deployment</h1>
-<div class="sect1">
-<h2 id="_deploying"><a class="anchor" href="#_deploying"></a>Deploying</h2>
+<h1 class="page">Installer script</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Specifying <code>-M</code> during installation process will install Prometheus and Grafana allowing you to monitor your deployment.</p>
+<p>Most of the deployment of Drogue Cloud uses <code>Helm</code> in combination with <code>kubectl</code> for installing dependencies. However,
+we do require a few steps before and after the deployment. Installing dependencies on the cluster and setting URLs
+afterwards.</p>
 </div>
 <div class="paragraph">
-<p>You can do that both using installer:</p>
+<p>For this we have a <em>magic</em> installer script, that does everything for you. It is suited for an easy start on a
+local test cluster.</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./script/drgadm deploy -M</code></pre>
-</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="title">Pure Helm based installation</div>
+<div class="paragraph">
+<p>While we describe the installation of Drogue Cloud using our installer script, it is also possible to install it using
+just Helm charts. In fact, the installer uses an opinionated value set for the Helm charts, and you can simply create
+your own wrapper chart, tweaking the values as needed.</p>
 </div>
 <div class="paragraph">
-<p>Or during development:</p>
+<p>This is what we do for our public sandbox too. The installer script is just there to get you started quickly.</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">env DEPLOY_ARGS="-M" make deploy</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_using"><a class="anchor" href="#_using"></a>Using</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>You can find out the URL of the dashboard by running the <code>drgadm</code> script:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">env METRICS=true scripts/drgadm examples</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>It should print something like:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">View the metrics dashboard:
-----------------------------
-
-* Login to Grafana: https://metrics.192.168.64.131.nip.io
-* Default credentials are 'admin/admin123456' if not configured differently</code></pre>
-</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_configuring"><a class="anchor" href="#_configuring"></a>Configuring</h2>
+<h2 id="_download_the_installer_package"><a class="anchor" href="#_download_the_installer_package"></a>Download the installer package</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can set values of the <code>drogue-cloud-metrics</code> Helm chart in order to configure various aspects of its deployment.</p>
+<p>The installer package is part of the GitHub release record: <a href="https://github.com/drogue-iot/drogue-cloud/releases/latest" class="bare">https://github.com/drogue-iot/drogue-cloud/releases/latest</a></p>
 </div>
 <div class="paragraph">
-<p>For example, the following will</p>
+<p>There is one package for each type of Kubernetes cluster:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>install-minikube</code> – For using with Minikube</p>
+</li>
+<li>
+<p><code>install-kind</code> – For using with Kind</p>
+</li>
+<li>
+<p><code>install-openshift</code> – For using with OpenShift</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Download the package, matching the cluster you plan to use.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_unpacking"><a class="anchor" href="#_unpacking"></a>Unpacking</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Unzip the package and change into the folder extracted from the archive.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_what_to_expect"><a class="anchor" href="#_what_to_expect"></a>What to expect</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The installer will create a new instance of Drogue Cloud on the cluster you are currently logged in to.</p>
+</div>
+<div class="paragraph">
+<p>By default, this includes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Installing Strimzi</p>
+</li>
+<li>
+<p>Creating a Kafka cluster</p>
+</li>
+<li>
+<p>Installing the Keycloak operator</p>
+</li>
+<li>
+<p>Create a custom CA for the endpoints</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If you want to install those dependencies manually, for example using OLM, you can opt-out of the installation
+(see below).</p>
+</div>
+<div class="paragraph">
+<p>Additionally, it installs Knative and an example application and can install digital twin feature as well. Deployment of these components can be
+ configured using installer arguments as explained below.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_running_the_installer"><a class="anchor" href="#_running_the_installer"></a>Running the installer</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Run the installer script <code>./script/drgadm deploy</code>, adding the options appropriate for your setup.</p>
+</div>
+<div class="paragraph">
+<p>You can use the <code>-c</code> argument to define which cluster type you have.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="title">Default cluster type</div>
+<div class="paragraph">
+<p>By default, the cluster type will be <code>minikube</code> for the script in the repository. For the installers, this default
+value will be changed to the installer type you downloaded. You can still override the default, using:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./script/drgadm deploy -M -s drogueCloudMetrics.grafana.adminPassword=654321nimda</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./script/drgadm deploy -c kind</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_additional_installer_options"><a class="anchor" href="#_additional_installer_options"></a>Additional installer options</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <code>deploy</code> command of <code>drgadm</code> supports the following argument</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>-k</code> or <code>INSTALL_DEPS</code></dt>
+<dd>
+<p>Don&#8217;t install any dependency by default.</p>
+</dd>
+<dt class="hdlist1"><code>-s &lt;key=value&gt;</code></dt>
+<dd>
+<p>Set additional Helm values. May be repeated multiple times.</p>
+</dd>
+<dt class="hdlist1"><code>-m</code></dt>
+<dd>
+<p>Minimize: Reduces the default resource requests to allow deploying on more constrained environments.</p>
+</dd>
+<dt class="hdlist1"><code>-d</code> or <code>DOMAIN</code></dt>
+<dd>
+<p>Manually provide the application DNS domain.</p>
+</dd>
+<dt class="hdlist1"><code>-c</code> or  <code>CLUSTER</code></dt>
+<dd>
+<p>Specify the cluster type (any of <code>minikube</code>, <code>kind</code>, <code>openshift</code>, <code>kubernetes</code>).</p>
+</dd>
+<dt class="hdlist1"><code>-p &lt;profile&gt;</code></dt>
+<dd>
+<p>Adds an additional Helm value file, named <code>deploy/helm/profiles/&lt;profile&gt;.yaml</code>.</p>
+</dd>
+<dt class="hdlist1"><code>-t  &lt;timeout&gt;</code></dt>
+<dd>
+<p>Helm installation timeout (default: 15m)</p>
+</dd>
+<dt class="hdlist1"><code>-n &lt;namespace&gt;</code> or <code>DROGUE_NS</code></dt>
+<dd>
+<p>Changes the target Drogue IoT namespace.</p>
+</dd>
+<dt class="hdlist1"><code>-T</code></dt>
+<dd>
+<p>Install digital twin feature.</p>
+</dd>
+<dt class="hdlist1"><code>-e</code></dt>
+<dd>
+<p>Don&#8217;t install examples.</p>
+</dd>
+<dt class="hdlist1"><code>-M</code></dt>
+<dd>
+<p>Deploy metrics</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>Example: Install Drogue Cloud on <code>kind</code> cluster without dependencies.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./script/drgadm deploy -c kind -k</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_skip_the_dependency_installation"><a class="anchor" href="#_skip_the_dependency_installation"></a>Skip the dependency installation</h3>
+<div class="paragraph">
+<p>The <code>-k</code> argument will skip installing all dependencies. If you want to install of just some of the dependencies (like Strimzi or Keycloak) yourself,
+you can opt out of installing them by the script.</p>
+</div>
+<div class="paragraph">
+<p>The installer has a few additional options which are controlled by using environment variables.
+You can set them by prefixing the call to the installation script, using <code>env</code> and the variable assignment:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">env INSTALL_STRIMZI=false ./script/drgadm deploy</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Variable Name</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>INSTALL_STRIMZI</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>${INSTALL_DEPS}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Control the installation of Strimzi.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>INSTALL_KEYCLOAK_OPERATOR</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>${INSTALL_DEPS}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Control the installation of the Keycloak operator.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_install_additional_examples"><a class="anchor" href="#_install_additional_examples"></a>Install additional examples</h3>
+<div class="paragraph">
+<p>By default the example dashboard is installed by the script. You can turn it off by using <code>-e</code> argument.
+Additionally, digital twin feature can be installed by specifying <code>-T</code> argument.
+Knative will be installed only if either examples or digital twin feature are installed.
+To deploy minimal installation without any examples (and Knative) use:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./script/drgadm deploy -e</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_change_the_target_namespace"><a class="anchor" href="#_change_the_target_namespace"></a>Change the target namespace</h3>
+<div class="paragraph">
+<p>You can change the namespace where of the Drogue Cloud components get installed using the variable <code>DROGUE_NS</code>. The
+default is <code>drogue-iot</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Currently, you can only change the namespace of the Drogue Cloud installation. The namespaces of Knative,
+Strimzi, are currently not configurable.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_provide_custom_tls_certificates"><a class="anchor" href="#_provide_custom_tls_certificates"></a>Provide custom TLS certificates</h3>
+<div class="paragraph">
+<p>By default, the installer script will create a custom certificate authority. However, if you already have a key and
+certificate, you can instruct the installer to use these. There are two options to achieve this.</p>
+</div>
+<div class="sect3">
+<h4 id="_manually_create_the_tls_secrets"><a class="anchor" href="#_manually_create_the_tls_secrets"></a>Manually create the TLS secrets</h4>
+<div class="paragraph">
+<p>The installer will check if the secrets <code>http-endpoint-tls</code>, <code>mqtt-endpoint-tls</code> and <code>coap-endpoint-tls</code> exist. If they don&#8217;t it will
+create them using generated key and certificate material.</p>
+</div>
+<div class="paragraph">
+<p>If you manually create these TLS secrets, using those names, <strong>before</strong> running the installer, it will not override
+these existing secrets. You can do that by running shell commands similar to these:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl -n drogue-iot create secret tls http-endpoint-tls --key $PATH_TO_CERT/tls.key --cert $PATH_TO_CERT/tls.crt --dry-run=client -o json | kubectl -n drogue-iot apply -f -
+kubectl -n drogue-iot create secret tls mqtt-endpoint-tls --key $PATH_TO_CERT/tls.key --cert $PATH_TO_CERT/tls.crt --dry-run=client -o json | kubectl -n drogue-iot apply -f -
+kubectl -n drogue-iot create secret tls coap-endpoint-tls --key $PATH_TO_CERT/tls.key --cert $PATH_TO_CERT/tls.crt --dry-run=client -o json | kubectl -n drogue-iot apply -f -</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>will change the password for accessing Grafana dashboard.</p>
+<p>Where <code>$PATH_TO_CERT</code> should point to the path location of your certificate.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_re_running_the_installer"><a class="anchor" href="#_re_running_the_installer"></a>Re-running the installer</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Should something go wrong, it should be possible to just re-run the installer script. That should simply set the
+<em>desired state</em> again, and Kubernetes should reconcile accordingly. In most of the cases, this works just fine.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_status_information"><a class="anchor" href="#_status_information"></a>Status information</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>After the installer script has run, it will show some information on how you can connect to the system and
+give some example commands to try out.</p>
 </div>
 </div>
 </div>

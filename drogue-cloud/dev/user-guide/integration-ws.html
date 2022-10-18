@@ -97,7 +97,7 @@
     <a class="nav-link" href="../introduction/addons.html">Additional components</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../introduction/services.html">Noteworthy services</a>
+    <a class="nav-link" href="../introduction/services.html">Public facing services</a>
   </li>
 </ul>
   </li>
@@ -107,31 +107,37 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../deployment/index.html">Deployment</a>
+    <a class="nav-link" href="../admin-guide/index.html">Admin Guide</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../deployment/index.html">Overview</a>
+    <a class="nav-link" href="../admin-guide/index.html">Overview</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../deployment/pre-reqs.html">Pre-Requisites</a>
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../admin-guide/deploying.html">Deploying</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../admin-guide/pre-reqs.html">Pre-Requisites</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../admin-guide/cluster.html">Prepare the cluster</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../admin-guide/installer.html">Run the installer</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../deployment/cluster.html">Prepare the cluster</a>
+    <a class="nav-link" href="../admin-guide/development.html">Deploying from git</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../deployment/installer.html">Run the installer</a>
+    <a class="nav-link" href="../admin-guide/bare-metal.html">Deploying on bare metal</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../deployment/development.html">Deploy from the repository</a>
+    <a class="nav-link" href="../admin-guide/monitoring.html">Monitoring</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../deployment/bare-metal.html">Deploying on bare metal</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../deployment/monitoring.html">Monitoring a deployment</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../deployment/tracing.html">Tracing</a>
+    <a class="nav-link" href="../admin-guide/tracing.html">Tracing</a>
   </li>
 </ul>
   </li>
@@ -393,8 +399,17 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>The WebSocket integration allows consuming device events using a simple WebSockets based protocol.Events are
-encoded as CloudEvents.</p>
+<p>The WebSocket integration allows consuming device events using a simple WebSockets based protocol.
+Events are encoded as CloudEvents.</p>
+</div>
+<div class="paragraph">
+<p>The application you want to consume must be passed as a path parameter.
+As an example, here is the url to connect to if you want to stream events for the application <code>example-app</code> :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">wss://ws-integration.sandbox.drogue.cloud/example-app</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -447,10 +462,26 @@ The bearer token must be passed with a key named <code>RefreshAccessToken</code>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+<pre>{
    "RefreshAccessToken":"eyJhbGciO[...]sRqg7xt_jzb_tg"
-}</code></pre>
+}</pre>
 </div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_channel_filter"><a class="anchor" href="#_channel_filter"></a>Channel filter</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can set an additional path segment after the application ID to select a specific channel you want to consume the events from.</p>
+</div>
+<div class="paragraph">
+<p>For example, if you want to consume events only from the <code>sensor</code> channel you would connect to :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">wss://ws-integration.sandbox.drogue.cloud/example-app/sensor</code></pre>
 </div>
 </div>
 </div>
@@ -460,7 +491,7 @@ The bearer token must be passed with a key named <code>RefreshAccessToken</code>
 <div class="sectionbody">
 <div class="paragraph">
 <p>You can set the consumer group ID by providing a query parameter named <code>group_id</code>. This will set the Kafka consumer
-group ID to the provided value, which allows to share the load between different consumers.</p>
+group ID to the provided value, allowing to share the load between different consumers.</p>
 </div>
 <div class="paragraph">
 <p>If no consumer group id is provided, a temporary one will be provided.</p>

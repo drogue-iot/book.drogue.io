@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Tracing :: Drogue IoT</title>
+    <title>Deploying :: Drogue IoT</title>
     <meta name="generator" content="Antora 3.0.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4BRXRBJJ1"></script>
@@ -97,7 +97,7 @@
     <a class="nav-link" href="../introduction/addons.html">Additional components</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../introduction/services.html">Noteworthy services</a>
+    <a class="nav-link" href="../introduction/services.html">Public facing services</a>
   </li>
 </ul>
   </li>
@@ -107,30 +107,36 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Deployment</a>
+    <a class="nav-link" href="index.html">Admin Guide</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="index.html">Overview</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="deploying.html">Deploying</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="pre-reqs.html">Pre-Requisites</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="cluster.html">Prepare the cluster</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="installer.html">Run the installer</a>
   </li>
+</ul>
+  </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="development.html">Deploy from the repository</a>
+    <a class="nav-link" href="development.html">Deploying from git</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="bare-metal.html">Deploying on bare metal</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="monitoring.html">Monitoring a deployment</a>
+    <a class="nav-link" href="monitoring.html">Monitoring</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="tracing.html">Tracing</a>
   </li>
 </ul>
@@ -364,56 +370,41 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Drogue Cloud</a></li>
-    <li><a href="index.html">Deployment</a></li>
-    <li><a href="tracing.html">Tracing</a></li>
+    <li><a href="index.html">Admin Guide</a></li>
+    <li><a href="deploying.html">Deploying</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">dev</button>
   <div class="version-menu">
-    <a class="version is-current" href="tracing.html">dev</a>
-    <a class="version" href="../../0.9/deployment/tracing.html">0.9</a>
+    <a class="version is-current" href="deploying.html">dev</a>
+    <a class="version is-missing" href="../../0.9/index.html">0.9</a>
     <a class="version is-missing" href="../../0.8/index.html">0.8</a>
     <a class="version is-missing" href="../../0.7/index.html">0.7</a>
     <a class="version is-missing" href="../../0.6/index.html">0.6</a>
     <a class="version is-missing" href="../../0.5/index.html">0.5</a>
     <a class="version is-missing" href="../../0.4/index.html">0.4</a>
-    <a class="version" href="../../0.1/deployment/tracing.html">0.1</a>
+    <a class="version is-missing" href="../../0.1/index.html">0.1</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-cloud/edit/main/docs/modules/deployment/pages/tracing.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-cloud/edit/main/docs/modules/admin-guide/pages/deploying.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Tracing</h1>
-<div id="preamble">
-<div class="sectionbody">
+<h1 class="page">Deploying</h1>
 <div class="paragraph">
-<p>Tracing using Jaeger tracing can be enabled for Drogue Cloud during deployment.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_helm_charts"><a class="anchor" href="#_helm_charts"></a>Helm Charts</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>In the Helm charts, set the value:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">global:
-  drogueCloud:
-    jaeger:
-      enabled: true</code></pre>
-</div>
+<p>Deploying a complex solution like this can be tricky. We tried make it as simple as possible for a local test
+installation.</p>
 </div>
 <div class="paragraph">
-<p>By default, tracing is disabled.</p>
+<p>The following sections will walk you through the steps, required to install Drogue Cloud. It will also try to show
+options to customize this process.</p>
 </div>
-</div>
+<div class="paragraph">
+<p>Deploying Drogue Cloud to Kubernetes is recommended for production systems.</p>
 </div>
 </article>
   </div>

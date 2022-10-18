@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Pre-requisites :: Drogue IoT</title>
+    <title>Admin Guide :: Drogue IoT</title>
     <meta name="generator" content="Antora 3.0.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4BRXRBJJ1"></script>
@@ -97,7 +97,7 @@
     <a class="nav-link" href="../introduction/addons.html">Additional components</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../introduction/services.html">Noteworthy services</a>
+    <a class="nav-link" href="../introduction/services.html">Public facing services</a>
   </li>
 </ul>
   </li>
@@ -105,30 +105,36 @@
   </li>
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Deployment</a>
+    <a class="nav-link" href="index.html">Admin Guide</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="index.html">Overview</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="deploying.html">Deploying</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="pre-reqs.html">Pre-Requisites</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="cluster.html">Prepare the cluster</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="installer.html">Run the installer</a>
   </li>
+</ul>
+  </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="development.html">Deploy from the repository</a>
+    <a class="nav-link" href="development.html">Deploying from git</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="bare-metal.html">Deploying on bare metal</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="monitoring.html">Monitoring a deployment</a>
+    <a class="nav-link" href="monitoring.html">Monitoring</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="tracing.html">Tracing</a>
@@ -364,86 +370,48 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Drogue Cloud</a></li>
-    <li><a href="index.html">Deployment</a></li>
-    <li><a href="pre-reqs.html">Pre-Requisites</a></li>
+    <li><a href="index.html">Admin Guide</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">dev</button>
   <div class="version-menu">
-    <a class="version is-current" href="pre-reqs.html">dev</a>
-    <a class="version" href="../../0.9/deployment/pre-reqs.html">0.9</a>
-    <a class="version" href="../../0.8/deployment/pre-reqs.html">0.8</a>
-    <a class="version" href="../../0.7/deployment/pre-reqs.html">0.7</a>
-    <a class="version" href="../../0.6/deployment/pre-reqs.html">0.6</a>
-    <a class="version" href="../../0.5/deployment/pre-reqs.html">0.5</a>
-    <a class="version" href="../../0.4/deployment/pre-reqs.html">0.4</a>
-    <a class="version" href="../../0.1/deployment/pre-reqs.html">0.1</a>
+    <a class="version is-current" href="index.html">dev</a>
+    <a class="version is-missing" href="../../0.9/index.html">0.9</a>
+    <a class="version is-missing" href="../../0.8/index.html">0.8</a>
+    <a class="version is-missing" href="../../0.7/index.html">0.7</a>
+    <a class="version is-missing" href="../../0.6/index.html">0.6</a>
+    <a class="version is-missing" href="../../0.5/index.html">0.5</a>
+    <a class="version is-missing" href="../../0.4/index.html">0.4</a>
+    <a class="version is-missing" href="../../0.1/index.html">0.1</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-cloud/edit/main/docs/modules/deployment/pages/pre-reqs.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-cloud/edit/main/docs/modules/admin-guide/pages/index.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Pre-requisites</h1>
-<div id="preamble">
-<div class="sectionbody">
+<h1 class="page">Admin Guide</h1>
 <div class="paragraph">
-<p>Deploying Drogue Cloud, you will need a few tools on your local machine. In most cases a Linux/Unix environment
-is assumed, which includes Mac OS X.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_command_line_tools"><a class="anchor" href="#_command_line_tools"></a>Command line tools</h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p><code>drg</code>- aka <a href="https://github.com/drogue-iot/drg">Drogue command line client</a></p>
-</li>
-<li>
-<p><code>http</code> - aka <a href="https://httpie.org/">HTTPie</a></p>
-</li>
-<li>
-<p><code>mqtt</code> - aka <a href="https://github.com/hivemq/mqtt-cli">MQTT CLI</a></p>
-</li>
-<li>
-<p><code>kubectl</code> - <a href="https://kubernetes.io/docs/tasks/tools/install-kubectl/" class="bare">https://kubernetes.io/docs/tasks/tools/install-kubectl/</a></p>
-</li>
-<li>
-<p><code>helm</code> – <a href="https://helm.sh/docs/intro/install/">Helm CLI</a></p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_kubernetes_cluster"><a class="anchor" href="#_kubernetes_cluster"></a>Kubernetes Cluster</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>You will need a Kubernetes cluster in order to deploy Drogue Cloud. For running outside Kubernetes, have a look at the <a href="bare-metal.html" class="xref page">bare metal deployment</a>.</p>
+<p>This guide describes how to deploy and manage Drogue Cloud, from the perspective of an administrator, running Drogue Cloud "as a service".</p>
 </div>
 <div class="paragraph">
-<p>In general, any Kubernetes cluster should work. However, we mostly test with:</p>
+<p>You can deploy Drogue Cloud in different ways depending on your use case:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Minikube – <a href="https://minikube.sigs.k8s.io/docs/start/" class="bare">https://minikube.sigs.k8s.io/docs/start/</a></p>
+<p>Kubernetes from a release - Deploying Drogue Cloud to Kubernetes is recommended for production systems.</p>
 </li>
 <li>
-<p>Kind – <a href="https://kind.sigs.k8s.io/docs/user/quick-start/" class="bare">https://kind.sigs.k8s.io/docs/user/quick-start/</a></p>
+<p>Kubernetes from git - Deploying Drogue Cloud from git is useful for development or for using unreleased features.</p>
 </li>
 <li>
-<p>OpenShift or OKD – <a href="https://www.openshift.com/" class="bare">https://www.openshift.com/</a> or <a href="https://www.okd.io/" class="bare">https://www.okd.io/</a></p>
+<p>Bare metal  - Runs all of Drogue Cloud in a single binary, useful for testing or running on hardware with limited resources.</p>
 </li>
 </ul>
-</div>
-</div>
 </div>
 </article>
   </div>
