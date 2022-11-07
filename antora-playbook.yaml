@@ -15,6 +15,9 @@ content:
     - url: https://github.com/drogue-iot/drogue-ajour.git
       branches: [main]
       start_path: docs
+    - url: https://github.com/drogue-iot/drogue-doppelgaenger.git
+      branches: [main, v*, release-*]
+      start_path: docs
     - url: https://github.com/drogue-iot/drogue-device.git
       branches: main
       start_path: docs
@@ -32,6 +35,8 @@ antora:
         - component: drogue-cloud
           module: api
         - component: drogue-ajour
+          module: api
+        - component: drogue-doppelgaenger
           module: api
 
 ui:

@@ -19,6 +19,9 @@ content:
     - url: ../drogue-ajour
       branches: HEAD
       start_path: docs
+    - url: ../drogue-doppelgaenger
+      branches: HEAD
+      start_path: docs
     - url: ../drogue-device
       branches: HEAD
       start_path: docs
@@ -36,6 +39,8 @@ antora:
         - component: drogue-cloud
           module: api
         - component: drogue-ajour
+          module: api
+        - component: drogue-doppelgaenger
           module: api
 
 ui:
@@ -57,4 +62,3 @@ output:
   clean: true
 runtime:
   fetch: true
-
