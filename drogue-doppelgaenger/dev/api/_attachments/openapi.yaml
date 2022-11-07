@@ -1,0 +1,741 @@
+openapi: 3.0.0
+info:
+  title: Drogue Doppelgänger API
+  license:
+    name: Apache 2.0
+  contact:
+    url: https://drogue.io
+  version: "0.1.0"
+
+paths:
+
+  '/api/v1alpha1/things/':
+    post:
+      tags:
+        - Management
+      description: Create a new thing.
+      requestBody:
+        content:
+          'application/json':
+            schema:
+              $ref: '#/components/schemas/Thing'
+      responses:
+        '201':
+          description: A new thing has been created.
+        '409':
+          description: A thing with this name already exists.
+        '500':
+          description: An internal error occurred.
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/ErrorInformation'
+    put:
+      tags:
+        - Management
+      description: Update an existing thing.
+      requestBody:
+        content:
+          'application/json':
+            schema:
+              $ref: '#/components/schemas/Thing'
+      responses:
+        '204':
+          description: A new thing has been created.
+        '500':
+          description: An internal error occurred.
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/ErrorInformation'
+
+  '/api/v1alpha1/things/{application}/things/{thing}':
+    parameters:
+      - $ref: '#/components/parameters/application'
+      - $ref: '#/components/parameters/thing'
+    get:
+      tags:
+        - Management
+      responses:
+        '200':
+          description: Returns the state of the thing.
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/Thing'
+        '404':
+          description: The thing could not be found.
+        '500':
+          description: An internal error occurred.
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/ErrorInformation'
+
+    delete:
+      tags:
+        - Management
+      responses:
+        '204':
+          description: The thing already was, or has now been deleted.
+        '500':
+          description: An internal error occurred.
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/ErrorInformation'
+
+    patch:
+      tags:
+        - Management
+        - Reported State
+      requestBody:
+        content:
+          'application/json-patch+json':
+            schema:
+              $ref: '#/components/schemas/items'
+          'application/merge-patch+json':
+            schema:
+              type: object
+              description: The object to merge into the existing JSON structure.
+
+      responses:
+        '204':
+          description: The thing was updated.
+        '500':
+          description: An internal error occurred.
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/ErrorInformation'
+
+  '/api/v1alpha1/things/{application}/things/{thing}/reportedStates':
+    parameters:
+      - $ref: '#/components/parameters/application'
+      - $ref: '#/components/parameters/thing'
+
+    put:
+      tags:
+        - Reported state
+      requestBody:
+        content:
+          'application/json':
+            schema:
+              type: object
+              additionalProperties: true
+
+      responses:
+        '204':
+          description: The value has been set.
+        '500':
+          description: An internal error occurred.
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/ErrorInformation'
+
+
+  '/api/v1alpha1/things/{application}/things/{thing}/syntheticStates/{name}':
+    parameters:
+      - $ref: '#/components/parameters/application'
+      - $ref: '#/components/parameters/thing'
+      - $ref: '#/components/parameters/name'
+
+    put:
+      tags:
+        - Synthetic state
+
+      description: Create or update a synthetic state feature.
+      requestBody:
+        content:
+          'application/json':
+            schema:
+              $ref: '#/components/schemas/SyntheticFeature'
+
+      responses:
+        '204':
+          description: The synthetic feature has been updated.
+        '500':
+          description: An internal error occurred.
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/ErrorInformation'
+
+
+  '/api/v1alpha1/things/{application}/things/{thing}/desiredStates/{name}':
+    parameters:
+      - $ref: '#/components/parameters/application'
+      - $ref: '#/components/parameters/thing'
+      - $ref: '#/components/parameters/name'
+
+    put:
+      tags:
+        - Desired state
+
+      description: Create or update a desired value feature.
+      requestBody:
+        content:
+          'application/json':
+            schema:
+              $ref: '#/components/schemas/DesiredStateUpdate'
+
+      responses:
+        '204':
+          description: The desired feature has been updated.
+        '500':
+          description: An internal error occurred.
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/ErrorInformation'
+
+
+  '/api/v1alpha1/things/{application}/things/{thing}/desiredStates/{name}/value':
+    parameters:
+      - $ref: '#/components/parameters/application'
+      - $ref: '#/components/parameters/thing'
+      - $ref: '#/components/parameters/name'
+
+    put:
+      tags:
+        - Desired state
+
+      description: Update the value of a desired state feature
+      requestBody:
+        content:
+          'application/json':
+            schema: {}
+
+      responses:
+        '204':
+          description: The value has been set.
+        '500':
+          description: An internal error occurred.
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/ErrorInformation'
+
+  '/api/v1alpha1/things/{application}/notifications':
+    parameters:
+      - $ref: '#/components/parameters/application'
+    description: A websocket endpoint, allowing you to subscribe to thing changes.
+    get:
+      tags:
+        - Notifications
+      responses:
+        '101':
+          description: Switched to websocket protocol.
+
+  '/api/v1alpha1/things/{application}/things/{thing}/notifications':
+    parameters:
+      - $ref: '#/components/parameters/application'
+      - $ref: '#/components/parameters/thing'
+    description: A websocket endpoint automatically subscribes to a single thing.
+    get:
+      tags:
+        - Notifications
+      responses:
+        '101':
+          description: Switched to websocket protocol.
+
+components:
+
+  parameters:
+    application:
+      name: application
+      in: path
+      description: The application scope
+      required: true
+      example: default
+      schema:
+        type: string
+    thing:
+      name: thing
+      in: path
+      description: The name of the thing
+      required: true
+      schema:
+        type: string
+    name:
+      name: name
+      in: path
+      description: The name of the feature
+      required: true
+      schema:
+        type: string
+
+  schemas:
+
+    # JSON patch
+
+    path:
+      description: A JSON Pointer path.
+      type: string
+    items:
+      oneOf:
+        - additionalProperties: false
+          required:
+            - value
+            - op
+            - path
+          properties:
+            path:
+              "$ref": "#/components/schemas/path"
+            op:
+              description: The operation to perform.
+              type: string
+              enum:
+                - add
+                - replace
+                - test
+            value:
+              description: The value to add, replace or test.
+        - additionalProperties: false
+          required:
+            - op
+            - path
+          properties:
+            path:
+              "$ref": "#/components/schemas/path"
+            op:
+              description: The operation to perform.
+              type: string
+              enum:
+                - remove
+        - additionalProperties: false
+          required:
+            - from
+            - op
+            - path
+          properties:
+            path:
+              "$ref": "#/components/schemas/path"
+            op:
+              description: The operation to perform.
+              type: string
+              enum:
+                - move
+                - copy
+            from:
+              "$ref": "#/components/schemas/path"
+
+    # the rest of the file is generated by gen_schema.rs
+
+    Changed:
+      type: object
+      oneOf:
+        - type: object
+          required:
+            - javaScript
+          properties:
+            javaScript:
+              type: string
+          additionalProperties: false
+      properties:
+        lastLog:
+          type: array
+          items:
+            type: string
+    Code:
+      oneOf:
+        - type: object
+          required:
+            - javaScript
+          properties:
+            javaScript:
+              type: string
+          additionalProperties: false
+    Command:
+      type: object
+      required:
+        - period
+      properties:
+        encoding:
+          description: The encoding of the command
+          allOf:
+            - $ref: "#/components/schemas/CommandEncoding"
+          nullable: true
+        mode:
+          description: If the command should be sent actively after the period expired.
+          default: passive
+          allOf:
+            - $ref: "#/components/schemas/CommandMode"
+        period:
+          title: Human readable duration
+          description: The period when a command will be sent out to reconcile.
+          type: string
+          example: 1m
+    CommandEncoding:
+      oneOf:
+        - type: string
+          enum:
+            - raw
+        - type: object
+          required:
+            - remap
+          properties:
+            remap:
+              type: object
+              required:
+                - channel
+                - device
+              properties:
+                channel:
+                  type: string
+                device:
+                  type: string
+          additionalProperties: false
+        - type: object
+          required:
+            - channel
+          properties:
+            channel:
+              type: string
+          additionalProperties: false
+    CommandMode:
+      type: string
+      enum:
+        - active
+        - passive
+    Deleting:
+      type: object
+      oneOf:
+        - type: object
+          required:
+            - javaScript
+          properties:
+            javaScript:
+              type: string
+          additionalProperties: false
+    DesiredFeature:
+      type: object
+      required:
+        - lastUpdate
+      properties:
+        lastUpdate:
+          description: The timestamp the desired value was last updated.
+          type: string
+          format: date-time
+        method:
+          description: The method of reconciliation.
+          default: external
+          allOf:
+            - $ref: "#/components/schemas/DesiredFeatureMethod"
+        mode:
+          description: The mode this value should be applied with.
+          allOf:
+            - $ref: "#/components/schemas/DesiredMode"
+        reconciliation:
+          description: The current reconciliation state of the desired value.
+          default:
+            state: reconciling
+          allOf:
+            - $ref: "#/components/schemas/DesiredFeatureReconciliation"
+        validUntil:
+          description: An optional indication until when the desired value is valid.
+          type: string
+          format: date-time
+          nullable: true
+        value:
+          description: "The value the system desired the device to apply. If the value is not set, then nothing will be reconciled."
+          default: ~
+    DesiredFeatureMethod:
+      oneOf:
+        - type: string
+          enum:
+            - manual
+            - external
+        - description: Try to reconcile the state by sending out commands.
+          type: object
+          required:
+            - command
+          properties:
+            command:
+              $ref: "#/components/schemas/Command"
+          additionalProperties: false
+        - description: Generate reconcile actions through custom code.
+          type: object
+          required:
+            - code
+          properties:
+            code:
+              $ref: "#/components/schemas/Code"
+          additionalProperties: false
+    DesiredFeatureReconciliation:
+      oneOf:
+        - type: object
+          required:
+            - state
+          properties:
+            lastAttempt:
+              type: string
+              format: date-time
+              nullable: true
+            state:
+              type: string
+              enum:
+                - reconciling
+        - type: object
+          required:
+            - state
+            - when
+          properties:
+            state:
+              type: string
+              enum:
+                - succeeded
+            when:
+              type: string
+              format: date-time
+        - type: object
+          required:
+            - state
+            - when
+          properties:
+            reason:
+              type: string
+              nullable: true
+            state:
+              type: string
+              enum:
+                - failed
+            when:
+              type: string
+              format: date-time
+        - type: object
+          required:
+            - state
+            - when
+          properties:
+            state:
+              type: string
+              enum:
+                - disabled
+            when:
+              type: string
+              format: date-time
+    DesiredMode:
+      description: The mode of the desired feature.
+      type: string
+      enum:
+        - once
+        - sync
+        - disabled
+    DesiredStateUpdate:
+      description: "A more flexible update struct for [`DesiredFeature`]."
+      type: object
+      properties:
+        method:
+          default: ~
+          allOf:
+            - $ref: "#/components/schemas/DesiredFeatureMethod"
+          nullable: true
+        mode:
+          allOf:
+            - $ref: "#/components/schemas/DesiredMode"
+          nullable: true
+        reconciliation:
+          default: ~
+          allOf:
+            - $ref: "#/components/schemas/DesiredFeatureReconciliation"
+          nullable: true
+        validFor:
+          title: Human readable duration
+          description: "Durations in a format intended for humans:\n\nThe format uses a combination of amount and time unit (like: h, m, s) to define a duration. For example:\n\n* `1m` = 1 minute = 60 seconds\n* `30s` = 30 seconds\n* `1h 30m` = 90 minutes\n\nTime units are:\n\n* ms, millis, msec = milliseconds \n* s, seconds, second, secs, sec = seconds\n* m, minutes, minute, mins, min = minutes\n* h, hours, hour, hrs, hrs = hours\n* d, days, day = days\n* w, weeks, week = weeks\n* M, months, month = month (=30.44d)\n* y, years, year = year (=365.25d)\n\n"
+          type: string
+          example: 1m
+        validUntil:
+          type: string
+          format: date-time
+          nullable: true
+        value:
+          default: ~
+          nullable: true
+    ErrorInformation:
+      type: object
+      required:
+        - error
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+          nullable: true
+    JsonSchema:
+      oneOf:
+        - type: object
+          required:
+            - schema
+            - version
+          properties:
+            schema: {}
+            version:
+              type: string
+              enum:
+                - draft7
+    Metadata:
+      type: object
+      required:
+        - application
+        - name
+      properties:
+        annotations:
+          type: object
+          additionalProperties:
+            type: string
+        application:
+          type: string
+        creationTimestamp:
+          type: string
+          format: date-time
+          nullable: true
+        deletionTimestamp:
+          type: string
+          format: date-time
+          nullable: true
+        generation:
+          type: integer
+          format: uint32
+          minimum: 0.0
+          nullable: true
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        name:
+          type: string
+        resourceVersion:
+          type: string
+          nullable: true
+        uid:
+          type: string
+          nullable: true
+    Reconciliation:
+      type: object
+      properties:
+        changed:
+          type: object
+          additionalProperties:
+            $ref: "#/components/schemas/Changed"
+        deleting:
+          type: object
+          additionalProperties:
+            $ref: "#/components/schemas/Deleting"
+        timers:
+          type: object
+          additionalProperties:
+            $ref: "#/components/schemas/Timer"
+    ReportedFeature:
+      type: object
+      required:
+        - lastUpdate
+        - value
+      properties:
+        lastUpdate:
+          type: string
+          format: date-time
+        value: {}
+    Schema:
+      oneOf:
+        - type: object
+          required:
+            - json
+          properties:
+            json:
+              $ref: "#/components/schemas/JsonSchema"
+          additionalProperties: false
+    SyntheticFeature:
+      type: object
+      oneOf:
+        - type: object
+          required:
+            - javaScript
+          properties:
+            javaScript:
+              type: string
+          additionalProperties: false
+        - type: object
+          required:
+            - alias
+          properties:
+            alias:
+              type: string
+          additionalProperties: false
+      required:
+        - lastUpdate
+        - value
+      properties:
+        lastUpdate:
+          type: string
+          format: date-time
+        value: {}
+    Thing:
+      description: The full thing model.
+      type: object
+      required:
+        - metadata
+      properties:
+        desiredState:
+          type: object
+          additionalProperties:
+            $ref: "#/components/schemas/DesiredFeature"
+        metadata:
+          $ref: "#/components/schemas/Metadata"
+        reconciliation:
+          $ref: "#/components/schemas/Reconciliation"
+        reportedState:
+          type: object
+          additionalProperties:
+            $ref: "#/components/schemas/ReportedFeature"
+        schema:
+          allOf:
+            - $ref: "#/components/schemas/Schema"
+          nullable: true
+        syntheticState:
+          type: object
+          additionalProperties:
+            $ref: "#/components/schemas/SyntheticFeature"
+    Timer:
+      type: object
+      oneOf:
+        - type: object
+          required:
+            - javaScript
+          properties:
+            javaScript:
+              type: string
+          additionalProperties: false
+      required:
+        - period
+      properties:
+        initialDelay:
+          title: Human readable duration
+          description: "an optional, initial delay. if there is none, the time will be run the first time it is configured"
+          type: string
+          example: 1m
+        lastLog:
+          description: the logs of the last run
+          type: array
+          items:
+            type: string
+        lastRun:
+          description: the timestamp the timer last ran
+          type: string
+          format: date-time
+          nullable: true
+        lastStarted:
+          description: the latest timestamp the timer was started
+          type: string
+          format: date-time
+          nullable: true
+        period:
+          title: Human readable duration
+          description: the period the timer is scheduled
+          type: string
+          example: 1m
+        stopped:
+          description: A flag to stop the timer
+          default: false
+          type: boolean

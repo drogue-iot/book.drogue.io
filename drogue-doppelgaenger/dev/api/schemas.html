@@ -1,0 +1,1542 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Schemas :: Drogue IoT</title>
+    <meta name="generator" content="Antora 3.0.1">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4BRXRBJJ1"></script>
+    <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','G-Z4BRXRBJJ1')</script>
+    <script>var uiRootPath = '../../../_'</script>
+    <link rel="icon" href="../../../_/img/favicon.svg" type="image/svg+xml">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+
+      <a class="navbar-item" href="../../..">
+        <img class="navbar-brand-image" src="../../../_/img/logo.png" alt="Drogue IoT"/>
+      </a>
+        <div class="navbar-item search hide-for-print">
+          <div id="search-field" class="field">
+            <input id="search-input" type="text" placeholder="Search the docs">
+          </div>
+        </div>
+
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://www.drogue.io" target="_blank">Project</a>
+        <a class="navbar-item" href="https://blog.drogue.io" target="_blank">Blog</a>
+        <a class="navbar-item" href="https://matrix.to/#/#drogue-iot:matrix.org" target="_blank">Chat</a>
+        <a class="navbar-item" href="https://book.drogue.io">Documentation</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="drogue-doppelgaenger" data-version="dev">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Drogue Doppelgänger</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Overview</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../developer-guide/index.html">Developer Guide</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../developer-guide/index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../developer-guide/pre-reqs.html">Pre-requisites</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../developer-guide/local.html">Local developer setup</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">API</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="endpoints.html">Endpoints</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="schemas.html">Schemas</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Drogue Doppelgänger</span>
+    <span class="version">dev</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <a class="title" href="../../../drogue-ajour/dev/index.html">Drogue Ajour</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../drogue-ajour/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../drogue-cloud/dev/index.html">Drogue Cloud</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../drogue-cloud/dev/index.html">dev</a>
+        </li>
+        <li class="version">
+          <a href="../../../drogue-cloud/0.9/index.html">0.9</a>
+        </li>
+        <li class="version">
+          <a href="../../../drogue-cloud/0.8/index.html">0.8</a>
+        </li>
+        <li class="version">
+          <a href="../../../drogue-cloud/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../../../drogue-cloud/0.6/index.html">0.6</a>
+        </li>
+        <li class="version">
+          <a href="../../../drogue-cloud/0.5/index.html">0.5</a>
+        </li>
+        <li class="version">
+          <a href="../../../drogue-cloud/0.4/index.html">0.4</a>
+        </li>
+        <li class="version">
+          <a href="../../../drogue-cloud/0.1/index.html">0.1</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../drogue-device/dev/index.html">Drogue Device</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../drogue-device/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <a class="title" href="../index.html">Drogue Doppelgänger</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../drogue-book/index.html">Drogue IoT</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../drogue-book/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../drogue-workshops/index.html">Drogue IoT Workshops</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../drogue-workshops/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../../drogue-book/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Drogue Doppelgänger</a></li>
+    <li><a href="index.html">API</a></li>
+    <li><a href="schemas.html">Schemas</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/drogue-iot/drogue-doppelgaenger/edit/main/docs/modules/api/attachments/openapi.yaml">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Schemas</h1>
+<div class="sect1">
+<h2 id="_changed"><a class="anchor" href="#_changed"></a>Changed</h2>
+<div class="sectionbody">
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">lastLog</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">List of
+<code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_code"><a class="anchor" href="#_code"></a>Code</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>One of:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p></p>
+<div class="openblock">
+<div class="content">
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">javaScript*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_command"><a class="anchor" href="#_command"></a>Command</h2>
+<div class="sectionbody">
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">encoding</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#_command_encoding">Command_encoding</a></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The encoding of the command</p></div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">mode</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#_command_mode">Command_mode</a></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>If the command should be sent actively after the period expired.</p></div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">period*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The period when a command will be sent out to reconcile.</p></div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_commandencoding"><a class="anchor" href="#_commandencoding"></a>CommandEncoding</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>One of:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p></p>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p><code>string</code></p>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p></p>
+<div class="openblock">
+<div class="content">
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+</table>
+<div class="paragraph">
+<p>| Property | Type | Description</p>
+</div>
+<div class="paragraph">
+<p>a|</p>
+</div>
+<b title="required">channel*</b>
+<div class="paragraph">
+<p>|
+<code>string</code></p>
+</div>
+<div class="paragraph">
+<p>a|</p>
+</div>
+<div class="paragraph">
+<p>a|</p>
+</div>
+<b title="required">device*</b>
+<div class="paragraph">
+<p>|
+<code>string</code></p>
+</div>
+<div class="paragraph">
+<p>a|</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</li>
+<li>
+<p></p>
+<div class="openblock">
+<div class="content">
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">channel*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_commandmode"><a class="anchor" href="#_commandmode"></a>CommandMode</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>Type:</strong>
+<code>string</code></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_command_encoding"><a class="anchor" href="#_command_encoding"></a>Command_encoding</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The encoding of the command</p>
+</div>
+<div class="paragraph">
+<p>All of:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p></p>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p><a href="#_commandencoding">CommandEncoding</a></p>
+</div>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_command_mode"><a class="anchor" href="#_command_mode"></a>Command_mode</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If the command should be sent actively after the period expired.</p>
+</div>
+<div class="paragraph">
+<p>All of:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p></p>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p><a href="#_commandmode">CommandMode</a></p>
+</div>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deleting"><a class="anchor" href="#_deleting"></a>Deleting</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>Type:</strong></p>
+</div>
+<div class="paragraph">
+<p>Map of objects</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_desiredfeature"><a class="anchor" href="#_desiredfeature"></a>DesiredFeature</h2>
+<div class="sectionbody">
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">lastUpdate*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p>
+<p class="tableblock"><span class="small">(date-time)</span></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The timestamp the desired value was last updated.</p></div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">method</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#_desiredfeature_method">DesiredFeature_method</a></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The method of reconciliation.</p></div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">mode</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#_desiredfeature_mode">DesiredFeature_mode</a></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The mode this value should be applied with.</p></div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">reconciliation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#_desiredfeature_reconciliation">DesiredFeature_reconciliation</a></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The current reconciliation state of the desired value.</p></div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">validUntil</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p>
+<p class="tableblock"><span class="small">(date-time)</span></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>An optional indication until when the desired value is valid.</p></div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#_desiredfeature_value">DesiredFeature_value</a></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>The value the system desired the device to apply. If the value is not set, then nothing will be reconciled.</p></div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_desiredfeaturemethod"><a class="anchor" href="#_desiredfeaturemethod"></a>DesiredFeatureMethod</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>One of:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p></p>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p><code>string</code></p>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p></p>
+<div class="openblock">
+<div class="content">
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">command*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#_command">Command</a></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</li>
+<li>
+<p></p>
+<div class="openblock">
+<div class="content">
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">code*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#_code">Code</a></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_desiredfeaturereconciliation"><a class="anchor" href="#_desiredfeaturereconciliation"></a>DesiredFeatureReconciliation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>One of:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p></p>
+<div class="openblock">
+<div class="content">
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">lastAttempt</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p>
+<p class="tableblock"><span class="small">(date-time)</span></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">state*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p><code>reconciling</code></p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</li>
+<li>
+<p></p>
+<div class="openblock">
+<div class="content">
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">state*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p><code>succeeded</code></p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">when*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p>
+<p class="tableblock"><span class="small">(date-time)</span></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</li>
+<li>
+<p></p>
+<div class="openblock">
+<div class="content">
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">reason</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">state*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p><code>failed</code></p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">when*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p>
+<p class="tableblock"><span class="small">(date-time)</span></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</li>
+<li>
+<p></p>
+<div class="openblock">
+<div class="content">
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">state*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p><code>disabled</code></p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">when*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p>
+<p class="tableblock"><span class="small">(date-time)</span></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_desiredfeature_method"><a class="anchor" href="#_desiredfeature_method"></a>DesiredFeature_method</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The method of reconciliation.</p>
+</div>
+<div class="paragraph">
+<p>All of:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p></p>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p><a href="#_desiredfeaturemethod">DesiredFeatureMethod</a></p>
+</div>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_desiredfeature_mode"><a class="anchor" href="#_desiredfeature_mode"></a>DesiredFeature_mode</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The mode this value should be applied with.</p>
+</div>
+<div class="paragraph">
+<p>All of:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p></p>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p><a href="#_desiredmode">DesiredMode</a></p>
+</div>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_desiredfeature_reconciliation"><a class="anchor" href="#_desiredfeature_reconciliation"></a>DesiredFeature_reconciliation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The current reconciliation state of the desired value.</p>
+</div>
+<div class="paragraph">
+<p>All of:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p></p>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p><a href="#_desiredfeaturereconciliation">DesiredFeatureReconciliation</a></p>
+</div>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_desiredfeature_value"><a class="anchor" href="#_desiredfeature_value"></a>DesiredFeature_value</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The value the system desired the device to apply. If the value is not set, then nothing will be reconciled.</p>
+</div>
+<div class="paragraph">
+<p>Unknown</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_desiredmode"><a class="anchor" href="#_desiredmode"></a>DesiredMode</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The mode of the desired feature.</p>
+</div>
+<div class="paragraph">
+<p><strong>Type:</strong>
+<code>string</code></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_desiredstateupdate"><a class="anchor" href="#_desiredstateupdate"></a>DesiredStateUpdate</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A more flexible update struct for [<code>DesiredFeature</code>].</p>
+</div>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">method</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#_desiredstateupdate_method">DesiredStateUpdate_method</a></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">mode</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#_desiredstateupdate_mode">DesiredStateUpdate_mode</a></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">reconciliation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#_desiredstateupdate_reconciliation">DesiredStateUpdate_reconciliation</a></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">validFor</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>Durations in a format intended for humans:</p></div><div class="paragraph"><p>The format uses a combination of amount and time unit (like: h, m, s) to define a duration. For example:</p></div><ul>
+<li><code>1m</code> = 1 minute = 60 seconds</li>
+<li><code>30s</code> = 30 seconds</li>
+<li><code>1h 30m</code> = 90 minutes</li>
+</ul>
+<div class="paragraph"><p>Time units are:</p></div><ul>
+<li>ms, millis, msec = milliseconds </li>
+<li>s, seconds, second, secs, sec = seconds</li>
+<li>m, minutes, minute, mins, min = minutes</li>
+<li>h, hours, hour, hrs, hrs = hours</li>
+<li>d, days, day = days</li>
+<li>w, weeks, week = weeks</li>
+<li>M, months, month = month (=30.44d)</li>
+<li>y, years, year = year (=365.25d)</li>
+</ul></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">validUntil</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p>
+<p class="tableblock"><span class="small">(date-time)</span></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#_desiredstateupdate_value">DesiredStateUpdate_value</a></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_desiredstateupdate_method"><a class="anchor" href="#_desiredstateupdate_method"></a>DesiredStateUpdate_method</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>All of:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p></p>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p><a href="#_desiredfeaturemethod">DesiredFeatureMethod</a></p>
+</div>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_desiredstateupdate_mode"><a class="anchor" href="#_desiredstateupdate_mode"></a>DesiredStateUpdate_mode</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>All of:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p></p>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p><a href="#_desiredmode">DesiredMode</a></p>
+</div>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_desiredstateupdate_reconciliation"><a class="anchor" href="#_desiredstateupdate_reconciliation"></a>DesiredStateUpdate_reconciliation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>All of:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p></p>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p><a href="#_desiredfeaturereconciliation">DesiredFeatureReconciliation</a></p>
+</div>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_desiredstateupdate_value"><a class="anchor" href="#_desiredstateupdate_value"></a>DesiredStateUpdate_value</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Unknown</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_errorinformation"><a class="anchor" href="#_errorinformation"></a>ErrorInformation</h2>
+<div class="sectionbody">
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">error*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">message</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_items"><a class="anchor" href="#_items"></a>items</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>One of:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p></p>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Unknown</p>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p></p>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Unknown</p>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p></p>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Unknown</p>
+</div>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_jsonschema"><a class="anchor" href="#_jsonschema"></a>JsonSchema</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>One of:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p></p>
+<div class="openblock">
+<div class="content">
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">schema*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Unknown</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">version*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p><code>draft7</code></p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_metadata"><a class="anchor" href="#_metadata"></a>Metadata</h2>
+<div class="sectionbody">
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">annotations</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Map of
+<code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">application*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">creationTimestamp</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p>
+<p class="tableblock"><span class="small">(date-time)</span></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">deletionTimestamp</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p>
+<p class="tableblock"><span class="small">(date-time)</span></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">generation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>integer</code></p>
+<p class="tableblock"><span class="small">(uint32)</span></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">labels</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Map of
+<code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">name*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">resourceVersion</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">uid</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_path"><a class="anchor" href="#_path"></a>path</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A JSON Pointer path.</p>
+</div>
+<div class="paragraph">
+<p><strong>Type:</strong>
+<code>string</code></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_reconciliation"><a class="anchor" href="#_reconciliation"></a>Reconciliation</h2>
+<div class="sectionbody">
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">changed</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Map of <a href="#_changed">Changed</a></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">deleting</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Map of <a href="#_deleting">Deleting</a></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">timers</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Map of <a href="#_timer">Timer</a></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_reportedfeature"><a class="anchor" href="#_reportedfeature"></a>ReportedFeature</h2>
+<div class="sectionbody">
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">lastUpdate*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p>
+<p class="tableblock"><span class="small">(date-time)</span></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">value*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#_reportedfeature_value">ReportedFeature_value</a></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_reportedfeature_value"><a class="anchor" href="#_reportedfeature_value"></a>ReportedFeature_value</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Unknown</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_requestbodyapiv1alpha1thingsapplicationthingsthingdesiredstatesnamevalueputapplicationjson"><a class="anchor" href="#_requestbodyapiv1alpha1thingsapplicationthingsthingdesiredstatesnamevalueputapplicationjson"></a>RequestBodyApiV1alpha1ThingsApplicationThingsThingDesiredStatesNameValuePutApplicationJson</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Unknown</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_schema"><a class="anchor" href="#_schema"></a>Schema</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>One of:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p></p>
+<div class="openblock">
+<div class="content">
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">json*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#_jsonschema">JsonSchema</a></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_syntheticfeature"><a class="anchor" href="#_syntheticfeature"></a>SyntheticFeature</h2>
+<div class="sectionbody">
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">lastUpdate*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p>
+<p class="tableblock"><span class="small">(date-time)</span></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">value*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#_syntheticfeature_value">SyntheticFeature_value</a></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_syntheticfeature_value"><a class="anchor" href="#_syntheticfeature_value"></a>SyntheticFeature_value</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Unknown</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_thing"><a class="anchor" href="#_thing"></a>Thing</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The full thing model.</p>
+</div>
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">desiredState</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Map of <a href="#_desiredfeature">DesiredFeature</a></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">metadata*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#_metadata">Metadata</a></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">reconciliation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#_reconciliation">Reconciliation</a></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">reportedState</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Map of <a href="#_reportedfeature">ReportedFeature</a></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">schema</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#_thing_schema">Thing_schema</a></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">syntheticState</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Map of <a href="#_syntheticfeature">SyntheticFeature</a></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_thing_schema"><a class="anchor" href="#_thing_schema"></a>Thing_schema</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>All of:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p></p>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p><a href="#_schema">Schema</a></p>
+</div>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_timer"><a class="anchor" href="#_timer"></a>Timer</h2>
+<div class="sectionbody">
+<table class="tableblock frame-none grid-rows fit-content stretch">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">initialDelay</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>an optional, initial delay. if there is none, the time will be run the first time it is configured</p></div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">lastLog</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">List of
+<code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>the logs of the last run</p></div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">lastRun</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p>
+<p class="tableblock"><span class="small">(date-time)</span></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>the timestamp the timer last ran</p></div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">lastStarted</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p>
+<p class="tableblock"><span class="small">(date-time)</span></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>the latest timestamp the timer was started</p></div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><b title="required">period*</b></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>the period the timer is scheduled</p></div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">stopped</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph"><p>A flag to stop the timer</p></div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using a modified version of the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../../_/js/site.js"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+  </body>
+</html>
